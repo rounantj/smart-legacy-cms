@@ -1,0 +1,428 @@
+<style>
+    .preview {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: 996px) {
+        .preview {
+            margin-bottom: 20px;
+        }
+    }
+
+    .preview-pic {
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+    }
+
+    .preview-thumbnail.nav-tabs {
+        border: none;
+        margin-top: 15px;
+    }
+
+    .preview-thumbnail.nav-tabs li {
+        width: 18%;
+        margin-right: 2.5%;
+    }
+
+    .preview-thumbnail.nav-tabs li img {
+        max-width: 100%;
+        display: block;
+    }
+
+    .preview-thumbnail.nav-tabs li a {
+        padding: 0;
+        margin: 0;
+    }
+
+    .preview-thumbnail.nav-tabs li:last-of-type {
+        margin-right: 0;
+    }
+
+    .tab-content {
+        overflow: hidden;
+    }
+
+    .tab-content img {
+        -webkit-animation-name: opacity;
+        animation-name: opacity;
+        -webkit-animation-duration: 0.3s;
+        animation-duration: 0.3s;
+    }
+
+    .labelFuncao {
+        text-align: left;
+        font: normal normal bold 14px/14px Roboto;
+        letter-spacing: 0px;
+        padding: 15px;
+        margin: auto;
+        color: #F6B504 !important;
+        opacity: 1;
+    }
+
+    .userCms {
+        cursor: pointer;
+        transition: 0s;
+        border: 1px solid #efefef;
+        margin-top: 1%;
+        padding: 2px;
+        max-height: 64px;
+        background-color: white;
+    }
+
+    .duplicate2 {
+
+
+        cursor: pointer !important;
+        width: 37px;
+        height: 37px;
+        background: #FFFBF2 0% 0% no-repeat padding-box;
+        border-radius: 26px;
+        opacity: 1;
+        margin: 3px auto;
+        padding: 9px;
+        text-align: center;
+
+    }
+
+    .deleteThis {
+
+        margin: 3px auto !important;
+    }
+
+    .firstLetter {
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: #F6B504;
+        border-radius: 100%;
+        /* width: 50px; */
+        /* height: 50px; */
+        text-align: center;
+        /* background: #FFFFFF 0% 0% no-repeat padding-box; */
+        /* opacity: 1; */
+        width: 30px;
+        height: 30px;
+        background: #F6B504 0% 0% no-repeat padding-box;
+        opacity: 1;
+        padding: 2px;
+    }
+
+    .inTitle {
+        text-align: center;
+        font: normal normal bold 18px/24px Roboto;
+        letter-spacing: 0px;
+        color: #333333;
+        opacity: 1;
+    }
+
+    .inParagrafo {
+        text-align: center;
+        font: normal normal normal 14px/18px Roboto;
+        letter-spacing: 0px;
+        color: #687C97;
+        opacity: 1;
+    }
+
+    .infoLabel {
+        text-align: center;
+        font: normal normal normal 14px Roboto;
+        letter-spacing: 0px;
+        color: #687C97;
+        margin: auto;
+        opacity: 1;
+    }
+</style>
+
+<div class="content">
+    <br />
+    <div style="justify-content: right; margin-right: 0%;" class="row">
+        <div class="col" style="justify-content: right; margin-right: 0%; display: flow-root;">
+            <label style="
+            text-align: left;
+            font: normal normal bold 28px/37px Roboto;
+            letter-spacing: 0px;
+            color: #333333;
+            opacity: 1;
+            ">
+                Clientes
+
+            </label>
+        </div>
+        <div class="col-lg-2"></div>
+
+        <div onclick="modalNesletter($(this))"
+            style="text-align: center;cursor: pointer; border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #ffffff; max-width: 200px; height: 40px; border: 1px solid #f6b504; float: right; margin-right: 15px;"
+            class="input-group">
+            <label style="margin: -1% auto; min-width: 60%; color: #f6b504 !important; cursor: pointer;"
+                class="label">Lista Newsletter</label>
+        </div>
+
+
+    </div>
+    <hr />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-tasks radius20" style="padding: 2%;">
+                <div style="padding-bottom: 35px;" class="row">
+                    <div class="col-md-5">
+                        <div style="border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #ffffff; width: auto; height: 40px; border: 1px solid #efefef; float: left;"
+                            class="input-group">
+                            <select style="min-width: 150px; border: none;" class="form-control listaDeAcoes">
+                                <option>Lista de Ações</option>
+                                <option>Desativar</option>
+                                <option>Ativar</option>
+                                <option>Excluir</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div style="float: right;">
+                            <div class="input-group">
+                                <input type="text" style="min-width: 300px;" value="" class="form-control"
+                                    placeholder="Busque por clientes" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i style="color: #f6b504; font-weight: bold;" class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row" style="padding-bottom: 2px; max-height: 60px; border-bottom: 1px solid #efefef;">
+                    <div style="max-width: 70px;" class="col-sm">
+                        <label class="checkSmart" style="    margin: auto 15px !important;"><input checked="false"
+                                lista="listaDeProdutos" id="checkFull" class="checka form-control"
+                                type="checkbox" /><span class="checkmark"></span></label>
+                    </div>
+                    <div class="col-sm">
+                        <p field="products.product_valor" sentido="ASC" class="infoLabel ordena">Nome</p>
+                    </div>
+                    <div class="col-sm">
+                        <p field="products.product_valor" sentido="ASC" class="infoLabel ordena">E-mail</p>
+                    </div>
+                    <div class="col-sm">
+                        <p field="products.product_valor" sentido="ASC" class="infoLabel ordena">Pedidos</p>
+                    </div>
+
+                    <div class="col-sm">
+                        <p field="products.product_valor" sentido="ASC" class="infoLabel ordena">Assinaturas</p>
+                    </div>
+                    <div class="col-sm">
+                        <p field="products.product_valor" sentido="ASC" class="infoLabel ordena">Entrou em</p>
+                    </div>
+
+                </div>
+                <div class="listaUsuarios4">
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../js/moment.js"></script>
+
+<script>
+
+
+    clientRequest({ "affiliate_id": localStorage.AFFILIATE_ID }, '/getClientsUsersFromAffiliate', true, 'USERS_CLIENTS_' + localStorage.AFFILIATE_ID)
+
+    function clientRequest(params, url, cache, chaveCache) {
+        return $.ajax({
+            type: 'POST',
+            url: 'http://localhost:6060' + url,
+            data: params,
+            headers: {
+                'x-access-token': localStorage.token,
+            },
+            success: function (data) {
+                console.log("OS CLIENTES", data)
+                sessionStorage[chaveCache] = JSON.stringify(data)
+                if (cache) {
+                    sessionStorage[chaveCache] = JSON.stringify(data)
+                }
+            },
+            error: function (data) {
+                //console.log(data)
+            },
+            complete: function () { },
+        });
+
+
+
+    }
+    function redirectThis(id) {
+        location.replace('../cliente/' + id)
+    }
+
+    function getUuarios7() {
+        let html7 = ''
+        let lista = []
+        try {
+            lista = JSON.parse(sessionStorage['USERS_CLIENTS_' + localStorage.AFFILIATE_ID])
+        } catch (err) {
+            console.log("ERRO AQUI.......", err)
+        }
+        let pedidos = 0, assinaturas = 0
+
+        for (const k in lista) {
+            $(".listaUsuarios4").html("")
+            let letter = lista[k].users_client_name.split("")[0] ? lista[k].users_client_name.split("")[0].toUpperCase() : "?"
+            html7 += '<div onclick="redirectThis(' + lista[k].id + ')" affiliate_id="' + localStorage.AFFILIATE_ID + '" class="row radius20 userCms">' +
+                '<div style="max-width: 70px; opacity: 1;" class="col-sm"><label class="checkSmart"><input' +
+                'class="checka form-control" type="checkbox"><span class="checkmark"></span></label>' +
+                '</div>' +
+                '<div class="col-sm" style="opacity: 1; display: inline-flex; gap: 15px; padding-top: 10px">' +
+                '<div style="max-width: 20%;">' +
+                '<p class="firstLetter">' + letter + '</p>' +
+                '</div>' +
+                '<div style="max-width: 80%;   margin: auto">' +
+                '<p field="products.product_valor" sentido="ASC" class="infoLabel ordena">' + lista[k].users_client_name +
+                '</p>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-sm" style="opacity: 1; ">' +
+                '<p field="products.product_valor" sentido="ASC"' +
+                'class="infoLabel ordena">' + lista[k].users_client_mail + '</p>' +
+                '</div>' +
+                '<div class="col-sm" style="opacity: 1;">' +
+                '<p style="font-size:10px !important; padding: 10px; width: auto !important"' +
+                'class="infoLabel infoValor">' + pedidos + '</p>' +
+                '</div>' +
+                '<div class="col-sm" style="opacity: 1;">' +
+                '<p style="font-size:10px !important; padding: 10px; width: auto !important"' +
+                'class="infoLabel infoValor">' + assinaturas + '</p>' +
+                '</div>' +
+                '<div class="col-sm" style="opacity: 1;">' +
+                '<p field="products.product_valor" sentido="ASC" class="infoLabel ordena">' + moment(lista[k].createdAt).format('DD, MMMM, YYYY') +
+                '</p>' +
+                '</div>' +
+                '</div>';
+        }
+
+
+        $(".listaUsuarios4").append(html7)
+
+
+    }
+
+
+
+
+    function modalNesletter(elemento) {
+        var html =
+            '<div style="max-width:100% ;     text-align: center;" class="container">' +
+            '<div class="row" style="border-bottom: 1px solid silver;">' +
+            '<h4 style="font-size: 16px !important;margin: 25px auto;/* width: calc(100%50px); *//* border-bottom: 1px solidsilver; *//* padding-bottom: 15px; */"' +
+            'class="infoLabel">Lista Newsletter</h4>' +
+            '</div><br><br><br><br><br><br>' +
+            '<p class="inTitle">Download de lista de newsletter</p>' +
+            '<br>' +
+            '<br>' +
+            '<p  class="inParagrafo">Essa é uma lista de todos os clientes Que se cadastraram para receber a newsletter</p>' +
+            '<br>' +
+            '<br>' +
+
+
+            '<button style="margin:auto"  class="btn btn-access-invert">Baixar a lista</button>' +
+
+
+
+
+            '</div>';
+
+        var modalzona = bootbox.alert({
+            message: html,
+            onShow: function () {
+
+                $(this)[0].id = "modalInner5"
+                $("#modalInner5").find(".modal-dialog").addClass("modalCentral")
+                $("#modalInner5").css("background", "rgb(0,0,0,50%)")
+                $(".modal-content").css("border", "none !important")
+                $("#modalInner5").find(".modal-content").addClass("clienteInforma")
+
+
+
+
+                $("#alterarFields6").click(function () {
+
+                    let paramsToCrud = {
+
+                        "userName": elemento.attr("username")
+                    }
+
+                    let params = {
+                        "master_id": localStorage.MASTER_ID,
+                        "mail": localStorage.MAIL_MASTER_CLIENTE,
+                        "pass": $("#passwordAdminExclui").val(),
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:6060' + '/autenticateAdmin',
+                        data: params,
+                        headers: {
+                            'x-access-token': localStorage.token,
+                        },
+                        success: function (data) {
+                            //console.log(data)
+                            ajaxInner('/deleteUserAffiliate', paramsToCrud, 'POST')
+                            informar("alert-success", "Usuário deletado com sucesso!", 3000)
+                            sessionStorage.clear()
+                            sessionStorage.clear()
+                            sessionStorage.clear()
+
+                            setTimeout(() => {
+                                $(".close").click()
+                                $("body").css("filter", "blur(10px)")
+                                location.reload()
+                            }, 1500)
+                        },
+                        error: function (data) {
+                            //console.log(data)
+                            informar("alert-primary", "Credenciais informadas são incorretas!", 3000)
+                        },
+                        complete: function () {
+
+                        },
+                    });
+
+                })
+
+
+            },
+            callback: function () {
+                $("#modalInner").find(".modal-dialog").removeClass("modalCentral")
+            }
+        })
+    }
+
+    $("body").css("filter", "blur(10px)")
+    let olha = setInterval(() => {
+        if (sessionStorage['USERS_CLIENTS_' + localStorage.AFFILIATE_ID]) {
+            setTimeout(() => {
+                getUuarios7()
+                $("body").css("filter", "none")
+                clearInterval(olha)
+            }, 1500)
+
+        }
+    }, 1000)
+
+
+</script>

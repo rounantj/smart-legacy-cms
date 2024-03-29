@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="44" viewBox="0 0 40 44">
+  <g id="Artboard_24" data-name="Artboard 24" transform="translate(-4 -2)">
+    <circle id="Elipse_3332" data-name="Elipse 3332" cx="1" cy="1" r="1" transform="translate(16 17)" fill="#8897ad"/>
+    <circle id="Elipse_3333" data-name="Elipse 3333" cx="1" cy="1" r="1" transform="translate(28 17)" fill="#8897ad"/>
+    <path id="Caminho_6246" data-name="Caminho 6246" d="M43,20a1,1,0,0,0-1,1v3H39V3a1,1,0,0,0-1-1H5A1,1,0,0,0,4,3V45a1,1,0,0,0,1,1H38a1,1,0,0,0,1-1V26h3v3a1,1,0,0,0,2,0V21A1,1,0,0,0,43,20ZM37,44H6V4H37V24H35V7a1,1,0,0,0-1-1H9A1,1,0,0,0,8,7V41a1,1,0,0,0,1,1H34a1,1,0,0,0,1-1V26h2ZM33,27H10V23H33ZM22.9,21l3.92-8.52a1.016,1.016,0,0,1,1.68-.05L32.44,21Zm-12,0,3.92-8.52a1.016,1.016,0,0,1,1.68-.05L20.44,21ZM33,17.44l-2.73-5.93a3,3,0,0,0-5.2,0l-3.4,7.38-3.4-7.38a3,3,0,0,0-5.2,0L10,18.17V8H33ZM10,29H33V40H10Z" fill="#8897ad"/>
+  </g>
+</svg>

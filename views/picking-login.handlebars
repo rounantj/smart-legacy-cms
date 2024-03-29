@@ -1,0 +1,53 @@
+
+
+<div style="padding: 4%;" class="container">
+    <div class="logo"></div>
+  
+    <div class="form">
+        <h1 class="boasVindas">Boas Vindas!</h1>
+        <div class="inputField">
+            <label class="labelInputField">Email</label>
+            <input id="mail" type="text" class="inputText" placeholder="Email" />
+          
+        </div>
+           <div class="inputField">
+            <label class="labelInputField">Senha</label>
+            <input id="pass" type="password" class="inputText" placeholder="Senha" />
+            <img src="/assets/icons/olho.svg" />
+        </div>
+    </div>
+    <div onclick="logar()" class="btnContinuar">
+        <label class="btnContinuarTxt">Continuar</label>
+    </div>
+
+    <h5 class="esqueciSenha">Esqueci a senha</h5>
+
+</div>
+<footer class="areaFooter">
+    <img class="iconImg" src="/assets/icons/01.svg" />
+</footer>
+<script>
+   async function logar(){
+        var mail = $("#mail"), pass = $("#pass")
+        try{
+           var isLogged =  await login(mail.val(), pass.val())
+          // console.log(isLogged)
+             if(isLogged.token != undefined){
+                 location.replace("/picking-pedidos")
+            }else{
+                alert("E-mail ou senha incorretos!")
+            }
+             
+        }catch(e){
+         //   console.log(e)
+            alert("E-mail ou senha incorretos!")
+        }
+       
+
+        if(isLogged.token != undefined){
+            
+        }else{
+           
+        }
+    }
+</script>

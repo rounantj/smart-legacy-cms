@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Document</title>
+    <link rel="icon" type="image/png" href="../assets/img/lima-04.svg" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../assets/js/fontawesome.js"></script>
+
+    <style>
+        .gr {
+            border-radius: 20px;
+            min-width: 200px;
+            background-color: silver;
+            height: 40px;
+            color: silver;
+            margin: auto 15px;
+        }
+
+        .dr {
+            border-radius: 20px;
+            min-width: 400px;
+            background-color: silver;
+            height: 10px;
+            color: silver;
+            margin: auto 15px;
+        }
+
+        .conte {
+            border-radius: 20px;
+            width: 200px;
+            background-color: black;
+            height: 8px;
+
+            color: silver;
+            margin: 1px 1px;
+        }
+
+        .otro {
+            border-left: 1px solid white !important;
+            min-width: 200px;
+        }
+
+        .sideBar {
+            background-color: #EFEFEF;
+            height: 90vh;
+            position: fixed;
+            top: 120px;
+            width: 369px;
+        }
+
+        body {
+            background-color: #EFEFEF;
+        }
+
+        .content {
+            background-color: #EFEFEF;
+            height: 90vh;
+            width: calc(100% - 369px);
+            position: fixed;
+            right: 0;
+            top: 120px;
+        }
+
+        .lista {
+
+            border-radius: 20px;
+            max-width: 200px;
+            background-color: silver;
+            height: 40px;
+            color: silver;
+            margin: 15px 15px;
+
+        }
+
+        .lista2 {
+            border-radius: 20px;
+            max-width: 200px;
+            background-color: silver;
+            height: 100px;
+            color: silver;
+            margin: 15px 15px;
+        }
+
+        .item {
+            background-color: silver;
+            border-radius: 20px;
+        }
+
+        .menor {
+            background-color: silver;
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-left: 7px;
+            max-width: 24%;
+        }
+
+        h1 {
+            text-align: center;
+
+            font: normal normal 300 24px Roboto;
+            letter-spacing: 0px;
+            color: #6A6A6A;
+            opacity: 1;
+        }
+
+        .tag {
+            background: rgba(240, 248, 255, 0.9) 0% 0% no-repeat padding-box;
+            border-radius: 34px;
+            opacity: 1;
+            padding: 5px;
+            width: 100px;
+
+
+        }
+
+        .folder {
+            width: 100%;
+            border-radius: 5px;
+            background: silver;
+            height: 90px;
+
+        }
+
+        .outras {
+            position: relative;
+            float: right;
+            margin: auto;
+            text-align: right;
+
+            max-width: 93%;
+            min-height: 28px;
+        }
+
+        .logo {
+            min-height: 50px;
+        }
+
+        .myImg {
+            width: 50px;
+            height: 49px;
+            position: absolute;
+            left: 50px;
+            top: 25px;
+            background: white;
+        }
+
+        .divImg {
+            margin-left: 50px;
+            position: absolute;
+
+            background: white;
+            padding: 50px;
+            top: -15px;
+            height: 100px;
+            width: 160px;
+            left: -20px;
+            border-radius: 20px;
+            z-index: 1;
+            border: 4px solid red;
+        }
+    </style>
+
+</head>
+
+<body style="zoom: 43%;">
+    <nav id="navegador" class="navbar navbar-expand-lg " aria-label="Fifth navbar example">
+        <div style="    display: flex;" class="fl">
+            <a style="margin-left: 50px;" class="navbar-brand divImg" href="#"><img style="width: 50px; height: 50px;"
+                    class="logo myImg"
+                    src="https://media-exp1.licdn.com/dms/image/C4E0BAQGmqEmPk4N2Lw/company-logo_200_200/0/1610753665925?e=2159024400&v=beta&t=nmflB5jt_sdM-9nQ_sk79wrNvNYpEFrzygCUYb7JZZA"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05"
+                aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <form style="margin-left: 220px;width: 400px !important">
+                <input style="border-radius: 20px; width: 400px !important" class="form-control" type="text"
+                    placeholder="Search" aria-label="Search">
+            </form>
+
+            <div class=" navbar-collapse" id="navbarsExample05">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="display: -webkit-inline-box;">
+                    <li class="nav-item gr background2">
+                    </li>
+                    <li class="nav-item gr background2">
+
+                    </li>
+                    <li class="nav-item dr">
+                        <div class="conte"></div>
+                    </li>
+                    <li class="nav-item otro">
+                        <img src="https://www.pngkit.com/png/full/467-4678852_shopping-cart-white-logo.png"
+                            style=" margin-left: 50px;width: 40px; height: 40px;">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="sideBar">
+            <div class="lista"></div>
+            <div class="lista"></div>
+            <div style="opacity: 0;" class="lista"></div>
+            <div style="max-width: 100%;" class="lista"></div>
+            <div style="opacity: 0;" class="lista"></div>
+            <div style="max-width: 100%;" class="lista"></div>
+            <div style="opacity: 0;" class="lista"></div>
+            <div style="max-width: 100%;" class="lista"></div>
+            <div style="opacity: 0;" class="lista"></div>
+            <div style="max-width: 100%;" class="lista"></div>
+            <div style="opacity: 0;" class="lista"></div>
+            <div style="max-width: 100%;" class="lista"></div>
+            <div style="opacity: 0;" class="lista"></div>
+            <div style="max-width: 100%;" class="lista2"></div>
+
+
+        </div>
+        <div class="content">
+            <section style="height: 420px; margin-top: 25px;">
+                <div class="row">
+                    <div style="min-height: 400px;" class="col-md-8">
+                        <div style="min-height: 200px;" class="col-md-12 item">
+
+                        </div>
+                        <div style="min-height: 200px;" class="col-md-12">
+                            <div class="row">
+                                <div style="min-height: 180px;" class="col-md-3 item menor"></div>
+                                <div style="min-height: 180px;" class="col-md-3 item menor"></div>
+                                <div style="min-height: 180px;" class="col-md-3 item menor"></div>
+                                <div style="min-height: 180px;" class="col-md-3 item menor"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div style="min-height: 400px;" class="col-md-4 item">
+
+                    </div>
+                </div>
+
+            </section>
+            <section
+                style="   padding: 5px;background-color: white;box-shadow: 15px 15px 15px 15px silver;height: 500px;border-radius: 20px;">
+                <h1>Veja nossas ofertas</h1>
+                <div class="row" style="margin: auto 30px;">
+                    <label class="outras color">Ver todas</label>
+
+                    <div class="card" style="width: 15rem; margin-left: 35px;">
+
+                        <div style="    padding: 10px;">
+                            <div class="tag background2">
+                                <h5 style="text-align: center;margin: auto;font-size: 14px;" class="card-title color">
+                                    Vegano</h5>
+                            </div>
+
+
+                        </div>
+                        <div class="folder">
+
+                        </div>
+                        <div style="padding: 0px !important;" class="card-body">
+                            <div style=" background-color: blue !important;height: 10px; width: 30%;"
+                                class="lista background"></div>
+                            <div style="height: 20px; width: 80%;margin-top: -5px" class="lista"></div>
+                            <div style="height: 20px; width: 50%;margin-top: -5px" class="lista"></div>
+                            <div style="height: 10px; width: 30%;margin-top: -5px" class="lista"></div>
+                            <div class="color" style="height: 10px;width: 50%;margin: -15px 15px;color: blue;">★★★★★
+                            </div>
+                            <div style="height: 10px;margin: 30px 15px;width: 15%; background-color: blue !important;"
+                                class="lista background"></div>
+
+                        </div>
+                        <div style="background: white;" class="card-footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="fill" style="margin-left: 15%;"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22">
+                                <defs>
+                                    <clipPath id="a">
+                                        <path
+                                            d="M64.2-30.015a.518.518,0,0,0-.518.519,4.7,4.7,0,0,1-4.692,4.7,4.7,4.7,0,0,1-4.69-4.7.519.519,0,0,0-.518-.519.52.52,0,0,0-.52.519,5.743,5.743,0,0,0,5.73,5.74,5.743,5.743,0,0,0,5.732-5.74.523.523,0,0,0-.522-.519ZM49.04-16.04v-2.454H68.934v2.454ZM50.631-35.1l-.847-.836,18.423-.019-.867.88a.525.525,0,0,0-.151.37.517.517,0,0,0,.154.366l.847.836H49.776l.858-.859a.523.523,0,0,0,.153-.37.524.524,0,0,0-.155-.367ZM49.04-32.467H68.934v12.935H49.04V-32.467ZM70-32.986a.52.52,0,0,0-.265-.453l-1.291-1.278,1.38-1.4a.522.522,0,0,0,.109-.566A.517.517,0,0,0,69.454-37l-20.932.02a.52.52,0,0,0-.481.323.522.522,0,0,0,.115.566l1.375,1.357-1.376,1.378a.514.514,0,0,0-.136.329c0,.015-.017.024-.017.04v17.465a.521.521,0,0,0,.52.521H69.453a.521.521,0,0,0,.52-.521v-17.4c0-.024.027-.04.027-.064Z"
+                                            fill="#50c682" clip-rule="evenodd"></path>
+                                    </clipPath>
+                                </defs>
+                                <g transform="translate(-48 37)" clip-path="url(#a)">
+                                    <path d="M43-42H73.8v30.8H43Z" transform="translate(0.6 0.6)"></path>
+                                </g>
+                            </svg>
+                            <label class="color"
+                                style="color:blue;text-align: left;font: normal normal normal 18px Roboto;letter-spacing: 0px;opacity: 1;margin-left: 10px">Adicionar</label>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 15rem; margin-left: 45px;">
+
+                        <div style="    padding: 10px;">
+                            <div class="tag background2">
+                                <h5 style="text-align: center;margin: auto;font-size: 14px;" class="card-title color">
+                                    Vegano</h5>
+                            </div>
+
+
+                        </div>
+                        <div class="folder">
+
+                        </div>
+                        <div style="padding: 0px !important;" class="card-body">
+                            <div style=" background-color: blue !important;height: 10px; width: 30%;"
+                                class="lista background"></div>
+                            <div style="height: 20px; width: 80%;margin-top: -5px" class="lista"></div>
+                            <div style="height: 20px; width: 50%;margin-top: -5px" class="lista"></div>
+                            <div style="height: 10px; width: 30%;margin-top: -5px" class="lista"></div>
+                            <div class="color" style="height: 10px;width: 50%;margin: -15px 15px;color: blue;">★★★★★
+                            </div>
+                            <div style="height: 10px;margin: 30px 15px;width: 15%; background-color: blue !important;"
+                                class="lista background"></div>
+
+                        </div>
+                        <div style="background: white;" class="card-footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="fill" style="margin-left: 15%;"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22">
+                                <defs>
+                                    <clipPath id="a">
+                                        <path
+                                            d="M64.2-30.015a.518.518,0,0,0-.518.519,4.7,4.7,0,0,1-4.692,4.7,4.7,4.7,0,0,1-4.69-4.7.519.519,0,0,0-.518-.519.52.52,0,0,0-.52.519,5.743,5.743,0,0,0,5.73,5.74,5.743,5.743,0,0,0,5.732-5.74.523.523,0,0,0-.522-.519ZM49.04-16.04v-2.454H68.934v2.454ZM50.631-35.1l-.847-.836,18.423-.019-.867.88a.525.525,0,0,0-.151.37.517.517,0,0,0,.154.366l.847.836H49.776l.858-.859a.523.523,0,0,0,.153-.37.524.524,0,0,0-.155-.367ZM49.04-32.467H68.934v12.935H49.04V-32.467ZM70-32.986a.52.52,0,0,0-.265-.453l-1.291-1.278,1.38-1.4a.522.522,0,0,0,.109-.566A.517.517,0,0,0,69.454-37l-20.932.02a.52.52,0,0,0-.481.323.522.522,0,0,0,.115.566l1.375,1.357-1.376,1.378a.514.514,0,0,0-.136.329c0,.015-.017.024-.017.04v17.465a.521.521,0,0,0,.52.521H69.453a.521.521,0,0,0,.52-.521v-17.4c0-.024.027-.04.027-.064Z"
+                                            fill="#50c682" clip-rule="evenodd"></path>
+                                    </clipPath>
+                                </defs>
+                                <g transform="translate(-48 37)" clip-path="url(#a)">
+                                    <path d="M43-42H73.8v30.8H43Z" transform="translate(0.6 0.6)"></path>
+                                </g>
+                            </svg>
+                            <label class="color"
+                                style="color:blue;text-align: left;font: normal normal normal 18px Roboto;letter-spacing: 0px;opacity: 1;margin-left: 10px">Adicionar</label>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 15rem; margin-left: 45px;">
+
+                        <div style="    padding: 10px;">
+                            <div class="tag background2">
+                                <h5 style="text-align: center;margin: auto;font-size: 14px;" class="card-title color">
+                                    Vegano</h5>
+                            </div>
+
+
+                        </div>
+                        <div class="folder">
+
+                        </div>
+                        <div style="padding: 0px !important;" class="card-body">
+                            <div style=" background-color: blue !important;height: 10px; width: 30%;"
+                                class="lista background"></div>
+                            <div style="height: 20px; width: 80%;margin-top: -5px" class="lista"></div>
+                            <div style="height: 20px; width: 50%;margin-top: -5px" class="lista"></div>
+                            <div style="height: 10px; width: 30%;margin-top: -5px" class="lista"></div>
+                            <div class="color" style="height: 10px;width: 50%;margin: -15px 15px;color: blue;">★★★★★
+                            </div>
+                            <div style="height: 10px;margin: 30px 15px;width: 15%; background-color: blue !important;"
+                                class="lista background"></div>
+
+                        </div>
+                        <div style="background: white;" class="card-footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="fill" style="margin-left: 15%;"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22">
+                                <defs>
+                                    <clipPath id="a">
+                                        <path
+                                            d="M64.2-30.015a.518.518,0,0,0-.518.519,4.7,4.7,0,0,1-4.692,4.7,4.7,4.7,0,0,1-4.69-4.7.519.519,0,0,0-.518-.519.52.52,0,0,0-.52.519,5.743,5.743,0,0,0,5.73,5.74,5.743,5.743,0,0,0,5.732-5.74.523.523,0,0,0-.522-.519ZM49.04-16.04v-2.454H68.934v2.454ZM50.631-35.1l-.847-.836,18.423-.019-.867.88a.525.525,0,0,0-.151.37.517.517,0,0,0,.154.366l.847.836H49.776l.858-.859a.523.523,0,0,0,.153-.37.524.524,0,0,0-.155-.367ZM49.04-32.467H68.934v12.935H49.04V-32.467ZM70-32.986a.52.52,0,0,0-.265-.453l-1.291-1.278,1.38-1.4a.522.522,0,0,0,.109-.566A.517.517,0,0,0,69.454-37l-20.932.02a.52.52,0,0,0-.481.323.522.522,0,0,0,.115.566l1.375,1.357-1.376,1.378a.514.514,0,0,0-.136.329c0,.015-.017.024-.017.04v17.465a.521.521,0,0,0,.52.521H69.453a.521.521,0,0,0,.52-.521v-17.4c0-.024.027-.04.027-.064Z"
+                                            fill="#50c682" clip-rule="evenodd"></path>
+                                    </clipPath>
+                                </defs>
+                                <g transform="translate(-48 37)" clip-path="url(#a)">
+                                    <path d="M43-42H73.8v30.8H43Z" transform="translate(0.6 0.6)"></path>
+                                </g>
+                            </svg>
+                            <label class="color"
+                                style="color:blue;text-align: left;font: normal normal normal 18px Roboto;letter-spacing: 0px;opacity: 1;margin-left: 10px">Adicionar</label>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 15rem; margin-left: 45px;">
+
+                        <div style="    padding: 10px;">
+                            <div class="tag background2">
+                                <h5 style="text-align: center;margin: auto;font-size: 14px;" class="card-title color">
+                                    Vegano</h5>
+                            </div>
+
+
+                        </div>
+                        <div class="folder">
+
+                        </div>
+                        <div style="padding: 0px !important;" class="card-body">
+                            <div style=" background-color: blue !important;height: 10px; width: 30%;"
+                                class="lista background"></div>
+                            <div style="height: 20px; width: 80%;margin-top: -5px" class="lista"></div>
+                            <div style="height: 20px; width: 50%;margin-top: -5px" class="lista"></div>
+                            <div style="height: 10px; width: 30%;margin-top: -5px" class="lista"></div>
+                            <div class="color" style="height: 10px;width: 50%;margin: -15px 15px;color: blue;">★★★★★
+                            </div>
+                            <div style="height: 10px;margin: 30px 15px;width: 15%; background-color: blue !important;"
+                                class="lista background"></div>
+
+                        </div>
+                        <div style="background: white;" class="card-footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="fill" style="margin-left: 15%;"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22">
+                                <defs>
+                                    <clipPath id="a">
+                                        <path
+                                            d="M64.2-30.015a.518.518,0,0,0-.518.519,4.7,4.7,0,0,1-4.692,4.7,4.7,4.7,0,0,1-4.69-4.7.519.519,0,0,0-.518-.519.52.52,0,0,0-.52.519,5.743,5.743,0,0,0,5.73,5.74,5.743,5.743,0,0,0,5.732-5.74.523.523,0,0,0-.522-.519ZM49.04-16.04v-2.454H68.934v2.454ZM50.631-35.1l-.847-.836,18.423-.019-.867.88a.525.525,0,0,0-.151.37.517.517,0,0,0,.154.366l.847.836H49.776l.858-.859a.523.523,0,0,0,.153-.37.524.524,0,0,0-.155-.367ZM49.04-32.467H68.934v12.935H49.04V-32.467ZM70-32.986a.52.52,0,0,0-.265-.453l-1.291-1.278,1.38-1.4a.522.522,0,0,0,.109-.566A.517.517,0,0,0,69.454-37l-20.932.02a.52.52,0,0,0-.481.323.522.522,0,0,0,.115.566l1.375,1.357-1.376,1.378a.514.514,0,0,0-.136.329c0,.015-.017.024-.017.04v17.465a.521.521,0,0,0,.52.521H69.453a.521.521,0,0,0,.52-.521v-17.4c0-.024.027-.04.027-.064Z"
+                                            fill="#50c682" clip-rule="evenodd"></path>
+                                    </clipPath>
+                                </defs>
+                                <g transform="translate(-48 37)" clip-path="url(#a)">
+                                    <path d="M43-42H73.8v30.8H43Z" transform="translate(0.6 0.6)"></path>
+                                </g>
+                            </svg>
+                            <label class="color"
+                                style="color:blue;text-align: left;font: normal normal normal 18px Roboto;letter-spacing: 0px;opacity: 1;margin-left: 10px">Adicionar</label>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 15rem; margin-left: 45px;">
+
+                        <div style="    padding: 10px;">
+                            <div class="tag background2">
+                                <h5 style="text-align: center;margin: auto;font-size: 14px;" class="card-title color">
+                                    Vegano</h5>
+                            </div>
+
+
+                        </div>
+                        <div class="folder">
+
+                        </div>
+                        <div style="padding: 0px !important;" class="card-body">
+                            <div style=" background-color: blue !important;height: 10px; width: 30%;"
+                                class="lista background"></div>
+                            <div style="height: 20px; width: 80%;margin-top: -5px" class="lista"></div>
+                            <div style="height: 20px; width: 50%;margin-top: -5px" class="lista"></div>
+                            <div style="height: 10px; width: 30%;margin-top: -5px" class="lista"></div>
+                            <div class="color" style="height: 10px;width: 50%;margin: -15px 15px;color: blue;">★★★★★
+                            </div>
+                            <div style="height: 10px;margin: 30px 15px;width: 15%; background-color: blue !important;"
+                                class="lista background"></div>
+
+                        </div>
+                        <div style="background: white;" class="card-footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="fill" style="margin-left: 15%;"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22">
+                                <defs>
+                                    <clipPath id="a">
+                                        <path
+                                            d="M64.2-30.015a.518.518,0,0,0-.518.519,4.7,4.7,0,0,1-4.692,4.7,4.7,4.7,0,0,1-4.69-4.7.519.519,0,0,0-.518-.519.52.52,0,0,0-.52.519,5.743,5.743,0,0,0,5.73,5.74,5.743,5.743,0,0,0,5.732-5.74.523.523,0,0,0-.522-.519ZM49.04-16.04v-2.454H68.934v2.454ZM50.631-35.1l-.847-.836,18.423-.019-.867.88a.525.525,0,0,0-.151.37.517.517,0,0,0,.154.366l.847.836H49.776l.858-.859a.523.523,0,0,0,.153-.37.524.524,0,0,0-.155-.367ZM49.04-32.467H68.934v12.935H49.04V-32.467ZM70-32.986a.52.52,0,0,0-.265-.453l-1.291-1.278,1.38-1.4a.522.522,0,0,0,.109-.566A.517.517,0,0,0,69.454-37l-20.932.02a.52.52,0,0,0-.481.323.522.522,0,0,0,.115.566l1.375,1.357-1.376,1.378a.514.514,0,0,0-.136.329c0,.015-.017.024-.017.04v17.465a.521.521,0,0,0,.52.521H69.453a.521.521,0,0,0,.52-.521v-17.4c0-.024.027-.04.027-.064Z"
+                                            fill="#50c682" clip-rule="evenodd"></path>
+                                    </clipPath>
+                                </defs>
+                                <g transform="translate(-48 37)" clip-path="url(#a)">
+                                    <path d="M43-42H73.8v30.8H43Z" transform="translate(0.6 0.6)"></path>
+                                </g>
+                            </svg>
+                            <label class="color"
+                                style="color:blue;text-align: left;font: normal normal normal 18px Roboto;letter-spacing: 0px;opacity: 1;margin-left: 10px">Adicionar</label>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </section>
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+</body>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script>
+    var color = location.href.split("?")[location.href.split("?").length - 1]
+    var color1 = location.href.split("?")[location.href.split("?").length - 2]
+    var color2 = location.href.split("?")[location.href.split("?").length - 3]
+    var color3 = location.href.split("?")[location.href.split("?").length - 4]
+
+    //console.log(color)
+    $("#navegador").css("background", color)
+    $(".fill").css("fill", color)
+    $(".color").css("color", color)
+    $(".background2").css("background", color1)
+    $(".background").css("background", color)
+</script>
+
+</html>

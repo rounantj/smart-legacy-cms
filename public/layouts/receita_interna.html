@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="https://admin.api-smartcomerci.com.br/assets/img/lima-04.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="icon" type="image/png" href="../assets/img/lima-04.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <style>
+    .page-institucional {
+      --yellow: #f6b504;
+      --yellow-opacity: #fffbf2;
+      --gray: #687c97;
+      --light-gray: #b4b4b4;
+      --black: #333;
+
+      --padding-right: 20px;
+      --padding-left: 20px;
+
+      --transition: 0.2s ease-in-out;
+
+      font-size: 14px;
+      font-family: "Roboto", sans-serif;
+      background-color: #edf2f6;
+    }
+
+    .page-institucional .clr-yellow {
+      color: var(--yellow);
+    }
+
+    .page-institucional a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    .page-institucional a:hover {
+      color: var(--yellow);
+    }
+
+    /* MODAL */
+    .page-institucional .modal-deletar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      color: var(--gray);
+      background-color: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9;
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-institucional .modal-deletar .modal-box {
+      position: relative;
+      width: 100%;
+      max-width: 650px;
+      max-height: 100%;
+      background-color: #fff;
+      border-radius: 25px;
+      box-shadow: 0px 0px 10px #6a6a6a19;
+    }
+
+    .page-institucional .modal-deletar .modal-header {
+      --modal-padding: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 65px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      padding-right: calc(var(--modal-padding) + 28px + 10px);
+      /* padding + btn-close width + extra padding */
+      border-bottom: 1px solid #ededed;
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close {
+      all: unset;
+      position: absolute;
+      top: 50%;
+      right: var(--modal-padding);
+
+      background-color: transparent;
+      transform: translateY(-50%);
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 45px;
+      height: 45px;
+      background-color: #f0f0f0;
+      border-radius: 100%;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(-50%) scale(0);
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close:hover::before {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close:hover .icon-close::before,
+    .page-institucional .modal-deletar .modal-header .btn-close:hover .icon-close::after {
+      background-color: #000;
+    }
+
+    .page-institucional .modal-deletar .modal-header .icon-close {
+      display: block;
+      position: relative;
+      width: 28px;
+      height: 28px;
+      border: 1px solid #6a6a6a;
+      border-radius: 100%;
+    }
+
+    .page-institucional .modal-deletar .modal-header .icon-close::before,
+    .page-institucional .modal-deletar .modal-header .icon-close::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 4px;
+      background-color: #6a6a6a;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar .modal-header .icon-close::after {
+      transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+    }
+
+    .page-institucional .modal-deletar .modal-body {
+      height: auto;
+      padding-top: 60px;
+      padding-bottom: 40px;
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    .page-institucional .modal-deletar .modal-container {
+      max-width: 376px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .page-institucional .icon-alert {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      margin: 0 auto;
+      margin-bottom: 9px;
+      border-radius: 100%;
+      background-color: var(--yellow-opacity);
+    }
+
+    .page-institucional .modal-deletar .modal-title {
+      margin-bottom: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--black);
+    }
+
+    .page-institucional .modal-deletar .modal-footer {
+      padding: 32px;
+      border: 0;
+    }
+
+    .page-institucional .modal-deletar .modal-footer .modal-container {
+      max-width: 426px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .page-institucional .modal-deletar .modal-footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .page-institucional .modal-deletar .btn-cancelar {
+      border: 0;
+      background-color: transparent;
+      text-decoration: underline;
+      color: var(--gray);
+      font-weight: bold;
+    }
+
+    /* FIM MODAL */
+
+    /* HEADER */
+    .page-institucional .header {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-y: auto;
+
+      padding: 0px var(--padding-right) 0px var(--padding-left);
+      background-color: #fff;
+      box-shadow: 35px 5px 54px #695f971a;
+      border: 1px solid #d2d8e0;
+      border-right: 0;
+      border-left: 0;
+    }
+
+    .page-institucional .header>* {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border-right: 1px solid var(--gray);
+    }
+
+    .page-institucional .header>*:first-child {
+      padding-left: 0;
+    }
+
+    .page-institucional .header>*:last-child {
+      padding-right: 0;
+      border-right: 0;
+    }
+
+    .page-institucional .header-breadcrumb {
+      gap: 5px;
+      font-size: 16px;
+    }
+
+    .page-institucional .header-breadcrumb *:not(:last-child)::after {
+      content: ">";
+      display: inline-block;
+      padding-left: 5px;
+    }
+
+    .page-institucional .header-breadcrumb .page-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--black);
+    }
+
+    .page-institucional .header-breadcrumb .icon-arrow-down {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-color: rgb(104, 124, 151, 0.25);
+      border-radius: 100%;
+    }
+
+    .page-institucional .btn-active-page input {
+      display: none;
+    }
+
+    .page-institucional .btn-active-page .btn-label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .page-institucional .btn-active-page .icon-checkbox {
+      display: inline-block;
+      position: relative;
+      width: 42px;
+      height: 22px;
+      border: 1px solid var(--gray);
+      border-radius: 23px;
+      background-color: #edf2f6;
+      transition: var(--transition);
+    }
+
+    .page-institucional .btn-active-page .icon-checkbox::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      padding: 2px;
+      border-radius: 100%;
+      background-color: var(--gray);
+      background-clip: content-box;
+      transition: var(--transition);
+    }
+
+    .page-institucional .btn-active-page input:checked+.btn-label .icon-checkbox::before {
+      left: 50%;
+      background-color: #fff;
+    }
+
+    .page-institucional .btn-active-page input:checked+.btn-label .icon-checkbox {
+      border-color: #edf2f6;
+      background-color: var(--yellow);
+    }
+
+    .page-institucional .btn-back {
+      cursor: pointer;
+    }
+
+    .page-institucional .icon-back {
+      position: relative;
+      display: block;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--gray);
+      border-radius: 100%;
+    }
+
+    .page-institucional .icon-back::before {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: -6%;
+      width: 25%;
+      height: 40%;
+      background-color: #fff;
+    }
+
+    .page-institucional .icon-back::after {
+      content: "";
+      position: absolute;
+      bottom: 80%;
+      left: 6%;
+      width: 30%;
+      height: 30%;
+      border: 1px solid var(--gray);
+      border-right: 0;
+      border-top: 0;
+    }
+
+    .page-institucional .icon-back.icon-back-flip {
+      transform: scaleX(-1);
+    }
+
+    .page-institucional .btn-url {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 95px;
+      min-height: 28px;
+      padding: 7px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      border-radius: 34px;
+      background-color: var(--yellow-opacity);
+    }
+
+    .page-institucional .btn-url i {
+      width: 11px;
+      height: 11px;
+      background-color: var(--yellow);
+    }
+
+    .page-institucional .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      min-width: 206px;
+      min-height: 45px;
+      font-size: 14px;
+      color: #fff;
+      background-color: var(--yellow);
+      border-radius: 23px;
+      border: 1px solid var(--yellow);
+    }
+
+    .page-institucional .btn:hover {
+      color: #fff;
+    }
+
+    .page-institucional .buttons-list {
+      display: flex;
+      gap: 16px;
+    }
+
+    .page-institucional .btn-inverse {
+      background-color: #fff;
+      color: var(--yellow);
+    }
+
+    .page-institucional .btn-inverse:hover {
+      color: var(--yellow);
+    }
+
+    /* FIM HEADER */
+
+    .page-institucional .page-body {
+      padding: 10px var(--padding-right) 10px var(--padding-left);
+    }
+
+    .page-institucional .container {
+      max-width: 990px;
+    }
+
+    .page-institucional input {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding-right: 15px;
+      padding-left: 15px;
+      font-size: 16px;
+      color: var(--black);
+      background-color: #f0f0f0;
+      border: 1px solid #efefef;
+      border-radius: 5px;
+    }
+
+    .page-institucional .content-box {
+      width: 100%;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px #6a6a6a19;
+      overflow-x: hidden;
+    }
+
+    .page-institucional .top-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      min-height: 160px;
+      margin-bottom: 30px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      color: var(--yellow);
+      background-color: #fffbf2;
+      border: 3px dashed var(--yellow);
+      cursor: pointer;
+    }
+
+    .page-institucional .top-banner-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .page-institucional .icon-add {
+      --outline-width: 6px;
+      --icon-color: var(--light-gray);
+      position: relative;
+      display: block;
+      width: 24px;
+      height: 24px;
+      margin: 0 auto;
+      margin-top: var(--outline-width);
+      margin-bottom: var(--outline-width);
+      border-radius: 100%;
+      background-color: var(--icon-color);
+      border: 1px solid #fff;
+      outline: var(--outline-width) solid var(--icon-color);
+      transition: var(--transition);
+    }
+
+    .page-institucional .icon-add.icon-yellow {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .icon-add::before,
+    .page-institucional .icon-add::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 2px;
+      background-color: #fff;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .page-institucional .icon-add::after {
+      transform: translateX(-50%) translateY(-50%) rotate(90deg);
+    }
+
+    .page-institucional .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding-bottom: 30px;
+    }
+
+    .page-institucional .title-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 535px;
+      font-weight: bold;
+      color: var(--gray);
+    }
+
+    .page-institucional .editor-box {
+      min-height: 280px;
+      border-radius: 20px;
+      border: 1px solid #f1f1f5;
+    }
+
+    .page-institucional .add-content {
+      --icon-color: var(--light-gray);
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .page-institucional .add-content:hover,
+    .page-institucional .add-content.active {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .add-content:hover .icon-add,
+    .page-institucional .add-content.active .icon-add {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .add-content::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      border-bottom: 2px dashed var(--icon-color);
+      transform: translateY(-50%);
+      transition: var(--transition);
+    }
+
+    .page-institucional .add-content .add-content-modal {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      width: 100%;
+      max-width: 830px;
+      padding: 40px 15px;
+      background-color: #fff;
+      border-radius: 20px;
+      border: 1px solid #f1f1f5;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-50%) translateY(100%);
+      transition: var(--transition);
+      z-index: 2;
+    }
+
+    .page-institucional .add-content.active .add-content-modal {
+      bottom: -6px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-institucional .add-content-modal .list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .page-institucional .add-content-modal .list .item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      color: var(--gray);
+      background-color: #fcfcfd;
+      border-radius: 16px;
+      border: 1px solid #edf2f6;
+    }
+
+    .page-institucional .add-content-modal .list .item-image {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 92px;
+    }
+
+    .page-institucional .banner-example {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 250px;
+      background-color: var(--gray);
+      border-radius: 5px;
+      box-shadow: 0px 2px 10px #6a6a6a26;
+    }
+
+    .page-institucional .banner-example::before {
+      content: "Banner de Exemplo";
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .txtAlert {
+      background: #FFFBF2 0% 0% no-repeat padding-box;
+      border-radius: 13px;
+      opacity: 1;
+      padding: 10px !important;
+    }
+
+    .txtA {
+      text-align: left;
+      font: normal normal normal 14px/14px Roboto;
+      letter-spacing: 0px;
+      color: #F6B504;
+      opacity: 1;
+    }
+
+    .tt {
+      text-align: left;
+      font: normal normal bold 18px/24px Roboto;
+      letter-spacing: 0px;
+      color: #333333;
+      opacity: 1;
+    }
+
+    .ativei {
+      border: 1px solid #f6b504 !important;
+    }
+
+    .cabecalho {
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      border-radius: 16px 16px 0px 0px;
+      opacity: 1;
+    }
+
+    .conteudo {
+      background: #F9FAFB 0% 0% no-repeat padding-box;
+      border-radius: 0px 0px 16px 16px;
+      opacity: 1;
+      border-top: 1px solid #EDF2F6;
+      min-height: 200px;
+      padding: 35px;
+
+    }
+
+    .itemProduto {
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      border: 1px solid #EDF2F6;
+      border-radius: 16px;
+      opacity: 1;
+      padding: 15px;
+    }
+
+    .imgP {
+      width: 46px;
+      height: 40px;
+      min-width: 46px;
+      min-height: 40px;
+      max-width: 46px;
+      max-height: 40px;
+      opacity: 1;
+    }
+
+    .imgPicture {
+      width: 46px;
+      height: 40px;
+      min-width: 46px;
+      min-height: 40px;
+      max-width: 46px;
+      max-height: 40px;
+      opacity: 1;
+    }
+
+    .numeroItem {
+      text-align: left;
+      font: normal normal bold 13px/21px Roboto;
+      letter-spacing: 0px;
+      color: #222B45;
+      opacity: 1;
+      margin: auto;
+    }
+
+    .descItem {
+      text-align: left;
+      font: normal normal normal 14px/14px Roboto;
+      letter-spacing: 0px;
+      color: #687C97;
+      opacity: 1;
+      margin: auto;
+
+    }
+
+    .borderIcon {
+      cursor: pointer !important;
+      width: 37px;
+      height: 37px;
+      background: #FFFBF2 0% 0% no-repeat padding-box;
+      background-size: cover;
+      background-position: center;
+      border-radius: 26px;
+      opacity: 1;
+      margin: 7px auto;
+    }
+
+    .previewVideo {
+      min-width: 983px;
+      min-height: 250px;
+      background: transparent url('https://uploads.metropoles.com/wp-content/uploads/2018/04/13144922/2018-04-13.jpg') 0% 0% no-repeat padding-box;
+      border-radius: 5px;
+      opacity: 0.7;
+    }
+
+    .area {
+      background: #FCFCFD 0% 0% no-repeat padding-box;
+      border: 1px solid #EDF2F6;
+      border-radius: 16px;
+      opacity: 1;
+
+      padding: 30px;
+      max-width: 586px;
+      max-height: 152px;
+      min-width: 586px;
+      min-height: 152px;
+    }
+
+    .subTexto {
+      text-align: left;
+      font: normal normal normal 16px/18px Roboto;
+      letter-spacing: 0px;
+      color: #687C97;
+      opacity: 1;
+    }
+
+    .subItem {
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      box-shadow: 0px 5px 25px #FFFBF2;
+      border: 1px solid #F8C63F;
+      border-radius: 5px;
+      opacity: 1;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .subTitem {
+      text-align: left;
+      font: normal normal 300 16px/21px Roboto;
+      letter-spacing: 0px;
+      color: #222B45;
+      opacity: 1;
+      margin: auto;
+
+    }
+
+    .numero {
+      width: 23px;
+      height: 23px;
+      /* UI Properties */
+      margin: auto;
+      border-radius: 100%;
+      border: 1px solid #6A6A6A;
+    }
+
+    .tNumero {
+      text-align: center;
+      font: normal normal bold 14px/19px Roboto;
+      letter-spacing: 0px;
+      color: #6A6A6A;
+      opacity: 1;
+
+      margin: auto;
+    }
+
+    .listaProdutos {
+      max-width: 60%;
+      margin: auto;
+      max-height: 600px;
+      overflow-y: auto;
+      zoom: 80%;
+      overflow-x: hidden;
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .itemProd {
+      border: 1px solid #EDF2F6;
+      margin-top: 15px;
+      border-radius: 20px;
+      padding: 5px;
+    }
+
+    .btnClose {
+      float: right;
+      /* background: none; */
+      color: black;
+      min-width: 30px !important;
+      min-height: 30px !important;
+      margin-right: 5%;
+      border: none;
+      display: none;
+    }
+  </style>
+
+  <div class="page-institucional">
+    <!--
+    <div class="modal-deletar active">
+      <div class="modal-box">
+        <div class="modal-header">
+          Deletar página
+  
+          <button class="btn-close">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+  
+        <div class="modal-body">
+          <div class="modal-container">
+            <i class="icon-alert">
+              <svg
+                id="Layer_x0020_1"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32.854"
+                height="32.854"
+                viewBox="0 0 32.854 32.854"
+              >
+                <rect
+                  id="Retângulo_1684"
+                  data-name="Retângulo 1684"
+                  width="32.854"
+                  height="32.854"
+                  fill="none"
+                />
+                <path
+                  id="exclamation-triangle"
+                  d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1ZM11,14H10V13h1v1Zm-.5-3a.5.5,0,0,1-.5-.5v-4a.5.5,0,0,1,1,0v4A.5.5,0,0,1,10.5,11Z"
+                  transform="translate(5.927 5.927)"
+                  fill="#f8c63f"
+                />
+              </svg>
+            </i>
+  
+            <div class="modal-title">
+              Deseja deletar a página
+              <span class="clr-yellow">Título da receita</span>?
+            </div>
+  
+            <p>Esta ação não poderá ser desfeita.</p>
+  
+            <p>
+              O link para a página será perdido e caso ela esteja no rodapé ela
+              será removida
+            </p>
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <div class="modal-container">
+            <div class="modal-footer-content">
+              <button class="btn-cancelar">Cancelar</button>
+  
+              <button class="btn">
+                <i></i>
+  
+                Deletar Página
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  -->
+
+    <div class="header">
+      <div class="header-breadcrumb">
+        <a href="#">Conteúdo</a>
+        <div class="page-title">
+          <span id="titleTop">Título da receita...</span>
+
+          <i class="icon-arrow-down"></i>
+        </div>
+      </div>
+
+
+      <div class="btn-active-page">
+        <input type="checkbox" name="ativar-pagina" id="ativar-pagina" />
+
+        <label for="ativar-pagina" class="btn-label">
+          <i class="icon-checkbox"></i>
+
+          <span id="desativada">desativada</span>
+        </label>
+      </div>
+
+      <div class="btn-back">
+        <i class="icon-back"></i>
+      </div>
+
+      <div class="btn-back btn-forward">
+        <i class="icon-back icon-back-flip"></i>
+      </div>
+
+      <div class="buttons-list">
+        <a class="btn-url" href="#">
+          <i></i>
+          url
+        </a>
+
+        <button onclick="deleteRevenue()" class="btn btn-inverse">
+          <i></i>
+          Deletar Página
+        </button>
+
+        <button onclick="saveRevenue()" class="btn">Publicar</button>
+      </div>
+    </div>
+
+    <div class="page-body">
+      <div class="content-box">
+        <input onchange="getImageFromSite($(this))" type="file" style="display: none" id="fileBannerCat">
+        <div onclick="getFile($(this))" target="bannerTopo" id="bannerTopo"
+          tyle="background-size: cover !important; background-position : center !important; zoom: 90%; background-repeat: no-repeat"
+          class="top-banner">
+          <div class="container">
+            <div class="top-banner-content">
+              <i class="icon-add icon-yellow"></i>
+              Adicionar banner de Topo
+            </div>
+          </div>
+        </div>
+
+        <div style="max-width: 90%; margin: auto;" class="container">
+          <div class="main-content">
+            <div class="row">
+              <div class="col-md-6" style="min-width: 600px;">
+                <div class="title-box">
+                  Título da receita
+                  <input onkeyup="editaTitulo($(this))" id="title" type="text" placeholder="Título da receita"
+                    style="min-width: 400px;">
+                </div>
+
+              </div>
+              <div class="col-md-3">
+                <div class="title-box">
+                  Tempo de preparo
+                  <input onkeyup="editacampo($(this), 'tempo_minutos')" id="tempo_minutos" type="text"
+                    placeholder="Tempo de preparo">
+                </div>
+
+              </div>
+              <div class="col-md-3">
+                <div class="title-box">
+                  Porções
+                  <input onkeyup="editacampo($(this), 'porcoes')" id="porcoes" type="text" placeholder="Porções">
+                </div>
+
+              </div>
+
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+              <div>
+                <p class="tt">
+                  Ingredientes
+                  <span class="txtAlert">
+                    <span class="txtA">
+                      <span id="ingredientesTotal">0</span> ingredientes selecionados
+                    </span>
+
+                  </span>
+                </p>
+
+              </div>
+
+
+            </div>
+            <div style="padding-bottom: 25px;padding-top: 25px; border-radius: 20px;" class="col-md-12 ativei">
+              <div class="cabecalho">
+                <div class="input-group" style="max-width: 90%;margin: auto;">
+                  <input type="text" value="" style="border-radius: 20px; background: none;" class="form-control"
+                    onkeyup="searchProducts($(this).val(),$('.listaProdutos'))"
+                    placeholder="Adicione produtos para os ingredientes">
+                  <svg style="color: #f6b504; font-weight: bold;width: 20px;height: 20px;margin: auto -35px;"
+                    class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas"
+                    data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                    data-fa-i2svg="">
+                    <path fill="currentColor"
+                      d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                    </path>
+                  </svg>
+                </div>
+
+              </div>
+              <button onclick="fechaMe($(this))" class="btn btn-close btnClose"
+                style="float: right; display: none; margin-top: 20px;"></button>
+              <div class="listaProdutos">
+
+              </div>
+              <div class="conteudo">
+
+
+
+              </div>
+
+
+            </div>
+
+
+            <br>
+            <div class="row">
+              <p class="tt"> Modo de preparo </p>
+            </div>
+            <hr>
+            <div style="max-width: 600px; backround-size: cover; background-repeat: no-repeat;" id="previewMidia"
+              class="col-md-12 previewVideo">
+
+            </div>
+
+            <div class="col-md-12 area">
+              <div class="btn-active-page">
+                <input onchange="editaMidia($('#MIDIA'), $(this))" type="checkbox" name="ativar-pagina3"
+                  id="ativar-pagina3" />
+
+                <label for="ativar-pagina3" class="btn-label">
+                  <i class="icon-checkbox"></i>
+
+                  Vídeo
+                </label>
+              </div>
+              <br>
+              <div class="title-box">
+                <input onchange="editaMidia($(this), $('#ativar-pagina3'))" id="MIDIA" type="text"
+                  placeholder="Insira o link do youtube para a receita" style="min-width: 400px;">
+              </div>
+
+
+            </div>
+            <br>
+            <div class="row">
+              <p class="tt"> Passo a passo </p>
+              <p class="subTexto"> Escreva em forma de tópicos todos os passos da receita. </p>
+            </div>
+            <div class="listPass">
+
+
+            </div>
+
+
+
+            <div class="row">
+
+              <div style="margin: auto; padding: 20px;" class="col-md-1">
+                <div class="numero">
+                  <p id="tNumero" class="tNumero">1</p>
+                </div>
+              </div>
+              <div style=" margin: auto; " class="col-md-10">
+
+                <input id="putStep" type="text" placeholder="Adicione um novo passo"
+                  style="min-width: 400px;width: 100%;">
+
+
+              </div>
+              <div id="isScroll" style="margin: auto; padding: 20px;" class="col-md-1">
+
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <script src="https://admin.api-smartcomerci.com.br/js/tinymce.js"></script> -->
+  <script>
+    var mainHost = 'http://localhost:6060';
+
+    let url = window.location.href
+
+    function fechaMe(element) {
+      $('.listaProdutos').html('')
+      element.hide()
+    }
+
+
+
+
+
+    function addStep(id, value) {
+      //console.log(id,value) 
+      if (value != "") {
+
+        if (Number(id)) {
+          INDEX = id
+        }
+        let html = '<div class="row stepRevenue">' +
+          '<div style="margin: auto; padding: 20px;" class="col-md-1">' +
+          '<div class="numero">' +
+          '<p class="tNumero">' + INDEX + '</p>' +
+          '</div>' +
+          '</div>' +
+          '<div style=" margin: auto; " class="col-md-10">' +
+          '<div class="subItem">' +
+          '<p class="subTitem">' +
+          value +
+          '</p>' +
+          '</div>' +
+          '</div>' +
+          '<div style="margin: auto; padding: 20px;" class="col-md-1">' +
+          '<div id="' + INDEX + '" onclick="removeStep($(this))" class=" deleteThis borderIcon">' +
+          '<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 21 21"' +
+          'style="fill: #f6b504;margin: 9px;">&gt;<defs></defs>' +
+          '<path class="a"' +
+          'd="M10.937,16H3.063A2.208,2.208,0,0,1,.875,13.778V2.666H.438a.444.444,0,0,1,0-.889H4.375V1.334A1.324,1.324,0,0,1,5.687,0H8.313A1.324,1.324,0,0,1,9.625,1.334v.444h3.937a.444.444,0,0,1,0,.889h-.437V13.778A2.208,2.208,0,0,1,10.937,16ZM1.75,2.666V13.778a1.325,1.325,0,0,0,1.313,1.334h7.875a1.325,1.325,0,0,0,1.313-1.334V2.666ZM5.687.889a.441.441,0,0,0-.437.445v.444h3.5V1.334A.441.441,0,0,0,8.313.889Zm3.5,11.556A.442.442,0,0,1,8.75,12V5.778a.437.437,0,1,1,.875,0V12A.441.441,0,0,1,9.188,12.445Zm-4.375,0A.441.441,0,0,1,4.375,12V5.778a.437.437,0,1,1,.875,0V12A.442.442,0,0,1,4.812,12.445Z"' +
+          'transform="translate(4 3)"></path>' +
+          '</svg>' +
+          '</div>' +
+          '</div>' +
+          '</div>';
+
+        $(".listPass").append(html)
+        let steps = []
+        try {
+          steps = JSON.parse(JSON.parse(localStorage.THIS_REVENUE).modo_preparo)
+
+        } catch (e) { }
+        steps.push({
+          id: INDEX, instucao: value
+        })
+
+        $("#tNumero").text(INDEX + 1)
+        editRevenue('modo_preparo', JSON.stringify(steps))
+
+      } else {
+        $("#putStep").css("border", "1px solid red")
+
+        window.parent.informar("alert-primary", "Preencha antes de continuar!", 3000)
+      }
+
+
+    }
+    function removeStep(element) {
+
+      let steps = []
+      try {
+        steps = JSON.parse(JSON.parse(localStorage.THIS_REVENUE).modo_preparo)
+
+      } catch (e) { }
+
+      let newSteps = []
+      for (const k in steps) {
+        if (steps[k].id != Number(element.attr("id"))) {
+          newSteps.push(steps[k])
+        }
+      }
+      editRevenue('modo_preparo', JSON.stringify(newSteps))
+
+      if (value < 0) { value = 0 }
+      $("#tNumero").text($(".tNumero").length + 1)
+      // let contagen = 1
+      // $(".tNumero").each(function(){
+      //   $(this).text(contagen)
+      //   contagen++
+      // })
+
+
+    }
+
+    let THIS_REVENUE = Number(location.href.split('?')[1])
+    $.ajax({
+      type: "POST",
+      url: mainHost + '/getByTableName',
+      data: { "masterId": localStorage.MASTER_ID, "idName": "master_id", "tableName": "revenues" },
+      headers: {
+        "x-access-token": localStorage.token,
+      },
+      success: async function (data2) {
+        //console.log(data2)
+        let myRevenue
+        for (const j in data2) {
+          if (data2[j].id == THIS_REVENUE) {
+            myRevenue = data2[j]
+          }
+        }
+
+        //console.log(myRevenue)
+        localStorage.THIS_REVENUE = JSON.stringify(myRevenue)
+
+        $("#title").val(myRevenue.title)
+        $("#titleTop").text(myRevenue.title)
+        $("#tempo_minutos").val(myRevenue.tempo_minutos)
+        $("#porcoes").val(myRevenue.porcoes)
+        let ingredientes = []
+        try {
+          ingredientes = JSON.parse(myRevenue.ingredientes)
+        } catch (e) { }
+        $("#ingredientesTotal").text(ingredientes.length)
+
+        for (const k in ingredientes) {
+          addContent(ingredientes[k].product_code, ingredientes[k])
+        }
+
+        $("#bannerTopo").css("background", `url(${myRevenue.banner_topo})`)
+        let MIDIA = "https://uploads.metropoles.com/wp-content/uploads/2018/04/13144922/2018-04-13.jpg"
+        let MD_ACTIVE = false
+        try {
+          MUDIA = JSON.parse(myRevenue.midia).url
+          MD_ACTIVE = JSON.parse(myRevenue.midia).active
+        } catch (e) { }
+
+        let modoPreparo = []
+        try {
+          modoPreparo = JSON.parse(myRevenue.modo_preparo)
+        } catch (e) { }
+
+        //console.log("modo preparo",modoPreparo)
+
+        for (const k in modoPreparo) {
+          addStep(modoPreparo[k].id, modoPreparo[k].instucao)
+        }
+
+
+
+        $("#ativar-pagina")[0].checked = myRevenue.status
+        $("#ativar-pagina3")[0].checked = MD_ACTIVE
+        $("#MIDIA").val(MIDIA)
+        $("#previewMidia").css("background", `url(${getThumb(MIDIA)})`)
+        if (myRevenue.status) {
+          $("#desativada").text("ativada")
+        }
+
+
+
+      },
+      error: function (data) {
+        //console.log("erro get", data)
+
+        window.parent.informar("alert-danger", "Algo saiu errado!", 3000)
+      },
+      complete: function () { },
+    });
+
+    function getImageFromSite(element) {
+      var data = new FormData();
+      var contador = 1;
+      data.append('fileimagem', element[0].files[0]);
+      $.ajax({
+        url: mainHost + '/uploadBanners/' + localStorage.MASTER_ID,
+        headers: {
+          "x-access-token": localStorage.token,
+          "master_id": localStorage.MASTER_ID
+        },
+        data: data,
+        processData: false,
+        contentType: false,
+        type: 'PUT',
+        success: function (data) {
+          //console.log(data)
+          $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'http://localhost:6060')})`)
+          $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+          $("#" + element.attr("target")).css("background-size", "cover !important")
+          $("#" + element.attr("target")).css("background-position", "center !important")
+          $("#" + element.attr("target")).css("zoom", "100% !important")
+          editRevenue('banner_topo', data.path?.replace('./public', 'http://localhost:6060'))
+        },
+        error: function (data) { },
+        complete: function () { },
+      });
+    }
+
+    function getImageFromSite(element) {
+      var data = new FormData();
+      var contador = 1;
+      data.append('fileimagem', element[0].files[0]);
+      $.ajax({
+        url: mainHost + '/uploadBanners/' + localStorage.MASTER_ID,
+        headers: {
+          "x-access-token": localStorage.token,
+          "master_id": localStorage.MASTER_ID
+        },
+        data: data,
+        processData: false,
+        contentType: false,
+        type: 'PUT',
+        success: function (data) {
+          //console.log(data)
+          $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'http://localhost:6060')})`)
+          $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+          $("#" + element.attr("target")).css("background-size", "cover !important")
+          $("#" + element.attr("target")).css("background-position", "center !important")
+          $("#" + element.attr("target")).css("zoom", "100% !important")
+
+
+          function editRevenue(column, newValue) {
+
+            //console.log(element.parent().parent().find('input'))
+            //console.log(`${data.path?.replace('./public', 'http://localhost:6060')}`)
+
+            editRevenue('banner_topo', data.path?.replace('./public', 'http://localhost:6060'))
+
+
+            localStorage.SEARCH_REVENUES = JSON.stringify(data)
+          }
+
+        },
+        error: function (data) {
+          //console.log("erro busca produto", data)
+        }
+      });
+      if (dados.length > 0) {
+        $(".btnClose").show()
+      } else {
+        $(".btnClose").hide()
+      }
+
+      for (const k in dados) {
+        let html = `
+            <div class="itemLista itemProd row">
+              <div class="col-md-2">
+                <img style="margin: auto;max-width: 50px; max-height: 50px" src="${dados[k].product_thumbnail}" />
+              </div>
+              <div class="col-md-7">
+                <div class="row">
+                  <p style="margin: auto;" class="product_code">${dados[k].product_code}</p>
+                </div>
+                <div class="row">
+                  <p style="margin: auto;" class="product_name">${dados[k].product_site_name}</p>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button onclick="addContent(${dados[k].product_code})" style="margin: auto; background: #f6b504; border-radius: 20px" class="btn btn-info">Adicionar</div>
+              </div>
+            </div>
+          `;
+        container.append(html)
+      }
+    }
+
+    async function addContent(ID, dados) {
+
+      await $.ajax({
+        type: 'POST',
+        url: mainHost + '/listaIds',
+        headers: {
+          "x-access-token": localStorage.token,
+        },
+        data: {
+          "product_list_ids": [ID],
+          "affiliate_id": localStorage.AFFILIATE_ID
+        },
+        success: function (data) {
+          let PRD = data
+          //console.log(PRD)
+          let thisPRD = null
+          for (const k in PRD) {
+            if (PRD[k].product_code == ID) {
+              thisPRD = PRD[k]
+            }
+          }
+
+          if (thisPRD) {
+            getProduct(thisPRD, dados)
+          } else {
+            //console.log("nçao achei produto")
+          }
+        },
+        error: function (data) {
+          //console.log(data)
+          window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+        },
+        complete: function () {
+          // ao final da requisição...
+        }
+      });
+    }
+
+
+    function getProduct(productData, dados) {
+
+      if (!dados) {
+        dados = {
+          quantidade: 0, medida: 0, texto: ""
+        }
+      }
+      let ID = $(".itemProduto").length + 1
+      let html =
+        `
+         <div class="col-md-12 itemProduto">
+                  <div style="border-bottom: 0.949999988079071px solid #EDF2F6;" class="row">
+                    <div style="margin: auto;" class="col-md-1">
+                      <div class="row">
+                        <div style="margin: auto;" class="col-md-6">
+                          <svg  class="iconGrid"
+                            xmlns="http://www.w3.org/2000/svg" style="fill: #687c97;" width="13.5" height="23"
+                            viewBox="0 0 9 16">
+                            <defs></defs>
+                            <path class="a"
+                              d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z">
+                            </path>
+                            <path class="a"
+                              d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
+                              transform="translate(5)"></path>
+                          </svg>
+                        </div>
+                        <div class="col-md-6">
+                          <p style="margin: auto;">${ID}</p>
+                        </div>
+
+                      </div>
+
+
+                    </div>
+                    <div style="margin: auto;" class="col-md-1">
+                      <div class="row">
+                        <div style="margin: auto;" class="col-md-6">
+                          <div class="imgP">
+                            <img class="imgPicture"
+                              src="${productData.product_thumbnail}" alt="">
+                          </div>
+                        </div>
+                        <div style="margin: auto;" class="col-md-6">
+                          <p class="numeroItem">${productData.product_code}</p>
+                        </div>
+
+
+
+                      </div>
+
+                    </div>
+                    <div style="margin: auto;" class="col-md-2">
+                      <p class="descItem">${productData.product_descricao}</p>
+                    </div>
+                    <div style="margin: auto;" class="col-md-2">
+                      <p class="descItem">${productData.product_ean}</p>
+                    </div>
+                    <div style="margin: auto;" class="col-md-1">
+                      <p class="descItem">R$ ${productData.product_valor.toLocaleString()}</p>
+                    </div>
+                    <div style="margin: auto;" class="col-md-2">
+                      <p class="descItem">${productData.product_estoque}</p>
+                    </div>
+                    <div style="margin: auto;" class="col-md-2">
+                      <p class="descItem">${productData.product_categoria}</p>
+                    </div>
+                    <div style="margin: auto;" class="col-md-1">
+                      <div product_code="${productData.product_code}" onclick="removeIngrediente($(this))" class=" deleteThis borderIcon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 21 21"
+                          style="fill: #f6b504;margin: 9px;">&gt;<defs></defs>
+                          <path class="a"
+                            d="M10.937,16H3.063A2.208,2.208,0,0,1,.875,13.778V2.666H.438a.444.444,0,0,1,0-.889H4.375V1.334A1.324,1.324,0,0,1,5.687,0H8.313A1.324,1.324,0,0,1,9.625,1.334v.444h3.937a.444.444,0,0,1,0,.889h-.437V13.778A2.208,2.208,0,0,1,10.937,16ZM1.75,2.666V13.778a1.325,1.325,0,0,0,1.313,1.334h7.875a1.325,1.325,0,0,0,1.313-1.334V2.666ZM5.687.889a.441.441,0,0,0-.437.445v.444h3.5V1.334A.441.441,0,0,0,8.313.889Zm3.5,11.556A.442.442,0,0,1,8.75,12V5.778a.437.437,0,1,1,.875,0V12A.441.441,0,0,1,9.188,12.445Zm-4.375,0A.441.441,0,0,1,4.375,12V5.778a.437.437,0,1,1,.875,0V12A.442.442,0,0,1,4.812,12.445Z"
+                            transform="translate(4 3)"></path>
+                        </svg>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div style="padding: 20px;" class="row">
+
+                    <div class="col-md-8" style="min-width: 600px;">
+                      <div class="title-box">
+                        Texto para quantidade do ingrediente
+                        <input value="${dados.texto}" product_code="${productData.product_code}" onkeyup="editaIngrediente($(this), 'texto')" type="text" placeholder="Ex: 1/2 xícara (chá) de molho de tomate"
+                          style="min-width: 400px;">
+                      </div>
+
+                    </div>
+                    <div class="col-md-2">
+                      <div class="title-box">
+                        Adicionar ao carrinho
+                        <div class="row">
+                          <div class="col-md-6">
+                            <input value="${dados.quantidade}" product_code="${productData.product_code}" onkeyup="editaIngrediente($(this), 'quantidade')" type="text" placeholder="01">
+                          </div>
+                          <div class="col-md-6">
+                            <input value="${dados.medida}" product_code="${productData.product_code}" onkeyup="editaIngrediente($(this), 'medida')" type="text" placeholder="unidades">
+                          </div>
+
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+      `
+      $(".conteudo").append(html)
+      let myIngredient = {
+        product_code: productData.product_code,
+        quantidade: "",
+        medida: "",
+        texto: "",
+      }
+      let REVENUE = JSON.parse(localStorage.THIS_REVENUE)
+      let ING = []
+      try {
+        ING = JSON.parse(REVENUE.ingredientes)
+      } catch (e) {
+
+      }
+
+      ING.push(myIngredient)
+      editRevenue('ingredientes', JSON.stringify(ING))
+      $("#ingredientesTotal").text(ING.length)
+    }
+
+    function editaTitulo(element) {
+      editRevenue('title', element.val())
+      $("#titleTop").text(element.val())
+    }
+
+    function editacampo(element, coluna) {
+      editRevenue(coluna, element.val())
+    }
+
+    function editaIngrediente(element, coluna) {
+
+      let REVENUE = JSON.parse(localStorage.THIS_REVENUE)
+      let ING = []
+      try {
+        ING = JSON.parse(REVENUE.ingredientes)
+      } catch (e) {
+
+      }
+      for (const k in ING) {
+        if (ING[k].product_code == Number(element.attr("product_code"))) {
+          ING[k][coluna] = element.val()
+        }
+      }
+      editRevenue('ingredientes', JSON.stringify(ING))
+    }
+
+    function editaMidia(element, active) {
+      let MIDIA = { active: active[0].checked, url: element.val() }
+
+      $("#previewMidia").css("background", `url(${getThumb(element.val())})`)
+      editRevenue('midia', JSON.stringify(MIDIA))
+    }
+
+    function getThumb(URL) {
+      if (URL.indexOf('youtube') > -1) {
+        URL = URL.split("=")[1]
+        return `https://img.youtube.com/vi/${URL}/0.jpg`
+      } else {
+        return URL
+      }
+
+    }
+    async function deleteRevenue() {
+      let myRevenue = JSON.parse(localStorage.THIS_REVENUE)
+
+      await $.ajax({
+        type: 'POST',
+        url: mainHost + '/deleteById',
+        headers: {
+          "x-access-token": localStorage.token,
+        },
+        data: {
+          "table": "revenues",
+          "item_id": myRevenue.id
+        },
+        success: function (data) {
+          window.parent.informar("alert-success", "Receita removida com sucesso!", 3000)
+        },
+        error: function (data) {
+          window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+        },
+        complete: function () {
+          // ao final da requisição...
+        }
+      });
+
+    }
+
+    async function saveRevenue() {
+      let myRevenue = JSON.parse(localStorage.THIS_REVENUE)
+      let columns = []
+      for (const k in myRevenue) {
+        if (k != 'id' && k != 'updatedAt' && k != 'createdAt') {
+          columns.push({
+            column: k,
+            value: myRevenue[k]
+          })
+        }
+
+      }
+      await $.ajax({
+        type: 'POST',
+        url: mainHost + '/updateById',
+        headers: {
+          "x-access-token": localStorage.token,
+        },
+        data: {
+          "table": "revenues",
+          "name_id": "id",
+          "value_id": myRevenue.id,
+          "fields": columns
+        },
+        success: function (data) {
+          window.parent.informar("alert-success", "As alterações foram salvas!", 3000)
+        },
+        error: function (data) {
+          window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+        },
+        complete: function () {
+          // ao final da requisição...
+        }
+      });
+    }
+
+    function removeIngrediente(element) {
+      let myRevenue = JSON.parse(localStorage.THIS_REVENUE)
+      let ingredientes = []
+      try {
+        ingredientes = JSON.parse(myRevenue.ingredientes)
+      } catch (e) { }
+      let newIngs = []
+      for (const k in ingredientes) {
+        if (Number(element.attr("product_code") != ingredientes[k].product_code)) {
+          newIngs.push(ingredientes[k])
+        }
+      }
+      myRevenue.ingredientes = JSON.stringify(newIngs)
+      localStorage.THIS_REVENUE = JSON.stringify(myRevenue)
+
+      element.parent().parent().parent().remove()
+    }
+
+    $("#putStep").keyup(function (event) {
+      console.log(event)
+      if (event.keyCode === 13) {
+        addStep(Number($("#tNumero").text()), $("#putStep").val())
+        $("#putStep").val("")
+        document.getElementById("isScroll").scrollIntoView();
+      }
+    });
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

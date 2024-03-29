@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="icon" type="image/png" href="../assets/img/lima-04.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: #FAFAFD;
+    }
+
+    * {
+      font-family: Roboto;
+    }
+
+    .nt-page-wrapper {
+      padding: 25px;
+    }
+
+    .avatar {
+      display: inline-block;
+      position: relative;
+    }
+
+    .avatar-image {
+      width: 86px;
+      height: 86px;
+      overflow: hidden;
+      border-radius: 100%;
+      border: 1px solid #ffffff;
+      box-shadow: 1px 8px 29px #695F972E;
+    }
+
+    .avatar-image img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .avatar-badge {
+      display: inline-flex;
+      position: absolute;
+      z-index: 1;
+      padding: 0.6rem;
+      right: -18px;
+      bottom: 8px;
+      border-radius: 30%;
+
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+
+    .avatar-badge__image {
+      width: 1rem;
+      height: 1rem;
+      filter: invert(74%) sepia(18%) saturate(4373%) hue-rotate(3deg) brightness(102%) contrast(97%);
+    }
+
+    .user-badge {
+      background: #FFFBF2;
+      color: #F6B504;
+      padding: 5px 20px;
+      font-weight: 300;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .username {
+      font-family: Roboto;
+    }
+
+    .user-card .card-body {
+      padding: 2.2rem 3.1rem;
+    }
+
+    .access-card .card-body,
+    .access-card .card-header {
+      padding-left: 3.1rem;
+      padding-right: 3.1rem;
+    }
+
+    .access-card .card-header {
+      background-color: #ffffff;
+      padding-top: 1.5rem;
+    }
+
+    .rounded-icon {
+      display: inline-flex;
+      padding: 0.75rem;
+      background-color: #F9FAFB;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+
+    .rounded-icon img {
+      width: 1rem;
+      height: 1rem;
+      filter: invert(52%) sepia(20%) saturate(562%) hue-rotate(175deg) brightness(87%) contrast(85%);
+    }
+
+    .icon-bordered {
+      overflow: hidden;
+      padding: 0;
+      border: 2px solid #ffffff;
+    }
+
+    .icon-bordered img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      filter: none;
+    }
+
+    .icon-lg {
+      padding: 1.2rem;
+    }
+
+    .icon-lg img {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+
+    .icon-orange {
+      background-color: #FFFBF2;
+    }
+
+    .icon-orange img {
+      filter: invert(74%) sepia(18%) saturate(4373%) hue-rotate(3deg) brightness(102%) contrast(97%);
+    }
+
+    .access-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #EDF2F6;
+      border-radius: 15px;
+    }
+
+    .btn-access {
+      padding: 10px 40px;
+      color: #F6B504;
+      border-color: #F6B504;
+    }
+
+    .btn-access:hover {
+      color: #F6B504;
+    }
+
+    .btn-save {
+      padding: 10px 70px;
+      color: #ffffff;
+      background: #F6B504;
+    }
+
+    .btn-save:hover {
+      color: #ffffff;
+    }
+
+    .btn-access:focus,
+    .btn-save:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .card {
+      border-radius: 1rem;
+    }
+
+    .card-header:first-child {
+      border-radius: 1rem 1rem 0px 0px;
+    }
+
+    .modal-body {
+      padding: 3rem 4rem;
+    }
+
+    .modal-footer {
+      padding: 0.9rem 4rem;
+    }
+
+    .modal .modal-title {
+      color: #687C97;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .modal .modal-content {
+      border-radius: 1.2rem;
+    }
+
+    .modal .focus-visible {
+      outline: none;
+      box-shadow: none;
+    }
+
+    #password-form-panel .form-control,
+    #email-form-panel .form-control {
+      padding: 0.7rem 1.4rem;
+    }
+
+    .modal .form-label {
+      font-size: 0.9rem;
+      font-family: Roboto;
+      font-weight: bold;
+      color: #687C97;
+    }
+
+    .input-float-label {
+      position: relative;
+    }
+
+    .input-float-label .label {
+      position: absolute;
+      font-size: 0.75rem;
+      left: 16px;
+      top: -8px;
+      background-color: #ffffff;
+      color: #F6B504;
+      padding: 0px 6px;
+    }
+
+    .input-float-label .show-password {
+      position: absolute;
+      font-size: 0.75rem;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .input-float-label .show-password img {
+      width: 1.25rem;
+      height: 1.25rem;
+      filter: invert(74%) sepia(18%) saturate(4373%) hue-rotate(3deg) brightness(102%) contrast(97%);
+    }
+
+    .input-float-label .form-control {
+      padding-right: 3rem;
+      border-color: #F6B504;
+    }
+
+    .orange {
+      color: #F6B504;
+    }
+
+    .bg-gray {
+      background: #f0f0f0;
+    }
+
+    .text-semi-dark {
+      color: #333333;
+    }
+
+    .two-factor-digit {
+      width: 50px;
+      height: 50px;
+      padding: 0.5rem;
+      background-color: #F0F0F0;
+
+      text-align: center;
+      font-size: 1.5rem;
+      font-family: Roboto;
+    }
+
+    .two-factor-form {
+      max-width: 294px;
+      margin: 92px auto;
+    }
+
+    .two-factor-form_label {
+      margin-bottom: 0px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-family: Roboto;
+      font-weight: 300;
+      line-height: 1;
+      color: #6A6A6A;
+    }
+
+    .two-factor-form_email {
+      text-align: center;
+      font-size: 1.3rem;
+      font-family: Roboto;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .close-modal {
+      color: #687C97;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .panel-title {
+      font-family: Roboto;
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #222B45;
+    }
+
+    .file-title {
+      font-size: 1.2rem;
+    }
+
+    .picture-drop {
+      padding: 3rem;
+      background-color: #FFFBF2;
+      border: 2px dashed #F6B504;
+      border-radius: 4px;
+    }
+
+    .picture-drop.drag-over {
+      border-style: solid;
+    }
+
+    .dash-word {
+      position: relative;
+      color: #6A6A6A;
+      font-size: 1.2rem;
+    }
+
+    .dash-word:before,
+    .dash-word:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.2rem;
+      height: 1px;
+      background-color: black;
+    }
+
+    .dash-word:before {
+      left: -1.5rem;
+    }
+
+    .dash-word:after {
+      right: -1.5rem;
+    }
+
+    .picture-drop-title {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #6A6A6A
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nt-page-wrapper">
+    <div class="nt-page-title">
+      <h2 class="fs-3">
+        Minha Conta
+      </h2>
+    </div>
+
+    <hr>
+
+    <div class="user-card card mb-4">
+      <div class="card-body d-flex align-items-center">
+        <div class="me-5">
+          <span class="avatar">
+            <div class="avatar-image">
+              <img src="img.png" alt="Foto de Perfil" class="avatar-image">
+            </div>
+
+            <span class="avatar-badge" data-bs-toggle="modal" data-bs-target="#modalChangePicture">
+              <img src="camera.svg" alt="Camera" class="avatar-badge__image">
+            </span>
+          </span>
+        </div>
+
+        <div class="username">
+          <strong class="fs-4 align-middle">Thiago Rojas</strong>
+
+          <span class="badge rounded-pill user-badge align-middle">Usuário Master</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="access-card card">
+      <div class="card-header">
+        <span class="rounded-icon me-2">
+          <img src="shield.svg" alt="Escudo">
+        </span>
+        <span>
+          Dados de acesso
+        </span>
+      </div>
+      <div class="card-body">
+        <div class="access-item mb-2 px-5 py-3">
+          <div>
+            <strong class="me-3">
+              E-mail
+            </strong>
+            <span>
+              rojas@rojas.com.br
+            </span>
+          </div>
+          <div>
+            <button type="button" class="btn btn-access rounded-pill" data-bs-toggle="modal"
+              data-bs-target="#modalChangeEmail">Alterar E-mail</button>
+          </div>
+        </div>
+        <div class="access-item px-5 py-3">
+          <div>
+            <strong class="me-3">
+              Senha
+            </strong>
+            <span>
+              *********
+            </span>
+          </div>
+          <div>
+            <button type="button" class="btn btn-access rounded-pill" data-bs-toggle="modal"
+              data-bs-target="#modalChangePassword">Alterar Senha</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modalChangeEmail" tabindex="-1" aria-labelledby="modalChangeEmailLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title m-auto" id="modalChangeEmailLabel">Alterar endereço de email</h5>
+          <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="panel-header">
+            <span class="rounded-icon me-2">
+              <img src="smile.svg" alt="Escudo">
+            </span>
+            <span class="panel-title">
+              Thiago Rojas
+
+              <span class="badge rounded-pill user-badge align-middle">Usuário Master</span>
+            </span>
+          </div>
+
+          <hr>
+
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="email-form-panel" role="tabpanel" aria-labelledby="form-tab">
+              <form action="">
+                <div class="mb-4">
+                  <label for="email" class="form-label">Insira o novo endereço de e-mail</label>
+                  <input type="email" class="form-control text-semi-dark bg-gray" id="email">
+                </div>
+
+                <div class="mb-5">
+                  <label for="confirmEmail" class="form-label">Insira o novo endereço de e-mail novamente</label>
+                  <input type="email" class="form-control text-semi-dark bg-gray" id="confirmEmail">
+                </div>
+
+                <div>
+                  <label for="password" class="form-label">Sua senha é necessária para a alteração</label>
+                  <div class="input-float-label">
+                    <span class="label">Digite sua senha</span>
+                    <input type="password" id="email-password" class="form-control text-semi-dark">
+                    <span id="email-show-password" class="show-password">
+                      <img id="email-show-password-image" src="eye-slash.svg" alt="eye">
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="tab-pane" id="email-two-factor-panel" role="tabpanel" aria-labelledby="email-save-button">
+              <div class="two-factor-form">
+                <p class="two-factor-form_label text-center">
+                  Digite o código de 5 dígitos que enviamos para
+                </p>
+                <p class="two-factor-form_email text-center">
+                  <strong>rojas_23@smartcomerci.com</strong>
+                </p>
+
+                <div class="d-flex justify-content-center">
+                  <div class="me-3">
+                    <input type="text" tabindex="1" class="form-control email-control two-factor-digit">
+                  </div>
+                  <div class="me-3">
+                    <input type="text" tabindex="2" class="form-control email-control two-factor-digit">
+                  </div>
+                  <div class="me-3">
+                    <input type="text" tabindex="3" class="form-control email-control two-factor-digit">
+                  </div>
+                  <div class="me-3">
+                    <input type="text" tabindex="4" class="form-control email-control two-factor-digit">
+                  </div>
+                  <div class="me-3">
+                    <input type="text" tabindex="5" class="form-control email-control two-factor-digit">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <a class="close-modal" href="#" data-bs-dismiss="modal">Fechar</a>
+          <button type="button" id="email-save-button" tabindex="6" class="btn btn-save rounded-pill">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modalChangePassword" tabindex="-1" aria-labelledby="modalChangePasswordLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title m-auto" id="modalChangePasswordLabel">Alterar Senha</h5>
+          <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="panel-header">
+            <span class="rounded-icon me-2">
+              <img src="smile.svg" alt="Escudo">
+            </span>
+            <span class="panel-title">
+              Thiago Rojas
+
+              <span class="badge rounded-pill user-badge align-middle">Usuário Master</span>
+            </span>
+          </div>
+
+          <hr>
+
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="password-form-panel" role="tabpanel" aria-labelledby="form-tab">
+              <form action="">
+                <div class="mb-4">
+                  <label for="password" class="form-label">Insira a nova senha</label>
+                  <input type="password" class="form-control text-semi-dark bg-gray" id="passowrd">
+                </div>
+
+                <div class="mb-5">
+                  <label for="confirmPassword" class="form-label">Insira a nova senha novamente</label>
+                  <input type="password" class="form-control text-semi-dark bg-gray" id="confirmPassword">
+                </div>
+
+                <div>
+                  <label for="password" class="form-label">Sua senha é necessária para a alteração</label>
+                  <div class="input-float-label">
+                    <span class="label">Digite sua senha</span>
+                    <input type="password" id="password" class="form-control text-semi-dark">
+                    <span id="password-show-password" class="show-password">
+                      <img id="password-show-password-image" src="eye-slash.svg" alt="eye">
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="tab-pane" id="password-two-factor-panel" role="tabpanel" aria-labelledby="password-save-button">
+              <div class="two-factor-form">
+                <p class="two-factor-form_label text-center">
+                  Digite o código de 5 dígitos que enviamos para
+                </p>
+                <p class="two-factor-form_email text-center">
+                  <strong>rojas_23@smartcomerci.com</strong>
+                </p>
+
+                <div class="d-flex justify-content-center">
+                  <div class="me-3">
+                    <input type="text" tabindex="1" class="form-control password-control two-factor-digit">
+                  </div>
+                  <div class="me-3">
+                    <input type="text" tabindex="2" class="form-control password-control two-factor-digit">
+                  </div>
+                  <div class="me-3">
+                    <input type="text" tabindex="3" class="form-control password-control two-factor-digit">
+                  </div>
+                  <div class="me-3">
+                    <input type="text" tabindex="4" class="form-control password-control two-factor-digit">
+                  </div>
+                  <div class="me-3">
+                    <input type="text" tabindex="5" class="form-control password-control two-factor-digit">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <a class="close-modal" href="#" data-bs-dismiss="modal">Fechar</a>
+          <button type="button" id="password-save-button" tabindex="6" class="btn btn-save rounded-pill">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modalChangePicture" tabindex="-1" aria-labelledby="modalChangePictureLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title m-auto" id="modalChangePictureLabel">Imagem de Perfil</h5>
+          <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="panel-header text-center mb-4">
+            <span class="rounded-icon icon-lg icon-orange me-2">
+              <img src="exclamation.svg" alt="Exclamação">
+            </span>
+            <span class="file-title panel-title">
+              <strong>Tamanho máximo <span class="orange">500kb</span></strong>
+            </span>
+          </div>
+
+          <div id="picture-drop" class="picture-drop d-flex flex-column align-items-center">
+            <span id="picture-preview" class="rounded-icon icon-lg icon-orange bg-white mb-3">
+              <img id="picture-preview-content" src="upload.svg" alt="Preview">
+            </span>
+
+            <p class="picture-drop-title">
+              Arraste a foto aqui
+            </p>
+
+            <p class="dash-word">
+              <strong>ou</strong>
+            </p>
+
+            <div class="mb-2">
+              <label for="file-upload" class="btn btn-save rounded-pill">
+                Selecione do seu computador
+              </label>
+              <input id="file-upload" class="d-none" type="file"></input>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <a class="close-modal" href="#" data-bs-dismiss="modal">Fechar</a>
+          <button type="button" id="picture-save-button" tabindex="6"
+            class="btn btn-save rounded-pill">Concluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let profilePicture = null;
+    const fileUpload = document.querySelector('#file-upload');
+    const pictureDrop = document.querySelector('#picture-drop');
+    const picturePreview = document.querySelector('#picture-preview');
+    const picturePreviewContent = document.querySelector('#picture-preview-content');
+
+    const loadPicture = (picture) => {
+      const objectURL = URL.createObjectURL(picture);
+      picturePreviewContent.src = objectURL;
+      picturePreview.classList.remove('icon-lg', 'icon-orange');
+      picturePreview.classList.add('icon-bordered');
+    }
+
+    const handleDragOver = (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'copy';
+    }
+
+    const handleDragEnter = () => {
+      pictureDrop.classList.toggle('drag-over');
+    }
+
+    const handleDragDrop = (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      handleDragEnter();
+
+      [profilePicture] = e.dataTransfer.files;
+      loadPicture(profilePicture);
+    }
+
+    const handleSelectFile = (e) => {
+      [profilePicture] = e.target.files;
+      loadPicture(profilePicture);
+    }
+
+    pictureDrop.addEventListener('dragover', handleDragOver);
+    pictureDrop.addEventListener('dragenter', handleDragEnter);
+    pictureDrop.addEventListener('dragleave', handleDragEnter)
+    pictureDrop.addEventListener('drop', handleDragDrop);
+    fileUpload.addEventListener('change', handleSelectFile);
+
+    class Modal {
+      constructor({
+        modal,
+        button,
+        panels,
+        digits,
+        eye,
+        eyeButton,
+        password,
+        panel = 1,
+        onSave = () => { },
+        onConfirm = () => { }
+      }) {
+        const [firstPanel, secondPanel] = panels;
+
+        this.modal = modal;
+        this.button = button;
+        this.firstPanel = firstPanel;
+        this.secondPanel = secondPanel;
+        this.digits = digits;
+        this.panel = panel;
+        this.onSave = onSave;
+        this.onConfirm = onConfirm;
+        this.eyeButton = eyeButton;
+        this.eye = eye;
+        this.password = password;
+      }
+
+      listen() {
+        this.eyeButton.addEventListener('click', () => {
+          if (this.password.getAttribute('type') === 'password') {
+            this.password.setAttribute('type', 'text');
+            this.eye.setAttribute('src', 'eye.svg');
+          } else {
+            this.password.setAttribute('type', 'password');
+            this.eye.setAttribute('src', 'eye-slash.svg');
+          }
+        });
+
+        this.button.addEventListener('click', (e) => {
+          if (this.panel === 1) {
+            //verify password and call two factor
+            this.onSave();
+            this.firstPanel.classList.remove('active', 'open');
+            this.secondPanel.classList.add('active', 'open');
+            e.target.innerHTML = 'Confirmar';
+            this.panel = 2;
+          } else {
+            //submit form
+            this.onConfirm();
+          }
+        });
+
+        for (const digit of this.digits) {
+          digit.addEventListener('keyup', (e) => {
+            const { target, keyCode, char, key } = e;
+
+            if (key >= 0 && key <= 9) {
+              e.target.value = key;
+              const index = Number(target.getAttribute('tabindex'));
+
+              this.digits.forEach((digit) => {
+                if (digit.getAttribute('tabindex') == index + 1) {
+                  digit.focus();
+                }
+              });
+            } else if (key === 'Backspace') {
+              const index = Number(target.getAttribute('tabindex'));
+
+              this.digits.forEach((digit) => {
+                if (digit.getAttribute('tabindex') == index - 1) {
+                  digit.focus();
+                }
+              });
+            } else {
+              e.target.value = '';
+            }
+          })
+        }
+
+        this.modal.addEventListener('hidden.bs.modal', (e) => {
+          this.firstPanel.classList.add('active', 'open');
+          this.secondPanel.classList.remove('active', 'open');
+          this.button.innerHTML = 'Salvar';
+          this.panel = 1;
+        })
+      }
+    }
+
+    const emailModal = new Modal({
+      modal: document.querySelector('#modalChangeEmail'),
+      button: document.querySelector('#email-save-button'),
+      panels: [document.querySelector('#email-form-panel'), document.querySelector('#email-two-factor-panel')],
+      digits: document.querySelectorAll('.email-control.two-factor-digit'),
+      eye: document.querySelector('#email-show-password-image'),
+      eyeButton: document.querySelector('#email-show-password'),
+      password: document.querySelector('#email-password'),
+    });
+
+    const passwordModal = new Modal({
+      modal: document.querySelector('#modalChangePassword'),
+      button: document.querySelector('#password-save-button'),
+      panels: [document.querySelector('#password-form-panel'), document.querySelector('#password-two-factor-panel')],
+      digits: document.querySelectorAll('.password-control.two-factor-digit'),
+      eye: document.querySelector('#password-show-password-image'),
+      eyeButton: document.querySelector('#password-show-password'),
+      password: document.querySelector('#password'),
+    });
+
+    emailModal.listen();
+    passwordModal.listen();
+  </script>
+</body>
+
+</html>

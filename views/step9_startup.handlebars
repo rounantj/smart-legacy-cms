@@ -1,0 +1,112 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="../assets/css/step2.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+<div class="container" style="background: #FFFFFF 0% 0% no-repeat padding-box;">
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        <div class=" text-center text-white overflow-hidden"
+            style="width: 100% !important;  height: 100vh; background: #FDFDFD 0% 0% no-repeat padding-box;">
+            <div class="logo"></div>
+
+            <div style="margin:20vh auto; max-width:1366px">
+                <h1 class="superTextoUpper">Selecionamos uma paleta de cores única para o seu delivery</h1>
+                <h3 class="superSubTextoUpper">Você poderá mudá-la com facilidade sempre que desejar.</h3>
+
+
+                <div style="max-width: 200px; margin: auto" class="row">
+                    <div id="01" class="corSelecionada"></div>
+                    <div id="02" class="corSelecionada"></div>
+                    <div id="03" class="corSelecionada"></div>
+                    <div id="04" class="corSelecionada"></div>
+
+                </div>
+
+                <br>
+                <div class="imagemUpload">
+                    <div class="areaImg">
+                        <div class="imgSrc">
+
+                        </div>
+                        <label class="edtarText">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="margin:6% auto; fill: #50C682" width="20"
+                                height="20" viewBox="0 0 20 20">
+                                <defs></defs>
+                                <path class="a"
+                                    d="M12.929,15H2.083A2.086,2.086,0,0,1,0,12.917V2.084A2.086,2.086,0,0,1,2.083,0H7.928a.417.417,0,0,1,0,.833H2.083a1.252,1.252,0,0,0-1.25,1.25V12.917a1.252,1.252,0,0,0,1.25,1.25H12.929a1.251,1.251,0,0,0,1.25-1.25V7.084a.417.417,0,0,1,.834,0v5.833A2.086,2.086,0,0,1,12.929,15Zm-5-5.833H6.262a.417.417,0,0,1-.417-.416V7.084a.417.417,0,0,1,.122-.295L12.633.122a.417.417,0,0,1,.59,0L14.89,1.789a.416.416,0,0,1,0,.59L8.223,9.046A.414.414,0,0,1,7.928,9.167Zm5-8.161h0l-6.25,6.25V8.334H7.756l6.25-6.25L12.929,1.007Z"
+                                    transform="translate(2.488 2.499)"></path>
+                            </svg>
+                            Editar
+                        </label>
+
+                    </div>
+                    <br>
+
+
+
+                </div>
+                <br>
+                <br>
+                <br>
+
+
+
+                <div class="tobeContinued">
+                    <p class="txtContinue continuar">Continuar</p>
+                </div>
+                <div class="btnPula  voltar">
+                    <p class="txtVolta">Voltar</p>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+    <script>
+        localStorage.idPageStartup = 9
+        localStorage.stage = 9
+        var data1 = []
+
+
+        $.ajax({
+            url: 'http://localhost:6060/myColors',
+            headers: {
+                "x-access-token": localStorage.token,
+                "affiliate_id": localStorage.AFFILIATE_ID,
+                "user_id": localStorage.MASTER_ID,
+                "filename": localStorage.nameLogo,
+                "is_product_image": false,
+            },
+            data: { "file": localStorage.nameLogo },
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function (data) {
+                //console.log('data')
+                //console.log(data)
+                data1 = data
+
+                localStorage.colors = JSON.stringify(data)
+                $(".imgSrc").css("background", "url(http://localhost:6060/images/" + localStorage.MASTER_ID + "/" + localStorage.nameLogo + ")")
+                //console.log(("background","rgb( "+data[0]._rgb[0]+","+data[0]._rgb[1]+","+data[0]._rgb[2]+","+data[0]._rgb[3]+") 0% 0% no-repeat padding-box "))
+                $("#01").css("background", "rgb(" + data[0]._rgb[0] + "," + data[0]._rgb[1] + "," + data[0]._rgb[2] + "," + data[0]._rgb[3] + ") 0% 0% no-repeat padding-box ")
+                $("#02").css("background", "rgb(" + data[1]._rgb[0] + "," + data[1]._rgb[1] + "," + data[1]._rgb[2] + "," + data[1]._rgb[3] + ") 0% 0% no-repeat padding-box  ")
+                $("#03").css("background", "rgb(" + data[2]._rgb[0] + "," + data[2]._rgb[1] + "," + data[2]._rgb[2] + "," + data[2]._rgb[3] + ") 0% 0% no-repeat padding-box  ")
+                $("#04").css("background", "rgb(" + data[3]._rgb[0] + "," + data[3]._rgb[1] + "," + data[3]._rgb[2] + "," + data[3]._rgb[3] + ") 0% 0% no-repeat padding-box  ")
+
+            },
+            error: function (data) {
+                //console.log(data)
+            }
+        });
+    </script>

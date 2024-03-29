@@ -1,0 +1,89 @@
+
+/* Character Styles */
+.título-vitrines {
+    font-family: var(--unnamed-font-family-roboto);
+    font-style: var(--unnamed-font-style-normal);
+    font-weight: var(--unnamed-font-weight-300);
+    font-size: var(--unnamed-font-size-24);
+    line-height: var(--unnamed-line-spacing-32);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-6a6a6a);
+    }
+    .titulo{
+    
+    
+        font: var(--unnamed-font-style-normal) normal bold 500 32px/43px var(--unnamed-font-family-roboto);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        text-align: left;
+      
+        font-weight: bold;
+        letter-spacing: 0px;
+        color: #333333;
+        opacity: 1;
+        font-size: 1.6rem;
+        
+    
+    }
+    .sub{
+    
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) 18px/var(--unnamed-line-spacing-32) var(--unnamed-font-family-roboto);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-6a6a6a);
+    text-align: center;
+    font: normal normal 300 18px/32px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+    }
+    h3{
+    
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) var(--unnamed-font-size-24)/var(--unnamed-line-spacing-32) var(--unnamed-font-family-roboto);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-6a6a6a);
+    text-align: center;
+    font: normal normal 300 24px/32px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+    }
+    .inputTXT{
+    
+        width: 428px;
+        height: 52px;
+        background: #F0F0F0 0% 0% no-repeat padding-box;
+        border: 1px solid #EFEFEF;
+        border-radius: 5px;
+        opacity: 1;
+        font-weight: normal;
+        font-size: 1.2rem;
+    }
+    .btnStart{
+      
+      top: 577px;
+    left: 136px;
+    width: 317px;
+    height: 53px;
+    background: #50C682 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    opacity: 1;
+    float: left;
+    }
+    .fale{
+    
+    height: 21px;
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) 300 16px/21px var(--unnamed-font-family-roboto);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-6a6a6a);
+    text-align: center;
+    font: normal normal 300 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+    }
+    .lead{
+        text-align: left;
+        font: normal normal 50  52px Roboto;
+        letter-spacing: 0px;
+        color: #6A6A6A;
+        opacity: 1;
+    }

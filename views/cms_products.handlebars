@@ -1,0 +1,452 @@
+<style>
+    .preview {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: 996px) {
+        .preview {
+            margin-bottom: 20px;
+        }
+    }
+
+    .preview-pic {
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+    }
+
+    .preview-thumbnail.nav-tabs {
+        border: none;
+        margin-top: 15px;
+    }
+
+    .preview-thumbnail.nav-tabs li {
+        width: 18%;
+        margin-right: 2.5%;
+    }
+
+    .preview-thumbnail.nav-tabs li img {
+        max-width: 100%;
+        display: block;
+    }
+
+    .preview-thumbnail.nav-tabs li a {
+        padding: 0;
+        margin: 0;
+    }
+
+    .preview-thumbnail.nav-tabs li:last-of-type {
+        margin-right: 0;
+    }
+
+    .tab-content {
+        overflow: hidden;
+    }
+
+    .tab-content img {
+
+        -webkit-animation-name: opacity;
+        animation-name: opacity;
+        -webkit-animation-duration: 0.3s;
+        animation-duration: 0.3s;
+    }
+</style>
+
+<div class="content">
+    <br>
+    <div style="justify-content: right; margin-right: 0%;" class="row">
+        <div class="col" style="justify-content: right; margin-right: 0%; display: flow-root;">
+            <label style="font: normal normal bold 2rem Roboto; float: left;">Produtos <span
+                    class="label cadastradosP">/ <span class="totalPordutosCadastrados">0</span> produtos
+                    cadastrados</span></label>
+        </div>
+        <div class="col-lg-2"></div>
+
+        <div style="cursor: pointer; border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #ffffff; max-width: 200px; height: 40px; border: 2px solid #f6b504; float: right; margin-right: 15px;"
+            class="input-group">
+            <div style="border: none; margin: auto;" class="input-group-append">
+                <div style="border: none; margin: auto; padding: 1%;" class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="margin: -20% auto 0 0; fill: #f6b504;" width="24"
+                        height="24" viewBox="0 0 24 24">
+                        <defs></defs>
+                        <path class="a"
+                            d="M13.5,20H2.5A2.5,2.5,0,0,1,0,17.5V2.5A2.5,2.5,0,0,1,2.5,0h9a.494.494,0,0,1,.351.147l4,4A.492.492,0,0,1,16,4.53V17.5A2.5,2.5,0,0,1,13.5,20ZM2.5,1A1.5,1.5,0,0,0,1,2.5v15A1.5,1.5,0,0,0,2.5,19h11A1.5,1.5,0,0,0,15,17.5V5H11.5a.5.5,0,0,1-.5-.5V1Zm9.5.707V4h2.293ZM11.514,16H4.5A1.5,1.5,0,0,1,3,14.5v-4A1.5,1.5,0,0,1,4.5,9h7.014a1.5,1.5,0,0,1,1.5,1.5v4A1.5,1.5,0,0,1,11.514,16ZM7,14v1h4.513a.5.5,0,0,0,.5-.5V14ZM4,14v.5a.5.5,0,0,0,.5.5H6V14Zm3-2v1h5.014V12ZM4,12v1H6V12Zm3-2v1h5.014v-.5a.5.5,0,0,0-.5-.5ZM4.5,10a.5.5,0,0,0-.5.5V11H6V10Z"
+                            transform="translate(4 2)" />
+                    </svg>
+                </div>
+            </div>
+            <label id="alteracaoMassa"
+                style="margin: -1% auto; min-width: 60%; color: #f6b504 !important; cursor:pointer"
+                class="label">Alteração em Massa</label>
+        </div>
+
+        <div onclick="modalNewProduct()"
+            style="  cursor: pointer; border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #f6b504; max-width: 200px; height: 40px; border: 2px solid #f6b504; float: right; margin-right: 15px;"
+            class="input-group">
+            <div style="border: none; margin: auto;" class="input-group-append">
+                <div style="border: none; margin: auto; padding: 2%;" class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="margin: -20% auto 0 0; fill: white;" width="24"
+                        height="24" viewBox="0 0 24 24">
+                        <defs></defs>
+                        <path class="a"
+                            d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1Zm0,14a.5.5,0,0,1-.5-.5V11H6.5a.5.5,0,0,1,0-1H10V6.5a.5.5,0,0,1,1,0V10h3.5a.5.5,0,1,1,0,1H11v3.5A.5.5,0,0,1,10.5,15Z"
+                            transform="translate(2 2)" />
+                    </svg>
+                </div>
+            </div>
+            <label style="margin: -1% auto; min-width: 60%; color: white !important; cursor: pointer" class="label">Novo
+                Produto</label>
+        </div>
+
+        <div style="cursor: pointer; border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #ffffff; max-width: 220px; height: 40px; border: 1px solid #efefef; float: right; margin-right: 15px;"
+            class="input-group">
+            <div style="border: none;" class="input-group-append">
+                <div style="border: none;" class="input-group-text">
+                    <img style="border: none;" src="../assets/img/store.svg" alt="" />
+                </div>
+            </div>
+            <select style="border: none;" class="form-control listaDeUnidades">
+            </select>
+        </div>
+    </div>
+    <hr />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-tasks radius20" style="padding: 2%;">
+                <div style="    padding-bottom: 35px;" class="row">
+                    <div class="col-md-2">
+                        <div style="border-radius: 20px;  font: normal normal bold 1rem Roboto; background-color: #ffffff;     width: auto; height: 40px; border: 1px solid #efefef; float: left;"
+                            class="input-group">
+                            <select onchange="listaAcoes($(this))" style="   min-width: 150px;border: none;"
+                                class="form-control listaDeAcoes">
+                                <option>Lista de Ações</option>
+                                <option>Desativar</option>
+                                <option>Ativar</option>
+                                <option>Excluir</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div style="opacity: 0" class="feedbackFiltroMenu">
+                            <p style="    margin: 10px auto;">Mostrando <span id="totalItensFiltrados">0</span> produtos
+                                para:<br><span id="parametrosFiltrados">null</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div style="float: right;">
+                            <div class="input-group">
+                                <input column="descricao" type="text" id="searchProducts" style="min-width: 300px;"
+                                    value="" class="form-control" placeholder="Busque por produtos, ID ou EAN" />
+                                <div class="input-group-append">
+                                    <div  class="input-group-text">
+                                        <i style="color: #f6b504; font-weight: bold;"  class="fas fa-search pesquisa3"></i>
+                                        <i onclick="closeBtn()" style="color: #f6b504; font-weight: bold; display: none; font-size: 1.2rem" class="fa fa-times fecha3" aria-hidden="true"></i>
+                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+
+                        <div style=" 
+                                background-color: #e9ecef;
+                                fill: #e9ecef;
+                                justify-content: center;
+                                border: 1px solid #ced4da;
+                                border-radius: 20px;
+                                font: normal normal bold 1rem Roboto;
+                                background-color: #ffffff;
+                               
+                                height: 40px;
+                                border: 1px solid #efefef;
+                                float: left;
+                                margin-left: 15px;
+                            " class="input-group ico">
+                            <div style="display: inline-flex;min-width: 50%;" onclick="  filter($(this))">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    style="fill: rgb(83, 83, 83) !important; margin-left: 10px; margin-top: 10px;"
+                                    width="20" height="20" viewBox="0 0 20 20">
+                                    <defs></defs>
+                                    <path class="a"
+                                        d="M8.333,16.667a8.333,8.333,0,1,1,8.333-8.333A8.343,8.343,0,0,1,8.333,16.667Zm0-15.833a7.5,7.5,0,1,0,6.495,3.75A7.508,7.508,0,0,0,8.333.833Zm1.25,10.834h-2.5a.417.417,0,0,1,0-.834h2.5a.417.417,0,0,1,0,.834Zm1.667-2.5H5.417a.417.417,0,0,1,0-.833H11.25a.417.417,0,1,1,0,.833Zm1.667-2.5H3.75a.417.417,0,1,1,0-.833h9.167a.417.417,0,1,1,0,.833Z"
+                                        transform="translate(1.667 1.667)" />
+                                </svg>
+                                <label style="margin-left: 5%;" class="label filtrandoAll">Filtros</label>
+                            </div>
+
+                            <p style="border-radius: 100%;   padding-left: 10px !important;    padding-right: 10px !important; padding: 5px; font-weight: bold; color: #f6b504; background:transparent linear-gradient(270deg, #FAF3DF 0%, #FAF3DF98 74%, #FAF3DF00 100%) 0% 0% no-repeat padding-box;margin: auto "
+                                class="totalFiltros">0</p>
+                            <p onclick="removeFiltrosAvancadosLoad()"
+                                style=" max-width: 20%;cursor: pointer;float: right;border-radius: 100%; padding: 10px;    font-weight: bold;  color: silver;margin: auto "
+                                class="fechaFiltros">
+                                <i  style="color: #f6b504; font-weight: bold;   font-size: 1.2rem" class="fa  fa-times fecha3" aria-hidden="true"></i>
+                                </p>
+                                   
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row" style="    padding-bottom: 2px;max-height: 60px; border-bottom: 1px solid #efefef;">
+                    <div style="max-width: 70px;" class="col-sm">
+                        <label class="checkSmart" style="    margin: auto 15px !important;"><input
+                                lista="listaDeProdutos" id="checkFull" class="checka form-control"
+                                type="checkbox" /><span class="checkmark"></span></label>
+                    </div>
+                    <div style="max-width: 90px; min-width: 90px;" class="col-sm"></div>
+                    <div style="max-width: 90px; min-width: 90px;" class="col-sm">
+                        <label field="products.product_code" sentido="ASC" class="infoLabel ordena">ID
+                            <i class="fas fa-arrow-down"></i>
+                        </label>
+                    </div>
+                    <div style="min-width: 200px !important; max-width: 200px !important;" class="col-sm  col-text">
+                        <label field="product_details.product_site_name" sentido="ASC" class="infoLabel ordena">Nome <i
+                                class="fas fa-arrow-down"></i></label>
+                    </div>
+                    <div style="min-width: 150px !important; max-width: 150px !important;" class="col-sm">
+                        <label field="products.product_affiliate_id" sentido="ASC" class="infoLabel ordena">Unidades <i
+                                class="fas fa-arrow-down"></i></label>
+                    </div>
+                    <div class="col-sm">
+                        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena">Preço <i
+                                class="fas fa-arrow-down"></i></label>
+                    </div>
+                    <div class="col-sm">
+                        <label field="products.product_estoque" sentido="ASC" class="infoLabel ordena">Qtd <i
+                                class="fas fa-arrow-down"></i></label>
+                    </div>
+                    <div class="col-sm   col-text">
+                        <label field="product_details.product_site_fabricacao" sentido="ASC"
+                            class="infoLabel ordena">Marca <i class="fas fa-arrow-down"></i></label>
+                    </div>
+                    <div class="col-sm">
+                        <label field="products.product_etiquetas" sentido="ASC" class="infoLabel ordena">Categoria <i
+                                class="fas fa-arrow-down"></i></label>
+                    </div>
+
+                    <div class="col-sm">
+                        <label field="product_details.product_status" sentido="ASC"
+                            style="float: right; margin-right: 15px" class="infoLabel ordena">Ativo <i
+                                class="fas fa-arrow-down"></i></label>
+                    </div>
+                </div>
+                <div class="listaDeProdutos ">
+
+                    <div class="row radius20 product bg-gray-400"
+                        style="border: 1px solid #efefef; margin-top: 1%; padding-bottom: 1%; ">
+                        <div style="max-width: 80px;" class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+                            <div style="max-width: 50px;" class="image">
+
+                            </div>
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm" style="min-width: 250px !important; max-width: 250px !important;">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                    </div>
+                    <div class="row radius20 product bg-gray-400"
+                        style="border: 1px solid #efefef; margin-top: 1%; padding-bottom: 1%; ">
+                        <div style="max-width: 80px;" class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+                            <div style="max-width: 50px;" class="image">
+
+                            </div>
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm" style="min-width: 250px !important; max-width: 250px !important;">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                    </div>
+                    <div class="row radius20 product bg-gray-400"
+                        style="border: 1px solid #efefef; margin-top: 1%; padding-bottom: 1%; ">
+                        <div style="max-width: 80px;" class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+                            <div style="max-width: 50px;" class="image">
+
+                            </div>
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm" style="min-width: 250px !important; max-width: 250px !important;">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                    </div>
+                    <div class="row radius20 product bg-gray-400"
+                        style="border: 1px solid #efefef; margin-top: 1%; padding-bottom: 1%; ">
+                        <div style="max-width: 80px;" class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+                            <div style="max-width: 50px;" class="image">
+
+                            </div>
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm" style="min-width: 250px !important; max-width: 250px !important;">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                    </div>
+                    <div class="row radius20 product bg-gray-400"
+                        style="border: 1px solid #efefef; margin-top: 1%; padding-bottom: 1%; ">
+                        <div style="max-width: 80px;" class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+                            <div style="max-width: 50px;" class="image">
+
+                            </div>
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm" style="min-width: 250px !important; max-width: 250px !important;">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="plusProducts">
+                    <div style="cursor: pointer;border-radius: 20px;font: bold 1rem Roboto;background-color: rgb(255, 255, 255);width: 100px;height: 40px;border: 2px solid rgb(246, 181, 4);margin: 2% auto;opacity: 1;"
+                        class="input-group">
+                        <label id="carregaMaisProdutos"
+                            style="margin: -1% auto; min-width: 60%; color: #f6b504 !important; cursor:pointer"
+                            class="label">Ver mais...</label>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modalUper mModal">
+    <div class="alteracaoMassaRetorno">
+        fsdfds
+    </div>
+</div>
+ 
+<script>
+ 
+</script>

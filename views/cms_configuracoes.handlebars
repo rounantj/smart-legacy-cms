@@ -1,0 +1,1731 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<style>
+    .preview {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: 996px) {
+        .preview {
+            margin-bottom: 20px;
+        }
+    }
+
+    .preview-pic {
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+    }
+
+    .preview-thumbnail.nav-tabs {
+        border: none;
+        margin-top: 15px;
+    }
+
+    .preview-thumbnail.nav-tabs li {
+        width: 18%;
+        margin-right: 2.5%;
+    }
+
+    .preview-thumbnail.nav-tabs li img {
+        max-width: 100%;
+        display: block;
+    }
+
+    .preview-thumbnail.nav-tabs li a {
+        padding: 0;
+        margin: 0;
+    }
+
+    .preview-thumbnail.nav-tabs li:last-of-type {
+        margin-right: 0;
+    }
+
+    .tab-content {
+        overflow: hidden;
+    }
+
+    .tab-content img {
+        -webkit-animation-name: opacity;
+        animation-name: opacity;
+        -webkit-animation-duration: 0.3s;
+        animation-duration: 0.3s;
+    }
+
+    .labelFuncao {
+        text-align: left;
+        font: normal normal bold 14px/14px Roboto;
+        letter-spacing: 0px;
+        padding: 15px;
+        margin: auto;
+        color: #F6B504 !important;
+        opacity: 1;
+    }
+
+    .userCms {
+        cursor: pointer;
+        transition: 0s;
+        border: 1px solid #efefef;
+        margin-top: 1%;
+        padding: 2px;
+        max-height: 64px;
+        background-color: white;
+    }
+
+    .duplicate2 {
+
+
+        cursor: pointer !important;
+        width: 37px;
+        height: 37px;
+        background: #FFFBF2 0% 0% no-repeat padding-box;
+        border-radius: 26px;
+        opacity: 1;
+        margin: 3px auto;
+        padding: 9px;
+        text-align: center;
+
+    }
+
+    .deleteThis {
+
+        margin: 3px auto !important;
+    }
+
+    .firstLetter {
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: #F6B504;
+        border-radius: 100%;
+        /* width: 50px; */
+        /* height: 50px; */
+        text-align: center;
+        /* background: #FFFFFF 0% 0% no-repeat padding-box; */
+        /* opacity: 1; */
+        width: 30px;
+        height: 30px;
+        background: #F6B504 0% 0% no-repeat padding-box;
+        opacity: 1;
+        padding: 2px;
+    }
+
+    .inLabel {
+        /* UI Properties */
+        background: #99D4AE33 0% 0% no-repeat padding-box;
+        border-radius: 100px;
+        opacity: 1;
+        gap: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .inLabel2 {
+        /* UI Properties */
+        background: #d4c29933 0% 0% no-repeat padding-box;
+        border-radius: 100px;
+        opacity: 1;
+        gap: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .activeInfoP {
+        /* UI Properties */
+        text-align: center;
+        font: normal normal normal 14px/19px Roboto;
+        letter-spacing: 0px;
+        color: #50C682;
+        opacity: 1;
+        margin: 12px auto;
+    }
+
+    .myTittle3 {
+        text-align: left;
+        font: normal normal bold 18px/24px Roboto;
+        letter-spacing: 0px;
+        color: #333333;
+        opacity: 1;
+    }
+
+    .myInfoText3 {
+        text-align: left;
+        font: normal normal normal 16px/18px Roboto;
+        letter-spacing: 0px;
+        color: #687C97;
+        opacity: 1;
+    }
+
+    .textAlert3 {
+        text-align: left;
+        font: normal normal bold 16px/21px Roboto;
+        letter-spacing: 0px;
+        color: #F3B306;
+    }
+
+    .mySubT3 {
+        text-align: left;
+        font: normal normal bold 18px/24px Roboto;
+        letter-spacing: 0px;
+        color: #333333;
+        opacity: 1;
+    }
+
+    .alert84 {
+        text-align: center;
+        font: normal normal 300 14px/19px Roboto;
+        letter-spacing: 0px;
+        color: #F6B504;
+        opacity: 1;
+    }
+
+    .alert83 {
+        background: #FFFBF2 0% 0% no-repeat padding-box;
+        mix-blend-mode: multiply;
+        border-radius: 34px;
+        opacity: 1;
+    }
+
+    .radius20 {
+        padding: 50px !important
+    }
+
+    .textAvisoBranco {
+        text-align: left;
+        font: normal normal normal 14px/60px Roboto;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+
+    .bdDourada2 {
+
+        border: 2px solid #50C682 !important;
+
+    }
+
+    .bdDourada {
+        background: #FFFBF200 0% 0% no-repeat padding-box;
+        box-shadow: 0px 0px 10px #6A6A6A19;
+        border: 2px solid #F6B504;
+        border-radius: 5px;
+        opacity: 1;
+        padding: 15px;
+        margin-top: 15px !important;
+        display: none;
+    }
+
+    .bdDoted {
+        background: #FFFBF2 0% 0% no-repeat padding-box;
+        border: 2px dashed #F8C63F;
+        border-radius: 5px;
+        opacity: 1;
+        margin: auto;
+        display: none;
+        margin-top: 15px !important;
+        height: 158px;
+    }
+
+    .afiliadaName {
+        text-align: left;
+        font: normal normal bold 16px/21px Roboto;
+        letter-spacing: 0px;
+        color: #333333;
+        opacity: 1;
+    }
+
+    .rounded-icon {
+        display: inline-flex;
+        padding: 0.75rem;
+        background-color: #F9FAFB;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    .rounded-icon img {
+        width: 1rem;
+        height: 1rem;
+        filter: invert(52%) sepia(20%) saturate(562%) hue-rotate(175deg) brightness(87%) contrast(85%);
+    }
+
+    .icon-bordered {
+        overflow: hidden;
+        padding: 0;
+        border: 2px solid #ffffff;
+    }
+
+    .icon-bordered img {
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+        filter: none;
+    }
+
+    .icon-lg {
+        padding: 1.2rem;
+    }
+
+    .icon-lg img {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+    .icon-orange {
+        background-color: #FFFBF2;
+    }
+
+    .icon-orange img {
+        filter: invert(74%) sepia(18%) saturate(4373%) hue-rotate(3deg) brightness(102%) contrast(97%);
+    }
+
+    .access-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #EDF2F6;
+        border-radius: 15px;
+    }
+
+    .btn-access {
+        padding: 10px 40px;
+        color: #F6B504;
+        border-color: #F6B504;
+    }
+
+    .btn-access:hover {
+        color: #F6B504;
+        background-color: white;
+    }
+
+    .btn-access2 {
+        padding: 10px 40px;
+        color: white;
+        border-color: #F6B504;
+        background-color: #F6B504;
+    }
+
+    .btn-access2:hover {
+        color: #F6B504;
+        background-color: white;
+    }
+
+
+    .btn-save {
+        padding: 10px 70px;
+        color: #ffffff;
+        background: #F6B504;
+    }
+
+    .btn-save:hover {
+        color: #ffffff;
+    }
+
+    .btn-access:focus,
+    .btn-save:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .card {
+        border-radius: 1rem;
+    }
+
+    .minTitle {
+        /* UI Properties */
+        text-align: left;
+        font: normal normal normal 12px/16px Roboto;
+        letter-spacing: 0px;
+        color: #F6B504;
+        opacity: 1;
+    }
+
+    .contText {
+        /* UI Properties */
+        text-align: left;
+        font: normal normal 300 16px/21px Roboto;
+        letter-spacing: 0px;
+        color: #333333;
+        opacity: 1;
+    }
+
+    .txtBtnPlus {
+        text-align: center;
+        font: normal normal normal 14px/14px Roboto;
+        letter-spacing: 0px;
+        color: #F6B504;
+        opacity: 1;
+    }
+
+    .plusButton {
+        border-radius: 100%;
+        width: 30px;
+        height: 32px;
+        background-color: #F6B504;
+        margin: calc(100% - 30px) auto 10px;
+        padding: 2px !important;
+
+    }
+
+    .plusButton>svg {
+        fill: white;
+        border-radius: 100%;
+        margin: 3px;
+        background-color: #F6B504;
+        border: 1px solid white;
+        width: 20px;
+        padding: 3px;
+        border-radius: 100%;
+
+    }
+
+    .areaOption {
+        background: #FCFCFD 0% 0% no-repeat padding-box;
+        border: 1px solid #EDF2F6;
+        border-radius: 16px;
+        opacity: 1;
+    }
+
+    .labelOption {
+        text-align: left;
+        font: normal normal bold 12px Roboto;
+        letter-spacing: 0px;
+        color: #687C97 !important;
+        opacity: 1;
+        width: calc(100% - 100px);
+    }
+
+    .imgPaga {
+        display: inline-flex;
+        min-width: 150px;
+    }
+
+    .formPaga {
+        max-width: 30px;
+        max-height: 20px;
+        margin: auto;
+    }
+
+    .fundoCinza {
+        background: #F0F0F0 0% 0% no-repeat padding-box;
+        border: 1px solid #EFEFEF;
+        border-radius: 5px;
+        opacity: 1;
+        padding: 20px 20px 0 20px;
+        margin-left: 10px;
+    }
+
+    .miniClose {
+        border: 1px solid #EFEFEF;
+        padding: 2px;
+        font-size: 10px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        margin: auto;
+        cursor: pointer;
+    }
+
+    .paginaInsert {
+        display: inline-flex;
+        background: white;
+        padding: 10px 20px;
+        gap: 40px;
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+
+    .listaPaginas {
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 4px 22px 54px #695f971a;
+        border: 1px solid #EDF2F6;
+        border-radius: 0px 0px 16px 16px;
+        opacity: 1;
+        height: 227px;
+        max-height: 227px;
+        overflow-y: auto;
+        width: calc(100% + 40px);
+        margin-left: -20px;
+        padding: 15px;
+    }
+
+    .itemListaPagina {
+        text-align: left;
+        font: normal normal normal 16px/21px Roboto;
+        letter-spacing: 0.13px;
+        color: #8897AD;
+        opacity: 1;
+    }
+
+    .myListPages {
+        gap: 15px;
+        margin: auto 15px;
+        display: inline-flex;
+    }
+
+    .groupSilver {
+        background: #FCFCFD 0% 0% no-repeat padding-box;
+        border: 1px solid #EDF2F6;
+        border-radius: 16px;
+        opacity: 1;
+        display: inline-flex;
+    }
+
+    .txtLinkXML {
+        text-align: left;
+        font: normal normal bold 14px/21px Roboto;
+        letter-spacing: 0px;
+        color: #687C97;
+        opacity: 1;
+        margin: auto;
+    }
+
+    .itemMsg {
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border: 1px solid #EDF2F6;
+        border-radius: 16px;
+        opacity: 1;
+        margin-top: 15px;
+    }
+
+    .txtToMsg {
+        text-align: left;
+        font: normal normal bold 13px/21px Roboto;
+        letter-spacing: 0px;
+        color: #222B45;
+        opacity: 1;
+        margin: auto;
+    }
+
+    .txtInMsg {
+        text-align: left;
+        font: normal normal normal 14px/14px Roboto;
+        letter-spacing: 0px;
+        color: #687C97;
+        opacity: 1;
+        margin: auto;
+    }
+
+    .new1 {
+
+        border-top: 1px dashed #EDF2F6;
+
+        margin-top: 20px;
+    }
+
+    .mginAuto {
+        margin: auto !important;
+    }
+
+    .areaHipcom {
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border: 1px solid #EDF2F6;
+        border-radius: 16px;
+        opacity: 1;
+        padding: 20px;
+    }
+
+    .etapa {
+        padding: 20px;
+        min-height: 160px;
+        border: 1px solid #EDF2F6;
+        border-radius: 20px;
+        box-shadow: 4px 22px 54px #695f971a;
+        max-width: 250px;
+        opacity: 0.5;
+    }
+
+    .etapa>p {
+        margin: auto;
+        text-align: center;
+        font: normal normal bold 6rem Roboto;
+    }
+
+    .etapa>span {
+        margin: auto;
+        text-align: center;
+        font: normal normal bold 16px Roboto;
+        color: #333333;
+    }
+
+    .etapaAtiva {
+        opacity: 1;
+        background: #99D4AE33 0% 0% no-repeat padding-box;
+    }
+
+    .etapaAtiva>p,
+    .etapaAtiva>span {
+        color: #50C682;
+    }
+
+    .tagImg {
+
+        height: 259px;
+        /* UI Properties */
+        background: transparent url('img/Grupo 8048.png') 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+
+    .infoGTM {
+        display: none;
+    }
+
+    .status1 {
+        display: inline-flex;
+        opacity: 1;
+        float: right;
+    }
+</style>
+
+<div style="filter: blur(10px);" class="content todasConfiguracoes">
+    <br />
+    <div style="justify-content: right; margin-right: 0%;" class="row">
+        <div class="col" style="justify-content: right; margin-right: 0%; display: flow-root;">
+            <label style="
+            text-align: left;
+            font: normal normal bold 28px/37px Roboto;
+            letter-spacing: 0px;
+            color: #333333;
+            opacity: 1;
+            ">
+                Configurações
+
+            </label>
+        </div>
+        <div id="lojaAtiva" class="col-lg-6 status1" style="display:none">
+            <div class="inLabel">
+                <p class="activeInfoP">Status: Loja Ativa</p>
+            </div>
+            <p class="activeInfoP">Os seus clientes conseguem acessar e comprar pela loja</p>
+        </div>
+        <div id="lojaInativa" class="col-lg-6 status1" style="display: none;">
+            <div style="color: #C65050;background: #D4A09933 0% 0% no-repeat padding-box;" class="inLabel">
+                <p style="color: #C65050;" class="activeInfoP">Status: Loja Em modo manutenção</p>
+            </div>
+            <p style="color: #C65050;" class="activeInfoP">Seus clientes não conseguirão ver informações ou comprar</p>
+        </div>
+
+
+
+    </div>
+    <hr />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-tasks radius20" style="padding: 2%;">
+                <div style="padding-bottom: 35px;" class="row">
+                    <div class="col-md-5">
+                        <p class="myTittle3">Inativar a Loja</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="myInfoText3">Utilize essa função para quando precisar desabilitar a loja. Seus
+                            clientes não conseguirão mais ver Informações ou comprar sem sua loja.</p>
+                    </div>
+                    <div class="col-md-4">
+
+                        <button onclick="showFrame('inativarLoja')"
+                            style="background-color: rgb(246, 181, 4);width: 330px;    display: inline-flex;"
+                            type="button" class="btn btn-access2 rounded-pill">
+                            <div style="border: none; margin: auto;" class="input-group-append">
+                                <div style="border: none; margin: auto; padding: 2%;" class="input-group-text">
+
+                                    <svg id="Layer_x0020_1" xmlns="http://www.w3.org/2000/svg" width="32.854"
+                                        height="32.854" viewBox="0 0 32.854 32.854">
+                                        <rect id="Retângulo_1684" data-name="Retângulo 1684" width="32.854"
+                                            height="32.854" fill="none"></rect>
+                                        <path id="exclamation-triangle"
+                                            d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1ZM11,14H10V13h1v1Zm-.5-3a.5.5,0,0,1-.5-.5v-4a.5.5,0,0,1,1,0v4A.5.5,0,0,1,10.5,11Z"
+                                            transform="translate(5.927 5.927)" fill="#fff"></path>
+                                    </svg>
+
+                                </div>
+                            </div>
+                            <p style="margin: auto; color: white">Entrar em modo manutenção</p>
+                        </button>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <p class="myInfoText3">
+                        <span class="textAlert3">Atenção: </span>Utilize essa função como último recurso
+                    </p>
+                </div>
+
+
+
+
+
+
+            </div>
+
+            <div class="card card-tasks radius20" style="padding: 2%;">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="mySubT3">
+                            Lojas (Matriz e filiais)
+                        </p>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="alert83">
+                            <p class="alert84">Até 3 unidades</p>
+                        </div>
+                    </div>
+                    <div style="float: right; opacity: 1;" class="col-md-8">
+
+                        <svg onclick="mostraDouradas($(this))" style="float:right" id="Grupo_8044"
+                            data-name="Grupo 8044" xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+                            viewBox="0 0 36 36">
+                            <g id="Retângulo_390" data-name="Retângulo 390" fill="#fcfcfd" stroke="#edf2f6"
+                                stroke-width="1">
+                                <rect width="36" height="36" rx="18" stroke="none"></rect>
+                                <rect x="0.5" y="0.5" width="35" height="35" rx="17.5" fill="none"></rect>
+                            </g>
+                            <g id="Componente_73_72" data-name="Componente 73 – 72"
+                                transform="translate(28 28) rotate(180)">
+                                <g id="Grupo_1463" data-name="Grupo 1463" opacity="0.498">
+                                    <g id="Elipse_4" data-name="Elipse 4" fill="none" stroke="#687c97" stroke-width="1">
+                                        <circle cx="10" cy="10" r="10" stroke="none"></circle>
+                                        <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                                    </g>
+                                    <path id="arrow_next" data-name="arrow next"
+                                        d="M581.273,789.774a.82.82,0,0,1-.081-1.079l.081-.092,3.685-3.593-3.685-3.593a.82.82,0,0,1-.081-1.079l.081-.093a.849.849,0,0,1,1.094-.081l.094.081,4.279,4.179a.82.82,0,0,1,.081,1.079l-.081.093-4.279,4.179A.849.849,0,0,1,581.273,789.774Z"
+                                        transform="translate(795.009 -573.615) rotate(90)" fill="#687c97"></path>
+                                </g>
+                            </g>
+                        </svg>
+
+                    </div>
+                </div>
+                <div class="listaLojasCadastradas">
+
+
+                </div>
+
+
+                <div class="col-md-12 bdDoted" style=" margin: auto; display:none !important ">
+
+                    <div onclick="editarLoja(0)" class="container" style="max-width: 120px;">
+                        <div class="plusButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path
+                                    d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z">
+                                </path>
+                            </svg>
+
+                        </div>
+                        <p class="txtBtnPlus">Adicionar loja</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card card-tasks radius20" style="padding: 2%; display: none">
+
+                <div class="row">
+                    <div class="col-md-2" style="opacity: 1;">
+                        <p class="mySubT3">
+                            Taxa Sobre Pedidos
+                        </p>
+                    </div>
+
+                </div>
+                <br>
+
+
+                <div class="row">
+                    <p class="myInfoText3" style="opacity: 1;">
+                        Escolha quem deverá assumir a taxa dos pedidos
+                    </p>
+                </div>
+                <br>
+
+                <div class="row">
+                    <p class="myInfoText3" style="opacity: 1;">
+                        <span class="textAlert3">Atenção: </span>A alteração somente será validada no próximo
+                        faturamento
+                    </p>
+                </div>
+                <div class="col-md-8 areaOption">
+                    <div style="/* padding:0 2%; */ display:inline-flex;margin-top: 2%; border: none !important"
+                        class="row">
+                        <div style="margin: 1% 2%; max-width: 50px; width: 50px; opacity: 1;" class="switch__container">
+                            <input fieldname="status" id="switch-shadow189" class="switch switch--shadow"
+                                type="checkbox">
+                            <label for="switch-shadow189"></label>
+                        </div>
+                        <label style="font-size: 14px; opacity: 1;" class="labelOption">O cliente irá assumir a taxa de
+                            pedidos (será cobrado a mais no checkout)</label>
+                    </div>
+                </div>
+                <br>
+                <div class="col-md-8 areaOption">
+                    <div style="/* padding:0 2%; */ display:inline-flex;margin-top: 2%; border: none !important"
+                        class="row">
+                        <div style="margin: 1% 2%; max-width: 50px; width: 50px; opacity: 1;" class="switch__container">
+                            <input fieldname="status" id="switch-shadow183" class="switch switch--shadow"
+                                type="checkbox">
+                            <label for="switch-shadow183"></label>
+                        </div>
+                        <label style="font-size: 14px; opacity: 1;" class="labelOption">Nós iremos assumir os custos da
+                            taxa de
+                            pedido.</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card card-tasks radius20" style="padding: 2%;">
+
+                <div class="row">
+                    <div class="col-md-2" style="opacity: 1;">
+                        <p class="mySubT3">
+                            Google Tag Manager
+                        </p>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+                    <p class="myInfoText3" style="opacity: 1;">
+                        Adicione o Código GTM para usar o Google Tag Manager.
+                    </p>
+                </div>
+                <div class="row">
+                    <label style="font-size: 14px; opacity: 1;margin: auto 0;" class="labelOption">Código GTM</label>
+                </div>
+
+                <div style="width: 308px;height: 21px;min-width: 308px !important;" class="group-input2">
+                    <input id="minhaTagManager" table="masters" column="master_tag_manager"
+                        onchange="atualizaCampo($(this), 0)" style="background: none;max-width: 308px;font-size: 14px;"
+                        class="form-control inputProduct"
+                        placeholder="Insira o código no padrão &quot;GTM-XXXXXXX&quot;">
+                </div>
+
+                <hr>
+                <div class="row">
+                    <div class="col-md-10" style="opacity: 1;">
+                        <p class="mySubT3" style="color:   #F3B306 !important;">
+                            Não sabe onde encontrar o código GTM?
+                        </p>
+                        <div class="infoGTM">
+                            <p class="myInfoText3" style="opacity: 1;">
+                                Após criar a conta no Google Tag Manager você poderá ver no cabeçalho e na imagem abaixo
+                                (destacado) um código que tem o padrão “GTM-XXXXXXX”. Copie esse código e cole aqui para
+                                poder utilizar
+                            </p>
+                            <div class="col-md-12">
+                                <img src="/images/tagImg.png" class="tagImg" alt="">
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                    <div style="float: right; opacity: 1;" class="col-md-2">
+
+                        <svg onclick="$('.infoGTM').fadeIn()" style="float:right" id="Grupo_8044" data-name="Grupo 8044"
+                            xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+                            <g id="Retângulo_390" data-name="Retângulo 390" fill="#fcfcfd" stroke="#edf2f6"
+                                stroke-width="1">
+                                <rect width="36" height="36" rx="18" stroke="none"></rect>
+                                <rect x="0.5" y="0.5" width="35" height="35" rx="17.5" fill="none"></rect>
+                            </g>
+                            <g id="Componente_73_72" data-name="Componente 73 – 72"
+                                transform="translate(28 28) rotate(180)">
+                                <g id="Grupo_1463" data-name="Grupo 1463" opacity="0.498">
+                                    <g id="Elipse_4" data-name="Elipse 4" fill="none" stroke="#687c97" stroke-width="1">
+                                        <circle cx="10" cy="10" r="10" stroke="none"></circle>
+                                        <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                                    </g>
+                                    <path id="arrow_next" data-name="arrow next"
+                                        d="M581.273,789.774a.82.82,0,0,1-.081-1.079l.081-.092,3.685-3.593-3.685-3.593a.82.82,0,0,1-.081-1.079l.081-.093a.849.849,0,0,1,1.094-.081l.094.081,4.279,4.179a.82.82,0,0,1,.081,1.079l-.081.093-4.279,4.179A.849.849,0,0,1,581.273,789.774Z"
+                                        transform="translate(795.009 -573.615) rotate(90)" fill="#687c97"></path>
+                                </g>
+                            </g>
+                        </svg>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="card card-tasks radius20" style="padding: 2%">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="mySubT3">
+                            Formas de Pagamento
+                        </p>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+                    <p class="myInfoText3" style="opacity: 1;">
+                        Escolha como seus clientes poderão pagar pelas compras
+                    </p>
+                </div>
+                <div class="col-md-12 areaOption" style=" display: none">
+                    <div style="/* padding:0 2%; */ display:inline-flex;margin-top: 2%; border: none !important; min-width: 300px"
+                        class="row">
+                        <div style="margin: 1% 2%; max-width: 50px; width: 50px; opacity: 1;" class="switch__container">
+                            <input fieldname="status" id="switch-shadow181" class="switch switch--shadow"
+                                type="checkbox">
+                            <label for="switch-shadow181"></label>
+                        </div>
+                        <label style="font-size: 14px; opacity: 1;" class="labelOption">Pagar Pelo Site</label>
+                    </div>
+                </div>
+                <br>
+                <div class="col-md-12 areaOption ">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div style="/* padding:0 2%; */ display:inline-flex;margin-top: 2%; border: none !important ; min-width: 300px"
+                                class="row">
+                                <div style="margin: 1% 2%; max-width: 50px; width: 50px; opacity: 1;"
+                                    class="switch__container">
+                                    <input fieldname="status" checked id="switch-shadow184"
+                                        class="switch switch--shadow" type="checkbox">
+                                    <label for="switch-shadow184"></label>
+                                </div>
+                                <label style="font-size: 14px; opacity: 1;" class="labelOption">Pagar na entrega</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-access rounded-pill">Editar</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 areaOption row" style="margin: auto;">
+                            <div class="col-md-12" style="margin: auto; display: inline-flex; padding: 30px">
+                                <div class="col imgPaga">
+                                    <img class="formPaga" src="/images/mastercard.png" />
+                                    <p style="margin: auto;" class="labelOption">Mastercard</p>
+                                </div>
+                                <div class="col imgPaga">
+                                    <img class="formPaga" src="/images/visa.png" />
+                                    <p style="margin: auto;" class="labelOption">Visa</p>
+                                </div>
+
+                                <div class="col imgPaga">
+                                    <img class="formPaga" src="/images/amx.png" />
+                                    <p style="margin: auto;" class="labelOption">Américan Express</p>
+                                </div>
+
+                                <div class="col imgPaga">
+                                    <img class="formPaga" src="/images/dinners.png" />
+                                    <p style="margin: auto;" class="labelOption">Dinners Club International</p>
+                                </div>
+
+                                <div class="col imgPaga">
+                                    <img class="formPaga" src="/images/elo.png" />
+                                    <p style="margin: auto;" class="labelOption">Elo</p>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+            <div class="card card-tasks radius20" style="padding: 2%;">
+
+                <div class="row">
+                    <div class="col-md-2" style="opacity: 1;">
+                        <p class="mySubT3">
+                            Estoque Negativo
+                        </p>
+                    </div>
+
+                </div>
+                <br>
+
+
+                <div class="row">
+                    <p class="myInfoText3" style="opacity: 1;">
+                        Escolha como a loja irá lidar com produtos em estoque negativo.
+                    </p>
+                </div>
+                <br>
+
+
+                <div class="col-md-8 areaOption">
+                    <div style="/* padding:0 2%; */ display:inline-flex;margin-top: 2%; border: none !important"
+                        class="row">
+                        <div style="margin: 1% 2%; max-width: 50px; width: 50px; opacity: 1;" class="switch__container">
+                            <input table="masters" column="master_estoque_negativo" onchange="atualizaCampo($(this), 0)"
+                                id="switch-shadow185" class="switch switch--shadow" type="checkbox">
+                            <label for="switch-shadow185"></label>
+                        </div>
+                        <label style="font-size: 14px; opacity: 1;" class="labelOption">Permitir a venda de produtos com
+                            estoque negativo</label>
+                    </div>
+                </div>
+                <br>
+                <div class="col-md-8 areaOption">
+                    <div style="/* padding:0 2%; */ display:inline-flex;margin-top: 2%; border: none !important"
+                        class="row">
+                        <div style="margin: 1% 2%; max-width: 50px; width: 50px; opacity: 1;" class="switch__container">
+                            <input fieldname="status" id="switch-shadow187" class="switch switch--shadow"
+                                type="checkbox">
+                            <label for="switch-shadow187"></label>
+                        </div>
+                        <label style="font-size: 14px; opacity: 1;" class="labelOption">Não permitir a venda de produtos
+                            com estoque negativo (os produtos não irão aparecer na loja)</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card card-tasks radius20" style="padding: 2%;">
+
+                <div class="row">
+                    <div class="col-md-2" style="opacity: 1;">
+                        <p class="mySubT3">
+                            LGPD
+                        </p>
+                    </div>
+
+                </div>
+                <br>
+
+
+                <div class="row">
+                    <p class="myInfoText3" style="opacity: 1;">
+                        Edite a mensagem exibida para seus clientes sobre
+                    </p>
+                </div>
+                <br>
+                <div class="row">
+                    <label style="font-size: 14px; opacity: 1;margin: auto 0;" class="labelOption">Texto sobre a
+                        privacidade</label>
+                </div>
+
+                <div style="padding: 20px;" class="group-input2">
+                    <textarea column="master_custom_texto_privacidade" table="masters"
+                        onchange="atualizaCampo($(this),0)" id="textoPrivacidade1" rows="3"
+                        style="background: none; font-size: 14px;" class="form-control inputProduct"
+                        placeholder="Insira o texto que será exibido"></textarea>
+                </div>
+                <br> <br>
+                <div class="row">
+                    <label style="font-size: 14px; opacity: 1;margin: auto 0;" class="labelOption">Selecione a página de
+                        encaminhamento <span style="font-weight: normal !important;">(Será inserido no final do
+                            texto)</span></label>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 fundoCinza">
+                        <div class="row" style="    padding-bottom: 10px;">
+                            <div class="col-md-10 paginasSelecionadas">
+
+                            </div>
+                            <div style="float: right; opacity: 1;" class="col-md-2">
+
+                                <svg onclick="mostraGira($(this))" style="float:right;    transform: rotate(90deg);"
+                                    id="Grupo_8044" data-name="Grupo 8044" xmlns="http://www.w3.org/2000/svg" width="36"
+                                    height="36" viewBox="0 0 36 36">
+                                    <g id="Retângulo_390" data-name="Retângulo 390" fill="#fcfcfd" stroke="#edf2f6"
+                                        stroke-width="1">
+                                        <rect width="36" height="36" rx="18" stroke="none"></rect>
+                                        <rect x="0.5" y="0.5" width="35" height="35" rx="17.5" fill="none"></rect>
+                                    </g>
+                                    <g id="Componente_73_72" data-name="Componente 73 – 72"
+                                        transform="translate(28 28) rotate(180)">
+                                        <g id="Grupo_1463" data-name="Grupo 1463" opacity="0.498">
+                                            <g id="Elipse_4" data-name="Elipse 4" fill="none" stroke="#687c97"
+                                                stroke-width="1">
+                                                <circle cx="10" cy="10" r="10" stroke="none"></circle>
+                                                <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                                            </g>
+                                            <path id="arrow_next" data-name="arrow next"
+                                                d="M581.273,789.774a.82.82,0,0,1-.081-1.079l.081-.092,3.685-3.593-3.685-3.593a.82.82,0,0,1-.081-1.079l.081-.093a.849.849,0,0,1,1.094-.081l.094.081,4.279,4.179a.82.82,0,0,1,.081,1.079l-.081.093-4.279,4.179A.849.849,0,0,1,581.273,789.774Z"
+                                                transform="translate(795.009 -573.615) rotate(90)" fill="#687c97">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+
+                            </div>
+
+                        </div>
+                        <div style="display: none;" class="listaPaginas">
+                            <div class="input-group">
+                                <input type="text" style="min-width: 300px;border-radius: 20px 0 0 20px;
+" value="" class="form-control" placeholder="Busque pelo nome da página">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <svg style="color: #f6b504; font-weight: bold;"
+                                            class="svg-inline--fa fa-search fa-w-16" aria-hidden="true"
+                                            focusable="false" data-prefix="fas" data-icon="search" role="img"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor"
+                                                d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                                            </path>
+                                        </svg>
+                                        <!-- <i style="color: #f6b504; font-weight: bold;" class="fas fa-search"></i> Font Awesome fontawesome.com -->
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <ul id="listaPaginasExistentes">
+
+
+                            </ul>
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-1"> </div>
+                    <div class="col-md-3" style="    max-width: 240px;">
+                        <button style="background-color: rgb(246, 181, 4); display: inline-flex;" type="button"
+                            class="btn btn-access2 rounded-pill">
+
+                            Publicar alteração
+                        </button>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+            <div class="card card-tasks radius20" style="padding: 2%;">
+
+                <div class="row">
+                    <div class="col-md-2" style="opacity: 1;">
+                        <p class="mySubT3">
+                            XML
+                        </p>
+                    </div>
+
+                </div>
+                <br>
+
+
+                <div class="row">
+                    <p class="myInfoText3" style="opacity: 1;">
+                        Utilize os links de XML
+                    </p>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-4 groupSilver">
+                        <p class="txtLinkXML">Facebook</p>
+                        <button onclick="getXML()" style="gap:25px;background-color: rgb(246, 181, 4); display: inline-flex;" type="button"
+                            class="btn btn-access2 rounded-pill">
+                            <svg style="margin: auto" xmlns="http://www.w3.org/2000/svg" version="1.0" width="15pt"
+                                height="15pt" viewBox="0 0 880.000000 920.000000" preserveAspectRatio="xMidYMid meet">
+
+                                <g transform="translate(0.000000,920.000000) scale(0.100000,-0.100000)" fill="white"
+                                    stroke="none">
+                                    <path
+                                        d="M6445 8786 c-237 -33 -464 -112 -670 -234 -168 -100 -245 -171 -1018 -941 -423 -421 -780 -785 -794 -808 -93 -158 22 -354 208 -353 94 1 87 -6 904 809 424 422 797 788 830 813 484 361 1142 338 1593 -55 209 -182 349 -424 409 -707 25 -120 25 -363 -1 -485 -40 -191 -119 -368 -232 -517 -39 -52 -407 -426 -996 -1014 -724 -722 -950 -941 -1008 -979 -225 -148 -448 -216 -715 -216 -328 0 -589 101 -853 330 -97 84 -132 101 -213 101 -58 0 -141 -40 -175 -86 -56 -72 -65 -174 -24 -254 35 -69 220 -226 382 -323 292 -176 668 -266 1003 -238 416 35 754 181 1060 459 61 55 500 491 976 968 874 877 940 948 1041 1119 445 749 273 1704 -403 2245 -236 189 -497 305 -799 357 -122 20 -384 25 -505 9z" />
+                                    <path
+                                        d="M3685 5969 c-382 -39 -725 -191 -1010 -447 -151 -136 -1834 -1827 -1892 -1902 -130 -168 -232 -354 -293 -538 -168 -505 -93 -1071 200 -1508 275 -410 691 -675 1185 -755 119 -20 428 -17 544 4 304 56 554 169 801 360 36 28 411 395 833 816 594 592 773 777 792 815 46 92 29 193 -46 268 -49 49 -94 68 -163 68 -102 0 -62 36 -916 -815 -631 -628 -811 -803 -874 -844 -398 -262 -872 -291 -1290 -78 -600 306 -852 1044 -565 1656 92 198 79 183 1098 1202 520 521 971 964 1001 986 143 102 275 165 435 206 125 32 189 39 335 38 315 -1 579 -106 838 -330 97 -84 132 -101 213 -101 58 0 141 40 175 86 56 72 65 174 24 254 -38 75 -240 243 -407 338 -299 171 -686 256 -1018 221z" />
+                                </g>
+                            </svg>
+
+                            Abrir o Link
+                        </button>
+                    </div>
+                    <div class="col-md-4 groupSilver">
+                        <p class="txtLinkXML">Google</p>
+                        <button  onclick="getXML()" style="gap:25px;background-color: rgb(246, 181, 4); display: inline-flex;" type="button"
+                            class="btn btn-access2 rounded-pill">
+                            <svg style="margin: auto" xmlns="http://www.w3.org/2000/svg" version="1.0" width="15pt"
+                                height="15pt" viewBox="0 0 880.000000 920.000000" preserveAspectRatio="xMidYMid meet">
+
+                                <g transform="translate(0.000000,920.000000) scale(0.100000,-0.100000)" fill="white"
+                                    stroke="none">
+                                    <path
+                                        d="M6445 8786 c-237 -33 -464 -112 -670 -234 -168 -100 -245 -171 -1018 -941 -423 -421 -780 -785 -794 -808 -93 -158 22 -354 208 -353 94 1 87 -6 904 809 424 422 797 788 830 813 484 361 1142 338 1593 -55 209 -182 349 -424 409 -707 25 -120 25 -363 -1 -485 -40 -191 -119 -368 -232 -517 -39 -52 -407 -426 -996 -1014 -724 -722 -950 -941 -1008 -979 -225 -148 -448 -216 -715 -216 -328 0 -589 101 -853 330 -97 84 -132 101 -213 101 -58 0 -141 -40 -175 -86 -56 -72 -65 -174 -24 -254 35 -69 220 -226 382 -323 292 -176 668 -266 1003 -238 416 35 754 181 1060 459 61 55 500 491 976 968 874 877 940 948 1041 1119 445 749 273 1704 -403 2245 -236 189 -497 305 -799 357 -122 20 -384 25 -505 9z" />
+                                    <path
+                                        d="M3685 5969 c-382 -39 -725 -191 -1010 -447 -151 -136 -1834 -1827 -1892 -1902 -130 -168 -232 -354 -293 -538 -168 -505 -93 -1071 200 -1508 275 -410 691 -675 1185 -755 119 -20 428 -17 544 4 304 56 554 169 801 360 36 28 411 395 833 816 594 592 773 777 792 815 46 92 29 193 -46 268 -49 49 -94 68 -163 68 -102 0 -62 36 -916 -815 -631 -628 -811 -803 -874 -844 -398 -262 -872 -291 -1290 -78 -600 306 -852 1044 -565 1656 92 198 79 183 1098 1202 520 521 971 964 1001 986 143 102 275 165 435 206 125 32 189 39 335 38 315 -1 579 -106 838 -330 97 -84 132 -101 213 -101 58 0 141 40 175 86 56 72 65 174 24 254 -38 75 -240 243 -407 338 -299 171 -686 256 -1018 221z" />
+                                </g>
+                            </svg>
+
+                            Abrir o Link
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+            <div class="card card-tasks radius20" style="padding: 2%;">
+
+                <div class="row">
+                    <div class="col-md-2" style="opacity: 1;">
+                        <p class="mySubT3">
+                            Central de mensagens
+                        </p>
+                    </div>
+
+                </div>
+                <br>
+
+
+                <div class="row">
+                    <p class="myInfoText3" style="opacity: 1;">
+                        Controle como os e-mails deverão chegar para os seus clientes
+                    </p>
+                </div>
+                <br>
+
+                <div class="col-md-12 itemMsg">
+                    <div class="row">
+                        <div class="col-md-3 mginAuto">
+                            <p id="remetente" class="txtToMsg">naoresponda@smartcomerci.com</p>
+                        </div>
+                        <div class="col-md-6 mginAuto" style="border-left: 1px solid #EDF2F6;">
+                            <p id="servico" class="txtInMsg">noreply@smartcomerci.com</p>
+                        </div>
+                        <div class="col-md-3 mginAuto">
+                            <button onclick="showFrame('editarRemetentes')" type="button"
+                                class="btn btn-access rounded-pill">Editar E-mail</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="new1">.</div>
+                <div class="listandoEmails4">
+
+                </div>
+
+
+
+
+                {{!-- <div class="col-md-12 itemMsg">
+                    <div class="row">
+                        <div class="col-md-3 mginAuto">
+                            <p class="txtToMsg">Pedido recebido</p>
+                        </div>
+                        <div class="col-md-6 mginAuto" style="border-left: 1px solid #EDF2F6;">
+                            <p class="txtInMsg">E-mail enviado quando o usuário finaliza uma compra</p>
+                        </div>
+                        <div class="col-md-3 mginAuto">
+                            <button onclick="showFrame('editarEmail','Pedido recebido')" type="button"
+                                class="btn btn-access rounded-pill">Editar E-mail</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 itemMsg">
+                    <div class="row">
+                        <div class="col-md-3 mginAuto">
+                            <p class="txtToMsg">Pedido em separação</p>
+                        </div>
+                        <div class="col-md-6 mginAuto" style="border-left: 1px solid #EDF2F6;">
+                            <p class="txtInMsg">E-mail enviado quando o inicia a separação dos produtos</p>
+                        </div>
+                        <div class="col-md-3 mginAuto">
+                            <button onclick="showFrame('editarEmail','Pedido em separação')" type="button"
+                                class="btn btn-access rounded-pill">Editar E-mail</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 itemMsg">
+                    <div class="row">
+                        <div class="col-md-3 mginAuto">
+                            <p class="txtToMsg">Pedido enviado</p>
+                        </div>
+                        <div class="col-md-6 mginAuto" style="border-left: 1px solid #EDF2F6;">
+                            <p class="txtInMsg">E-mail enviado quando o pedido saiu para entrega</p>
+                        </div>
+                        <div class="col-md-3 mginAuto">
+                            <button onclick="showFrame('editarEmail','Pedido enviado')" type="button"
+                                class="btn btn-access rounded-pill">Editar E-mail</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 itemMsg">
+                    <div class="row">
+                        <div class="col-md-3 mginAuto">
+                            <p class="txtToMsg">Pedido concluído</p>
+                        </div>
+                        <div class="col-md-6 mginAuto" style="border-left: 1px dashed #EDF2F6;">
+                            <p class="txtInMsg">E-mail enviado quando o pedido fica com status de “entregue”</p>
+                        </div>
+                        <div class="col-md-3 mginAuto">
+                            <button onclick="showFrame('editarEmail','Pedido concluído')" type="button"
+                                class="btn btn-access rounded-pill">Editar E-mail</button>
+                        </div>
+
+                    </div>
+                </div> --}}
+
+
+
+
+
+
+            </div>
+            <div class="card card-tasks radius20" style="padding: 2%;">
+
+                <div class="row">
+                    <div class="col-md-2" style="opacity: 1;">
+                        <p class="mySubT3">
+                            Integração com ERP
+                        </p>
+                    </div>
+
+                </div>
+                <br>
+
+
+                <div class="row">
+                    <p class="myInfoText3" style="opacity: 1;">
+                        Insira o código da integração com o ERP
+                    </p>
+                </div>
+                <br>
+                <div class="col-md-12 areaHipcom">
+                    <div style="/* padding:0 2%; */ display:inline-flex;margin-top: 2%; width: 80%;border: none !important"
+                        class="row">
+                        <div style="margin: 1% 2%; max-width: 50px; width: 50px; opacity: 1;" class="switch__container">
+                            <input fieldname="status" id="switch-shadow188" class="switch switch--shadow"
+                                type="checkbox">
+                            <label for="switch-shadow188"></label>
+                        </div>
+                        <label style="font-size: 14px; opacity: 1;" class="labelOption">Hipcom</label>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <label style="font-size: 14px; opacity: 1; margin: auto 0px;" class="labelOption">Código de
+                            integração Hipcom</label>
+                    </div>
+                    <div style=" height: 21px;min-width: 308px !important;" class="group-input2">
+                        <input style="background: none;/* max-width: 308px; */font-size: 14px;"
+                            class="form-control inputProduct" placeholder="Insira o código de integração">
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+            <div class="card card-tasks radius20" style="padding: 2%;">
+
+                <div class="row">
+                    <div class="col-md-2" style="opacity: 1;">
+                        <p class="mySubT3">
+                            Registro de domínio
+                        </p>
+                    </div>
+
+                </div>
+                <br>
+
+
+                <div class="row">
+                    <p class="myInfoText3" style="opacity: 1;">
+                        Registre o pedido de alteração do domínio da sua loja
+                    </p>
+                </div>
+
+                <div class="new1">.</div>
+                <p class="mySubT3" style="color:   #F3B306 !important;">
+                    <span class="myInfoText3">Domínio em utilização: </span> <span
+                        id="myDomain">www.smartcomerci.com.br</span><span class="inLabel"
+                        style="padding: 10px; color: green !important">Online</span><span class="inLabel2"
+                        style="padding: 10px;">Em Implantação</span>
+                </p>
+                <div class="new1">.</div>
+
+                <div class="row">
+                    <label style="font-size: 14px; opacity: 1; margin: auto 0px;" class="labelOption">Informe o novo
+                        domínio</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div style=" height: 21px; " class="group-input2">
+                            <input style="background: none; font-size: 14px;" class="form-control inputProduct"
+                                placeholder="www.seudominio.com.br">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-access rounded-pill">Solicitar registro</button>
+                    </div>
+
+                </div>
+
+                <div class="new1">.</div>
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="etapa etapaAtiva">
+                                <p>01</p>
+                                <div>Solicitação recebida</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="etapa etapaAtiva">
+                                <p>02</p>
+                                <div>Em processamento</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="etapa">
+                                <p>03</p>
+                                <div>Solicitação concluída</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+
+
+    function meRetira(element) {
+        element.parent().remove()
+    }
+    function mostraGira(element) {
+
+        if (element.attr("mostrei") == 1) {
+            element.attr("mostrei", 0)
+            element.css("transform", "rotate(90deg)")
+            $(".listaPaginas").hide()
+        } else {
+            element.attr("mostrei", 1)
+            element.css("transform", "rotate(180deg)")
+            $(".listaPaginas").show()
+        }
+
+    }
+
+    function modalEditUser(element) {
+        var html =
+            '<div style="max-width:100% " class="container">' +
+            '<div class="row" style="max-width: 90%;margin: -11px auto;border-bottom: 2px solid #EDF2F6;margin-bottom: 10px; ">' +
+
+            '<div content="funcao" class="col-md tabModal tabModalActive">' +
+            '<label class="labelTab"  style="text-align:center">Edita Usuário</label>' +
+            "</div>" +
+
+
+            '<div style="opacity: 0 !important" content="funcao" class="col-md tabModal tabModalActive">' +
+            '<label class="labelTab"  style="text-align:center">Edita Usuário</label>' +
+            "</div>" +
+
+            '<div  style="opacity: 0 !important" content="funcao" class="col-md tabModal tabModalActive">' +
+            '<label class="labelTab"  style="text-align:center">Edita Usuário</label>' +
+            "</div>" +
+
+
+
+            '<div class="col-md">' +
+            '<div   style="cursor:pointer;border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #ffffff; max-width: 200px; height: 40px; border: 2px solid #f6b504; float: right; margin:5% auto" class="input-group">' +
+            '<label  style="cursor:pointer;margin:-5%  auto;text-align: center;    min-width: 60%;color: #f6b504 !important; font-size: 1.2rem" class="label">Cancelar</label>' +
+            "</div>" +
+            "</div>" +
+
+
+
+            '<div class="col-md ">' +
+            '<div   style="cursor:pointer;border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #f6b504; max-width: 200px; height: 40px; border: 2px solid #f6b504; float: left; margin:5% auto" class="input-group">' +
+            '<label  style="cursor:pointer;margin: -5% auto;text-align: center;    min-width: 60%; color: white !important; font-size: 1.2rem" class="label">Salvar</label>' +
+            "</div>" +
+            "</div>" +
+
+            "</div>" +
+            '<hr class="baixoCabecalho" style="position: fixed;top: 115px !important;left: 0px !important;width: 100%;box-shadow: 2px 2px 2px silver;"></hr>' +
+            //=======================================================================================================================================================================
+            '<div id="funcao" style="max-width:90% ; margin-top: 2%;max-height: 80vh"  class="container tabContent verticalScroll">' +
+            '<div  class="col-md-12 " style="margin-top: 3% !important; background: white !important">' +
+
+            '<div style="padding:0 2%; margin-top: 2%; border: none !important" class="row">' +
+            '<div style="margin: 1% 2%;" class="switch__container">' +
+            '<input      fieldName="status"   onchange="setSubCatAtt($(this))" id="switch-shadow189" class="switch switch--shadow" type="checkbox" />' +
+            '<label for="switch-shadow189"></label>' +
+            "</div>" +
+            '<label style=" font-size: 20px;" class="label">Usuário Ativo</label> ' +
+            "</div>" +
+
+            '<div style="padding:0 2%" class="row">' +
+            '<div class="col-md-12">' +
+            '<label style=" font-size: 20px;" class="label">Nome do usuário</label><br> ' +
+            "</div>" +
+            "</div>" +
+
+            '<div style="padding:0 2%" class="row">' +
+            '<div class="col-md-12">' +
+
+            '<div class="group-input2"  style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;"><input  style="background: none" class="form-control inputProduct" placeholder="Produtos relacionados" id="nomeCategoria"  fieldName="subCategoria"  onchange="setSubCatAtt($(this))"></div><br> ' +
+
+            "</div>" +
+            "</div><br><hr><br>" +
+            '<div style="padding:0 2%" class="row">' +
+            '<div class="col-md-12">' +
+            '<h3 style=" font-size: 20px;" class="SEO">Permissões</h3><br> ' +
+            "</div>" +
+            "</div>" +
+
+            "<br><br>" +
+
+            '<div style="padding:0 2%" class="row">' +
+            '<div class="col-md-12">' +
+            '<label style=" font-size: 20px;" class="label">Função do usuário</label><br> ' +
+            "</div>" +
+            "</div>" +
+
+            '<div style="padding:0 2%" class="row">' +
+            '<div class="col-md-12">' +
+            '<div class="group-input2"  style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;"><input   fieldName="title"  onchange="setSubCatAtt($(this))"  style="background: none" class="form-control inputProduct" placeholder="No Kalimera você encontra tudo em frutas" id="' + aleatoryID() + '" ></div><br> ' +
+
+            "</div>" +
+            "</div><br><br>" +
+
+            '<div style="padding:0 2%" class="row">' +
+            '<div class="col-md-12">' +
+            '<label style=" font-size: 20px;" class="label">Unidades visíveis</label><br> ' +
+            "</div>" +
+            "</div>" +
+
+            '<div style="padding:0 2%" class="row">' +
+            '<div class="col-md-12">' +
+            '<div class="group-input2"  style="padding: 1%;background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;"><textarea  fieldName="description"  onchange="setSubCatAtt($(this))" placeholder="Frutas no Kalimera. Compre online, limão, tangerina, kiwi e muitas outras frutas com os melhores preços e fretegratis."  style="background: #EFEFEF; border:none; font-size: 1.3rem; max-height: 100%" rows="3"   class="form-control"></textarea>' +
+            "</div>" +
+            "</div>" +
+            "</div><br><br>" +
+
+
+            '<div style="padding:0 2%" class="row">' +
+            '<div class="col-md-12">' +
+            '<h3 style=" font-size: 20px;" class="SEO">Informações do login</h3><br> ' +
+            "</div>" +
+            "</div>" +
+
+
+            '<div style="padding:0 2%" class="row">' +
+            '<div class="col-md-12">' +
+            '<label style=" font-size: 20px;" class="label">E-mail</label><br> ' +
+            "</div>" +
+            "</div>" +
+
+            '<div style="padding:0 2%" class="row">' +
+            '<div class="col-md-12">' +
+
+            '<div class="group-input2"  style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;"><input  style="background: none" class="form-control inputProduct" placeholder="Produtos relacionados" id="nomeCategoria"  fieldName="subCategoria"  onchange="setSubCatAtt($(this))" ></div><br> ' +
+
+            "</div>" +
+            "</div>" +
+
+
+
+            "</div>" +
+
+
+            "</div>" +
+
+
+
+
+
+            "</div>";
+
+        bootbox.alert({
+            message: html,
+            onShow: function () {
+
+                $(".tabModal").click(function () {
+                    $(".tabModal").removeClass("tabModalActive");
+                    $(this).addClass("tabModalActive");
+                    $(".tabContent").hide();
+                    //////connsole.log("#" + $(this).attr("content"));
+                    $("#" + $(this).attr("content")).fadeIn();
+                });
+
+
+            },
+            callback: function () {
+                sessionStorage.PALAVRAS_KEY = ''
+            }
+        })
+        $(".modal-footer").hide()
+
+    }
+
+    function mostraDouradas(elemento) {
+        if (elemento.attr("mostrei") == 1) {
+            $(".bdDourada").hide()
+            $(".bdDoted").hide()
+            elemento.css("transform", "rotate(270deg)")
+            elemento.attr("mostrei", "0")
+        } else {
+            $(".bdDourada").show()
+            $(".bdDoted").show()
+            elemento.css("transform", "rotate(90deg)")
+            elemento.attr("mostrei", "1")
+        }
+
+
+    }
+
+    function insertPage(element) {
+        // console.log(element)
+        let name = element.parent().find(".itemListaPagina").text()
+        if (element[0].checked) {
+
+            let html = '<div style="display: inline-flex;" class="rounded-pill paginaInsert">' +
+                name +
+                '<div onclick="meRetira($(this))" class="miniClose rounded-pill">X</div>' +
+                '</div>';
+            $(".paginasSelecionadas").append(html)
+        } else {
+            let lis = $(".paginasSelecionadas").find(".paginaInsert")
+            // console.log("lista de elementos", lis)
+            lis.each(function () {
+                if ($(this).text().replace(/x/g, "") == name.text().replace(/x/g, "")) {
+                    $(this).remove()
+                }
+            })
+        }
+
+    }
+    function getPage2(name) {
+
+        let html = '<div style="display: inline-flex;" class="rounded-pill paginaInsert">' +
+            name +
+            '<div onclick="meRetira($(this))" class="miniClose rounded-pill">X</div>' +
+            '</div>';
+        return html
+
+    }
+    getPaginasExistentes()
+    function getPaginasExistentes() {
+        let html = ''
+        let lista = JSON.parse(localStorage.INSTITUCIONAL_PAGES)
+        for (const k in lista) {
+            let checked = 'checked=true'
+            if (lista[k].LGPD_alert == 0) {
+                let checked = ''
+            }
+            if (lista[k].LGPD_alert != 0) {
+                $(".paginasSelecionadas").append(getPage2(lista[k].name_page))
+            }
+            html += '<li class="myListPages">' +
+                '<input ' + checked + ' onchange="insertPage($(this))" type="checkbox" name="Sobre" id="sobre' + k + '" style="margin: auto;">' +
+                '<p class="itemListaPagina" style="margin: auto;">' + lista[k].name_page + '</p>' +
+                '</li>' +
+                '<br>'
+        }
+        $("#listaPaginasExistentes").append(html)
+    }
+
+    try {
+        $("#myDomain").html(
+            JSON.parse(localStorage.DADOS_MATRIZ).site_front_domain
+        )
+    } catch (e) {
+
+    }
+
+    try {
+        let MATRIZ = JSON.parse(localStorage.DADOS_MATRIZ)
+
+        $("#remetente").html(
+            MATRIZ.email_remetente
+        )
+        $("#servico").html(
+            MATRIZ.email_servico
+        )
+    } catch (erro) {
+        console.log(erro)
+    } 
+
+    function getXML() {
+        $.ajax({
+            type: "POST",
+            url: mainHost + '/getXmlFile',
+            data: {
+                "affiliate_id": localStorage.AFFILIATE_ID 
+            },
+            headers: {
+                "x-access-token": localStorage.token,
+            },
+            success: function (data) {
+                console.log(data) 
+            },
+            error: function (data) { console.log(data)},
+            complete: function () { },
+        });
+    }
+
+</script>

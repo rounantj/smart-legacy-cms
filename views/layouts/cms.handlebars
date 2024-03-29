@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="https://admin.api-smartcomerci.com.br/assets/img/lima-04.svg" />
+    <link rel="shortcut icon" href="images/logo/favicon.ico" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        CMS - Smartcomerci
+    </title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
+        name="viewport" />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+    <!-- CSS Files -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="../assets/css/smartcomerci-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+    <link href="../assets/css/main.css" rel="stylesheet" />
+    <link href="../assets/css/jquery.ui.css" rel="stylesheet" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="../js/moment.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <script src="../assets/js/brands.js"></script>
+    <script src="../assets/js/solid.js"></script>
+    <script src="../assets/js/fontawesome.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="../css/calendar.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+
+    </style>
+</head>
+
+
+<script>
+    var mainHost = "http://localhost:6060";
+
+    $(window).on("load", function () {
+        $("modalLoading").hide()
+
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/js/shepherd.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/css/shepherd.css" />
+
+<modalLoading
+    style="display: none; z-index: 9999;;background: rgb(0, 0, 0, 0.8); position: absolute; width: 100vw; height: 105vh; left: 0; top: 0">
+    <div style="margin: 25vh auto;width: 200px; height: 200px;  background: transparent; border-radius: 100%"
+        class="modalLoading">
+        <div style="width: 150px;height: 150px; margin: 25px" class="spinner-border text-warning" role="status"><span
+                class="sr-only">Loading...</span></div>
+    </div>
+</modalLoading>
+
+
+
+
+<body>
+
+    <div class="wrapper">
+        <div class="sidebar " data-color="orange">
+
+            <div style="max-width: 220px;    width: 220px;  background: #f6b504 0% 0% no-repeat padding-box; padding: 15px; max-height: 72px; border-radius: 0px 20px 0px 0px; height: 72px; max-height: 72px"
+                class="logo recolheLogo">
+                <img id="logoIMGA" style="margin-left: 5%;" src="../assets/img/lima-04.svg" />
+                <img class="setaBaixo" style="
+                     margin-left: 5px; display: none;
+                     transform: rotate(270deg);
+                    max-width: 15px; cursor: pointer;" src="../assets/img/arrowDown.svg" />
+            </div>
+            <div style="display: inline-flex;">
+                <div style="background: white; overflow-x: hidden;" class="sidebar-wrapper" id="sidebar-wrapper">
+                    <ul class="nav">
+                        <li style="display: none" id="clientes-smart" class="li smart-clients">
+                            <a href="/clientes-smart">
+                                <svg style="fill: #f6b504;" xmlns="http://www.w3.org/2000/svg" width="14" height="18"
+                                    viewBox="0 0 14 18">
+                                    <defs></defs>
+                                    <g transform="translate(-5 -3)">
+                                        <path class="a"
+                                            d="M2.5,18A2.5,2.5,0,0,1,0,15.5V3.5A2.5,2.5,0,0,1,2.5,1a.5.5,0,0,1,0,1A1.5,1.5,0,0,0,1,3.5v12A1.5,1.5,0,0,0,2.5,17h9A1.5,1.5,0,0,0,13,15.5V3.5A1.5,1.5,0,0,0,11.5,2a.5.5,0,1,1,0-1A2.5,2.5,0,0,1,14,3.5v12A2.5,2.5,0,0,1,11.5,18Zm1-5a.5.5,0,1,1,0-1h5a.5.5,0,1,1,0,1Zm0-3a.5.5,0,1,1,0-1h7a.5.5,0,1,1,0,1Zm0-3a.5.5,0,1,1,0-1h7a.5.5,0,1,1,0,1ZM9,1.5A.5.5,0,0,0,8.5,1h-3a.5.5,0,0,0-.5.5.5.5,0,0,1-1,0A1.5,1.5,0,0,1,5.5,0h3A1.5,1.5,0,0,1,10,1.5a.5.5,0,0,1-1,0Z"
+                                            transform="translate(5 3)" />
+                                    </g>
+                                </svg>
+                                <p style="color: #f6b504; font-weight: bold; font-size: 1.1rem" class="txtLink ">
+                                    Clientes</p>
+                            </a>
+                        </li>
+                        <li style="display: none" id="gap" class="li smart-clients">
+
+
+                            <br><br><br><br>
+
+                        </li>
+                        <li id="dashboard" class="li">
+                            <a href="/dashboard">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 14 18">
+                                    <defs></defs>
+                                    <g transform="translate(-5 -3)">
+                                        <path class="a"
+                                            d="M2.5,18A2.5,2.5,0,0,1,0,15.5V3.5A2.5,2.5,0,0,1,2.5,1a.5.5,0,0,1,0,1A1.5,1.5,0,0,0,1,3.5v12A1.5,1.5,0,0,0,2.5,17h9A1.5,1.5,0,0,0,13,15.5V3.5A1.5,1.5,0,0,0,11.5,2a.5.5,0,1,1,0-1A2.5,2.5,0,0,1,14,3.5v12A2.5,2.5,0,0,1,11.5,18Zm1-5a.5.5,0,1,1,0-1h5a.5.5,0,1,1,0,1Zm0-3a.5.5,0,1,1,0-1h7a.5.5,0,1,1,0,1Zm0-3a.5.5,0,1,1,0-1h7a.5.5,0,1,1,0,1ZM9,1.5A.5.5,0,0,0,8.5,1h-3a.5.5,0,0,0-.5.5.5.5,0,0,1-1,0A1.5,1.5,0,0,1,5.5,0h3A1.5,1.5,0,0,1,10,1.5a.5.5,0,0,1-1,0Z"
+                                            transform="translate(5 3)" />
+                                    </g>
+                                </svg>
+                                <p class="txtLink ">Dashboard</p>
+                            </a>
+                        </li>
+                        <li id="pedidos" content="vendas" onclick="navegador($(this))" class="li mainMenu navegador">
+                            <a>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="19.999" height="18"
+                                    viewBox="0 0 19.999 18">
+                                    <defs>
+
+                                    </defs>
+                                    <g transform="translate(-2 -3)">
+                                        <path class="a"
+                                            d="M15,18a2,2,0,1,1,2-2A2,2,0,0,1,15,18Zm0-3a1,1,0,1,0,1,1A1,1,0,0,0,15,15ZM6,18a2,2,0,1,1,2-2A2,2,0,0,1,6,18Zm0-3a1,1,0,1,0,1,1A1,1,0,0,0,6,15Zm11.5-2H6.194a2.492,2.492,0,0,1-2.466-2.089l-.22-1.319s0-.007,0-.01l0-.007L2.285,2.254A1.5,1.5,0,0,0,.8,1H.5a.5.5,0,1,1,0-1H.806a2.509,2.509,0,0,1,2.45,2H19.5a.5.5,0,0,1,.48.637l-2,7A.5.5,0,0,1,17.5,10H4.59l.125.747A1.494,1.494,0,0,0,6.193,12H17.5a.5.5,0,1,1,0,1ZM3.424,3l1,6h12.7l1.714-6Z"
+                                            transform="translate(2 3)" />
+                                    </g>
+                                </svg>
+                                <p class="txtLink">Vendas</p>
+                            </a>
+                        </li>
+                        <li id="produtos" content="produtos" onclick="navegador($(this))"
+                            class="li dropright show mainMenu navegador">
+                            <a>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16">
+                                    <defs></defs>
+                                    <g transform="translate(-2 -4)">
+                                        <path class="a"
+                                            d="M17.5,16H2.5a.5.5,0,0,1-.5-.5V5.6L.036.686A.5.5,0,0,1,.5,0h10a.5.5,0,0,1,.464.314L12.5,4.154,14.035.314A.5.5,0,0,1,14.5,0h5a.5.5,0,0,1,.464.686L18,5.6v9.9A.5.5,0,0,1,17.5,16ZM13,6v9h4V6ZM3,6v9h9V6ZM14.84,1l-1.6,4h3.922l1.6-4ZM1.242,1l1.6,4h8.922l-1.6-4ZM10.5,14h-3a.5.5,0,0,1-.5-.5v-2a.5.5,0,0,1,.5-.5h3a.5.5,0,0,1,.5.5v2A.5.5,0,0,1,10.5,14ZM8,12v1h2V12Z"
+                                            transform="translate(2 4)" />
+                                    </g>
+                                </svg>
+                                <p class="txtLink">Produtos</p>
+                            </a>
+
+                            <ul style="display: none;" class="nav">
+                                <li id="produtos" class="li dropright show">
+                                    <a href="/produtos">
+                                        <p class="txtLink ">Produtos</p>
+                                    </a>
+                                    <a href="/categorias">
+                                        <p class="txtLink  ">Categorias</p>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+
+
+                        </li>
+
+                        <li id="marketing" content="marketing" onclick="navegador($(this))"
+                            class="li dropright show mainMenu navegador">
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17.999" height="15.149"
+                                    viewBox="0 0 17.999 15.149">
+                                    <defs></defs>
+                                    <path class="a"
+                                        d="M4.512,15.149a1.7,1.7,0,0,1-1.431-.872C2.381,13.227,2.027,11.445,2,8.83A3,3,0,0,1,3,3H7.5C9.4,3,12,2.014,15.241.071A.5.5,0,0,1,16,.5V3.05A2.509,2.509,0,0,1,18,5.5v1a2.509,2.509,0,0,1-2,2.451V11.5a.5.5,0,0,1-.5.5.5.5,0,0,1-.257-.071C12,9.986,9.4,9,7.5,9H6.218A.829.829,0,0,0,6,9.494c0-.025.007-.033.02-.033a.512.512,0,0,1,.14.06l.064.032c.573.285.776.471.776.947a1.088,1.088,0,0,1-.36.823l-.023.027c-.1.107-.116.13-.116.213,0-.016,0-.023.016-.023a.786.786,0,0,1,.167.058l.04.014c.527.208.778.394.778.888a1.921,1.921,0,0,1-.646,1.354A3.6,3.6,0,0,1,4.512,15.149ZM3,9c.04,2.285.347,3.874.913,4.723a.785.785,0,0,0,.659.416c.4,0,.895-.316,1.571-.993A1.023,1.023,0,0,0,6.5,12.53c-.006.033-.017.045-.038.045a.364.364,0,0,1-.1-.032l-.04-.015c-.53-.208-.817-.422-.817-.957a1.188,1.188,0,0,1,.383-.9l.025-.027c.074-.077.088-.095.09-.124,0,.017-.007.023-.019.023a.5.5,0,0,1-.139-.059l-.066-.033C5.2,10.16,5,9.974,5,9.5A1.518,1.518,0,0,1,5.082,9ZM15,1.372h0A17.715,17.715,0,0,1,8,3.981V8.018a17.7,17.7,0,0,1,7,2.61V1.373ZM3,4A2,2,0,1,0,3,8H7V4Zm13,.085v3.83A1.5,1.5,0,0,0,17,6.5v-1A1.5,1.5,0,0,0,16,4.085Z"
+                                        transform="translate(0 0)" />
+                                </svg>
+                                <p class="txtLink">Promoções e Marketing</p>
+                            </a>
+
+                        </li>
+                        <li id="logistica" class="li">
+                            <a href="/logistica">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="19.685" height="17.873"
+                                    viewBox="0 0 19.685 17.873">
+                                    <defs></defs>
+                                    <path class="a"
+                                        d="M1.455,8.776a.447.447,0,0,1,.447,0l.054.031c.116-.895.255-1.83.425-2.733A1.709,1.709,0,0,1,4.059,4.691h.747a2.237,2.237,0,0,1,2,1.253l.51-1.4a.447.447,0,0,1,.174-.219V2.9a.447.447,0,0,1,.447-.447h4.026a.447.447,0,0,1,.447.447V4.32a.447.447,0,0,1,.174.219l1.141,3.132a.362.362,0,0,1,.027.152V8.9l.255-.121a.418.418,0,0,1,.64.389v.895h2.237a4.026,4.026,0,0,1,4.026,4.026V18.56a.447.447,0,0,1-.447.447H18.613a1.79,1.79,0,0,1-3.454,0H7.875a1.79,1.79,0,0,1-3.454,0H1.675a.447.447,0,0,1-.447-.447V9.165A.447.447,0,0,1,1.455,8.776Zm15.43,2.179h-.447v3.132h3.579a3.132,3.132,0,0,0-3.132-3.132Zm0,8.5a.895.895,0,1,0-.895-.895A.895.895,0,0,0,16.886,19.455Zm-2.237-1.342h.51a1.79,1.79,0,0,1,3.454,0h1.4V14.981H15.991a.447.447,0,0,1-.447-.447V10.955h-.895ZM6.148,6.928A1.342,1.342,0,0,0,4.806,5.586H4.059a.81.81,0,0,0-.8.662c-.192,1.011-.349,2.04-.447,3.064l.832.5a.447.447,0,0,0,.5-.027L4.9,9.21a1.342,1.342,0,0,1,1.253-.188Zm5.369-3.579H8.385v.895h3.132Zm.336,1.79H8.05L7.236,7.376h5.431Zm1.007,4.026V8.27H7.043V9.613h0l.233.174a.447.447,0,0,0,.5.027l1.2-.725a1.342,1.342,0,0,1,1.5.081l.823.617a.447.447,0,0,0,.537,0l1.047-.5A.421.421,0,0,1,12.859,9.165ZM6.148,19.455a.895.895,0,1,0-.895-.895A.895.895,0,0,0,6.148,19.455ZM2.122,18.113h2.3a1.79,1.79,0,0,1,3.454,0h5.879V9.872l-1.49.711a1.342,1.342,0,0,1-1.5-.076L9.942,9.89a.447.447,0,0,0-.5-.027l-1.2.725a1.342,1.342,0,0,1-1.5-.081L5.97,9.926a.447.447,0,0,0-.537,0l-.769.582a1.342,1.342,0,0,1-1.5.081L2.3,10.06H2.252a.447.447,0,0,1-.13-.045Z"
+                                        transform="translate(-1.227 -2.455)" />
+                                </svg>
+                                <p class="txtLink">Logística</p>
+                            </a>
+                        </li>
+                        <li id="conteudo" class="li">
+                            <a href="/conteudo">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <defs></defs>
+                                    <path class="a"
+                                        d="M15.5,18H2.5A2.5,2.5,0,0,1,0,15.5V2.5A2.5,2.5,0,0,1,2.5,0h13A2.5,2.5,0,0,1,18,2.5v13A2.5,2.5,0,0,1,15.5,18ZM1,4V15.5A1.5,1.5,0,0,0,2.5,17h13A1.5,1.5,0,0,0,17,15.5V4ZM2.5,1A1.5,1.5,0,0,0,1,2.5V3H17V2.5A1.5,1.5,0,0,0,15.5,1Zm11,14h-3a.5.5,0,1,1,0-1h3a.5.5,0,1,1,0,1Zm-7,0h-3a.5.5,0,1,1,0-1h3a.5.5,0,1,1,0,1Zm8-2h-4a.5.5,0,1,1,0-1h4a.5.5,0,1,1,0,1Zm-7,0h-4a.5.5,0,1,1,0-1h4a.5.5,0,1,1,0,1Zm6-3h-2A1.5,1.5,0,0,1,10,8.5v-1A1.5,1.5,0,0,1,11.5,6h2A1.5,1.5,0,0,1,15,7.5v1A1.5,1.5,0,0,1,13.5,10Zm-2-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h2a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm-5,3h-2A1.5,1.5,0,0,1,3,8.5v-1A1.5,1.5,0,0,1,4.5,6h2A1.5,1.5,0,0,1,8,7.5v1A1.5,1.5,0,0,1,6.5,10Zm-2-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h2A.5.5,0,0,0,7,8.5v-1A.5.5,0,0,0,6.5,7Z"
+                                        transform="translate(3 3)" />
+                                </svg>
+                                <p class="txtLink ">Conteúdo</p>
+                            </a>
+                        </li>
+                        <li id="busca" style="display: none;" class="li">
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <defs></defs>
+                                    <path class="a"
+                                        d="M15.5,24a.5.5,0,0,1-.5-.5v-9a3.5,3.5,0,0,0-3-3.465V17a2,2,0,0,1-2,2,3.95,3.95,0,0,1-2.352-.72A1.49,1.49,0,0,0,6.774,18H6.758a.55.55,0,0,0-.521.37.886.886,0,0,0,.162.889l3.475,3.909a.5.5,0,1,1-.748.664L6.6,20.99a.46.46,0,0,1-.1.01h-4A2.5,2.5,0,0,1,0,18.5V2.5A2.5,2.5,0,0,1,2.5,0h7A2.5,2.5,0,0,1,12,2.5v7.527A4.5,4.5,0,0,1,16,14.5v9A.5.5,0,0,1,15.5,24ZM2.5,1A1.5,1.5,0,0,0,1,2.5v16A1.5,1.5,0,0,0,2.5,20H5.72l-.068-.077a1.875,1.875,0,0,1-.376-1.831A1.547,1.547,0,0,1,6.75,17h.017a2.5,2.5,0,0,1,1.462.468A2.946,2.946,0,0,0,10,18a1,1,0,0,0,1-1V2.5a1.491,1.491,0,0,0-.439-1.061A1.51,1.51,0,0,0,9.5,1ZM6,14a.5.5,0,0,1-.248-.066C3.227,12.491,2,11.041,2,9.5A2.32,2.32,0,0,1,4.5,7,2,2,0,0,1,6,7.627,2,2,0,0,1,7.5,7,2.32,2.32,0,0,1,10,9.5c0,1.54-1.227,2.99-3.752,4.433A.5.5,0,0,1,6,14ZM4.5,8A1.33,1.33,0,0,0,3,9.5c0,1.089,1.01,2.24,3,3.421C7.99,11.741,9,10.59,9,9.5A1.33,1.33,0,0,0,7.5,8a1.1,1.1,0,0,0-1.053.724.5.5,0,0,1-.894,0A1.105,1.105,0,0,0,4.5,8Zm3-5h-3a.5.5,0,1,1,0-1h3a.5.5,0,1,1,0,1Z"
+                                        transform="translate(4 0)" />
+                                </svg>
+                                <p class="txtLink riscado">Busca e recomendação</p>
+                            </a>
+                        </li>
+
+                        <li id="confGerais" content="confGerais" onclick="navegador($(this))"
+                            class="li dropright show mainMenu navegador">
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18.503" height="20"
+                                    viewBox="0 0 18.503 20">
+                                    <path id="cog"
+                                        d="M10.031,20H8.473A1.5,1.5,0,0,1,7.05,18.974L6.571,17.54a7.973,7.973,0,0,1-2.507-1.45l-1.484.3a1.5,1.5,0,0,1-1.6-.72L.2,14.325A1.5,1.5,0,0,1,.378,12.58l1-1.132a8.046,8.046,0,0,1,0-2.9l-1-1.132A1.5,1.5,0,0,1,.2,5.675l.78-1.35a1.5,1.5,0,0,1,1.6-.72l1.482.3A7.988,7.988,0,0,1,6.571,2.46l.478-1.434A1.5,1.5,0,0,1,8.471,0h1.558a1.5,1.5,0,0,1,1.423,1.026L11.93,2.46a7.973,7.973,0,0,1,2.507,1.45l1.485-.3a1.5,1.5,0,0,1,1.6.72L18.3,5.675a1.5,1.5,0,0,1-.176,1.744l-1,1.132a8.006,8.006,0,0,1,0,2.9l1,1.132a1.5,1.5,0,0,1,.176,1.745l-.779,1.35a1.5,1.5,0,0,1-1.6.72l-1.483-.3A7.972,7.972,0,0,1,11.93,17.54l-.478,1.434A1.5,1.5,0,0,1,10.031,20ZM4.207,15.051a.5.5,0,0,1,.338.131,6.947,6.947,0,0,0,2.574,1.488.5.5,0,0,1,.323.319L8,18.658A.5.5,0,0,0,8.473,19h1.558a.5.5,0,0,0,.475-.342l.556-1.67a.5.5,0,0,1,.323-.319,6.947,6.947,0,0,0,2.574-1.488.5.5,0,0,1,.337-.131.507.507,0,0,1,.1.01l1.727.355a.5.5,0,0,0,.535-.24l.778-1.35a.5.5,0,0,0-.06-.582l-1.167-1.318a.5.5,0,0,1-.114-.437,7.075,7.075,0,0,0,0-2.975.505.505,0,0,1,.114-.437l1.169-1.318a.5.5,0,0,0,.059-.582l-.78-1.35a.5.5,0,0,0-.533-.24L14.4,4.939a.507.507,0,0,1-.1.01.5.5,0,0,1-.337-.131,6.958,6.958,0,0,0-2.574-1.488.5.5,0,0,1-.324-.319L10.5,1.342A.5.5,0,0,0,10.03,1H8.472A.5.5,0,0,0,8,1.342l-.555,1.67a.5.5,0,0,1-.323.319A7.045,7.045,0,0,0,4.544,4.819a.5.5,0,0,1-.338.131.507.507,0,0,1-.1-.01L2.381,4.585a.5.5,0,0,0-.534.24l-.779,1.35a.5.5,0,0,0,.06.582L2.3,8.075a.505.505,0,0,1,.114.437,7.075,7.075,0,0,0,0,2.975.5.5,0,0,1-.114.437L1.127,13.243a.5.5,0,0,0-.059.582l.78,1.35a.5.5,0,0,0,.533.24l1.727-.355A.508.508,0,0,1,4.207,15.051ZM9.251,14a4,4,0,1,1,4-4A4.005,4.005,0,0,1,9.251,14Zm0-7a3,3,0,1,0,3,3A3,3,0,0,0,9.251,7Z"
+                                        transform="translate(0 0)" fill="#687c97" />
+                                </svg>
+
+                                <p class="txtLink confGerais">Configurações gerais</p>
+                            </a>
+                            <ul style="display: none;" class="nav">
+                                <li id="confGerais" class="li dropright show">
+                                    <a href="/minha-conta">
+                                        <p class="txtLink ">Minha Conta</p>
+                                    </a>
+                                    <a href="/criar-usuario">
+                                        <p class="txtLink ">Criar Usuário</p>
+                                    </a>
+                                    <a href="/tipos-usuario">
+                                        <p class="txtLink ">Criar Tipos de Usuário</p>
+                                    </a>
+                                    <a style="display: none;" href="/outros">
+                                        <p class="txtLink ">Outros</p>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="background: white; float: right;" class="sidebar-wrapper2   " id="sidebar-wrapper2">
+
+
+                    <ul style="display: none;" content="produtos" class="nav produtosShow">
+                        <li id="conteudo" class="li">
+                            <a href="/produtos">
+                                <p class="txtLink2   ">Produtos</p>
+                            </a>
+                        </li>
+                        <li id="busca" class="li">
+                            <a href="/categorias">
+                                <p class="txtLink2   ">Categorias</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul style="display: none;" content="vendas" class="nav vendasShow">
+                        <li id="conteudo" class="li">
+                            <a href="/pedidos">
+                                <p class="txtLink2  ">Pedidos</p>
+                            </a>
+                        </li>
+                        <li id="busca" style="display: none" class="li">
+                            <a href="/assinaturas">
+                                <p class="txtLink2  ">Assinaturas</p>
+                            </a>
+                        </li>
+                        <li id="busca" class="li">
+                            <a href="/clientes">
+                                <p class="txtLink2  ">Clientes</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul style="display: none;" content="confGerais" class="nav confGeraisShow">
+                        <li id="conteudo" class="li">
+                            <a href="/minha-conta">
+                                <p class="txtLink2  ">Minha Conta</p>
+                            </a>
+                        </li>
+                        <li id="conteudo" class="li">
+                            <a href="/criar-usuario">
+                                <p class="txtLink2  ">Criar Usuário</p>
+                            </a>
+                        </li>
+                        <li id="conteudo" class="li">
+                            <a href="/tipos-usuario">
+                                <p class="txtLink2  ">Criar Tipos de Usuário</p>
+                            </a>
+                        </li>
+
+                        <li id="configuracoes" class="li">
+                            <a href="/configuracoes">
+                                <p class="txtLink2  ">Configurações</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul style="display: none;" content="marketing" class="nav marketingShow">
+                        <li id="conteudo" class="li">
+                            <a href="/promocoes">
+                                <p class="txtLink2  ">Promoções</p>
+                            </a>
+                        </li>
+                        <li id="conteudo" class="li">
+                            <a href="/cupons">
+                                <p class="txtLink2  ">Cupons</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+            <div class="btnVoltaAreaSide escondeMenu2">
+                <div class="iconeReturn">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="margin: auto;" width="10" height="20"
+                        viewBox="0 0 6.349 11.428">
+                        <g id="Page-1" transform="translate(0 0)">
+                            <g id="Home" transform="translate(6.349 11.428) rotate(180)">
+                                <path id="Icon-Copy"
+                                    d="M5.312.1.195,5.242a.67.67,0,0,0,0,.944L5.312,11.33a.331.331,0,0,0,.47,0l.47-.472a.335.335,0,0,0,0-.472L1.839,5.95a.335.335,0,0,1,0-.472L6.251,1.042a.335.335,0,0,0,0-.472L5.782.1a.331.331,0,0,0-.47,0"
+                                    transform="translate(6.349 11.428) rotate(180)" fill="#676767" />
+                            </g>
+                        </g>
+                    </svg>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="main-panel" id="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent bg-primary navbar-absolute">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+
+                        <a id="nomeTotalLoja" style="
+                                    font: var(--unnamed-font-style-normal) normal normal 18px/24px var(--unnamed-font-family-roboto);
+                                    letter-spacing: var(--unnamed-character-spacing-0);
+                                    text-align: center;
+                                    font: normal normal normal 18px/24px Roboto;
+                                    letter-spacing: 0px;
+                                    color: #687c97;
+                                    opacity: 1;
+                                " class="navbar-brand">
+                            <script>document.write(localStorage.NAME_SHOP)</script><span id="filialShow"></span>
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <form style="min-width: 300px; margin-right: 55px;">
+                            <div class="input-group">
+                                <input type="text" value="" style="border-radius: 20px 0 0 20px;" id="buscaNav"
+                                    list="navSearch" class="form-control"
+                                    placeholder="Busque por recursos, ajuda e mais" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+
+                                        <i style="color: #f6b504; font-weight: bold;" class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <ul style="display: inline-flex;padding: 10px;     padding-top: 25px; min-width: 250px;">
+                            <li onclick="showModal('notificacoesHeader', $(this))" style="margin: auto; display: none">
+                                <a>
+                                    <img style="width: 19px; margin: auto" src="../assets/img/sinoNotify.svg" />
+                                    <p style="
+                                                background: #f6b504 0% 0% no-repeat padding-box;
+                                                border: 2px solid #ffffff;
+                                                width: 25px;
+                                                height: 25%;
+                                                text-align: center;
+                                                border-radius: 20px;
+                                                margin-left: -20%;
+                                                opacity: 1;
+                                                margin-top: -5%;
+                                            " id="notify">
+                                        0
+                                    </p>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Stats</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li style="opacity: 0;" class="nav-item">
+
+                            </li>
+                            <li style="opacity: 0;" class="nav-item">
+
+                            </li>
+                            <li onclick="showModal('userHeader', $(this))" class="nav-item">
+                                <a class="nav-link">
+
+                                    <img style="max-width: 50px; background: #f6b504; border-radius: 100%;"
+                                        src="../assets/img/clip.png" />
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Stats</span>
+                                    </p>
+                                </a>
+
+                            </li>
+                        </ul>
+                        <div onclick="hideModal($(this))" class="modalUper mModal">
+                            <div class="notificacoesHeader">
+                                <p style="text-align: center; margin:auto" class="label">Sem notificações!</p>
+                            </div>
+                        </div>
+                        <div onclick="hideModal($(this))" class="modalUper  mModal" style="display: none;">
+                            <div class="userHeader">
+                                <div class="container"
+                                    style="max-width: 100%;padding: 10px;background: #FAF3DF;border-radius: 20px 20px 0 0;">
+                                    <p style="    text-align: left;
+                                                        font: normal normal bold 14px Roboto;
+                                                        letter-spacing: 0px;
+                                                        color: #333333;
+                                                        opacity: 1;
+                                                        width: 60%;
+                                                        padding: 15px;">Minha Conta</p>
+                                    <img style="max-width: 50px; background: #f6b504; border-radius: 100%;"
+                                        src="../assets/img/clip.png" />
+
+
+                                </div>
+                                <br>
+                                <br>
+
+                                <ul style="list-style: none;">
+                                    <li onclick="location.replace('/minha-conta')" class="textOption2">Configurações da
+                                        conta</li>
+                                    <li onclick="sair()" class="textOption2">Sair</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <datalist id="navSearch">
+                <option value="/produtos">Produtos</option>
+                <option value="/categorias">Categorias</option>
+                <option value="/logistica">Logística</option>
+                <option value="/pedidos">Pedidos</option>
+                <option value="/dashboard">Dashboard</option>
+                <option value="/cms-login">Login</option>
+
+            </datalist>
+            <div class="superModal">
+                .
+            </div>
+
+
+            {{{body}}}
+            <style>
+                .textOption2 {
+                    text-align: left;
+                    font: normal normal normal 14px/19px Roboto;
+                    letter-spacing: 0px;
+                    color: #687C97;
+                    opacity: 1;
+                    padding: 20px;
+                    cursor: pointer;
+                }
+
+                .navActive {
+
+                    /* border-radius: 100%; */
+                    padding: 15px;
+                    text-align: center;
+                }
+
+                modal {
+                    background: rgb(0, 0, 0, 0.5);
+                    position: absolute;
+                    width: 100%;
+                    height: 100vh;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                    display: none;
+
+                }
+
+                .superModal {
+                    background: rgb(0, 0, 0, 0.5);
+                    position: absolute;
+                    width: 100%;
+                    height: auto;
+                    min-height: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                    display: none;
+                }
+
+                .superModal5 {
+                    background: rgb(0, 0, 0, 0.5);
+                    position: absolute;
+                    width: 100%;
+                    height: auto;
+                    min-height: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                    display: none;
+                }
+
+                .modalUper,
+                .modalPDF {
+                    background: rgb(0, 0, 0, 0.5);
+                    position: absolute;
+                    width: 100%;
+                    height: 100vh;
+                    top: 70px;
+                    left: 0;
+                    z-index: 1;
+                    display: none;
+
+                }
+
+                .PDFmodal {
+                    width: 890px;
+                    top: 2.5vh;
+                    position: absolute;
+                    zoom: 100%;
+                    background: white;
+                    border-radius: 20px;
+                    margin-left: calc(50% - 512px);
+
+                }
+
+                .modalInerente {
+                    height: 50vh;
+                    width: 500px;
+                    top: 25vh;
+                    position: absolute;
+                    background: white;
+                    border-radius: 20px;
+                    margin-left: calc(50% - 250px);
+
+                }
+
+                .notificacoesHeader {
+                    position: absolute;
+                    height: 50vh;
+                    top: 0px;
+                    right: 0;
+                    background-color: #ffffff;
+                    border-radius: 0 10px;
+                    width: 500px;
+                }
+
+                .acoesProdutos {
+                    position: absolute;
+                    height: 25vh;
+                    top: 25vh;
+                    left: calc(50% - 250px);
+                    background-color: #ffffff;
+                    border-radius: 20px;
+                    width: 500px;
+                    padding: 50px;
+                }
+
+                .userHeader {
+                    position: absolute;
+                    height: 25vh;
+                    width: 250px;
+                    top: -70px;
+                    right: 20px;
+                    background-color: #ffffff;
+                    border-radius: 20px;
+                    border: 1px solid rgb(239, 239, 239);
+                }
+
+                .alteracaoMassaRetorno {
+                    position: absolute;
+                    height: 97vh;
+                    width: 100%;
+                    top: 3vh;
+                    right: 0;
+                    background-color: #ffffff;
+                    border-radius: 20px 20px 0 0;
+                    border: 1px solid rgb(239, 239, 239);
+                }
+
+                .alert {
+                    position: absolute;
+                    top: 120px;
+                    right: 20px;
+                    width: 30vw;
+                    display: none;
+                    z-index: 999999;
+                }
+
+                .alert-smart {
+                    background-color: #50c682 !important;
+                    color: white
+                }
+
+                #confGerais {
+                    position: fixed;
+                    bottom: 2vh;
+                    border-top: 1px solid #ced4da;
+                }
+            </style>
+            <modal style="display: none">
+                <div class="modalInerente">
+                    <div style="padding: 50px" class="container listaFiliaisC">
+                        <h3 class="label" style="text-align:center">0 resultados para: <b id="nomeFilial">
+                                :(</b><br><b>Que tal outra?</b></h3>
+                        <br>
+
+                    </div>
+
+                </div>
+            </modal>
+
+
+
+            {{!-- <div class="modalPDF" style="display: none;">
+                <div class="PDFmodal">
+                    <button onclick="fechaModalPDF($(this))" type="button" class="bootbox-close-button close"
+                        aria-hidden="true">×</button>
+                    <button style="    font-size: 14px !important;
+    margin-right: 100px;
+    border-radius: 20px !important;
+    min-width: 150px;" onclick="imprimePDF_FRAME()" type="button" class="bootbox-close-button close"
+                        aria-hidden="true">BAIXAR PDF</button>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                    <hr>
+                    {{!-- <iframe id="framePDF" style="width: 100%; height: 90vh; padding: 5px;    border: none;"
+                        src="../pdf/myPDF.html"></iframe> --}}
+                </div>
+            </div> --}}
+
+            <div class="modalAcoes superModal5" style="display: none;">
+                <div class="acoesProdutos">
+                    <h3>Deseja <span id="qualAcao">FAZER</span> todos os <span id="quantosProdutos">0</span> produtos
+                        selecionados?</h3>
+                    <div onclick="SIM()" class="radius20"
+                        style="position: absolute;    background: #f6b504;    bottom: 50px;    right: 50px;border: 1px solid #f6b504; padding:2%; max-width: 80%;margin: auto; cursor: pointer">
+                        <h5 style="color: white; font-size: 1rem;background: #f6b504; text-align: center; margin: auto">
+                            SIM</h5>
+                    </div>
+                    <div onclick="NAO()" class="radius20"
+                        style="position: absolute;    bottom: 50px;    right: 150px;border: 1px solid #f6b504; padding:2%; max-width: 80%;margin: auto; cursor: pointer">
+                        <h5 style="color: #f6b504; font-size: 1rem; text-align: center; margin: auto">NÃO</h5>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <footer class="footer">
+                <div class="container-fluid"></div>
+            </footer>
+        </div>
+    </div>
+    <div class="alert " role="alert">
+        alerta vazio
+    </div>
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/jquery.min.js"></script>
+
+
+    <script>
+
+        function sair() {
+            localStorage.clear()
+            location.replace("/cms-login")
+        }
+
+        function informar(className, texto, tempoDeTela) {
+            if (className === "alert-success") {
+                className = 'alert-smart'
+            }
+            $(".alert").addClass(className)
+            $(".alert").text(texto)
+            $(".alert").fadeIn()
+            setTimeout(() => {
+                $(".alert").removeClass(className)
+                $(".alert").text('')
+                $(".alert").fadeOut()
+            }, tempoDeTela)
+        }
+
+
+
+
+
+
+
+        $("").parent().hide()
+
+        function fechaModalM() {
+            $(".mModal").css("display", "none")
+            //console.log("fechando")
+            $(".mModal").css("display", "none")
+            //console.log("fechei...")
+            $("#sidebar-wrapper2").hide()
+            $(this).hide()
+            hideModal()
+
+            $(this).removeClass("active")
+            $(".sidebar").removeClass("newSidebar");
+            $(".sidebar").removeClass("newSidebar2");
+            hideModal()
+        }
+
+        $(".superModal").click(function () {
+            $("#sidebar-wrapper2").hide()
+            $(this).hide()
+            $(this).removeClass("active")
+            $(".sidebar").removeClass("newSidebar");
+            $(".sidebar").removeClass("newSidebar2");
+            hideModal()
+        })
+        $(".superModal5").click(function () {
+
+            $(this).hide()
+            $(this).removeClass("active")
+
+            hideModal()
+        })
+        $(".navbar-toggle").hide()
+
+
+
+        $(".row").children().css("opacity", "0");
+        $(".row").addClass(" bg-gray-400");
+        var local = window.location.href.split("/")
+        local = local[local.length - 1]
+
+        $(".li").removeClass("active")
+        $(".li").find("p").removeClass("txtActive")
+        $(".li").find("a").removeClass("dourado")
+
+        $("#" + local).addClass("active")
+        $("#" + local).find("p").addClass("txtActive")
+        $("#" + local).find("a").addClass("dourado")
+    </script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Google Maps Plugin   
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+     
+        <script src="../assets/js/plugins/chartjs.min.js"></script>
+           -->
+    <!--  Notifications Plugin    -->
+    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for dashboard -->
+    <!--  <script src="../assets/js/smartcomerci-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+
+
+    <script>
+
+
+        $(document).ready(function () {
+
+            $(".li").click(function () {
+                $(".li").removeClass("active");
+                $(".li").find("a").removeClass("txtActive");
+                $(".li").find("a").removeClass("dourado");
+                $(".li").find(".txtLink").removeClass("txtActive");
+
+                $(this).find("a").addClass("txtActive");
+                $(this).find("a").addClass("dourado");
+                $(this).find(".txtLink").addClass("txtActive");
+                $(this).addClass("active");
+            });
+
+            $(".ico").click(function () {
+                $(".ico").removeClass("activeClick")
+                $(".ico").addClass("iconOpaco")
+                $(this).removeClass("iconOpaco")
+                $(this).css("fill", "none !important")
+                $(this).addClass("activeClick")
+            })
+
+            $(".order").click(function () {
+                $(".order").removeClass("orderActive")
+
+                $(this).addClass("orderActive")
+            })
+
+            $(".orderSearch").keyup(function () {
+                var text = $(this).val().toLowerCase();
+                //////console.log(text)
+                $(".order").each(function () {
+                    if ($(this).text().toLocaleLowerCase().indexOf(text) > -1) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                })
+            })
+
+            $("#getSubSearch").click(function () {
+                if ($("#subSearch").css("display") == "none") {
+                    $("#subSearch").fadeIn()
+                } else {
+                    $("#subSearch").fadeOut()
+                }
+            })
+
+
+
+
+        });
+
+
+        $(".sidebar").click(function () {
+            $("#sidebar-wrapper2").show()
+        })
+
+
+
+        $("#sidebar-wrapper2").on('mouseover', function () {
+            $(".sidebar").add("newSidebar");
+        })
+        /*
+$("#sidebar-wrapper2").on('mouseleave', function(){             
+$(".sidebar").removeClass("newSidebar"); 
+ 
+})
+*/
+
+
+
+
+
+
+
+    </script>
+    <script src="../assets/js/charts.js"></script>
+    <script src="../js/icons.js"></script>
+    {{!--
+    <script src="../js/logistics.js"></script> --}}
+
+    <script src="../js/categories.js"></script>
+    <script src="../js/categories_new.js"></script>
+    <script src="../js/products.js"></script>
+    <script src="../js/logistics.js"></script>
+
+    <script src="../js/html2canvas.js"></script>
+    <script src="../js/canvg.js"></script>
+    <script src="../js/jspdf.js"></script>
+    <script src="../js/moment.js"></script>
+    <script src="../js/orders.js"></script>
+    <script src="../js/drop.js"></script>
+    <script src="../js/jquery.inputMask.js"></script>
+    <script src="../js/jquery.mask.js"></script>
+
+
+
+    <script src="../js/jquery.ui.js"></script>
+    <script src="../js/modals.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+    <script>
+        function showModal(modal, elemento) {
+            $(".mModal").hide()
+
+            //console.log(".uuuuuuuuuuuuu" + modal)
+            $("." + modal).parent().show()
+            $("." + modal).show()
+
+        }
+
+        function hideModal(elemento) {
+
+            $(".mModal").hide()
+            $(".mModal").css("display", "none")
+            $(".navActive").removeClass("navActive")
+        }
+
+    </script>
+
+
+
+    <script>
+
+
+
+        //////console.log("veja o token => "+localStorage.token)
+        if (localStorage.token == undefined) {
+            //////console.log("redirecionando")
+
+            location.replace("/cms-login")
+        }
+
+
+
+        function OrdenaJson(lista, chave, ordem) {
+            try {
+                return lista.sort(function (a, b) {
+                    var x = a[chave];
+                    var y = b[chave];
+                    if (ordem === 'ASC') {
+                        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                    }
+                    if (ordem === 'DESC') {
+                        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                    }
+                });
+            } catch (err) {
+                return lista
+            }
+
+        }
+
+        $.ajax({
+            type: "POST",
+            url: mainHost + '/getAllAffiliates',
+            data: { "affiliate_id": localStorage.MASTER_ID },
+            headers: {
+                "x-access-token": localStorage.token,
+                "is_product_image": true,
+            },
+            success: function (data) {
+                //////console.log(data); 
+                //  localStorage.LOJAS_CADASTRADAS = JSON.stringify(data)
+                var lojas = JSON.parse(localStorage.LOJAS_CADASTRADAS)
+                //console.log("vamos lá nas lojas")
+                //console.log(lojas)
+                for (const k in lojas) {
+                    var html = '<option ID_AFILIADA="' + lojas[k].id + '">' + lojas[k].id + ' - ' + lojas[k].affiliates_business_name + '</option>';
+                    if (lojas[k].id == Number(localStorage.AFFILIATE_ID)) {
+                        $(".listaDeUnidades").append(html)
+                    }
+
+                }
+                $(".listaDeUnidades").change(function () {
+                    localStorage.AFFILIATE_ID = $(this).val().split(" - ")[0];
+                    location.reload()
+                })
+
+
+
+
+
+
+            },
+            error: function (data) {
+                //console.log(data);
+                if (data.responseJSON.message.indexOf("token") > -1) {
+
+                    informar("alert-primary", "Necessário fazer login!<br>" + data.responseJSON.message, 3000)
+                    setTimeout(() => {
+                        location.replace("/cms-login")
+                    }, 2000)
+
+                } else {
+
+                    informar("alert-primary", "Algo saiu errado!<br>" + data.responseJSON.message, 3000)
+                }
+            },
+            complete: function () {
+                // ao final da requisição... 
+            },
+        });
+
+        $.ajax({
+            type: "POST",
+            url: mainHost + '/me',
+            data: { "token_me": localStorage.token_me },
+            headers: {
+                "x-access-token": localStorage.token,
+
+            },
+            success: function (data) {
+                localStorage.DADOS_USER = JSON.stringify(data)
+                $("#userName").text(data[0].USER_NAME)
+                $("#userProfile").text(data[0].USER_PROFILE)
+            },
+            error: function (data) {
+                //console.log(data)
+            },
+            complete: function () {
+                // ao final da requisição... 
+            },
+        });
+
+
+        $(".escondeMenu2").click(function () {
+            if ($(this).attr("class").indexOf("mostraMenu") > -1) {
+                $(this).removeClass("mostraMenu")
+                $(".sidebar").css("width", "220px")
+                $(".sidebar-wrapper").css("width", "220px")
+                $(".main-panel").css('width', 'calc(100% - 220px)')
+                $(".txtLink").show()
+                $(".txtLink").css("display", "block !important")
+                $(".setaBaixo").css("transform", "rotate(360deg)")
+                $(this).find("svg").css("transform", "rotate(360deg)")
+                $("#logoIMGA").attr("src", "../assets/img/lima-04.svg")
+                $(".recolheLogo").css("width", "220px")
+                $(".sidebar-wrapper2").show()
+
+
+            } else {
+                $(".recolheLogo").css("width", "70px")
+                $(".navbar").css("max-width", "calc(100% - 70px)")
+                $(this).addClass("mostraMenu")
+                $(this).find("svg").css("transform", "rotate(180deg)")
+                $(".sidebar").css("width", "70px")
+                $(".sidebar-wrapper").css("width", "70px")
+                $(".sidebar-wrapper2").hide()
+                $(".main-panel").css('width', 'calc(100% - 70px)')
+                $(".txtLink").hide()
+                $(".setaBaixo").css("transform", "rotate(270deg)")
+                $("#logoIMGA").attr("src", "../assets/icons/iconRecolhido.png")
+                $(".btnVoltaAreaSide").css("right", "5px")
+
+            }
+
+
+            //console.log(Number($(".sidebar").css("width").replace("px", "")))
+            if (Number($(".sidebar").css("width").replace("px", "")) > 260) {
+                $(".produtosShow").show()
+                $(".vendasShow").show()
+                $("." + $(this).attr("content") + "Show").fadeOut()
+                $(".sidebar").removeClass("newSidebar");
+
+                $(".superModal").hide()
+
+                $(this).removeClass("active")
+                $(".sidebar").removeClass("newSidebar");
+                $(".sidebar").removeClass("newSidebar2");
+            }
+            $(".superModal").show()
+        })
+
+
+        function navegador(elemento) {
+            $(".btnVoltaAreaSide").css("right", "220px")
+            $(".sidebar-wrapper2").show()
+            $(".produtosShow").hide()
+            $(".vendasShow").hide()
+            $(".marketingShow").hide()
+            $("." + elemento.attr("content") + "Show").fadeIn()
+
+            $("#produtos").removeClass("active")
+            $(".superModal").show()
+            $(".mainMenu").removeClass("active")
+            elemento.addClass("active")
+            //console.log(Number($(".sidebar").css("width").replace("px", "")))
+
+            if (Number($(".sidebar").css("width").replace("px", "")) == 70) {
+                //console.log("fiz 70")
+                $(".sidebar").removeClass("newSidebar");
+                $(".sidebar").addClass("newSidebar2");
+
+            } else if (Number($(".sidebar").css("width").replace("px", "")) == 260) {
+                $(".sidebar").addClass("newSidebar");
+                $(".sidebar").removeClass("newSidebar2");
+
+                //console.log("fiz 520")
+
+            } else if (Number($(".sidebar").css("width").replace("px", "")) == 320) {
+                $(".sidebar").removeClass("newSidebar");
+                $(".sidebar").addClass("newSidebar2");
+
+                //console.log("fiz 320")
+                $(".superModal").show()
+
+
+            } else {
+                $(".sidebar").addClass("newSidebar");
+                $(".sidebar").removeClass("newSidebar2");
+                //console.log("fiz qualquer")
+
+
+            }
+
+
+        }
+
+
+        $("#buscaNav").change(function () {
+            if ($(this).val().indexOf("/") > -1) {
+                location.replace($(this).val())
+            }
+        })
+
+
+
+    </script>
+    <script src="../js/calendar.js"></script>
+    <script>
+
+        var calendar1 = bulmaCalendar.attach('.demo1', {
+            lang: 'en-US'
+        });
+        var calendar2 = bulmaCalendar.attach('.demo2', {
+            lang: 'en-US',
+            type: 'time'
+        });
+        var calendar3 = bulmaCalendar.attach('.demo3', {
+            lang: 'en-US',
+            type: 'datetime',
+        });
+        var calendar4 = bulmaCalendar.attach('.demo4', {
+            lang: 'pt-BR',
+            isRange: true,
+        });
+        var calendar5 = bulmaCalendar.attach('.demo5', {
+            lang: 'en-US',
+            displayMode: 'dialog',
+            color: 'dark',
+            isRange: true
+        });
+        var calendar6 = bulmaCalendar.attach('.demo6', {
+            lang: 'en-US',
+            displayMode: 'inline',
+        });
+
+        setTimeout(() => {
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:6060/getStoreInformation',
+                data: { "master_id": localStorage.MASTER_ID },
+                success: function (data) {
+                    //console.log("dataStore")
+                    //console.log(data)
+                    for (const k in data) {
+                        $("#nomeTotalLoja").text(data[k].master_business_name)
+                        localStorage.NOME_LOJA = data[k].master_business_name
+                    }
+
+
+                },
+                error: function (data) {
+                    console.log(data)
+                },
+                complete: function () {
+                    // ao final da requisição...
+                }
+            });
+
+
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:6060/informacoesDeClientes',
+                data: { "affiliate_id": localStorage.AFFILIATE_ID },
+                headers: {
+                    "x-access-token": localStorage.token,
+                },
+                success: function (data) {
+                    console.log("dataClients")
+                    console.log(data)
+
+                    $("#novosClientes").html(data.length)
+                    $("#clientesRecorrentes").html(data.length)
+                    setTimeout(() => {
+                        var receita = Number($("#receita").text().replace(",", ""))
+                        var pUn = receita / data.length
+                        //console.log('porcada', pUn)
+
+                        $("#taxaConversao").html((pUn * 100 / receita).toFixed(1) + "%")
+                        $("#percentualConversao").html((pUn * 100 / receita).toFixed(1) + "%")
+
+                        $("#taxaConversao").hide()
+
+                        $("#percentualConversao").hide()
+
+                    }, 1000)
+
+
+
+
+                },
+                error: function (data) {
+                    //console.log(data)
+                },
+                complete: function () {
+                    // ao final da requisição...
+                }
+            });
+
+
+
+
+
+        }, 350)
+
+
+        /*  function fechaModalPDF(elemento) {
+              elemento.parent().parent().hide()
+              $("body").css("overflow", "auto")
+          }
+          function imprimePDF_FRAME() {
+              $("#framePDF")[0].contentWindow.imprime()
+          }
+          */
+
+
+
+    </script>
+    <script>
+        function closeIframe(frameName) {
+            //console.log("fechando iframes...")
+            $("#" + frameName).hide()
+        }
+    </script>
+    <iframe id="autenticar" src="/layouts/autenticate.html"
+        style="width: 100%; height: 102vh; position: absolute; top: 0; right: 0; display: none;    z-index: 9999;"
+        frameborder="0"></iframe>
+    <iframe id="deletarFrame" src="/layouts/delete.html"
+        style="width: 100%; height: 100vh; position: absolute; top: 0; right: 0; display: none;z-index: 1040"
+        frameborder="0"></iframe>
+    <iframe id="deleteLoja" src="/layouts/deleteLoja.html"
+        style="width: 100%; height: 100vh; position: absolute; top: 0; right: 0; display: none;z-index: 1040"
+        frameborder="0"></iframe>
+    <iframe id="inativarLoja" src="/layouts/inativarLoja.html"
+        style="width: 100%; height: 100vh; position: absolute; top: 0; right: 0; display: none; z-index: 1040; display: none"
+        frameborder="0"></iframe>
+    <iframe id="editarLoja" src="/layouts/editarLoja.html"
+        style="width: 100%; height: 100vh; position: absolute; top: 0; right: 0; z-index: 1040; display: none"
+        frameborder="0"></iframe>
+
+    <iframe id="editarEmail" src="/layouts/editarEmail.html"
+        style="width: 100%; height: 100vh; position: absolute; top: 0; right: 0; z-index: 1040; display: none"
+        frameborder="0"></iframe>
+
+    <iframe id="editarRemetentes" src="/layouts/editarRemetentes.html"
+        style="width: 100%; height: 100vh; position: absolute; top: 0; right: 0; display: none;z-index: 1040"
+        frameborder="0"></iframe>
+
+    <script src="../js/configuracoes.js"></script>
+    <script src="../js/promocoes_cupons.js"></script>
+    <script>
+
+
+
+
+
+
+        function showFrame(id, texto) {
+            localStorage.EMAIL_IN_EDIT = texto
+            var iframe = document.getElementById(id);
+            iframe.src = iframe.src;
+            iframe.contentWindow.location.reload();
+            $("#" + id).css("z-index", "1040")
+            window.scrollTo(0, 0);
+            $("body").css("overflow", "hidden")
+            $("#" + id).show()
+        }
+        function fecharFrame(id) {
+            //console.log("fechando rff ...")
+            $("#" + id).hide()
+            $(".navbar").css("z-index", "9")
+            $(".sidbar").css("z-index", "1030")
+            $("body").css("overflow", "auto")
+        }
+
+        function editarLoja(id) {
+            localStorage.EDITANDO_LOJA_CONFIG = id
+            $("#editarLoja").attr("src", "/layouts/editarLoja.html?" + id)
+            $("#editarLoja").css("z-index", "1040")
+            window.scrollTo(0, 0);
+
+            $("body").css("overflow", "hidden")
+            $("#editarLoja").show()
+        }
+        function fecharModalEdit() {
+
+            $("#editarLoja").hide()
+            $(".navbar").css("z-index", "9")
+            $(".sidbar").css("z-index", "1030")
+            $("body").css("overflow", "auto")
+        }
+
+        if (localStorage.AFFILIATE_ID === "231") {
+            $(".smart-clients").show()
+        } else {
+            $(".smart-clients").hide()
+        }
+
+
+    </script>
+
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://admin.api-smartcomerci.com.br/assets/img/lima-04.svg" />
+  <title>Document</title>
+  <link rel="icon" type="image/png" href="../assets/img/lima-04.svg" />
+</head>
+
+<body>
+  <style>
+    .page-institucional {
+      --yellow: #f6b504;
+      --yellow-opacity: #fffbf2;
+      --gray: #687c97;
+      --light-gray: #b4b4b4;
+      --black: #333;
+
+      --padding-right: 20px;
+      --padding-left: 20px;
+
+      --transition: 0.2s ease-in-out;
+
+      font-size: 14px;
+      font-family: "Roboto", sans-serif;
+      background-color: #edf2f6;
+    }
+
+    .page-institucional .clr-yellow {
+      color: var(--yellow);
+    }
+
+    .page-institucional a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    .page-institucional a:hover {
+      color: var(--yellow);
+    }
+
+    /* MODAL EDITAR LOJA */
+
+    .page-institucional .modal-editar-loja {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 70px;
+      background-color: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9;
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-editar-loja.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-institucional .modal-editar-loja .modal-box {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background-color: #fff;
+      border-top-right-radius: 25px;
+      border-top-left-radius: 25px;
+      overflow: hidden;
+    }
+
+    .page-institucional .modal-editar-loja .modal-header {
+      --modal-padding: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+      min-height: 75px;
+      padding: 0;
+      padding-left: var(--modal-padding);
+      padding-right: calc(var(--modal-padding) + 28px + 20px);
+      /* padding + btn-close width + extra padding */
+      font-size: 16px;
+    }
+
+    .page-institucional .modal-editar-loja .modal-header .btn-close {
+      all: unset;
+      position: absolute;
+      top: 50%;
+      right: var(--modal-padding);
+
+      background-color: transparent;
+      transform: translateY(-50%);
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-editar-loja .modal-header .btn-close::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 45px;
+      height: 45px;
+      background-color: #f0f0f0;
+      border-radius: 100%;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(-50%) scale(0);
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-editar-loja .modal-header .btn-close:hover::before {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+    }
+
+    .page-institucional .modal-editar-loja .modal-header .btn-close:hover .icon-close::before,
+    .page-institucional .modal-editar-loja .modal-header .btn-close:hover .icon-close::after {
+      background-color: #000;
+    }
+
+    .page-institucional .modal-editar-loja .modal-header .icon-close {
+      display: block;
+      position: relative;
+      width: 28px;
+      height: 28px;
+      border: 1px solid #6a6a6a;
+      border-radius: 100%;
+    }
+
+    .page-institucional .modal-editar-loja .modal-header .icon-close::before,
+    .page-institucional .modal-editar-loja .modal-header .icon-close::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 4px;
+      background-color: #6a6a6a;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-editar-loja .modal-header .icon-close::after {
+      transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+    }
+
+    .page-institucional .modal-editar-loja .modal-body {
+      height: 100%;
+      padding: 0;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      border: 0;
+      overflow-y: auto;
+    }
+
+    .page-institucional .modal-editar-loja .modal-title {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding-right: 40px;
+      padding-left: 40px;
+      color: var(--yellow);
+      background-color: var(--yellow-opacity);
+      border-bottom: 2px solid var(--yellow);
+    }
+
+    .page-institucional .modal-editar-loja .button-list {
+      display: flex;
+      gap: 10px;
+    }
+
+    .page-institucional .modal-editar-loja .modal-container {
+      width: 100%;
+      max-width: 870px;
+      margin: 0 auto;
+    }
+
+    .page-institucional .modal-editar-loja .modal-content {
+      border: 0;
+      border-radius: 0;
+    }
+
+    .page-institucional .modal-editar-loja .box-foto {
+      padding-bottom: 40px;
+      margin-bottom: 40px;
+      font-size: 18px;
+      font-weight: bold;
+      border-bottom: 1px dashed var(--gray);
+    }
+
+    .page-institucional .modal-editar-loja .foto-title {
+      margin-bottom: 20px;
+    }
+
+    .page-institucional .modal-editar-loja .foto-dimensao {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 27px;
+    }
+
+    .page-institucional .modal-editar-loja .icon-alert {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 63px;
+      height: 63px;
+      border-radius: 100%;
+      background-color: var(--yellow-opacity);
+    }
+
+    .page-institucional .modal-editar-loja .input-file {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 250px;
+      padding: 10px;
+      font-weight: normal;
+      font-size: 16px;
+      color: #6A6A6A;
+      border: 2px dashed var(--yellow);
+      border-radius: 5px;
+      background-color: var(--yellow-opacity);
+    }
+
+    .page-institucional .modal-editar-loja .input-file .btn {
+      min-width: 317px;
+      min-height: 53px;
+      border-radius: 27px;
+      font-size: inherit;
+    }
+
+    .page-institucional .modal-editar-loja .input-file-ou {
+      position: relative;
+      margin-right: 27px;
+      margin-left: 27px;
+      font-weight: bold;
+    }
+
+    .page-institucional .modal-editar-loja .input-file-ou::before,
+    .page-institucional .modal-editar-loja .input-file-ou::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 17px;
+      background-color: #6A6A6A;
+      transform: translateY(-100%);
+    }
+
+    .page-institucional .modal-editar-loja .input-file-ou::after {
+      top: unset;
+      bottom: 0;
+      transform: translateY(100%);
+    }
+
+    .page-institucional .modal-editar-loja .box-informacoes-title {
+      margin-bottom: 27px;
+      color: var(--black);
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .page-institucional .modal-editar-loja .box-informacoes .title-box {
+      max-width: 100%;
+      margin-bottom: 30px;
+    }
+
+    /**/
+
+    /* HEADER */
+    .page-institucional .header {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-y: auto;
+
+      padding: 0px var(--padding-right) 0px var(--padding-left);
+      background-color: #fff;
+      box-shadow: 35px 5px 54px #695f971a;
+      border: 1px solid #d2d8e0;
+      border-right: 0;
+      border-left: 0;
+    }
+
+    .page-institucional .header>* {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border-right: 1px solid var(--gray);
+      flex-shrink: 0;
+    }
+
+    .page-institucional .header>*:first-child {
+      padding-left: 0;
+    }
+
+    .page-institucional .header>*:last-child {
+      padding-right: 0;
+      border-right: 0;
+    }
+
+    .page-institucional .header-breadcrumb {
+      gap: 5px;
+      font-size: 16px;
+    }
+
+    .page-institucional .header-breadcrumb *:not(:last-child)::after {
+      content: ">";
+      display: inline-block;
+      padding-left: 5px;
+    }
+
+    .page-institucional .header-breadcrumb .page-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--black);
+    }
+
+    .page-institucional .header-breadcrumb .icon-arrow-down {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-color: rgb(104, 124, 151, 0.25);
+      border-radius: 100%;
+    }
+
+    .page-institucional .btn-checkbox input {
+      display: none;
+    }
+
+    .page-institucional .btn-checkbox .btn-label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .page-institucional .btn-checkbox .icon-checkbox {
+      display: inline-block;
+      position: relative;
+      width: 42px;
+      height: 22px;
+      border: 1px solid var(--gray);
+      border-radius: 23px;
+      background-color: #edf2f6;
+      transition: var(--transition);
+    }
+
+    .page-institucional .btn-checkbox .icon-checkbox::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      padding: 2px;
+      border-radius: 100%;
+      background-color: var(--gray);
+      background-clip: content-box;
+      transition: var(--transition);
+    }
+
+    .page-institucional .btn-checkbox input:checked+.btn-label .icon-checkbox::before {
+      left: 50%;
+      background-color: #fff;
+    }
+
+    .page-institucional .btn-checkbox input:checked+.btn-label .icon-checkbox {
+      border-color: #edf2f6;
+      background-color: var(--yellow);
+    }
+
+    .page-institucional .btn-back {
+      cursor: pointer;
+    }
+
+    .page-institucional .icon-back {
+      position: relative;
+      display: block;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--gray);
+      border-radius: 100%;
+    }
+
+    .page-institucional .icon-back::before {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: -6%;
+      width: 25%;
+      height: 40%;
+      background-color: #fff;
+    }
+
+    .page-institucional .icon-back::after {
+      content: "";
+      position: absolute;
+      bottom: 80%;
+      left: 6%;
+      width: 30%;
+      height: 30%;
+      border: 1px solid var(--gray);
+      border-right: 0;
+      border-top: 0;
+    }
+
+    .page-institucional .icon-back.icon-back-flip {
+      transform: scaleX(-1);
+    }
+
+    .page-institucional .btn-url {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 95px;
+      min-height: 28px;
+      padding: 7px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      border-radius: 34px;
+      background-color: var(--yellow-opacity);
+    }
+
+    .page-institucional .btn-url i {
+      width: 11px;
+      height: 11px;
+      background-color: var(--yellow);
+    }
+
+    .page-institucional .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      min-width: 206px;
+      min-height: 45px;
+      font-size: 14px;
+      color: #fff;
+      background-color: var(--yellow);
+      border-radius: 23px;
+      border: 1px solid var(--yellow);
+    }
+
+    .page-institucional .btn:hover {
+      color: #fff;
+    }
+
+    .page-institucional .buttons-list {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      flex-shrink: 1;
+    }
+
+    .page-institucional .btn-inverse {
+      background-color: #fff;
+      color: var(--yellow);
+    }
+
+    .page-institucional .btn-inverse:hover {
+      color: var(--yellow);
+    }
+
+    /* FIM HEADER */
+
+    .page-institucional .page-body {
+      padding: 10px var(--padding-right) 10px var(--padding-left);
+    }
+
+    .page-institucional .container {
+      max-width: 990px;
+    }
+
+    .page-institucional input,
+    .page-institucional .textarea {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding-right: 15px;
+      padding-left: 15px;
+      font-size: 16px;
+      color: var(--black);
+      background-color: #f0f0f0;
+      border: 1px solid #efefef;
+      border-radius: 5px;
+    }
+
+    .page-institucional .textarea {
+      min-height: 250px;
+      align-items: flex-start;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      font-weight: normal;
+    }
+
+    .page-institucional .content-box {
+      width: 100%;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px #6a6a6a19;
+      overflow-x: hidden;
+    }
+
+    .page-institucional .top-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      min-height: 160px;
+      margin-bottom: 30px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      color: var(--yellow);
+      background-color: #fffbf2;
+      border: 3px dashed var(--yellow);
+      cursor: pointer;
+    }
+
+    .page-institucional .top-banner-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .page-institucional .icon-add {
+      --outline-width: 6px;
+      --icon-color: var(--light-gray);
+      position: relative;
+      display: block;
+      width: 24px;
+      height: 24px;
+      margin: 0 auto;
+      margin-top: var(--outline-width);
+      margin-bottom: var(--outline-width);
+      border-radius: 100%;
+      background-color: var(--icon-color);
+      border: 1px solid #fff;
+      outline: var(--outline-width) solid var(--icon-color);
+      transition: var(--transition);
+    }
+
+    .page-institucional .icon-add.icon-yellow {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .icon-add::before,
+    .page-institucional .icon-add::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 2px;
+      background-color: #fff;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .page-institucional .icon-add::after {
+      transform: translateX(-50%) translateY(-50%) rotate(90deg);
+    }
+
+    .page-institucional .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    .page-institucional .title-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 535px;
+      font-weight: bold;
+      color: var(--gray);
+    }
+
+    .page-institucional .editor-box {
+      min-height: 280px;
+      border-radius: 20px;
+      border: 1px solid #f1f1f5;
+    }
+
+    .page-institucional .add-content {
+      --icon-color: var(--light-gray);
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .page-institucional .add-content:hover,
+    .page-institucional .add-content.active {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .add-content:hover .icon-add,
+    .page-institucional .add-content.active .icon-add {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .add-content::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      border-bottom: 2px dashed var(--icon-color);
+      transform: translateY(-50%);
+      transition: var(--transition);
+    }
+
+    .page-institucional .add-content .add-content-modal {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      width: 100%;
+      max-width: 830px;
+      padding: 40px 15px;
+      background-color: #fff;
+      border-radius: 20px;
+      border: 1px solid #f1f1f5;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-50%) translateY(100%);
+      transition: var(--transition);
+      z-index: 2;
+    }
+
+    .page-institucional .add-content.active .add-content-modal {
+      bottom: -6px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-institucional .add-content-modal .list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .page-institucional .add-content-modal .list .item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      color: var(--gray);
+      background-color: #fcfcfd;
+      border-radius: 16px;
+      border: 1px solid #edf2f6;
+    }
+
+    .page-institucional .add-content-modal .list .item-image {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 92px;
+    }
+
+    .page-institucional .banner-example {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 250px;
+      background-color: var(--gray);
+      border-radius: 5px;
+      box-shadow: 0px 2px 10px #6a6a6a26;
+    }
+
+    .page-institucional .banner-example::before {
+      content: "Banner de Exemplo";
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .page-institucional .box-unidades .box-unidades-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border-bottom: 1px solid #ededed;
+    }
+
+    .page-institucional .unidade-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .page-institucional .unidade {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      padding-right: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--black);
+      border: 1px solid #ededed;
+      border-radius: 16px;
+    }
+
+    .page-institucional .unidade>* {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .page-institucional .unidade>*:first-child {
+      padding-left: 30px;
+    }
+
+    .page-institucional .unidade .btn {
+      min-width: 160px;
+      min-height: 35px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    .page-institucional .unidade .unidade-number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 13px;
+      padding-right: 16px;
+      border-right: 2px dashed #edf2f6;
+      cursor: grab;
+    }
+
+    .page-institucional .unidade .unidade-number i {
+      position: relative;
+      display: inline-block;
+      width: 9px;
+      height: 16px;
+      background-color: var(--gray);
+    }
+
+    .page-institucional .unidade .unidade-number i>* {
+      position: absolute;
+      inset: 0;
+      object-fit: contain;
+    }
+
+    .page-institucional .unidade .btn-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      background-color: var(--yellow-opacity);
+      border-radius: 100%;
+    }
+
+    .page-institucional .unidade .btn-icon i {
+      display: block;
+      width: 12px;
+      height: 12px;
+      background-color: var(--yellow);
+    }
+
+    .page-institucional .btn-ativar-estabelecimento {
+      gap: 10px;
+      margin-left: auto;
+      color: var(--gray);
+    }
+
+    .txt {
+      text-align: left;
+      letter-spacing: 0px;
+      color: #6A6A6A;
+      opacity: 1;
+    }
+
+    .areaModelo {
+      width: 869px;
+      height: 415px;
+      /* UI Properties */
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      border: 1px solid #F1F1F5;
+      border-radius: 20px;
+      opacity: 1;
+    }
+  </style>
+
+  <div class="page-institucional">
+
+    <div class="modal-editar-loja active">
+      <div class="modal-box">
+        <div class="modal-header">
+          <div id="nomeDoEmail" class="modal-title">XXXX</div>
+
+          <div class="button-list">
+            <button onclick="window.parent.fecharFrame('editarEmail')" class="btn btn-inverse">Cancelar</button>
+
+            <button onclick="salvar()" style="cursor: pointer;" class="btn">Salvar</button>
+          </div>
+
+          <button onclick="window.parent.fecharFrame('editarEmail')" class="btn-close">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-container">
+            <div class="modal-content">
+
+
+              <div class="box-informacoes">
+
+
+                <div class="title-box">
+                  Título do e-mail
+                  <input id="tituloEMAIL" class="vaiSalvar" table="emails_marketing" column="titulo" type="text" />
+                </div>
+
+                <br>
+                <p class="txt">Olá, <b>“nome do cliente”</b> </p>
+
+
+                <div class="title-box">
+                  Texto do e-mail
+                  <div style="display: none" table="emails_marketing" id="areaTXT" column="conteudo"
+                    class="textarea vaiSalvar" rows="10" contenteditable="true">
+                  </div>
+                  <div class="editor-box">
+                    <textarea style="width: 100%;" name="" id="editorFullCode" cols="30" rows="10"></textarea>
+                  </div>
+                </div>
+
+                <div class="title-box">
+                  Modelo do e-mail
+                  <div class="areaModelo">
+
+                  </div>
+                </div>
+
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://admin.api-smartcomerci.com.br/js/tinymce.js"></script>
+  <script>
+
+
+    var mainHost = 'http://localhost:6060';
+    var preparei = false
+    let url = window.location.href
+
+    $(window).on("load", function () {
+      let preparando = setInterval(() => {
+        $("#nomeDoEmail").html(localStorage.EMAIL_IN_EDIT?.toString())
+        prepara();
+        //console.log("Preparando")
+      }, 1000);
+      setTimeout(() => {
+        $("#nomeDoEmail").html(localStorage.EMAIL_IN_EDIT?.toString())
+        prepara();
+      }, 1000);
+
+      $(".vaiSalvar").keyup(function () {
+        clearInterval(preparando)
+        //console.log("Parei de preparar...")
+      })
+    })
+    function iniciaEditorHtml(idElemento) {
+      tinymce.init({
+        selector: idElemento,
+        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+      });
+    }
+
+    iniciaEditorHtml("#editorFullCode")
+
+
+
+    localStorage.EMAILS_MARKETING = ''
+    $.ajax({
+      type: "POST",
+      url: window.parent.mainHost + '/getMarketInfo',
+      data: { "masterId": localStorage.MASTER_ID },
+      headers: {
+        "x-access-token": localStorage.token,
+      },
+      success: function (data) {
+        // console.log("atualizando marketing..")
+        localStorage.EMAILS_MARKETING = JSON.stringify(data)
+
+      },
+      error: function (data) {
+        //console.log("erro marketing", data)
+      },
+      complete: function () { },
+    });
+
+
+    function getMarketMail() {
+      let dat = JSON.parse(localStorage.EMAILS_MARKETING)
+      for (const k in dat) {
+        if (localStorage.EMAIL_IN_EDIT == dat[k].tipo_email) {
+
+          return dat[k]
+
+
+        }
+      }
+
+    }
+    function prepara() {
+      try {
+        if (preparei == false) {
+          $("#tituloEMAIL").val("")
+          $("#areaTXT").text("")
+          let dat = JSON.parse(localStorage.EMAILS_MARKETING)
+          for (const k in dat) {
+            if (localStorage.EMAIL_IN_EDIT == dat[k].tipo_email) {
+
+              $("#tituloEMAIL").val(dat[k].titulo)
+              $("#areaTXT").text(dat[k].conteudo)
+
+              tinymce.activeEditor.setContent(dat[k].conteudo);
+
+              //tinymce.get("editorFullCode").getContent()
+
+
+            }
+          }
+          preparei = true
+          //console.log('estou preparado',preparei)
+        }
+
+
+      } catch (err) {
+        console.log("Erro ao preparar...", err)
+      }
+
+    }
+
+
+
+    var loja = Number(localStorage.EDITANDO_LOJA_CONFIG)
+    //console.log("a loja é", loja)
+
+    async function salvar() {
+      // setTimeout(() => {
+      //   $(".vaiSalvar").each(function () {
+      //     $(this).attr("idValue", getMarketMail().id)
+      //     $(".vaiSalvar").attr("idValue", getMarketMail().id)
+      //    // $("#areaTXT").attr('newValue', tinymce.get("editorFullCode").getContent())
+      //     window.parent.atualizaCampo($(this), 0)
+      //   })
+      //   window.parent.location.reload()
+
+      //       master_id
+      // tipo_email
+      // titulo
+      // descricao
+      // conteudo
+      // modelo
+      // }, 1000);
+      //       Alteração de senha
+      // Pedido recebido
+
+      console.log({
+        "fields": [
+          { column: "conteudo", tipo_email: localStorage.EMAIL_IN_EDIT, value: tinymce.get("editorFullCode").getContent() },
+          { column: "titulo", tipo_email: localStorage.EMAIL_IN_EDIT, value: $("#tituloEMAIL").val() }
+        ],
+
+        "master_id": localStorage.MASTER_ID
+      })
+
+      await $.ajax({
+        type: 'POST',
+        url: mainHost + '/updateMailMarketingContent',
+        headers: {
+          "x-access-token": localStorage.token,
+        },
+        data: {
+          "fields": [
+            { column: "conteudo", tipo_email: localStorage.EMAIL_IN_EDIT, value: tinymce.get("editorFullCode").getContent() },
+            { column: "titulo", tipo_email: localStorage.EMAIL_IN_EDIT, value: $("#tituloEMAIL").val() }
+          ],
+
+          "master_id": localStorage.MASTER_ID
+        },
+        success: function (data) {
+          console.log(data)
+          window.parent.informar("alert-success", "As alterações foram salvas!", 3000)
+          setTimeout(() => {
+            window.parent.location.reload()
+          }, 2000);
+        },
+        error: function (data) {
+
+          window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+        },
+        complete: function () {
+          // ao final da requisição...
+        }
+      });
+
+
+
+
+
+    }
+    let fim = 5, co = 0
+
+    let tim = setInterval(() => {
+      co++
+      if (co < fim) {
+        $(".tox-notification").hide()
+      } else {
+        clearInterval(tim)
+      }
+    }, 1000)
+
+
+
+  </script>
+</body>
+
+</html>

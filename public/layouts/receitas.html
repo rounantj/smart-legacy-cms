@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="icon" type="image/png" href="https://admin.api-smartcomerci.com.br/assets/img/lima-04.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <style>
+    .page-institucional {
+      --yellow: #f6b504;
+      --yellow-opacity: #fffbf2;
+      --gray: #687c97;
+      --light-gray: #b4b4b4;
+      --black: #333;
+
+      --padding-right: 20px;
+      --padding-left: 20px;
+
+      --transition: 0.2s ease-in-out;
+
+      font-size: 14px;
+      font-family: "Roboto", sans-serif;
+      background-color: #edf2f6;
+    }
+
+    .page-institucional .clr-yellow {
+      color: var(--yellow);
+    }
+
+    .page-institucional a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    .page-institucional a:hover {
+      color: var(--yellow);
+    }
+
+    /* MODAL */
+    .page-institucional .modal-deletar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      color: var(--gray);
+      background-color: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9;
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-institucional .modal-deletar .modal-box {
+      position: relative;
+      width: 100%;
+      max-width: 650px;
+      max-height: 100%;
+      background-color: #fff;
+      border-radius: 25px;
+      box-shadow: 0px 0px 10px #6a6a6a19;
+    }
+
+    .page-institucional .modal-deletar .modal-header {
+      --modal-padding: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 65px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      padding-right: calc(var(--modal-padding) + 28px + 10px);
+      /* padding + btn-close width + extra padding */
+      border-bottom: 1px solid #ededed;
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close {
+      all: unset;
+      position: absolute;
+      top: 50%;
+      right: var(--modal-padding);
+
+      background-color: transparent;
+      transform: translateY(-50%);
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 45px;
+      height: 45px;
+      background-color: #f0f0f0;
+      border-radius: 100%;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(-50%) scale(0);
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close:hover::before {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close:hover .icon-close::before,
+    .page-institucional .modal-deletar .modal-header .btn-close:hover .icon-close::after {
+      background-color: #000;
+    }
+
+    .page-institucional .modal-deletar .modal-header .icon-close {
+      display: block;
+      position: relative;
+      width: 28px;
+      height: 28px;
+      border: 1px solid #6a6a6a;
+      border-radius: 100%;
+    }
+
+    .page-institucional .modal-deletar .modal-header .icon-close::before,
+    .page-institucional .modal-deletar .modal-header .icon-close::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 4px;
+      background-color: #6a6a6a;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar .modal-header .icon-close::after {
+      transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+    }
+
+    .page-institucional .modal-deletar .modal-body {
+      height: auto;
+      padding-top: 60px;
+      padding-bottom: 40px;
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    .page-institucional .modal-deletar .modal-container {
+      max-width: 376px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .page-institucional .icon-alert {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      margin: 0 auto;
+      margin-bottom: 9px;
+      border-radius: 100%;
+      background-color: var(--yellow-opacity);
+    }
+
+    .page-institucional .modal-deletar .modal-title {
+      margin-bottom: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--black);
+    }
+
+    .page-institucional .modal-deletar .modal-footer {
+      padding: 32px;
+      border: 0;
+    }
+
+    .page-institucional .modal-deletar .modal-footer .modal-container {
+      max-width: 426px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .page-institucional .modal-deletar .modal-footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .page-institucional .modal-deletar .btn-cancelar {
+      border: 0;
+      background-color: transparent;
+      text-decoration: underline;
+      color: var(--gray);
+      font-weight: bold;
+    }
+
+    /* FIM MODAL */
+
+    /* HEADER */
+    .page-institucional .header {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-y: auto;
+
+      padding: 0px var(--padding-right) 0px var(--padding-left);
+      background-color: #fff;
+      box-shadow: 35px 5px 54px #695f971a;
+      border: 1px solid #d2d8e0;
+      border-right: 0;
+      border-left: 0;
+    }
+
+    .page-institucional .header>* {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border-right: 1px solid var(--gray);
+    }
+
+    .page-institucional .header>*:first-child {
+      padding-left: 0;
+    }
+
+    .page-institucional .header>*:last-child {
+      padding-right: 0;
+      border-right: 0;
+    }
+
+    .page-institucional .header-breadcrumb {
+      gap: 5px;
+      font-size: 16px;
+    }
+
+    .page-institucional .header-breadcrumb *:not(:last-child)::after {
+      content: ">";
+      display: inline-block;
+      padding-left: 5px;
+    }
+
+    .page-institucional .header-breadcrumb .page-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--black);
+    }
+
+    .page-institucional .header-breadcrumb .icon-arrow-down {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-color: rgb(104, 124, 151, 0.25);
+      border-radius: 100%;
+    }
+
+    .page-institucional .btn-active-page input {
+      display: none;
+    }
+
+    .page-institucional .btn-active-page .btn-label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .page-institucional .btn-active-page .icon-checkbox {
+      display: inline-block;
+      position: relative;
+      width: 42px;
+      height: 22px;
+      border: 1px solid var(--gray);
+      border-radius: 23px;
+      background-color: #edf2f6;
+      transition: var(--transition);
+    }
+
+    .page-institucional .btn-active-page .icon-checkbox::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      padding: 2px;
+      border-radius: 100%;
+      background-color: var(--gray);
+      background-clip: content-box;
+      transition: var(--transition);
+    }
+
+    .page-institucional .btn-active-page input:checked+.btn-label .icon-checkbox::before {
+      left: 50%;
+      background-color: #fff;
+    }
+
+    .page-institucional .btn-active-page input:checked+.btn-label .icon-checkbox {
+      border-color: #edf2f6;
+      background-color: var(--yellow);
+    }
+
+    .page-institucional .btn-back {
+      cursor: pointer;
+    }
+
+    .page-institucional .icon-back {
+      position: relative;
+      display: block;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--gray);
+      border-radius: 100%;
+    }
+
+    .page-institucional .icon-back::before {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: -6%;
+      width: 25%;
+      height: 40%;
+      background-color: #fff;
+    }
+
+    .page-institucional .icon-back::after {
+      content: "";
+      position: absolute;
+      bottom: 80%;
+      left: 6%;
+      width: 30%;
+      height: 30%;
+      border: 1px solid var(--gray);
+      border-right: 0;
+      border-top: 0;
+    }
+
+    .page-institucional .icon-back.icon-back-flip {
+      transform: scaleX(-1);
+    }
+
+    .page-institucional .btn-url {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 95px;
+      min-height: 28px;
+      padding: 7px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      border-radius: 34px;
+      background-color: var(--yellow-opacity);
+    }
+
+    .page-institucional .btn-url i {
+      width: 11px;
+      height: 11px;
+      background-color: var(--yellow);
+    }
+
+    .page-institucional .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      min-width: 206px;
+      min-height: 45px;
+      font-size: 14px;
+      color: #fff;
+      background-color: var(--yellow);
+      border-radius: 23px;
+      border: 1px solid var(--yellow);
+    }
+
+    .page-institucional .btn:hover {
+      color: #fff;
+    }
+
+    .page-institucional .buttons-list {
+      display: flex;
+      gap: 16px;
+    }
+
+    .page-institucional .btn-inverse {
+      background-color: #fff;
+      color: var(--yellow);
+    }
+
+    .page-institucional .btn-inverse:hover {
+      color: var(--yellow);
+    }
+
+    /* FIM HEADER */
+
+    .page-institucional .page-body {
+      padding: 10px var(--padding-right) 10px var(--padding-left);
+    }
+
+    .page-institucional .container {
+      max-width: 990px;
+    }
+
+    .page-institucional input {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding-right: 15px;
+      padding-left: 15px;
+      font-size: 16px;
+      color: var(--black);
+      background-color: #f0f0f0;
+      border: 1px solid #efefef;
+      border-radius: 5px;
+    }
+
+    .page-institucional .content-box {
+      width: 100%;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px #6a6a6a19;
+      overflow-x: hidden;
+    }
+
+    .page-institucional .top-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      min-height: 260px;
+      margin-bottom: 30px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      background-size: cover !important;
+      color: var(--yellow);
+      background-color: #fffbf2;
+      border: 3px dashed var(--yellow);
+      cursor: pointer;
+    }
+
+    .page-institucional .top-banner-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .top-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      min-height: 160px;
+      margin-bottom: 30px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      color: var(--yellow);
+      background-color: #fffbf2;
+      border: 3px dashed var(--yellow);
+      cursor: pointer;
+    }
+
+    .top-banner-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .page-institucional .icon-add {
+      --outline-width: 6px;
+      --icon-color: var(--light-gray);
+      position: relative;
+      display: block;
+      width: 24px;
+      height: 24px;
+      margin: 0 auto;
+      margin-top: var(--outline-width);
+      margin-bottom: var(--outline-width);
+      border-radius: 100%;
+      background-color: var(--icon-color);
+      border: 1px solid #fff;
+      outline: var(--outline-width) solid var(--icon-color);
+      transition: var(--transition);
+    }
+
+    .page-institucional .icon-add.icon-yellow {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .icon-add::before,
+    .page-institucional .icon-add::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 2px;
+      background-color: #fff;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .page-institucional .icon-add::after {
+      transform: translateX(-50%) translateY(-50%) rotate(90deg);
+    }
+
+    .page-institucional .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding-bottom: 30px;
+    }
+
+    .page-institucional .title-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 535px;
+      font-weight: bold;
+      color: var(--gray);
+    }
+
+    .page-institucional .editor-box {
+      min-height: 280px;
+      border-radius: 20px;
+      border: 1px solid #f1f1f5;
+    }
+
+    .page-institucional .add-content {
+      --icon-color: var(--light-gray);
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .page-institucional .add-content:hover,
+    .page-institucional .add-content.active {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .add-content:hover .icon-add,
+    .page-institucional .add-content.active .icon-add {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .add-content::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      border-bottom: 2px dashed var(--icon-color);
+      transform: translateY(-50%);
+      transition: var(--transition);
+    }
+
+    .page-institucional .add-content .add-content-modal {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      width: 100%;
+      max-width: 830px;
+      padding: 40px 15px;
+      background-color: #fff;
+      border-radius: 20px;
+      border: 1px solid #f1f1f5;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-50%) translateY(100%);
+      transition: var(--transition);
+      z-index: 2;
+    }
+
+    .page-institucional .add-content.active .add-content-modal {
+      bottom: -6px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-institucional .add-content-modal .list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .page-institucional .add-content-modal .list .item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      color: var(--gray);
+      background-color: #fcfcfd;
+      border-radius: 16px;
+      border: 1px solid #edf2f6;
+    }
+
+    .page-institucional .add-content-modal .list .item-image {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 92px;
+    }
+
+    .page-institucional .banner-example {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 250px;
+      background-color: var(--gray);
+      border-radius: 5px;
+      box-shadow: 0px 2px 10px #6a6a6a26;
+    }
+
+    .page-institucional .banner-example::before {
+      content: "Banner de Exemplo";
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .page-institucional .item {
+      background: #ffffff 0% 0% no-repeat padding-box;
+      border: 1px solid #edf2f6;
+      border-radius: 16px;
+      opacity: 1;
+      padding: 15px;
+    }
+
+    .page-institucional .negrito {
+      text-align: left;
+      font: normal normal bold 13px/21px Roboto;
+      letter-spacing: 0px;
+      color: #222b45;
+      opacity: 1;
+      margin: auto;
+    }
+
+    .page-institucional .btn-inverse {
+      background-color: #fff;
+      color: var(--yellow);
+    }
+
+    .page-institucional .btn-inverse:hover {
+      color: var(--yellow);
+    }
+
+    .title4 {
+      text-align: left;
+      font: normal normal bold 18px/24px Roboto;
+      letter-spacing: 0px;
+      color: #333333;
+      opacity: 1;
+    }
+
+    .cabecalho {
+      background: #ffffff 0% 0% no-repeat padding-box;
+      border-radius: 16px 16px 0px 0px;
+      opacity: 1;
+    }
+
+    .conteudo {
+      background: #f9fafb 0% 0% no-repeat padding-box;
+      border-radius: 0px 0px 16px 16px;
+      opacity: 1;
+      border-top: 1px solid #edf2f6;
+      min-height: 200px;
+      display: none;
+    }
+
+    .borderIcon {
+      cursor: pointer !important;
+      width: 37px;
+      height: 37px;
+      background: #fffbf2 0% 0% no-repeat padding-box;
+      border-radius: 26px;
+      opacity: 1;
+      margin: 7px auto;
+    }
+
+    .innerTitle {
+      text-align: left;
+      font: normal normal normal 14px/60px Roboto;
+      letter-spacing: 0px;
+      color: #687c97;
+      opacity: 1;
+      min-width: 500px;
+    }
+
+    .ativei {
+      border: 1px solid #f6b504 !important;
+    }
+
+    modalRevenue {
+      display: none;
+      width: 100%;
+      height: 1000vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      top: 5vh;
+      position: absolute;
+      left: 0;
+      padding: 15px;
+    }
+
+    .title-box {
+      max-width: 100%;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 535px;
+      font-weight: bold;
+      color: var(--gray);
+    }
+
+    .btnClose {
+      float: right;
+      max-width: 20px;
+      min-width: 20px !important;
+      background-color: white !important;
+      border: 1px solid black;
+      color: black;
+      max-height: 20px;
+      border-radius: 100%;
+      min-height: 20px !important;
+    }
+  </style>
+
+  <div class="page-institucional">
+    <!--
+    <div class="modal-deletar active">
+      <div class="modal-box">
+        <div class="modal-header">
+          Deletar página
+  
+          <button class="btn-close">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+  
+        <div class="modal-body">
+          <div class="modal-container">
+            <i class="icon-alert">
+              <svg
+                id="Layer_x0020_1"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32.854"
+                height="32.854"
+                viewBox="0 0 32.854 32.854"
+              >
+                <rect
+                  id="Retângulo_1684"
+                  data-name="Retângulo 1684"
+                  width="32.854"
+                  height="32.854"
+                  fill="none"
+                />
+                <path
+                  id="exclamation-triangle"
+                  d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1ZM11,14H10V13h1v1Zm-.5-3a.5.5,0,0,1-.5-.5v-4a.5.5,0,0,1,1,0v4A.5.5,0,0,1,10.5,11Z"
+                  transform="translate(5.927 5.927)"
+                  fill="#f8c63f"
+                />
+              </svg>
+            </i>
+  
+            <div class="modal-title">
+              Deseja deletar a página
+              <span class="clr-yellow">Nossos Cuidados</span>?
+            </div>
+  
+            <p>Esta ação não poderá ser desfeita.</p>
+  
+            <p>
+              O link para a página será perdido e caso ela esteja no rodapé ela
+              será removida
+            </p>
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <div class="modal-container">
+            <div class="modal-footer-content">
+              <button class="btn-cancelar">Cancelar</button>
+  
+              <button class="btn">
+                <i></i>
+  
+                Deletar Página
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  -->
+
+    <div class="header">
+      <div class="header-breadcrumb">
+        <a href="#">Conteúdo</a>
+        <div class="page-title">
+          Receitas
+
+          <i class="icon-arrow-down"></i>
+        </div>
+      </div>
+
+      <div class="btn-active-page">
+        <input type="checkbox" name="ativar-pagina" id="ativar-pagina" />
+
+        <label for="ativar-pagina" class="btn-label">
+          <i class="icon-checkbox"></i>
+
+          <span id="pagAtiva">desativada</span>
+        </label>
+      </div>
+
+      <div class="btn-back">
+        <i class="icon-back"></i>
+      </div>
+
+      <div class="btn-back btn-forward">
+        <i class="icon-back icon-back-flip"></i>
+      </div>
+
+      <div class="buttons-list">
+        <a style="opacity: 0" class="btn-url" href="#">
+          <i></i>
+          url
+        </a>
+
+        <button style="opacity: 0" nclass="btn btn-inverse">
+          <i></i>
+          Deletar Página
+        </button>
+
+        <button onclick="saveRevenuesCategories()" class="btn">
+          Publicar
+        </button>
+      </div>
+    </div>
+
+    <div class="page-body">
+      <div class="content-box">
+        <div style="
+              background-size: cover !important;
+              background-position: center !important;
+              zoom: 90%;
+              background-repeat: no-repeat;
+            " target="bannerPrincipal" id="bannerPrincipal" onclick="getFile($(this))" class="top-banner">
+          <div class="container">
+            <div class="top-banner-content">
+              <i class="icon-add icon-yellow"></i>
+              Adicionar banner de Topo
+            </div>
+          </div>
+        </div>
+
+        <div style="max-width: 90%; margin: auto" class="container">
+          <div class="main-content">
+            <div class="col-md-12 item">
+              <div class="row">
+                <div class="col-md-1" style="margin: auto">
+                  <p class="negrito">1</p>
+                </div>
+                <div class="col-md-3" style="margin: auto">
+                  <p class="negrito">Todas as receitas</p>
+                </div>
+                <div class="col-md-2" style="margin: auto"></div>
+                <div class="col-md-2" style="margin: auto"></div>
+                <div class="col-md-2" style="margin: auto"></div>
+                <div class="col-md-2" style="margin: auto">
+                  <button target="TODAS" onclick="inEdit($(this))" class="btn btn-inverse">
+                    <i></i>
+                    Alterar imagen
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-4" style="margin: auto">
+                  <p class="title4">Todas as receitas</p>
+                </div>
+                <div class="col-md-2" style="margin: auto"></div>
+                <div class="col-md-2" style="margin: auto"></div>
+                <div class="col-md-2" style="margin: auto"></div>
+                <div class="col-md-2" style="margin: auto">
+                  <button target="NOVA" onclick="inEdit($(this))" class="btn">
+                    <i class="icon-add icon-yellow"></i>
+                    <p style="margin: auto">Nova categoria</p>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="listCategoriasRevenues"></div>
+          </div>
+        </div>
+      </div>
+      <modalRevenue>
+        <div class="container" style="
+              margin: auto;
+              border-radius: 20px;
+              max-width: 600px;
+              padding-top: 15px;
+              padding-left: 25px;
+              padding-right: 25px;
+              padding-bottom: 15px;
+              min-height: 680px;
+              background-color: white;
+            ">
+          <div class="row">
+            <div class="col-md-11">
+              <h4 style="text-align: center">Categoria de Receita</h4>
+            </div>
+            <div class="col-md-1">
+              <button onclick="$('modalRevenue').hide()" style="float: right" class="btn btn-close btnClose"></button>
+            </div>
+          </div>
+
+          <hr />
+          <input onchange="getImageFromSite($(this))" type="file" style="display: none" id="fileBannerCat" />
+          <div onclick="getFile($(this))" target="bannerCat1" id="bannerCat1" class="top-banner">
+            <div class="container">
+              <div class="top-banner-content">
+                <i class="icon-add icon-yellow"></i>
+                Adicionar/Alterar Imagen
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="btn-active-page">
+            <input type="checkbox" name="ativar-pagina2" id="ativar-pagina2" />
+
+            <label for="ativar-pagina2" class="btn-label">
+              <i class="icon-checkbox"></i>
+
+              Categoria de receita ativa
+            </label>
+          </div>
+          <br />
+          <div class="title-box">
+            Título da categoria de receita
+            <input id="nameCategory" type="text" placeholder="Título da categoria de receita"
+              style="min-width: 400px" />
+          </div>
+
+          <br />
+          <br />
+          <hr />
+          <button onclick="salvaNovaCat()" style="float: right" class="btn">
+            Salvar
+          </button>
+        </div>
+      </modalRevenue>
+    </div>
+  </div>
+</body>
+
+<script src="http://localhost:6060/js/tinymce.js"></script>
+<script>
+
+  var mainHost = 'http://localhost:6060';
+  let url = window.location.href
+  if (url.indexOf("receita") > -1) {
+    function iniciaEditorHtml(idElemento) {
+      tinymce.init({
+        selector: idElemento,
+        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+      });
+    }
+  }
+
+
+
+
+  var mainHost = 'http://localhost:6060';
+
+
+  function iniciaEditorHtml(idElemento) {
+    tinymce.init({
+      selector: idElemento,
+      plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+    });
+  }
+
+  //chamada teste
+  iniciaEditorHtml("#editorFullCode")
+
+  function showMeContent(elemento) {
+    //console.log(elemento)
+    if (elemento.attr("mostrei") == 1) {
+      elemento.parent().parent().find(".conteudo").fadeOut()
+
+      elemento.parent().parent().removeClass("ativei")
+
+      elemento.attr("mostrei", 0)
+    } else {
+      elemento.parent().parent().find(".conteudo").fadeIn()
+
+      elemento.parent().parent().addClass("ativei")
+      elemento.attr("mostrei", 1)
+    }
+
+  }
+
+  let CATEGORIAS = [], RECEITAS = []
+  $.ajax({
+    type: "POST",
+    url: mainHost + '/getByTableName',
+    data: { "masterId": localStorage.MASTER_ID, "idName": "master_id", "tableName": "revenues_categories" },
+    headers: {
+      "x-access-token": localStorage.token,
+    },
+    success: function (data) {
+      CATEGORIAS = data
+      $.ajax({
+        type: "POST",
+        url: mainHost + '/getByTableName',
+        data: { "masterId": localStorage.MASTER_ID, "idName": "master_id", "tableName": "revenues" },
+        headers: {
+          "x-access-token": localStorage.token,
+        },
+        success: function (data2) {
+          console.log(data2)
+          RECEITAS = data2
+          console.log('asdsd', data)
+          localStorage.MY_REVENUES_CATEGORIES = JSON.stringify(data)
+          try {
+            let MATRIZ = JSON.parse(localStorage.DADOS_MATRIZ)
+
+            if (MATRIZ.master_custom_ferramentas.indexOf('Receitas') > -1) {
+              $("#ativar-pagina")[0].checked = true
+              $("#pagAtiva").text("ativada")
+            }
+            $("#bannerPrincipal").css("background", `url(${MATRIZ.master_banner_revenues})`)
+            $("#bannerPrincipal").attr("value", `${MATRIZ.master_banner_revenues}`)
+          } catch (error) {
+
+          }
+          try {
+            localStorage.MY_REVENUES = JSON.stringify(data2)
+          } catch (er) {
+            //console.log(er)
+          }
+
+
+          $(".listCategoriasRevenues").html(
+            getCategoriesRevenues(data, data2)
+
+          )
+
+        },
+        error: function (data) {
+          //console.log("erro get", data)
+
+          window.parent.informar("alert-danger", "Algo saiu errado!", 3000)
+        },
+        complete: function () { },
+      });
+
+
+
+
+    },
+    error: function (data) {
+      //console.log("erro get", data)
+
+      window.parent.informar("alert-danger", "Algo saiu errado!", 3000)
+    },
+    complete: function () { },
+  });
+
+  function inEdit(element) {
+    $("modalRevenue").attr("id", element.attr("target"))
+    $('modalRevenue').show()
+
+    if (element.attr("target") != 'NOVA' && element.attr("target") != 'TODAS') {
+      let MY_CATS = []
+      try {
+        MY_CATS = JSON.parse(localStorage.MY_REVENUES_CATEGORIES)
+      } catch (e) { }
+      for (const k in MY_CATS) {
+        if (MY_CATS[k].id == Number(element.attr("target"))) {
+          $("#ativar-pagina2")[0].checked = MY_CATS[k].status
+          $("#bannerCat1").attr("value", MY_CATS[k].image)
+          $("#bannerCat1").css("background", `url(${MY_CATS[k].image})`)
+          $("#bannerCat1").css("background-size", "cover !important")
+          $("#bannerCat1").css("background-position", "center !important")
+          $("#bannerCat1").css("zoom", "100% !important")
+          $("#nameCategory").val(MY_CATS[k].name)
+
+        }
+      }
+
+
+
+    } else {
+      $("#bannerCat1").css("background", "none")
+    }
+
+
+  }
+
+
+
+  function getCategoriesRevenues(categories, data2) {
+    let html = ''
+
+
+    function pegaReceita(categoria, data2) {
+      console.log("aqui  vv", categoria, data2)
+      let retorna = '', count = 0
+
+      for (let u in data2) {
+        let toDo = false
+        for (let o in data2[u].category.split(',')) {
+
+          if (data2[u].category.split(',')[o] == categoria) {
+            toDo = true
+
+          }
+        }
+        if (toDo) {
+          count++
+          retorna += getRevenues(data2[u])
+        }
+      }
+
+
+
+      return { html: retorna, total: count }
+    }
+
+    for (const k in categories) {
+
+      html += `
+            <div style="margin-top: 15px" class="col-md-12 item">
+                  <div class="row cabecalho">
+                    <div class="col-md-1" style="margin: auto;">
+                      <div class="row">
+                        <div style="margin: auto;" class="col-md-6">
+                          <svg onclick="showMeContent($(this).parent().parent().parent())" class="iconGrid"
+                            xmlns="http://www.w3.org/2000/svg" style="fill: #687c97;" width="13.5" height="23"
+                            viewBox="0 0 9 16">
+                            <defs></defs>
+                            <path class="a"
+                              d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z">
+                            </path>
+                            <path class="a"
+                              d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
+                              transform="translate(5)"></path>
+                          </svg>
+                        </div>
+                        <div style="margin: auto;" class="col-md-6">
+                          <p class="negrito">${(Number(k) + 1)}</p>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="col-md-2" style="margin: auto;">
+                      <p class="negrito">${categories[k].name}</p>
+                    </div>
+                    <div class="col-md-2" style="margin: auto;">
+                      <label class="label totalSubCategorias">${pegaReceita(categories[k].name, data2).total} Receitas</label>
+                    </div>
+                    <div class="col-md-2" style="margin: auto;">
+
+                      <div class="btn-active-page">
+                        <input ${categories[k].status ? 'checked="true"' : ''} type="checkbox" name="ativar-pagina25" id="ativar-pagina25">
+
+                        <label for="ativar-pagina25" class="btn-label">
+                          <i class="icon-checkbox"></i>
+
+                          Categoria de receita ativa
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-2" style="margin: auto;">
+                      <button target="${categories[k].id}" onclick="inEdit($(this))" class="btn btn-inverse">
+                        <i></i>
+                        Editar Categoria
+                      </button>
+                    </div>
+                    <div class="col-md-1" style="margin: auto;"></div>
+                    <div class="col-md-2" style="margin: auto; display: inline-flex; gap: 20px">
+                      <div class=" deleteThis borderIcon"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
+                          viewBox="0 0 21 21" style="fill: #f6b504;margin: 9px;">&gt;<defs></defs>
+                          <path class="a"
+                            d="M10.937,16H3.063A2.208,2.208,0,0,1,.875,13.778V2.666H.438a.444.444,0,0,1,0-.889H4.375V1.334A1.324,1.324,0,0,1,5.687,0H8.313A1.324,1.324,0,0,1,9.625,1.334v.444h3.937a.444.444,0,0,1,0,.889h-.437V13.778A2.208,2.208,0,0,1,10.937,16ZM1.75,2.666V13.778a1.325,1.325,0,0,0,1.313,1.334h7.875a1.325,1.325,0,0,0,1.313-1.334V2.666ZM5.687.889a.441.441,0,0,0-.437.445v.444h3.5V1.334A.441.441,0,0,0,8.313.889Zm3.5,11.556A.442.442,0,0,1,8.75,12V5.778a.437.437,0,1,1,.875,0V12A.441.441,0,0,1,9.188,12.445Zm-4.375,0A.441.441,0,0,1,4.375,12V5.778a.437.437,0,1,1,.875,0V12A.442.442,0,0,1,4.812,12.445Z"
+                            transform="translate(4 3)"></path>
+                        </svg></div>
+                      <div class=" duplicate borderIcon">
+                        <svg xmlns="http://www.w3.org/2000/svg" style=" fill: #f6b504;  cursor: pointer;  margin: 12px;"
+                          width="12" height="14" viewBox="0 0 12 14">
+                          <path id="duplicate"
+                            d="M7.125,14H1.875A1.913,1.913,0,0,1,0,12.055v-7A1.913,1.913,0,0,1,1.875,3.111H3V1.945A1.913,1.913,0,0,1,4.874,0h4.5A.364.364,0,0,1,9.64.114l2.25,2.334a.391.391,0,0,1,.109.3v6.2a1.913,1.913,0,0,1-1.875,1.945H9v1.165A1.913,1.913,0,0,1,7.125,14ZM1.875,3.889A1.148,1.148,0,0,0,.75,5.055v7a1.148,1.148,0,0,0,1.125,1.167h5.25a1.148,1.148,0,0,0,1.124-1.167V10.89H6.374a.389.389,0,0,1,0-.778h3.75a1.148,1.148,0,0,0,1.125-1.167V3.112H9.374A.383.383,0,0,1,9,2.723V.778H4.874A1.148,1.148,0,0,0,3.75,1.945V5.833a.376.376,0,1,1-.751,0V3.889ZM9.749,1.329V2.334h.97ZM3.375,10.112A.365.365,0,0,1,3.109,10a.4.4,0,0,1,0-.55l3.86-4H5.624a.389.389,0,0,1,0-.778h2.25a.382.382,0,0,1,.375.388V7.389a.375.375,0,1,1-.75,0v-1.4L3.64,10A.365.365,0,0,1,3.375,10.112Z"
+                            fill="#f6b504"></path>
+                        </svg>
+                      </div>
+                      <div style="margin: auto;" class=" dropCategoriaButton ">
+
+                        <svg onclick="showMeContent($(this).parent().parent())" class="seta"
+                          xmlns="http://www.w3.org/2000/svg" style="fill: #fcfcfd; stroke: silver;" width="36" height="36"
+                          viewBox="0 0 36 36">
+                          <g transform="translate(36 36) rotate(180)">
+                            <g transform="translate(28 28) rotate(180)">
+                              <g class="b">
+                                <g class="c">
+                                  <circle class="e" cx="10" cy="10" r="10"></circle>
+                                  <circle class="f" cx="10" cy="10" r="9.5"></circle>
+                                </g>
+                                <path class="d"
+                                  d="M581.273,789.774a.82.82,0,0,1-.081-1.079l.081-.092,3.685-3.593-3.685-3.593a.82.82,0,0,1-.081-1.079l.081-.093a.849.849,0,0,1,1.094-.081l.094.081,4.279,4.179a.82.82,0,0,1,.081,1.079l-.081.093-4.279,4.179A.849.849,0,0,1,581.273,789.774Z"
+                                  transform="translate(795.009 -573.615) rotate(90)"></path>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="row conteudo" style="padding-left: 50px;">
+                    <div class="row" style="/* padding-left: 50px; */">
+                      <div class="col-md-2" style="padding: 55px;border-left: 1px dashed silver;">
+                        <button onclick="newRevenue('${categories[k].name?.replace(' ', '_')}')" class="btn ">
+                          <i class="icon-add icon-yellow"></i>
+                          <p style="margin: auto;"> Nova receita</p>
+
+                        </button>
+                        <p style="display: none" class="innerTitle">A ordem abaixou reflete na ordem da listagem da receita</p>
+
+
+                      </div>
+
+
+                    </div>
+                    <div id="${categories[k].name?.replace(' ', '_')}" >
+                      ${pegaReceita(categories[k].name, data2).html}
+                    </div>
+                  </div>
+                </div> `;
+
+
+    }
+    return html
+  }
+
+  function addReceita(targetId, dataValues) {
+    $("#" + targetId).append(
+      getRevenues(dataValues)
+    )
+  }
+
+
+
+  function getRevenues(data) {
+    //console.log('os dados',data)
+    let INDEX = Math.random().toFixed(2).replace('.', '')
+    let html = `
+        <div class="row">
+          <div class="col-md-2"
+            style="padding-left: 50px;border-left: 1px dashed silver;/* border-bottom: 1px dashed silver; *//* margin-top: -90px; */">
+            <div style="border-top: 1px dashed silver;margin: 40px -50px;"></div>
+          </div>
+          <div class="col-md-10" style="/* border-bottom: 1px dashed silver; *//* margin-top: 50px; */">
+
+            <div class="col-md-12 item"
+              style="/* margin-top: 20px; *//* margin-top: -30px; *//* position: absolute; */">
+              <div class="row cabecalho">
+                <div class="col-md-1" style="margin: auto;">
+                  <div class="row">
+                    <div style="margin: auto;" class="col-md-6">
+                      <svg class="iconGrid" xmlns="http://www.w3.org/2000/svg" style="fill: #687c97;"
+                        width="13.5" height="23" viewBox="0 0 9 16">
+                        <defs></defs>
+                        <path class="a"
+                          d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z">
+                        </path>
+                        <path class="a"
+                          d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
+                          transform="translate(5)"></path>
+                      </svg>
+                    </div>
+                    <div style="margin: auto;" class="col-md-6">
+                      <p class="negrito tipoReceita">${data.id}</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-md-2" style="margin: auto;">
+                  <p class="negrito">${data.title}</p>
+                </div>
+                <div class="col-md-2" style="margin: auto; opacity: 0">
+                  <label class="label totalSubCategorias"> Receitas</label>
+                </div>
+                <div class="col-md-2" style="margin: auto;">
+
+                  <div class="btn-active-page">
+                    <input ${data.status ? 'checked="true"' : ''} idRevenue="${data.id}" onchange="ativaReceita($(this))" type="checkbox" name="ativar-pagina23${INDEX}" id="ativar-pagina23${INDEX}">
+
+                      <label for="ativar-pagina23${INDEX}" class="btn-label">
+                        <i class="icon-checkbox"></i>
+
+                        Receita ${data.status ? 'ativa' : 'inativa'}
+                      </label>
+                  </div>
+                </div>
+                <div class="col-md-2" style="margin: auto;">
+                  <button onclick="meEdita(${data.id})" class="btn btn-inverse">
+                    <i></i>
+                    Editar Receita
+                  </button>
+                </div>
+                <div class="col-md-1" style="margin: auto;"></div>
+                <div class="col-md-2" style="margin: auto; display: inline-flex; gap: 20px">
+                  <div onclick="deleteRevenue(${data.id}, $(this))" class=" deleteThis borderIcon"><svg xmlns="http://www.w3.org/2000/svg" width="19"
+                    height="19" viewBox="0 0 21 21" style="fill: #f6b504;margin: 9px;">&gt;<defs></defs>
+                    <path class="a"
+                      d="M10.937,16H3.063A2.208,2.208,0,0,1,.875,13.778V2.666H.438a.444.444,0,0,1,0-.889H4.375V1.334A1.324,1.324,0,0,1,5.687,0H8.313A1.324,1.324,0,0,1,9.625,1.334v.444h3.937a.444.444,0,0,1,0,.889h-.437V13.778A2.208,2.208,0,0,1,10.937,16ZM1.75,2.666V13.778a1.325,1.325,0,0,0,1.313,1.334h7.875a1.325,1.325,0,0,0,1.313-1.334V2.666ZM5.687.889a.441.441,0,0,0-.437.445v.444h3.5V1.334A.441.441,0,0,0,8.313.889Zm3.5,11.556A.442.442,0,0,1,8.75,12V5.778a.437.437,0,1,1,.875,0V12A.441.441,0,0,1,9.188,12.445Zm-4.375,0A.441.441,0,0,1,4.375,12V5.778a.437.437,0,1,1,.875,0V12A.442.442,0,0,1,4.812,12.445Z"
+                      transform="translate(4 3)"></path>
+                  </svg></div>
+                  <div class=" duplicate borderIcon">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                      style=" fill: #f6b504;  cursor: pointer;  margin: 12px;" width="12" height="14"
+                      viewBox="0 0 12 14">
+                      <path id="duplicate"
+                        d="M7.125,14H1.875A1.913,1.913,0,0,1,0,12.055v-7A1.913,1.913,0,0,1,1.875,3.111H3V1.945A1.913,1.913,0,0,1,4.874,0h4.5A.364.364,0,0,1,9.64.114l2.25,2.334a.391.391,0,0,1,.109.3v6.2a1.913,1.913,0,0,1-1.875,1.945H9v1.165A1.913,1.913,0,0,1,7.125,14ZM1.875,3.889A1.148,1.148,0,0,0,.75,5.055v7a1.148,1.148,0,0,0,1.125,1.167h5.25a1.148,1.148,0,0,0,1.124-1.167V10.89H6.374a.389.389,0,0,1,0-.778h3.75a1.148,1.148,0,0,0,1.125-1.167V3.112H9.374A.383.383,0,0,1,9,2.723V.778H4.874A1.148,1.148,0,0,0,3.75,1.945V5.833a.376.376,0,1,1-.751,0V3.889ZM9.749,1.329V2.334h.97ZM3.375,10.112A.365.365,0,0,1,3.109,10a.4.4,0,0,1,0-.55l3.86-4H5.624a.389.389,0,0,1,0-.778h2.25a.382.382,0,0,1,.375.388V7.389a.375.375,0,1,1-.75,0v-1.4L3.64,10A.365.365,0,0,1,3.375,10.112Z"
+                        fill="#f6b504"></path>
+                    </svg>
+                  </div>
+                  <div style="margin: auto;" class=" dropCategoriaButton "><svg class="seta"
+                    xmlns="http://www.w3.org/2000/svg" style="fill: #fcfcfd; stroke: silver;" width="36"
+                    height="36" viewBox="0 0 36 36">
+                    <g transform="translate(36 36) rotate(180)">
+                      <g transform="translate(28 28) rotate(180)">
+                        <g class="b">
+                          <g class="c">
+                            <circle class="e" cx="10" cy="10" r="10"></circle>
+                            <circle class="f" cx="10" cy="10" r="9.5"></circle>
+                          </g>
+                          <path class="d"
+                            d="M581.273,789.774a.82.82,0,0,1-.081-1.079l.081-.092,3.685-3.593-3.685-3.593a.82.82,0,0,1-.081-1.079l.081-.093a.849.849,0,0,1,1.094-.081l.094.081,4.279,4.179a.82.82,0,0,1,.081,1.079l-.081.093-4.279,4.179A.849.849,0,0,1,581.273,789.774Z"
+                            transform="translate(795.009 -573.615) rotate(90)"></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg></div>
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>`;
+
+    return html
+  }
+
+  function meEdita(id) {
+    window.parent.location.replace('../receita_interna/' + id)
+  }
+  async function saveRevenuesCategories() {
+    let myRevenuesCategories = JSON.parse(localStorage.MY_REVENUES_CATEGORIES)
+    let myRevenues = JSON.parse(localStorage.MY_REVENUES)
+    for (const a in myRevenuesCategories) {
+      let columns = []
+      for (const k in myRevenuesCategories[a]) {
+        if (k != 'id' && k != 'updatedAt' && k != 'createdAt') {
+          columns.push({
+            column: k,
+            value: myRevenuesCategories[a][k]
+          })
+        }
+
+      }
+
+
+      await $.ajax({
+        type: 'POST',
+        url: mainHost + '/updateById',
+        headers: {
+          "x-access-token": localStorage.token,
+        },
+        data: {
+          "table": "revenues_categories",
+          "name_id": "id",
+          "value_id": myRevenuesCategories[a].id,
+          "fields": columns
+        },
+        success: function (data) {
+          window.parent.informar("alert-success", "As alterações foram salvas!", 3000)
+        },
+        error: function (data) {
+          window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+        },
+        complete: function () {
+          // ao final da requisição...
+        }
+      });
+
+      await $.ajax({
+        type: 'POST',
+        url: mainHost + '/singleUpdate',
+        headers: {
+          "x-access-token": localStorage.token,
+        },
+        data: {
+          "table": "masters",
+          "column": "master_banner_revenues",
+          "newValue": $("#bannerPrincipal").attr("value"),
+          "columnId": "id",
+          "idValue": localStorage.MASTER_ID
+        },
+        success: function (data) {
+          window.parent.informar("alert-success", "As alterações foram salvas!", 3000)
+          setTimeout(() => {
+            window.parent.location.reload()
+          }, 2000);
+        },
+        error: function (data) {
+          window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+        },
+        complete: function () {
+          // ao final da requisição...
+        }
+      });
+
+    }
+
+    function getFile(target) {
+      $("#fileBannerCat").attr("target", target.attr("target"))
+      $("#fileBannerCat").click()
+    }
+
+    function getImageFromSite(element) {
+      var data = new FormData();
+      var contador = 1;
+      data.append('fileimagem', element[0].files[0]);
+      $.ajax({
+        url: mainHost + '/uploadBanners/' + localStorage.MASTER_ID,
+        headers: {
+          "x-access-token": localStorage.token,
+          "master_id": localStorage.MASTER_ID
+        },
+        data: data,
+        processData: false,
+        contentType: false,
+        type: 'PUT',
+        success: function (data) {
+          //console.log(data)
+          $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'http://localhost:6060')})`)
+          $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+          $("#" + element.attr("target")).css("background-size", "cover !important")
+          $("#" + element.attr("target")).css("background-position", "center !important")
+          $("#" + element.attr("target")).css("zoom", "100% !important")
+
+
+
+          //console.log(element.parent().parent().find('input'))
+          //console.log(`${data.path?.replace('./public', 'http://localhost:6060')}`)
+
+
+
+        },
+        error: function (data) {
+          //console.log(data)
+        }
+      });
+
+    }
+
+    async function salvaNovaCat() {
+      if ($("modalRevenue").attr("id") == "NOVA") {
+        let active = $("#ativar-pagina2")[0].checked ? 1 : 0
+        let name = $("#nameCategory").val()
+        let imagen = $("#bannerCat1").attr("value")
+        let data = {
+          status: active,
+          image: imagen,
+          name: name,
+          subcategories: '[]'
+        }
+        await novaCategoriaRevenue(data)
+      } else
+
+        if ($("modalRevenue").attr("id") == "TODAS") {
+
+        } else {
+          let active = $("#ativar-pagina2")[0].checked ? 1 : 0
+          let name = $("#nameCategory").val()
+          let imagen = $("#bannerCat1").attr("value")
+          let MY_CATS = []
+          try {
+            MY_CATS = JSON.parse(localStorage.MY_REVENUES_CATEGORIES)
+          } catch (e) { }
+          for (const k in MY_CATS) {
+            if (MY_CATS[k].id == Number($("modalRevenue").attr("id"))) {
+              MY_CATS[k]['status'] = active
+              MY_CATS[k]['image'] = imagen
+              MY_CATS[k]['name'] = name
+            }
+          }
+          localStorage.MY_REVENUES_CATEGORIES = JSON.stringify(MY_CATS)
+          $(".listCategoriasRevenues").html(
+            getCategoriesRevenues(MY_CATS)
+          )
+
+        }
+
+
+      $("modalRevenue").hide()
+    }
+
+
+
+    async function newRevenue(category) {
+
+      await $.ajax({
+        type: 'POST',
+        url: mainHost + '/insertNew',
+        headers: {
+          "x-access-token": localStorage.token,
+        },
+        data: {
+          "table": "revenues",
+          "fields": [
+            { "column": "master_id", "value": Number(localStorage.MASTER_ID) },
+            { "column": "category", "value": category },
+            { "column": "status", "value": Number(1) },
+            { "column": "banner_topo", "value": "" },
+            { "column": "title", "value": "NOVA RECEITA EDITÁVEL" },
+            { "column": "image", "value": "" },
+            { "column": "tempo_minutos", "value": Number(1) },
+            { "column": "porcoes", "value": Number(1) },
+            { "column": "product_list", "value": "" },
+            { "column": "ingredientes", "value": "" },
+            { "column": "modo_preparo", "value": "" },
+            { "column": "midia", "value": "" }
+          ]
+        },
+        success: function (data) {
+          addReceita(
+            category,
+            {
+              "id": data.insertId,
+              "master_id": Number(localStorage.MASTER_ID),
+              "status": 1,
+              "banner_topo": "",
+              "title": "NOVA RECEITA EDITÁVEL",
+              "mage": "",
+              "tempo_minutos": 1,
+              "porcoes": 1,
+              "product_list": "",
+              "ingredientes": "",
+              "modo_preparo": "",
+              "midia": ""
+            }
+          )
+          window.parent.informar("alert-success", "As alterações foram salvas!", 3000)
+
+        },
+        error: function (data) {
+          window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+        },
+        complete: function () {
+          // ao final da requisição...
+        }
+      });
+
+    }
+
+    async function novaCategoriaRevenue(data) {
+
+      await $.ajax({
+        type: 'POST',
+        url: mainHost + '/insertNew',
+        headers: {
+          "x-access-token": localStorage.token,
+        },
+        data: {
+          "table": "revenues_categories",
+          "fields": [
+            { "column": "master_id", "value": Number(localStorage.MASTER_ID) },
+            { "column": "status", "value": Number(data.status) },
+            { "column": "name", "value": data.name },
+            { "column": "image", "value": data.image },
+
+            { "column": "subcategories", "value": data.subcategories }
+          ]
+        },
+        success: function (data) {
+          window.parent.informar("alert-success", "As alterações foram salvas!", 3000)
+          setTimeout(() => {
+            window.parent.location.reload()
+          }, 2000);
+        },
+        error: function (data) {
+          window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+        },
+        complete: function () {
+          // ao final da requisição...
+        }
+      });
+    }
+
+
+    function ativaReceita(element) {
+      let id = Number(element.attr("idRevenue"))
+      let newValue = 0
+      if (element[0].checked) {
+        newValue = 1
+      }
+      let REVs = JSON.parse(localStorage.MY_REVENUES)
+      for (const k in REVs) {
+        if (REVs[k].id == id) {
+          REVs[k]['status'] = newValue
+        }
+      }
+
+      localStorage.MY_REVENUES = JSON.stringify(REVs)
+    }
+
+    async function deleteRevenue(ID, element) {
+      if (ID) {
+        await $.ajax({
+          type: 'POST',
+          url: mainHost + '/deleteById',
+          headers: {
+            "x-access-token": localStorage.token,
+          },
+          data: {
+            "table": "revenues",
+            "item_id": ID
+          },
+          success: function (data) {
+            window.parent.informar("alert-success", "Receita removida com sucesso!", 3000)
+
+            element.parent().parent().parent().parent().remove()
+          },
+          error: function (data) {
+            window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+          },
+          complete: function () {
+            // ao final da requisição...
+          }
+        });
+
+      }
+
+
+    }
+
+
+  }
+
+  for (const a in myRevenues) {
+    let columns = []
+    for (const k in myRevenues[a]) {
+      if (k != 'id' && k != 'updatedAt' && k != 'createdAt') {
+        columns.push({
+          column: k,
+          value: myRevenues[a][k]
+        })
+      }
+
+    }
+
+
+    await $.ajax({
+      type: 'POST',
+      url: mainHost + '/updateById',
+      headers: {
+        "x-access-token": localStorage.token,
+      },
+      data: {
+        "table": "revenues",
+        "name_id": "id",
+        "value_id": myRevenues[a].id,
+        "fields": columns
+      },
+      success: function (data) {
+        window.parent.informar("alert-success", "As alterações foram salvas!", 3000)
+      },
+      error: function (data) {
+        window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+      },
+      complete: function () {
+        // ao final da requisição...
+      }
+    });
+
+  }
+
+  await $.ajax({
+    type: 'POST',
+    url: mainHost + '/singleUpdate',
+    headers: {
+      "x-access-token": localStorage.token,
+    },
+    data: {
+      "table": "masters",
+      "column": "master_banner_revenues",
+      "newValue": $("#bannerPrincipal").attr("value"),
+      "columnId": "id",
+      "idValue": localStorage.MASTER_ID
+    },
+    success: function (data) {
+      window.parent.informar("alert-success", "As alterações foram salvas!", 3000)
+      setTimeout(() => {
+        window.parent.location.reload()
+      }, 2000);
+    },
+    error: function (data) {
+      window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+    },
+    complete: function () {
+      // ao final da requisição...
+    }
+  });
+
+
+
+  function getFile(target) {
+    $("#fileBannerCat").attr("target", target.attr("target"))
+    $("#fileBannerCat").click()
+  }
+
+  function getImageFromSite(element) {
+    var data = new FormData();
+    var contador = 1;
+    data.append('fileimagem', element[0].files[0]);
+    $.ajax({
+      url: mainHost + '/uploadBanners/' + localStorage.MASTER_ID,
+      headers: {
+        "x-access-token": localStorage.token,
+        "master_id": localStorage.MASTER_ID
+      },
+      data: data,
+      processData: false,
+      contentType: false,
+      type: 'PUT',
+      success: function (data) {
+        //console.log(data)
+        $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'http://localhost:6060')})`)
+        $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+        $("#" + element.attr("target")).css("background-size", "cover !important")
+        $("#" + element.attr("target")).css("background-position", "center !important")
+        $("#" + element.attr("target")).css("zoom", "100% !important")
+
+
+
+        //console.log(element.parent().parent().find('input'))
+        //console.log(`${data.path?.replace('./public', 'http://localhost:6060')}`)
+
+
+
+      },
+      error: function (data) {
+        //console.log(data)
+      }
+    });
+
+  }
+
+  async function salvaNovaCat() {
+    if ($("modalRevenue").attr("id") == "NOVA") {
+      let active = $("#ativar-pagina2")[0].checked ? 1 : 0
+      let name = $("#nameCategory").val()
+      let imagen = $("#bannerCat1").attr("value")
+      let data = {
+        status: active,
+        image: imagen,
+        name: name,
+        subcategories: '[]'
+      }
+      await novaCategoriaRevenue(data)
+    } else
+
+      if ($("modalRevenue").attr("id") == "TODAS") {
+
+      } else {
+        let active = $("#ativar-pagina2")[0].checked ? 1 : 0
+        let name = $("#nameCategory").val()
+        let imagen = $("#bannerCat1").attr("value")
+        let MY_CATS = []
+        try {
+          MY_CATS = JSON.parse(localStorage.MY_REVENUES_CATEGORIES)
+        } catch (e) { }
+        for (const k in MY_CATS) {
+          if (MY_CATS[k].id == Number($("modalRevenue").attr("id"))) {
+            MY_CATS[k]['status'] = active
+            MY_CATS[k]['image'] = imagen
+            MY_CATS[k]['name'] = name
+          }
+        }
+        localStorage.MY_REVENUES_CATEGORIES = JSON.stringify(MY_CATS)
+        $(".listCategoriasRevenues").html(
+          getCategoriesRevenues(MY_CATS)
+        )
+
+      }
+
+
+    $("modalRevenue").hide()
+  }
+
+
+
+  async function newRevenue(category) {
+
+    await $.ajax({
+      type: 'POST',
+      url: mainHost + '/insertNew',
+      headers: {
+        "x-access-token": localStorage.token,
+      },
+      data: {
+        "table": "revenues",
+        "fields": [
+          { "column": "master_id", "value": Number(localStorage.MASTER_ID) },
+          { "column": "category", "value": category },
+          { "column": "status", "value": Number(1) },
+          { "column": "banner_topo", "value": "" },
+          { "column": "title", "value": "NOVA RECEITA EDITÁVEL" },
+          { "column": "image", "value": "" },
+          { "column": "tempo_minutos", "value": Number(1) },
+          { "column": "porcoes", "value": Number(1) },
+          { "column": "product_list", "value": "" },
+          { "column": "ingredientes", "value": "" },
+          { "column": "modo_preparo", "value": "" },
+          { "column": "midia", "value": "" }
+        ]
+      },
+      success: function (data) {
+        addReceita(
+          category,
+          {
+            "id": data.insertId,
+            "master_id": Number(localStorage.MASTER_ID),
+            "status": 1,
+            "banner_topo": "",
+            "title": "NOVA RECEITA EDITÁVEL",
+            "mage": "",
+            "tempo_minutos": 1,
+            "porcoes": 1,
+            "product_list": "",
+            "ingredientes": "",
+            "modo_preparo": "",
+            "midia": ""
+          }
+        )
+        window.parent.informar("alert-success", "As alterações foram salvas!", 3000)
+
+      },
+      error: function (data) {
+        window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+      },
+      complete: function () {
+        // ao final da requisição...
+      }
+    });
+
+  }
+
+  async function novaCategoriaRevenue(data) {
+
+    await $.ajax({
+      type: 'POST',
+      url: mainHost + '/insertNew',
+      headers: {
+        "x-access-token": localStorage.token,
+      },
+      data: {
+        "table": "revenues_categories",
+        "fields": [
+          { "column": "master_id", "value": Number(localStorage.MASTER_ID) },
+          { "column": "status", "value": Number(data.status) },
+          { "column": "name", "value": data.name },
+          { "column": "image", "value": data.image },
+
+          { "column": "subcategories", "value": data.subcategories }
+        ]
+      },
+      success: function (data) {
+        window.parent.informar("alert-success", "As alterações foram salvas!", 3000)
+        setTimeout(() => {
+          window.parent.location.reload()
+        }, 2000);
+      },
+      error: function (data) {
+        window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+      },
+      complete: function () {
+        // ao final da requisição...
+      }
+    });
+  }
+
+
+  function ativaReceita(element) {
+    let id = Number(element.attr("idRevenue"))
+    let newValue = 0
+    if (element[0].checked) {
+      newValue = 1
+    }
+    let REVs = JSON.parse(localStorage.MY_REVENUES)
+    for (const k in REVs) {
+      if (REVs[k].id == id) {
+        REVs[k]['status'] = newValue
+      }
+    }
+
+    localStorage.MY_REVENUES = JSON.stringify(REVs)
+  }
+
+  async function deleteRevenue(ID, element) {
+    if (ID) {
+      await $.ajax({
+        type: 'POST',
+        url: mainHost + '/deleteById',
+        headers: {
+          "x-access-token": localStorage.token,
+        },
+        data: {
+          "table": "revenues",
+          "item_id": ID
+        },
+        success: function (data) {
+          window.parent.informar("alert-success", "Receita removida com sucesso!", 3000)
+
+          element.parent().parent().parent().parent().remove()
+        },
+        error: function (data) {
+          window.parent.informar("alert-danger", "Algo saiu errado, alterações não foram salvas!", 3000)
+        },
+        complete: function () {
+          // ao final da requisição...
+        }
+      });
+
+    }
+
+
+  }
+</script>
+
+</html>

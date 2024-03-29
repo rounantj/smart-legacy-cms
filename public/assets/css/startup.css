@@ -1,0 +1,891 @@
+.centro{
+    margin-top: 5%;
+}
+.alert{
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 600px;
+    display: none;
+}
+.sideBar{
+    top: 0px; 
+    margin-left: -2.2%; 
+    left: 0px; 
+    /*width: 469px; */
+    height: 768px; 
+    background: #50c682 0% 0% no-repeat padding-box; 
+    opacity: 1;
+  
+}
+.sideBar2{
+    top: 0px;
+    margin-left: -16px;
+    left: 0px;
+    max-width: 70vh;
+    height: 100vh;
+    min-width: 469px;
+    background: #50C682 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.containerPlus{
+    max-width: 1366px;   
+    left: 475px;
+    width: 100%;
+    height: 768px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.cardLoja{
+    background: #DCEFE326 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6A6A6A19;
+    border: 2px solid #50C682;
+    border-radius: 5px;
+    opacity: 1;
+    width: 317px;
+    height: 550px;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 20px;
+}
+.cardAddLoja{
+    background: #FCFFFD 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6A6A6A19;
+    border: 2px solid #EDEDED;
+    border-radius: 5px;
+    opacity: 1;
+    width: 317px;
+    height: 550px;
+    margin-left: 10px;
+    margin-top: 10px;
+   
+}
+.verticalScroll{
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-arrow-color:#000000 !important;
+    scrollbar-3dlight-color:#000000 !important;
+    scrollbar-highlight-color:#FF0000 !important;
+    scrollbar-face-color:#FFFFFF !important;
+    scrollbar-shadow-color:#0000FF !important;
+    scrollbar-darkshadow-color:#FFFF00 !important;
+    scrollbar-track-color:#00FF00 !important;  
+}
+.notScroll::-webkit-scrollbar { 
+    display: none; 
+}
+.btnPlusAddLoja{
+    width: 76px;
+    height: 76px;
+    background: #DCEFE3 0% 0% no-repeat padding-box;
+    border-radius: 38px;
+    opacity: 1;
+    margin: 200px auto;
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #50C682;
+}
+.btnContinueComLoja{
+    width: 206px;
+    height: 53px;
+    background: #50C682 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    opacity: 1;
+    float: right;
+    padding-top: 14px;
+    margin: 25px;
+}
+.btnEscolhaGrande{
+    width: 206px;
+    height: 53px;
+    background: #50C682 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    opacity: 1;
+    padding-top: 25px;
+    margin:  auto;
+}
+.btnSalvaLoja{
+    width: 106px;
+    height: 30px;
+    background: #50C682 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    opacity: 1;
+    float: right;
+    padding-top: 5px;
+    margin: -5px;
+    display: none;
+    cursor: pointer;
+}
+
+.txtSalvaLoja{
+    text-align: center;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+.txtContinueComLoja{
+    text-align: center;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+.txtContinue{
+    text-align: center;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    margin: 15px auto;
+}
+.btnPula{
+    width: 86px;
+    height: 53px;
+   
+    border-radius: 5px;
+    opacity: 1;
+    float: right;
+    padding-top: 14px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+.txtPula{
+    text-align: left;
+    font: normal normal 300 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+}
+.txtVolta{
+    text-align: left;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+
+}
+
+.tituloP{
+    text-align: left;
+    font: normal normal bold 27px/35px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+}
+.subTituloP{
+    text-align: left;
+    font: normal normal 300 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+}
+.selectedIcon{
+    position: relative;
+    margin: -70px -15px auto -15px;
+}
+.cardTitulo{
+    text-align: left;
+    font: normal normal bold 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+    
+}
+.cardLabel{
+    text-align: left;
+    font: normal normal normal 12px/16px Roboto;
+    letter-spacing: 0px;
+    color: #50C682;
+    opacity: 1;
+    float: left;
+}
+.cardConteudo{
+    text-align: left;
+    font: normal normal 300 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+    margin-top: 35px;
+}
+.iconPlus{
+
+}
+.innerText{
+    text-align: center;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+    margin: -200px auto;
+
+}
+.edtarText{
+    text-align: left;
+    font: normal normal 300 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #50C682;
+    opacity: 1;
+    float: left;
+    margin: 6% 33%;
+}
+
+.step{
+    width: 20%;
+    border: 1px solid white; 
+    margin-left: 2.5%;
+    min-height: 10px;
+    border-radius: 2px;
+    opacity: 1;
+}
+.fieldSteps{
+    max-width: 15vh !important;
+    min-width: 200px;
+    bottom: 200px;
+    position: absolute;
+    left: 25vh;
+}
+ 
+.lab{
+   
+    max-width: 70%;
+  
+    margin: 25% auto;
+    text-align: left;
+}
+.txtDescrevePagina{
+
+    text-align: left;
+    font: normal normal 300 16px/22px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+.hiperText{
+    text-align: left;
+    font: normal normal bold 48px/63px Roboto;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 1;
+}
+
+.cardSegmento{
+    width: 206px;
+    height: 214px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DCF4E6;
+    border-radius: 5px;
+    opacity: 1;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.subLabel{
+    text-align: center;
+    font: normal normal bold 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+}
+.segmentoActive{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6A6A6A19;
+    border: 2px solid #50C682;
+    border-radius: 5px;
+    opacity: 1;
+    
+}
+.selectedSegment{
+    display: none;
+    display: none;
+    position: relative;
+    /* margin: -180px 70px; */
+    margin-top: -30px;
+    margin-left: 12px;
+
+    background: #50C682;
+    border-radius: 100%;
+}
+.selectedFeature{
+    display: none;
+    position: relative;
+    margin-top: -30px;
+    margin-left: 12px;
+    background: #50C682;
+    border-radius: 100%;
+}
+.featureActive{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6A6A6A19;
+    border: 2px solid #50C682 !important;
+    border-radius: 5px;
+    opacity: 1;
+}
+.figuraIcon{
+    margin: auto;
+}
+.fieldsTeam{
+    width: 720px;
+    min-height: 128px;
+    max-height: 600px !important;
+    background: #FCFFFD 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6A6A6A19;
+    border: 2px solid #EDEDED;
+    border-radius: 5px;
+    opacity: 1;
+    padding: 20px;
+    margin-top: 10px;
+}
+.fieldText{
+    text-align: left;
+    font: normal normal 300 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+}
+.lineRow{
+    width: 200px;
+    height: 3px;
+    background: #50C682 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 5px #6A6A6A08;
+    border-radius: 1px;
+    opacity: 1;
+}
+.proprietario{
+    width: 650px;
+    height: 53px;
+    background: #DCEFE326 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6a6a6a19;
+    border: 1px solid #DCF4E6;
+    border-radius: 5px;
+    opacity: 1;
+    padding-top: 10px;
+    padding-left: 25px;
+    margin-top: 15px;
+}
+.funcionario{
+    width: 650px;
+    height: 53px;
+    background: #FFFBF2 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6a6a6a19;
+    border: 1px solid #DCF4E6;
+    border-radius: 5px;
+    opacity: 1;
+    padding-top: 10px;
+    padding-left: 25px;
+    margin-top: 15px;
+}
+.iconFuncionario{
+    width: 30px;
+    height: 30px;
+    background: #f6b504 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 100%;
+    padding: 0px;
+    color: white;
+    font-size: 20px;
+}
+
+.iconMaster{
+    width: 30px;
+    height: 30px;
+    background: #50C682 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 100%;
+    padding: 0px;
+    color: white;
+    font-size: 20px;
+}
+.contatoText{
+    text-align: left;
+    font: normal normal 300 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+    max-width: 55%;
+    margin: auto;
+}
+.txtProp{
+    text-align: left;
+    font: normal normal bold 12px/16px Roboto;
+    letter-spacing: 0px;
+    color: #50C682;
+    text-transform: uppercase;
+    opacity: 1;
+    max-width: 25%;
+    float: right;
+    margin: auto;
+}
+.txtFuncionario{
+    text-align: left;
+    font: normal normal bold 12px/16px Roboto;
+    letter-spacing: 0px;
+    color: #f6b504;
+    text-transform: uppercase;
+    opacity: 1;
+    max-width: 25%;
+    float: right;
+    margin: auto;
+}
+.addPessoas{
+    width: 35px;
+    height: 35px;
+    background: #DCEFE3 0% 0% no-repeat padding-box;
+    border-radius: 38px;
+    opacity: 1;
+    margin: 25px 0px 25px 14px;
+    font-size: 20px;
+    font-weight: bold;   
+    color: #50C682;
+}
+.txtAddPessoas{
+    text-align: left;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+    margin: 35px 0px;
+    max-width: 80%;
+}
+.continuar, .voltar{
+    cursor: pointer;
+}
+.superTextoUpper{
+    text-align: center;
+    font: normal normal bold 24px/28px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+    margin-top: 60px;
+}
+.superTextoUpper2{
+    text-align: center;
+    font: normal normal bold 16px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+    margin-top: 60px;
+}
+.cardEscolhaContinua{
+    width: 428px;
+    height: 400px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DCF4E6;
+    border-radius: 5px;
+    opacity: 1;
+    margin: auto;
+}
+.iconeGrandeFoto{
+    margin: 25px auto;
+}
+.textoGrandeEscolha{
+    text-align: center;
+    font: normal normal bold 27px/35px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+}
+.textoGrandeSub{
+    text-align: center;
+    font: normal normal 300 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+}
+.areaDrop{
+    width: 872px;
+    height: 400px;
+    margin: auto;
+}
+.contentDrop{
+    width: 872px;
+    height: 400px;
+    background: #DCEFE326 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6A6A6A19;
+    border: 2px dashed #50C682;
+    border-radius: 5px;
+    opacity: 1;
+    margin: auto;
+    padding: 25px;
+}
+.tobeContinued{
+    width: 206px;
+    height: 53px;
+    background: #50C682 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    opacity: 0.5;
+    float: right;
+    margin-top: 20px;
+  
+}
+.arrowLeft{
+    width: 28px;
+    height: 27px;
+    border: 1px solid #333333;
+    opacity: 1;
+    border-radius: 100%;
+    padding: 1px;
+}
+.superSubTextoUpper{
+    text-align: center;
+    font: normal normal 300 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+}
+.superSubTextoUpper2{
+    text-align: center;
+    font: normal normal 300 14px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+}
+.corSelecionada{
+ 
+    border: 1px solid #D9D9D9;
+    border-radius: 100%;
+    opacity: 1;
+    width: 41px;
+    height: 41px;
+    margin: auto;
+}
+.imagemUpload{
+    width: 206px;
+    height: 170px;
+    background: #2E7B4A26 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6A6A6A19;
+    border: 2px solid #50C682;
+    border-radius: 5px;
+    opacity: 1;
+    margin: auto;
+
+}
+.imgSrc{
+    width: 176px;
+    height: 120px;
+    background-position: center !important;
+    background-size: 90% !important;
+    background-repeat: no-repeat !important;
+    zoom: 100% !important;
+    background: transparent url('https://media-exp1.licdn.com/dms/image/C4E0BAQGmqEmPk4N2Lw/company-logo_200_200/0/1610753665925?e=2159024400&v=beta&t=nmflB5jt_sdM-9nQ_sk79wrNvNYpEFrzygCUYb7JZZA') 0% 0% no-repeat padding-box;
+    opacity: 1;
+    margin: auto !important;
+}
+.areaImg{
+    width: 202px;
+    height: 126px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 3px 3px 0px 0px;
+    opacity: 1;
+}
+.temaSelect{
+    width: 257px;
+    height: 104px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6A6A6A19;
+    border: 1px solid #DCF4E6;
+    border-radius: 5px;
+    opacity: 1;
+    margin: auto;
+    cursor: pointer;
+}
+.temaSelectActive{    
+    border: 2px solid #50C682 !important;     
+}
+
+.tagCatSelect{
+    width: 220px;
+    height: 41px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 10px #6a6a6a19;
+    border-radius: 25px;
+    opacity: 1;
+    margin: 10px auto;
+    display: inline-flex;
+    cursor: pointer;
+}
+.txtCatSele{s
+   
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0.13px;
+    color: #999797;
+    opacity: 1;
+    margin: 10px auto auto 5px;
+    text-align: center;
+}
+.txtActive{
+    color: #50C682 !important;
+}
+.tagActive{
+    border: 1px solid #50C682 !important;
+}
+.feature{
+    width: 317px;
+    height: 230px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DCF4E6;
+    opacity: 1;
+    margin: auto;
+    cursor: pointer;
+}
+.imgBanner{
+    margin: auto;
+}
+.banner{
+    height: 225px;
+
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+.conteudo4{
+    z-index: 1;
+    margin-top: -150px;
+}
+.loading{
+    width: 522px;
+    max-height: 15px;
+    padding: 3px;
+    margin: 100px auto 15px auto;
+    background: #EFEFEF 0% 0% no-repeat padding-box;
+    border-radius: 14px;
+    opacity: 1;
+}
+.conteudoLoading{
+    width: 174px;
+    height: 9px;
+  
+    background: #50C682 0% 0% no-repeat padding-box;
+    border-radius: 14px;
+    opacity: 1;
+}
+.textoLoading{
+    text-align: left;
+    font: normal normal 300 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+    margin: auto auto 5px auto;
+    max-width: 60%;
+}
+.bootbox-close-button{
+    border-radius: 100%!important;
+    border: 2px solid silver !important;
+    width: 50px;
+   
+    background: white;
+    height: 50px;
+}
+.close{
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-weight: bold;
+    line-height: 0.5;
+    color: silver;
+}
+.addPessoasClick{
+    cursor: pointer;
+}
+.textoModal{
+    text-align: center;
+    font: normal normal bold 24px/32px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    margin-top: 50px;
+    opacity: 1;
+}
+.digito{
+    width: 50px !important;
+    height: 50px !important;
+    background: #F0F0F0 0% 0% no-repeat padding-box !important;
+    opacity: 1 !important;
+    text-align: center !important;
+    font: normal normal 300 24px/32px Roboto !important;
+    letter-spacing: 0px !important;
+    color: #333333 !important;
+    opacity: 1 !important;
+}
+.tituloUm{
+    text-align: center;
+    font: normal normal normal 24px/32px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+}
+.emailUm{
+    text-align: center;
+    font: normal normal bold 20px/25px Helvetica Neue;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+}
+.reenviar{
+    text-align: center;
+    font: normal normal bold 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #50C682;
+    opacity: 1;
+    cursor: pointer;
+}
+.fazerLogin{
+    text-align: center;
+    font: normal normal bold 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #50C682;
+    opacity: 1;
+    cursor: pointer;
+}
+.subTextoModal{
+    text-align: left;
+    font: normal normal 300 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    text-align: center;
+    opacity: 1;
+}
+.subCardModal{
+    width: 206px;
+    height: 214px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DCF4E6;
+    border-radius: 5px;
+    opacity: 1;
+    margin:auto;
+    padding: 10px;
+    cursor: pointer;
+}
+.subCardSelected{
+ 
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 2px solid #50C682;
+    border-radius: 5px;
+    opacity: 1;
+}
+.txtSubCard{
+    text-align: center;
+    font: normal normal bold 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #B4B4B4;
+    opacity: 1;
+}
+.txtEscolhido{
+    text-align: center;
+    font: normal normal bold 16px/21px Roboto;
+    letter-spacing: 0px;    
+    color: #333333;
+    opacity: 1;
+}
+.itemEscolhido{
+    text-align: left;
+    font: normal normal 300 16px  Roboto;
+    letter-spacing: 0px;
+    color: #999797;
+    opacity: 1;
+    max-width: 85%;
+}
+.subSub{
+    text-align: left;
+    font: normal normal 300 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+    margin: 2% 11%;
+}
+.areaMail{
+    width: 650px;
+    height: 171px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #50C682;
+    border-radius: 5px;
+    opacity: 1;
+    margin: auto;
+    padding: 15px;
+    max-height: 171px;
+}
+.subSub2{
+    text-align: left;
+    font: normal normal 300 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+}
+.mail{
+    height: 36px;
+    background: #F0F0F0 0% 0% no-repeat padding-box;
+    border-radius: 34px;
+    opacity: 1;
+    width: auto;
+    white-space: normal;
+    display: inline-flex;
+    margin: 5px 5px;
+    padding: 5px 15px;
+}
+.mails{
+    margin: 5px 40px;
+}
+.anotherMails{
+    margin: -50px 65px;
+ 
+}
+.vaiEmail{
+    width: auto;
+    min-width: 150px;
+    border: none;
+    border-bottom: 1px solid silver;
+    /* float: right; */
+    height: 50px;
+}
+.hoverDashed{
+    border: 2px dashed red;
+    background: rgba(0,10.15,0,0.1);
+}
+.spinner-border{
+    width: 250px;
+    height: 250px;
+    margin: 50px auto;
+}
+.arraste{
+    width: 248px;
+    height: 24px;
+    margin: 25px  auto;
+    text-align: center;
+    font: normal normal 300 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+}
+.ou{
+    width: 40px;
+    height: 24px;
+    margin: 25px auto;
+    text-align: center;
+    font: normal normal bold 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #6A6A6A;
+    opacity: 1;
+
+}
+.btnDropPC{
+    width: 299px;
+    height: 53px;
+    background: #50C682 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    opacity: 1;
+    margin: 50px auto;
+    padding: 5px;
+    cursor: pointer;
+}
+.btnDropText{
+    width: 250px;
+    height: 21px;
+    text-align: center;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    margin: 10px auto;
+    cursor: pointer;
+
+}

@@ -1,0 +1,385 @@
+ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<style>
+   
+:root {
+
+/* Colors: */
+--unnamed-color-000000: #000000;
+--unnamed-color-6a6a6a: #6A6A6A;
+
+/* Font/text values */
+--unnamed-font-family-roboto: Roboto;
+--unnamed-font-style-normal: normal;
+--unnamed-font-weight-300: 300px;
+--unnamed-font-size-24: 24px;
+--unnamed-character-spacing-0: 0px;
+--unnamed-line-spacing-32: 32px;
+}
+
+/* Character Styles */
+.título-vitrines {
+font-family: var(--unnamed-font-family-roboto);
+font-style: var(--unnamed-font-style-normal);
+font-weight: var(--unnamed-font-weight-300);
+font-size: var(--unnamed-font-size-24);
+line-height: var(--unnamed-line-spacing-32);
+letter-spacing: var(--unnamed-character-spacing-0);
+color: var(--unnamed-color-6a6a6a);
+}
+.titulo{
+
+
+    font: var(--unnamed-font-style-normal) normal bold 500 32px/43px var(--unnamed-font-family-roboto);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    text-align: left;
+  
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+    font-size: 1.6rem;
+    
+
+}
+.sub{
+
+font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) 18px/var(--unnamed-line-spacing-32) var(--unnamed-font-family-roboto);
+letter-spacing: var(--unnamed-character-spacing-0);
+color: var(--unnamed-color-6a6a6a);
+text-align: center;
+font: normal normal 300 18px/32px Roboto;
+letter-spacing: 0px;
+color: #6A6A6A;
+opacity: 1;
+}
+h3{
+
+font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) var(--unnamed-font-size-24)/var(--unnamed-line-spacing-32) var(--unnamed-font-family-roboto);
+letter-spacing: var(--unnamed-character-spacing-0);
+color: var(--unnamed-color-6a6a6a);
+text-align: center;
+font: normal normal 300 24px/32px Roboto;
+letter-spacing: 0px;
+color: #6A6A6A;
+opacity: 1;
+}
+.inputTXT{
+
+    width: 100%;
+    height: 52px;
+    background: #F0F0F0 0% 0% no-repeat padding-box;
+    border: 1px solid #EFEFEF;
+    border-radius: 5px;
+    opacity: 1;
+    font-weight: normal;
+    font-size: 1.2rem;
+    margin-top: 5%;
+    margin-left: 10%;
+}
+.btnStart{
+
+
+width: 250px;
+height: 53px;
+background: #50C682 0% 0% no-repeat padding-box;
+border-radius: 5px;
+opacity: 1;
+float: right !important;
+margin-top: 5%;
+margin-right: -10%;
+}
+.fale{
+
+height: 21px;
+font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) 300 16px/21px var(--unnamed-font-family-roboto);
+letter-spacing: var(--unnamed-character-spacing-0);
+color: var(--unnamed-color-6a6a6a);
+text-align: center;
+font: normal normal 300 16px/21px Roboto;
+letter-spacing: 0px;
+color: #6A6A6A;
+opacity: 1;
+}
+.lead{
+
+font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) 42px/52px var(--unnamed-font-family-roboto);
+letter-spacing: var(--unnamed-character-spacing-0);
+color: var(--unnamed-color-6a6a6a);
+text-align: left;
+font: normal normal 300 42px/52px Roboto;
+letter-spacing: 0px;
+color: #6A6A6A;
+opacity: 1;
+}
+
+.centro{
+    margin-top: 5%;
+}
+.active{
+       background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+
+
+</style>
+<div  class="container" style="background: #FFFFFF 0% 0% no-repeat padding-box;">
+           <div class="d-md-flex "  >
+            <div style="height: 101vh; padding: 10px 25px"  class=" text-center text-white overflow-hidden sideBar2"  >
+                <div class="logoSVG"></div>
+            
+            <br>
+
+            <div class="lab">
+                <h4 class="hiperText">Parabens<br>sua primeira<br>loja foi criada</h4>
+                <h5 class="txtDescrevePagina">
+                    Agora você pode editar as lojas afiliadas que já existem ou criar novas!
+                </h5>
+            </div>
+
+            <div class="row fieldSteps">
+                <div class="step active"></div>
+                <div class="step active "></div>
+                <div class="step "></div>
+                <div class="step "></div>
+          
+            </div>
+
+
+            
+        </div>
+        <div  class=" me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" class="containerPlus">
+        
+            <div class="container">
+<div class="row centro">
+     
+    <label  class="tituloP">
+       Gostaria de adicionar outras lojas?
+    </label> 
+</div>
+    <h3 class="subTituloP">Esses dados irão aparecer para o seu cliente na hora da compra 2</h3>
+    <div style="margin-top: 25px; max-height: 70vh;padding-top: 2vh" class="row myCards verticalScroll notScroll">
+        <!--
+       <div  categoria="matriz" class="cardLoja">
+            <svg class="selectedIcon" xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31"><defs><style>.a{fill:#50c682;}.b{fill:#fff;}</style></defs><path class="a" d="M15.5,0a15.451,15.451,0,1,0,6.033,1.218A15.451,15.451,0,0,0,15.5,0Z"/><g transform="translate(8.977 10.263)"><path class="b" d="M4.5,8.739,13.052.189a.644.644,0,1,1,.911.911l-9,9a.643.643,0,0,1-.911,0L.188,6.245A.644.644,0,1,1,1.1,5.334Z"/></g></svg>
+            <h5 class="cardTitulo">Loja principal</h5>
+            <hr>
+            <label  class="cardLabel">Razão Social</label>
+            <p storage="razaoSocial" class="cardConteudo razaoSocial">xxxxxx</p>
+
+             <label  class="cardLabel">CNPJ</label>
+            <p storage="cnpj" class="cardConteudo cnpj">xxxxxx</p>
+
+             <label  class="cardLabel">Telefone</label>
+            <p storage="telefone" class="cardConteudo telefone">xxxxxx</p>
+
+             <label  class="cardLabel">E-mail</label>
+            <p storage="email" class="cardConteudo email">xxxxxx</p>
+
+             <label  class="cardLabel">Horário</label>
+            <p storage="horarios" class="cardConteudo horarios">xxxxxx<br>xxxxxx<br>xxxxxxx</p>
+
+             <label  class="cardLabel">Endereço</label>
+            <p storage="endereco" class="cardConteudo endereco">Rua xxxxxxxxxx<br>xxxxx - xxxxxx</p>
+            <hr>
+             <label style="cursor: pointer; margin: auto !important" class="edtarText">
+                 <svg xmlns="http://www.w3.org/2000/svg" style="margin:6% auto; fill: #50C682" width="20" height="20" viewBox="0 0 20 20">
+                    <defs></defs>
+                    <path class="a" d="M12.929,15H2.083A2.086,2.086,0,0,1,0,12.917V2.084A2.086,2.086,0,0,1,2.083,0H7.928a.417.417,0,0,1,0,.833H2.083a1.252,1.252,0,0,0-1.25,1.25V12.917a1.252,1.252,0,0,0,1.25,1.25H12.929a1.251,1.251,0,0,0,1.25-1.25V7.084a.417.417,0,0,1,.834,0v5.833A2.086,2.086,0,0,1,12.929,15Zm-5-5.833H6.262a.417.417,0,0,1-.417-.416V7.084a.417.417,0,0,1,.122-.295L12.633.122a.417.417,0,0,1,.59,0L14.89,1.789a.416.416,0,0,1,0,.59L8.223,9.046A.414.414,0,0,1,7.928,9.167Zm5-8.161h0l-6.25,6.25V8.334H7.756l6.25-6.25L12.929,1.007Z" transform="translate(2.488 2.499)"></path>
+                 </svg>
+                  Editar</label>
+            <div class="btnSalvaLoja">
+                <p class="txtSalvaLoja ">Salvar</p>
+            </div>
+
+             
+         
+       </div>
+       -->
+        <div  style="cursor: pointer;" class="cardAddLoja">
+            <div style="cursor: pointer;" class="btnPlusAddLoja">
+                
+               +
+            </div>
+            <p  style="cursor: pointer;" class="innerText">Adicionar loja</p>
+            
+        </div>
+
+       
+    </div>
+     <div class="btnContinueComLoja">
+            <p class="txtContinueComLoja continuar">Continuar</p>
+        </div>
+   
+    
+              
+            </div>
+            
+            </div>
+        </div>
+
+</div>
+<script>
+    localStorage.idPageStartup = 4
+    localStorage.stage = 4
+
+    //$(".razaoSocial").text(localStorage.razaoSocial)
+   // $(".cnpj").text(localStorage.CNPJ)
+   // $(".email").text(localStorage.mailMaster)
+    if(localStorage.LISTA_LOJAS == undefined || localStorage.LISTA_LOJAS == '' ){
+        if(localStorage.LOJAS_CADASTRADAS == undefined || localStorage.LOJAS_CADASTRADAS == '' ){
+
+        }else{
+            var lojas = JSON.parse(localStorage.LOJAS_CADASTRADAS)
+            //console.log(lojas)
+            if(lojas.length == 1){
+                $(".continuar").text("Continuar")
+            }
+            for(const k in lojas){
+                addLoja2(lojas[k])
+            }
+        }
+
+    }else{
+        var lojas = JSON.parse(localStorage.LISTA_LOJAS)
+        //console.log(lojas)
+        for(const k in lojas){
+            addLoja(lojas[k])
+        }
+    }
+
+
+function addLoja(loja) {
+    //console.log(loja)
+    var razaoSocial, cnpj, telefone, email, horarios, endereco
+    var loja2 = loja.dados
+    for(const k in loja2){
+        
+        if(loja2[k].tag == 'cnpj'){cnpj = loja2[k].value}
+        if(loja2[k].tag == 'razaoSocial'){razaoSocial = loja2[k].value}
+        if(loja2[k].tag == 'categoria'){categoria = loja2[k].value}
+        if(loja2[k].tag == 'telefone'){telefone = loja2[k].value}
+        if(loja2[k].tag == 'email'){email = loja2[k].value}
+        if(loja2[k].tag == 'horarios'){horarios = loja2[k].value}
+        if(loja2[k].tag == 'endereco'){endereco = loja2[k].value}
+    }
+    var html =      '<div categoria="afiliada" class="cardLoja">'+
+                    '<svg class="selectedIcon" xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31"><defs><style>.a{fill:#50c682;}.b{fill:#fff;}</style></defs><path class="a" d="M15.5,0a15.451,15.451,0,1,0,6.033,1.218A15.451,15.451,0,0,0,15.5,0Z"/><g transform="translate(8.977 10.263)"><path class="b" d="M4.5,8.739,13.052.189a.644.644,0,1,1,.911.911l-9,9a.643.643,0,0,1-.911,0L.188,6.245A.644.644,0,1,1,1.1,5.334Z"/></g></svg>'+
+                    '<h5 class="cardTitulo">Loja '+loja.categoria+'</h5><hr>'+
+                    '<label  class="cardLabel">Razão Social</label>'+
+                    '<p storage="razaoSocial" class="cardConteudo razaoSocial">'+razaoSocial+'</p>'+
+                    '<label  class="cardLabel">CNPJ</label>'+
+                    '<p storage="cnpj" class="cardConteudo cnpj">'+cnpj+'</p>'+
+                    '<label  class="cardLabel">Telefone</label>'+
+                    '<p storage="telefone" class="cardConteudo telefone">'+telefone+'</p>'+
+                    '<label  class="cardLabel">E-mail</label>'+
+                    '<p storage="email" class="cardConteudo email">'+email+'</p>'+
+                    '<label  class="cardLabel">Horário</label>'+
+                    '<p storage="horarios" class="cardConteudo horarios">'+horarios+'</p>'+
+                    '<label  class="cardLabel">Endereço</label>'+
+                    '<p storage="endereco" class="cardConteudo endereco">'+endereco+'</p><hr>'+
+                    '<label style="cursor: pointer; margin: auto !important" class="edtarText">'+
+                    '<svg xmlns="http://www.w3.org/2000/svg" style="margin:6% auto; fill: #50C682" width="20" height="20" viewBox="0 0 20 20">'+
+                    '<defs></defs><path class="a" d="M12.929,15H2.083A2.086,2.086,0,0,1,0,12.917V2.084A2.086,2.086,0,0,1,2.083,0H7.928a.417.417,0,0,1,0,.833H2.083a1.252,1.252,0,0,0-1.25,1.25V12.917a1.252,1.252,0,0,0,1.25,1.25H12.929a1.251,1.251,0,0,0,1.25-1.25V7.084a.417.417,0,0,1,.834,0v5.833A2.086,2.086,0,0,1,12.929,15Zm-5-5.833H6.262a.417.417,0,0,1-.417-.416V7.084a.417.417,0,0,1,.122-.295L12.633.122a.417.417,0,0,1,.59,0L14.89,1.789a.416.416,0,0,1,0,.59L8.223,9.046A.414.414,0,0,1,7.928,9.167Zm5-8.161h0l-6.25,6.25V8.334H7.756l6.25-6.25L12.929,1.007Z" transform="translate(2.488 2.499)"></path>'+
+                    '</svg>Editar</label>'+
+                    '<div class="btnSalvaLoja">'+
+                        '<p class="txtSalvaLoja ">Salvar</p>'+
+                    '</div>'+                    
+                    '</div>';
+ 
+    
+    $(".myCards").prepend(html)
+    $(".edtarText").click(function () {
+        $(this).parent().find(".cardConteudo").css("color","blue")
+        $(this).parent().find(".cardConteudo").attr("contentEditable","true")
+        $(this).hide();
+        $(this).parent().find(".btnSalvaLoja").show()
+    })
+    
+    $(".btnSalvaLoja").click(function () {        
+        $(this).hide();
+        $(this).parent().find(".cardConteudo").attr("contentEditable","false")
+        $(this).parent().find(".cardConteudo").css("color","black")
+        $(this).parent().find(".edtarText").show()
+    })
+    
+
+    $(".edtarText").click(function () {
+        $(this).parent().find(".cardConteudo").css("color","blue")
+        $(this).parent().find(".cardConteudo").attr("contentEditable","true")
+    })
+    
+}
+
+
+function addLoja2(loja) {
+    //console.log(loja)
+    var razaoSocial, cnpj, telefone, email, horarios, endereco
+        
+       cnpj = loja.affiliates_business_cnpj
+       razaoSocial = loja.affiliates_business_name
+       categoria = loja.affiliates_business_tipo
+       telefone = loja.affiliates_business_telefone
+       email = loja.affiliates_business_mail
+       horarios = loja.affiliates_business_horario
+       endereco = loja.affiliates_business_endereco
+       if(cnpj == ""){cnpj = "null"}
+       if(razaoSocial == ""){razaoSocial = "null"}
+       if(categoria == ""){categoria = "null"}
+       if(telefone == ""){telefone = "null"}
+       if(email == ""){email = "null"}
+       if(horarios == ""){horarios = "null"}
+       if(endereco == ""){endereco = "null"}
+  
+    var html =      '<div categoria="afiliada" class="cardLoja">'+
+                    '<svg class="selectedIcon" xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31"><defs><style>.a{fill:#50c682;}.b{fill:#fff;}</style></defs><path class="a" d="M15.5,0a15.451,15.451,0,1,0,6.033,1.218A15.451,15.451,0,0,0,15.5,0Z"/><g transform="translate(8.977 10.263)"><path class="b" d="M4.5,8.739,13.052.189a.644.644,0,1,1,.911.911l-9,9a.643.643,0,0,1-.911,0L.188,6.245A.644.644,0,1,1,1.1,5.334Z"/></g></svg>'+
+                    '<h5 class="cardTitulo">Loja '+categoria+'</h5><hr>'+
+                    '<label  class="cardLabel">Razão Social</label>'+
+                    '<p storage="razaoSocial" class="cardConteudo razaoSocial">'+razaoSocial+'</p>'+
+                    '<label  class="cardLabel">CNPJ</label>'+
+                    '<p storage="cnpj" class="cardConteudo cnpj">'+cnpj+'</p>'+
+                    '<label  class="cardLabel">Telefone</label>'+
+                    '<p storage="telefone" class="cardConteudo telefone">'+telefone+'</p>'+
+                    '<label  class="cardLabel">E-mail</label>'+
+                    '<p storage="email" class="cardConteudo email">'+email+'</p>'+
+                    '<label  class="cardLabel">Horário</label>'+
+                    '<p storage="horarios" class="cardConteudo horarios">'+horarios+'</p>'+
+                    '<label  class="cardLabel">Endereço</label>'+
+                    '<p storage="endereco" class="cardConteudo endereco">'+endereco+'</p><hr>'+
+                    '<label style="cursor: pointer; margin: auto !important" class="edtarText">'+
+                    '<svg xmlns="http://www.w3.org/2000/svg" style="margin:6% auto; fill: #50C682" width="20" height="20" viewBox="0 0 20 20">'+
+                    '<defs></defs><path class="a" d="M12.929,15H2.083A2.086,2.086,0,0,1,0,12.917V2.084A2.086,2.086,0,0,1,2.083,0H7.928a.417.417,0,0,1,0,.833H2.083a1.252,1.252,0,0,0-1.25,1.25V12.917a1.252,1.252,0,0,0,1.25,1.25H12.929a1.251,1.251,0,0,0,1.25-1.25V7.084a.417.417,0,0,1,.834,0v5.833A2.086,2.086,0,0,1,12.929,15Zm-5-5.833H6.262a.417.417,0,0,1-.417-.416V7.084a.417.417,0,0,1,.122-.295L12.633.122a.417.417,0,0,1,.59,0L14.89,1.789a.416.416,0,0,1,0,.59L8.223,9.046A.414.414,0,0,1,7.928,9.167Zm5-8.161h0l-6.25,6.25V8.334H7.756l6.25-6.25L12.929,1.007Z" transform="translate(2.488 2.499)"></path>'+
+                    '</svg>Editar</label>'+
+                    '<div class="btnSalvaLoja">'+
+                        '<p class="txtSalvaLoja ">Salvar</p>'+
+                    '</div>'+                    
+                    '</div>';
+ 
+    
+    $(".myCards").prepend(html)
+    $(".edtarText").click(function () {
+        $(this).parent().find(".cardConteudo").css("color","blue")
+        $(this).parent().find(".cardConteudo").attr("contentEditable","true")
+        $(this).hide();
+        $(this).parent().find(".btnSalvaLoja").show()
+    })
+    
+    $(".btnSalvaLoja").click(function () {        
+        $(this).hide();
+        $(this).parent().find(".cardConteudo").attr("contentEditable","false")
+        $(this).parent().find(".cardConteudo").css("color","black")
+        $(this).parent().find(".edtarText").show()
+    })
+    
+
+    $(".edtarText").click(function () {
+        $(this).parent().find(".cardConteudo").css("color","blue")
+        $(this).parent().find(".cardConteudo").attr("contentEditable","true")
+    })
+    
+}
+
+</script>
+
+

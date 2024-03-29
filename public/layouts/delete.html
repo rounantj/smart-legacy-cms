@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="icon" type="image/png" href="../assets/img/lima-04.svg" />
+
+
+  <link rel="icon" type="image/png" href="https://admin.api-smartcomerci.com.br/assets/img/lima-04.svg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+
+  <style>
+    body {
+      background: rgb(0, 0, 0, 5) !important;
+    }
+
+    * {
+      font-family: Roboto !important;
+    }
+
+    .modal-body {
+      padding: 3rem 4rem !important;
+    }
+
+    .modal-footer {
+      padding: 0.9rem 4rem !important;
+    }
+
+    .modal-title {
+      color: #687C97 !important;
+      font-size: 1rem !important;
+      font-weight: bold !important;
+    }
+
+    .modal-content {
+      border-radius: 20px !important;
+      margin-top: 100px;
+    }
+
+    .modal .focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    .modal .form-label {
+      font-size: 0.9rem !important;
+      font-family: Roboto !important;
+      font-weight: bold !important;
+      color: #687C97 !important;
+    }
+
+    .modal-body-gray {
+      flex: 1 1 auto !important;
+      background-color: #FAFAFD !important;
+      padding: 1.5rem 4rem !important;
+    }
+
+    .modal-footer {
+      background-color: #FAFAFD !important;
+      border-top: 1px solid #EDEDED !important;
+      border-bottom-right-radius: 1.2rem !important;
+      border-bottom-left-radius: 1.2rem !important;
+    }
+
+    @media (min-width: 992px) {
+      .modal-lg {
+        max-width: 650px !important;
+      }
+    }
+
+    .modal-fullscreen .modal-content {
+      height: calc(100% - 72px) !important;
+    }
+
+    .modal-fullscreen {
+      align-items: flex-end !important;
+    }
+
+    .modal-body-container {
+      max-width: 650px !important;
+      margin: 0 auto !important;
+    }
+
+    .card {
+      border-radius: 1rem !important;
+      border: none !important;
+    }
+
+    .card-header:first-child {
+      border-radius: 1rem 1rem 0px 0px !important;
+    }
+
+    .card-body,
+    .card-header {
+      padding-left: 3.1rem !important;
+      padding-right: 3.1rem !important;
+      border: 0 !important;
+      line-height: 1 !important;
+    }
+
+    .card-header {
+      background-color: #ffffff !important;
+      padding-top: 1.5rem !important;
+    }
+
+    .card-body.small-spaces {
+      padding: 1.8rem !important;
+    }
+
+
+    .h3 {
+      font-size: 1.12rem !important;
+    }
+
+    .text-orange {
+      color: #F6B504 !important;
+    }
+
+    .bg-gray {
+      background: #f0f0f0 !important;
+    }
+
+    .bg-gray-light {
+      background: #FCFCFD !important;
+    }
+
+    .border-gray {
+      border: 1px solid #EDF2F6 !important;
+    }
+
+    .text-semi-dark {
+      color: #333333 !important;
+    }
+
+    .hr-dotted {
+      height: 0 !important;
+      background-color: #ffffff !important;
+      border-bottom: 2px dotted #687C97 !important;
+      opacity: 0.4 !important;
+    }
+
+    hr {
+      margin: 1.5rem 0 !important;
+      background-color: #EDEDED !important;
+      opacity: 1 !important;
+    }
+
+    .page-wrapper {
+      padding: 25px !important;
+    }
+
+    .permissions-page .btn {
+      font-size: 0.9rem !important;
+      padding: 0.4rem 2.4rem !important;
+    }
+
+    .permissions-page .btn.btn-lg {
+      font-size: 1rem !important;
+      padding: 0.6rem 2.4rem !important;
+    }
+
+    .permissions-page .btn.btn-icon.rounded-circle {
+      padding: 0.7rem !important;
+    }
+
+    .permissions-page .btn:focus {
+      box-shadow: none !important;
+    }
+
+    .permissions-page .btn-primary,
+    .permissions-page .btn-primary:hover,
+    .permissions-page .btn-primary:focus,
+    .permissions-page .btn-primary:active {
+      background: #F6B504 !important;
+      color: #ffffff !important;
+      border: none !important;
+    }
+
+    .permissions-page .btn-outline-primary,
+    .permissions-page .btn-outline-primary:hover,
+    .permissions-page .btn-outline-primary:focus,
+    .permissions-page .btn-outline-primary:active {
+      background: #ffffff !important;
+      border: 1px solid !important;
+      color: #F6B504 !important;
+    }
+
+    .permissions-page .btn-secondary,
+    .permissions-page .btn-secondary:hover,
+    .permissions-page .btn-secondary:focus,
+    .permissions-page .btn-secondary:active {
+      color: #F6B504 !important;
+      background: #FFFBF2 !important;
+      border: none !important;
+    }
+
+    .btn-icon {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 1rem !important;
+    }
+
+    .btn-icon svg {
+      width: 0.9rem !important;
+      height: 0.9rem !important;
+      fill: #ffffff !important;
+    }
+
+    .permissions-page .form-control,
+    .permissions-page .form-select {
+      padding: 0.6rem 1.2rem !important;
+    }
+
+    .permissions-page .form-select {
+      padding-right: 2rem !important;
+      color: #687C97 !important;
+    }
+
+    .permissions-page .table-head {
+      position: relative !important;
+      font-size: 0.9rem !important;
+      color: #687C97 !important;
+    }
+
+    .permissions-page .table-head th {
+      border: 0 !important;
+    }
+
+    .permissions-page .table-head:after {
+      content: "" !important;
+      position: absolute !important;
+      left: -3.1rem !important;
+      bottom: 2px !important;
+      height: 1px !important;
+      width: calc(100% + 2 * 3.1rem) !important;
+      background: #EDEDED !important;
+    }
+
+    .permissions-page .table-head th,
+    .permissions-page .table-body td {
+      vertical-align: middle !important;
+      padding: 0.9rem 2.1rem !important;
+    }
+
+    .permissions-page .table-head tr th {
+      padding-bottom: 0 !important;
+    }
+
+    .permissions-page .table-head tr th:last-of-type {
+      padding-right: 3.5rem !important;
+    }
+
+    .permissions-page .table-head th:last-of-type,
+    .permissions-page .table-body td:last-of-type {
+      text-align: right !important;
+      padding-right: 2.5rem !important;
+    }
+
+    .permissions-page .table {
+      border-collapse: separate !important;
+      border-spacing: 0px 1.5rem !important;
+    }
+
+    .permissions-page td {
+      border-bottom: solid 1px #EDF2F6 !important;
+      border-top: solid 1px #EDF2F6 !important;
+    }
+
+    .permissions-page td:first-child {
+      border-left: solid 1px #EDF2F6 !important;
+      border-top-left-radius: 1rem !important;
+      border-bottom-left-radius: 1rem !important;
+    }
+
+    .permissions-page td:last-child {
+      border-right: solid 1px #EDF2F6 !important;
+      border-top-right-radius: 1rem !important;
+      border-bottom-right-radius: 1rem !important;
+    }
+
+    .permissions-page .badge {
+      padding: 2px 6px 0px !important;
+      width: 100px !important;
+      font-size: 0.9rem !important;
+      line-height: 1.5 !important;
+      font-weight: 400 !important;
+      color: #687C97 !important;
+    }
+
+    .permissions-page .table-body_role {
+      color: #F6B504 !important;
+      text-transform: uppercase !important;
+      font-size: 0.9rem !important;
+      font-weight: bold !important;
+    }
+
+    .permissions-page .table-body_actions {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      justify-content: flex-end !important;
+      min-width: 340px !important;
+    }
+
+    .permissions-page .badge.bg-light {
+      background: #F9F9FC !important;
+    }
+
+    .input-icon {
+      position: relative !important;
+    }
+
+    .input-icon input {
+      padding-right: 2.4rem !important;
+    }
+
+    .input-icon svg {
+      position: absolute !important;
+      right: 1.2rem !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      width: 1rem !important;
+      height: 1rem !important;
+    }
+
+    .icon-orange svg {
+      fill: #F6B504 !important;
+    }
+
+    .select-wrapper {
+      width: 126px !important;
+    }
+
+    .search-wrapper {
+      width: 426px !important;
+    }
+
+    .table-wrapper {
+      overflow: auto !important;
+    }
+
+    .rounded-icon {
+      display: inline-flex !important;
+      padding: 0.75rem !important;
+      background-color: #F9FAFB !important;
+      border-radius: 50% !important;
+      vertical-align: middle !important;
+    }
+
+    .rounded-icon svg {
+      width: 1rem !important;
+      height: 1rem !important;
+      fill: #687C97 !important;
+    }
+
+    .icon-xlg {
+      padding: 1rem !important;
+    }
+
+    .icon-xlg svg {
+      width: 2rem !important;
+      height: 2rem !important;
+    }
+
+    .icon-orange {
+      background-color: #FFFBF2 !important;
+    }
+
+    .icon-orange svg {
+      fill: #F6B504 !important;
+    }
+
+    .panel-header_title {
+      max-width: 370px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      font-size: 1.1rem !important;
+      font-weight: bold !important;
+      color: #333333 !important;
+    }
+
+    .small-width {
+      max-width: 300px !important;
+    }
+
+    .panel-body_text {
+      max-width: 464px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      font-size: 0.9rem !important;
+      font-weight: normal !important;
+      color: #687C97 !important;
+    }
+
+    .input-float-label {
+      position: relative !important;
+    }
+
+    .input-float-label .label {
+      position: absolute !important;
+      font-size: 0.75rem !important;
+      left: 16px !important;
+      top: -8px !important;
+      background-color: #ffffff !important;
+      color: #F6B504 !important;
+      padding: 0px 6px !important;
+    }
+
+    .input-float-label .show-password {
+      position: absolute !important;
+      font-size: 0.75rem !important;
+      right: 1rem !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      padding: 8px !important;
+      cursor: pointer !important;
+    }
+
+    .input-float-label .show-password svg {
+      width: 1.25rem !important;
+      height: 1.25rem !important;
+      fill: #F6B504 !important;
+    }
+
+    .input-float-label .form-control {
+      padding-right: 3rem !important;
+      border-color: #F6B504 !important;
+    }
+
+    .close-modal {
+      color: #687C97 !important;
+      font-size: 0.9rem !important;
+      font-weight: bold !important;
+      user-select: none !important;
+    }
+
+    .users-list {
+      max-height: 184px !important;
+      overflow: auto !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      list-style: none !important;
+    }
+
+    .users-list-item {
+      margin: 0.4rem 0 !important;
+      padding: 1.2rem 3rem !important;
+      border: 1px solid #EDF2F6 !important;
+      border-radius: 1rem !important;
+    }
+
+    .users-list-item_avatar {
+      display: inline-flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: 30px !important;
+      height: 30px !important;
+      margin-right: 0.75rem !important;
+
+      background: #F6B504 !important;
+      color: #ffffff !important;
+
+      border-radius: 50% !important;
+
+      text-transform: uppercase !important;
+    }
+
+    .modal-tab {
+      display: inline-flex !important;
+      align-items: center !important;
+      height: 100% !important;
+      padding: 0px 1.8rem !important;
+      background: #FFFBF2 !important;
+      border-bottom: 3px solid #F6B504 !important;
+    }
+
+    .modal-tab-wrapper {
+      width: fit-content !important;
+      height: calc(100% + 2rem) !important;
+      margin-left: 120px !important;
+    }
+
+    .switch,
+    .styled-checkbox {
+      display: flex !important;
+      align-items: center !important;
+      position: relative !important;
+      user-select: none !important;
+      cursor: pointer !important;
+      font-size: 62.5% !important;
+    }
+
+    .switch input,
+    .styled-checkbox input {
+      display: none !important;
+      opacity: 0 !important;
+    }
+
+    .switch-toggle {
+      display: inline-block !important;
+      position: relative !important;
+      height: 2.2em !important;
+      width: 4.2em !important;
+      background: #EDF2F6 !important;
+      border: 1px solid #687C97 !important;
+      border-radius: 1em !important;
+      transition: all 0.3s !important;
+    }
+
+    .switch-toggle:before {
+      content: "" !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 0.2em !important;
+      transform: translateY(-50%) !important;
+      height: 1.8em !important;
+      width: 1.8em !important;
+      background: #687C97 !important;
+      border-radius: 50% !important;
+      transition: all 0.3s !important;
+    }
+
+    .switch-label {
+      margin-left: 1.4em !important;
+      line-height: 1 !important;
+    }
+
+    .switch-label:before {
+      content: "Desativado" !important;
+      color: #687C97 !important;
+      font-size: 1.4em !important;
+      font-weight: bold !important;
+    }
+
+    .switch input:checked~.switch-toggle {
+      border: none !important;
+      background: #F6B504 !important;
+    }
+
+    .switch input:checked~.switch-toggle:before {
+      left: 2.2em !important;
+      background: #ffffff !important;
+    }
+
+    .switch input:checked~.switch-label:before {
+      content: "Ativo" !important;
+    }
+
+    .styled-checkbox_marker {
+      display: inline-block !important;
+      position: relative !important;
+      height: 2.2em !important;
+      width: 2.2em !important;
+      background: #EDF2F6 !important;
+      border: 1px solid #687C97 !important;
+      border-radius: 0.4em !important;
+      transition: all 0.3s !important;
+    }
+
+    .styled-checkbox_label {
+      margin-left: 1.4em !important;
+      color: #687C97 !important;
+      font-size: 1.4em !important;
+      font-weight: bold !important;
+      line-height: 1 !important;
+    }
+
+    .styled-checkbox_marker:before {
+      content: "" !important;
+      display: none !important;
+      position: absolute !important;
+      left: 0.8em !important;
+      top: 0.5em !important;
+      width: 0.5em !important;
+      height: 0.9em !important;
+      border: solid #ffffff !important;
+      border-width: 0 0.2em 0.2em 0 !important;
+      transform: rotate(45deg) !important;
+    }
+
+    .styled-checkbox input:checked~.styled-checkbox_marker:before {
+      display: inline-block !important;
+    }
+
+    .styled-checkbox input:checked~.styled-checkbox_marker {
+      border: none !important;
+      background: #F6B504 !important;
+    }
+
+    #modalManageRole .modal-header .btn {
+      min-width: 206px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="permissions-page page-wrapper">
+
+
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title m-auto" id="modalDeleteRoleLabel">Excluir função</h5>
+          <button onclick="window.parent.closeIframe('deletarFrame')" type="button" class="btn-close m-0"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="panel-header text-center mb-4">
+            <p class="rounded-icon icon-xlg icon-orange">
+              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_x0020_1" width="32.854" height="32.854"
+                viewBox="0 0 32.854 32.854">
+                <rect id="Retângulo_1684" data-name="Retângulo 1684" width="32.854" height="32.854" fill="none" />
+                <path id="exclamation-triangle"
+                  d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1ZM11,14H10V13h1v1Zm-.5-3a.5.5,0,0,1-.5-.5v-4a.5.5,0,0,1,1,0v4A.5.5,0,0,1,10.5,11Z"
+                  transform="translate(5.927 5.927)" fill="#f8c63f" />
+              </svg>
+            </p>
+
+            <p class="panel-header_title">
+              <strong>Deseja mesmo excluir a função <span class="text-orange">empacotador</span>?</strong>
+            </p>
+          </div>
+
+          <div class="panel-body text-center">
+            <p class="panel-body_text">
+              Está ação não poderá ser desfeita.
+            </p>
+
+            <p class="panel-body_text">
+              Os usuários desta função continuarão ativos, mas estarão “sem função”, não tendo nenhum acesso ao sistema.
+            </p>
+          </div>
+        </div>
+
+        <div class="modal-body-gray">
+          <label for="password" class="form-label">Sua senha é necessária para a alteração</label>
+          <div class="input-float-label">
+            <span class="label">Digite sua senha</span>
+            <input type="password" id="email-password" class="form-control text-semi-dark">
+            <span id="show-password" class="show-password">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                <path
+                  d="M150.7 92.77C195 58.27 251.8 32 320 32C400.8 32 465.5 68.84 512.6 112.6C559.4 156 590.7 207.1 605.5 243.7C608.8 251.6 608.8 260.4 605.5 268.3C592.1 300.6 565.2 346.1 525.6 386.7L630.8 469.1C641.2 477.3 643.1 492.4 634.9 502.8C626.7 513.2 611.6 515.1 601.2 506.9L9.196 42.89C-1.236 34.71-3.065 19.63 5.112 9.196C13.29-1.236 28.37-3.065 38.81 5.112L150.7 92.77zM223.1 149.5L313.4 220.3C317.6 211.8 320 202.2 320 191.1C320 180.5 316.1 169.7 311.6 160.4C314.4 160.1 317.2 159.1 320 159.1C373 159.1 416 202.1 416 255.1C416 269.7 413.1 282.7 407.1 294.5L446.6 324.7C457.7 304.3 464 280.9 464 255.1C464 176.5 399.5 111.1 320 111.1C282.7 111.1 248.6 126.2 223.1 149.5zM320 480C239.2 480 174.5 443.2 127.4 399.4C80.62 355.1 49.34 304 34.46 268.3C31.18 260.4 31.18 251.6 34.46 243.7C44 220.8 60.29 191.2 83.09 161.5L177.4 235.8C176.5 242.4 176 249.1 176 255.1C176 335.5 240.5 400 320 400C338.7 400 356.6 396.4 373 389.9L446.2 447.5C409.9 467.1 367.8 480 320 480H320z" />
+              </svg>
+              <svg class="d-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path
+                  d="M279.6 160.4C282.4 160.1 285.2 160 288 160C341 160 384 202.1 384 256C384 309 341 352 288 352C234.1 352 192 309 192 256C192 253.2 192.1 250.4 192.4 247.6C201.7 252.1 212.5 256 224 256C259.3 256 288 227.3 288 192C288 180.5 284.1 169.7 279.6 160.4zM480.6 112.6C527.4 156 558.7 207.1 573.5 243.7C576.8 251.6 576.8 260.4 573.5 268.3C558.7 304 527.4 355.1 480.6 399.4C433.5 443.2 368.8 480 288 480C207.2 480 142.5 443.2 95.42 399.4C48.62 355.1 17.34 304 2.461 268.3C-.8205 260.4-.8205 251.6 2.461 243.7C17.34 207.1 48.62 156 95.42 112.6C142.5 68.84 207.2 32 288 32C368.8 32 433.5 68.84 480.6 112.6V112.6zM288 112C208.5 112 144 176.5 144 256C144 335.5 208.5 400 288 400C367.5 400 432 335.5 432 256C432 176.5 367.5 112 288 112z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="modal-footer justify-content-between">
+          <a onclick="window.parent.closeIframe('deletarFrame')" class="close-modal" href="#"
+            data-bs-dismiss="modal">Cancelar</a>
+
+          <button onclick="excluiFuncao($(this))" class="btn btn-lg btn-primary btn-icon rounded-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM31.1 128H416V448C416 483.3 387.3 512 352 512H95.1C60.65 512 31.1 483.3 31.1 448V128zM111.1 208V432C111.1 440.8 119.2 448 127.1 448C136.8 448 143.1 440.8 143.1 432V208C143.1 199.2 136.8 192 127.1 192C119.2 192 111.1 199.2 111.1 208zM207.1 208V432C207.1 440.8 215.2 448 223.1 448C232.8 448 240 440.8 240 432V208C240 199.2 232.8 192 223.1 192C215.2 192 207.1 199.2 207.1 208zM304 208V432C304 440.8 311.2 448 320 448C328.8 448 336 440.8 336 432V208C336 199.2 328.8 192 320 192C311.2 192 304 199.2 304 208z"
+                fill="#ffffff" />
+            </svg>
+            Excluir Função
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+
+    const showPasswordToggle = document.querySelectorAll('#show-password');
+    showPasswordToggle.forEach((toggle) => {
+      const input = toggle.previousElementSibling;
+      const eyeSlash = toggle.firstElementChild;
+      const eye = toggle.lastElementChild;
+
+      if (eyeSlash && eye) {
+        toggle.addEventListener('click', () => {
+          const attr = input.getAttribute('type') === 'password' ? 'text' : 'password';
+
+          eyeSlash.classList.toggle('d-none');
+          eye.classList.toggle('d-none');
+          input.setAttribute('type', attr);
+        })
+
+      }
+    })
+    function fecha() {
+      var pass = $("#email-password").val()
+      if (pass != "") {
+        localStorage.isAutentic = true
+        window.parent.modalEditFunction()
+        //window.parent.closeIframe()
+        //console.log("me procure" ,window.parent)
+
+      } else {
+        window.parent.closeIframe("deletarFrame")
+      }
+
+    }
+    function excluiFuncao(elemento) {
+      // console.log("eliminando a funcao ...")
+      window.parent.closeIframe('deletarFrame')
+    }
+  </script>
+</body>
+
+</html>

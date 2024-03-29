@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://admin.api-smartcomerci.com.br/assets/img/lima-04.svg" />
+  <title>Document</title>
+  <link rel="icon" type="image/png" href="../assets/img/lima-04.svg" />
+</head>
+
+<body>
+  <style>
+    .page-institucional {
+      --yellow: #f6b504;
+      --yellow-opacity: #fffbf2;
+      --gray: #687c97;
+      --light-gray: #b4b4b4;
+      --black: #333;
+
+      --padding-right: 20px;
+      --padding-left: 20px;
+
+      --transition: 0.2s ease-in-out;
+
+      font-size: 14px;
+      font-family: "Roboto", sans-serif;
+      background-color: #edf2f6;
+    }
+
+    .page-institucional .clr-yellow {
+      color: var(--yellow);
+    }
+
+    .page-institucional a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    .page-institucional a:hover {
+      color: var(--yellow);
+    }
+
+    /* MODAL */
+    .page-institucional .modal-deletar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      color: var(--gray);
+      background-color: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9;
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-institucional .modal-deletar .modal-box {
+      position: relative;
+      width: 100%;
+      max-width: 650px;
+      max-height: 100%;
+      background-color: #fff;
+      border-radius: 25px;
+      box-shadow: 0px 0px 10px #6a6a6a19;
+    }
+
+    .page-institucional .modal-deletar .modal-header {
+      --modal-padding: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 65px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      padding-right: calc(var(--modal-padding) + 28px + 10px);
+      /* padding + btn-close width + extra padding */
+      border-bottom: 1px solid #ededed;
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close {
+      all: unset;
+      position: absolute;
+      top: 50%;
+      right: var(--modal-padding);
+
+      background-color: transparent;
+      transform: translateY(-50%);
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 45px;
+      height: 45px;
+      background-color: #f0f0f0;
+      border-radius: 100%;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(-50%) scale(0);
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close:hover::before {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+    }
+
+    .page-institucional .modal-deletar .modal-header .btn-close:hover .icon-close::before,
+    .page-institucional .modal-deletar .modal-header .btn-close:hover .icon-close::after {
+      background-color: #000;
+    }
+
+    .page-institucional .modal-deletar .modal-header .icon-close {
+      display: block;
+      position: relative;
+      width: 28px;
+      height: 28px;
+      border: 1px solid #6a6a6a;
+      border-radius: 100%;
+    }
+
+    .page-institucional .modal-deletar .modal-header .icon-close::before,
+    .page-institucional .modal-deletar .modal-header .icon-close::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 4px;
+      background-color: #6a6a6a;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      transition: var(--transition);
+    }
+
+    .page-institucional .modal-deletar .modal-header .icon-close::after {
+      transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+    }
+
+    .page-institucional .modal-deletar .modal-body {
+      height: auto;
+      padding-top: 60px;
+      padding-bottom: 40px;
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    .page-institucional .modal-deletar .modal-container {
+      max-width: 376px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .page-institucional .icon-alert {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      margin: 0 auto;
+      margin-bottom: 9px;
+      border-radius: 100%;
+      background-color: var(--yellow-opacity);
+    }
+
+    .page-institucional .modal-deletar .modal-title {
+      margin-bottom: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--black);
+    }
+
+    .page-institucional .modal-deletar .modal-footer {
+      padding: 32px;
+      border: 0;
+    }
+
+    .page-institucional .modal-deletar .modal-footer .modal-container {
+      max-width: 426px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .page-institucional .modal-deletar .modal-footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .page-institucional .modal-deletar .btn-cancelar {
+      border: 0;
+      background-color: transparent;
+      text-decoration: underline;
+      color: var(--gray);
+      font-weight: bold;
+    }
+
+    /* FIM MODAL */
+
+    /* HEADER */
+    .page-institucional .header {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-y: auto;
+
+      padding: 0px var(--padding-right) 0px var(--padding-left);
+      background-color: #fff;
+      box-shadow: 35px 5px 54px #695f971a;
+      border: 1px solid #d2d8e0;
+      border-right: 0;
+      border-left: 0;
+    }
+
+    .page-institucional .header>* {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border-right: 1px solid var(--gray);
+    }
+
+    .page-institucional .header>*:first-child {
+      padding-left: 0;
+    }
+
+    .page-institucional .header>*:last-child {
+      padding-right: 0;
+      border-right: 0;
+    }
+
+    .page-institucional .header-breadcrumb {
+      gap: 5px;
+      font-size: 16px;
+    }
+
+    .page-institucional .header-breadcrumb *:not(:last-child)::after {
+      content: ">";
+      display: inline-block;
+      padding-left: 5px;
+    }
+
+    .page-institucional .header-breadcrumb .page-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--black);
+    }
+
+    .page-institucional .header-breadcrumb .icon-arrow-down {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-color: rgb(104, 124, 151, 0.25);
+      border-radius: 100%;
+    }
+
+    .page-institucional .btn-active-page input {
+      display: none;
+    }
+
+    .page-institucional .btn-active-page .btn-label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .page-institucional .btn-active-page .icon-checkbox {
+      display: inline-block;
+      position: relative;
+      width: 42px;
+      height: 22px;
+      border: 1px solid var(--gray);
+      border-radius: 23px;
+      background-color: #edf2f6;
+      transition: var(--transition);
+    }
+
+    .page-institucional .btn-active-page .icon-checkbox::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      padding: 2px;
+      border-radius: 100%;
+      background-color: var(--gray);
+      background-clip: content-box;
+      transition: var(--transition);
+    }
+
+    .page-institucional .btn-active-page input:checked+.btn-label .icon-checkbox::before {
+      left: 50%;
+      background-color: #fff;
+    }
+
+    .page-institucional .btn-active-page input:checked+.btn-label .icon-checkbox {
+      border-color: #edf2f6;
+      background-color: var(--yellow);
+    }
+
+    .page-institucional .btn-back {
+      cursor: pointer;
+    }
+
+    .page-institucional .icon-back {
+      position: relative;
+      display: block;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--gray);
+      border-radius: 100%;
+    }
+
+    .page-institucional .icon-back::before {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: -6%;
+      width: 25%;
+      height: 40%;
+      background-color: #fff;
+    }
+
+    .page-institucional .icon-back::after {
+      content: "";
+      position: absolute;
+      bottom: 80%;
+      left: 6%;
+      width: 30%;
+      height: 30%;
+      border: 1px solid var(--gray);
+      border-right: 0;
+      border-top: 0;
+    }
+
+    .page-institucional .icon-back.icon-back-flip {
+      transform: scaleX(-1);
+    }
+
+    .page-institucional .btn-url {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 95px;
+      min-height: 28px;
+      padding: 7px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      border-radius: 34px;
+      background-color: var(--yellow-opacity);
+    }
+
+    .page-institucional .btn-url i {
+      width: 11px;
+      height: 11px;
+      background-color: var(--yellow);
+    }
+
+    .page-institucional .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      min-width: 206px;
+      min-height: 45px;
+      font-size: 14px;
+      color: #fff;
+      background-color: var(--yellow);
+      border-radius: 23px;
+      border: 1px solid var(--yellow);
+    }
+
+    .page-institucional .btn:hover {
+      color: #fff;
+    }
+
+    .page-institucional .buttons-list {
+      display: flex;
+      gap: 16px;
+    }
+
+    .page-institucional .btn-inverse {
+      background-color: #fff;
+      color: var(--yellow);
+    }
+
+    .page-institucional .btn-inverse:hover {
+      color: var(--yellow);
+    }
+
+    /* FIM HEADER */
+
+    .page-institucional .page-body {
+      padding: 10px var(--padding-right) 10px var(--padding-left);
+    }
+
+    .page-institucional .container {
+      max-width: 990px;
+    }
+
+    .page-institucional input {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding-right: 15px;
+      padding-left: 15px;
+      font-size: 16px;
+      color: var(--black);
+      background-color: #f0f0f0;
+      border: 1px solid #efefef;
+      border-radius: 5px;
+    }
+
+    .page-institucional .content-box {
+      width: 100%;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px #6a6a6a19;
+      overflow-x: hidden;
+    }
+
+    .page-institucional .top-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      min-height: 160px;
+      margin-bottom: 30px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      color: var(--yellow);
+      background-color: #fffbf2;
+      border: 3px dashed var(--yellow);
+      cursor: pointer;
+    }
+
+    .page-institucional .top-banner-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .page-institucional .icon-add {
+      --outline-width: 6px;
+      --icon-color: var(--light-gray);
+      position: relative;
+      display: block;
+      width: 24px;
+      height: 24px;
+      margin: 0 auto;
+      margin-top: var(--outline-width);
+      margin-bottom: var(--outline-width);
+      border-radius: 100%;
+      background-color: var(--icon-color);
+      border: 1px solid #fff;
+      outline: var(--outline-width) solid var(--icon-color);
+      transition: var(--transition);
+    }
+
+    .page-institucional .icon-add.icon-yellow {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .icon-add::before,
+    .page-institucional .icon-add::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 2px;
+      background-color: #fff;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .page-institucional .icon-add::after {
+      transform: translateX(-50%) translateY(-50%) rotate(90deg);
+    }
+
+    .page-institucional .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding-bottom: 30px;
+    }
+
+    .page-institucional .title-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 535px;
+      font-weight: bold;
+      color: var(--gray);
+    }
+
+    .page-institucional .editor-box {
+      min-height: 280px;
+      border-radius: 20px;
+      border: 1px solid #f1f1f5;
+    }
+
+    .page-institucional .add-content {
+      --icon-color: var(--light-gray);
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .page-institucional .add-content:hover,
+    .page-institucional .add-content.active {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .add-content:hover .icon-add,
+    .page-institucional .add-content.active .icon-add {
+      --icon-color: var(--yellow);
+    }
+
+    .page-institucional .add-content::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      border-bottom: 2px dashed var(--icon-color);
+      transform: translateY(-50%);
+      transition: var(--transition);
+    }
+
+    .page-institucional .add-content .add-content-modal {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      width: 100%;
+      max-width: 830px;
+      padding: 40px 15px;
+      background-color: #fff;
+      border-radius: 20px;
+      border: 1px solid #f1f1f5;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-50%) translateY(100%);
+      transition: var(--transition);
+      z-index: 2;
+    }
+
+    .page-institucional .add-content.active .add-content-modal {
+      bottom: -6px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-institucional .add-content-modal .list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .page-institucional .add-content-modal .list .item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      color: var(--gray);
+      background-color: #fcfcfd;
+      border-radius: 16px;
+      border: 1px solid #edf2f6;
+    }
+
+    .page-institucional .add-content-modal .list .item-image {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 92px;
+    }
+
+    .page-institucional .banner-example {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 250px;
+      background-color: var(--gray);
+      border-radius: 5px;
+      box-shadow: 0px 2px 10px #6a6a6a26;
+    }
+
+    .page-institucional .banner-example::before {
+      content: "Banner de Exemplo";
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+
+  <div class="page-institucional">
+    <!--
+    <div class="modal-deletar active">
+      <div class="modal-box">
+        <div class="modal-header">
+          Deletar página
+  
+          <button class="btn-close">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+  
+        <div class="modal-body">
+          <div class="modal-container">
+            <i class="icon-alert">
+              <svg
+                id="Layer_x0020_1"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32.854"
+                height="32.854"
+                viewBox="0 0 32.854 32.854"
+              >
+                <rect
+                  id="Retângulo_1684"
+                  data-name="Retângulo 1684"
+                  width="32.854"
+                  height="32.854"
+                  fill="none"
+                />
+                <path
+                  id="exclamation-triangle"
+                  d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1ZM11,14H10V13h1v1Zm-.5-3a.5.5,0,0,1-.5-.5v-4a.5.5,0,0,1,1,0v4A.5.5,0,0,1,10.5,11Z"
+                  transform="translate(5.927 5.927)"
+                  fill="#f8c63f"
+                />
+              </svg>
+            </i>
+  
+            <div class="modal-title">
+              Deseja deletar a página
+              <span class="clr-yellow">Nossos Cuidados</span>?
+            </div>
+  
+            <p>Esta ação não poderá ser desfeita.</p>
+  
+            <p>
+              O link para a página será perdido e caso ela esteja no rodapé ela
+              será removida
+            </p>
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <div class="modal-container">
+            <div class="modal-footer-content">
+              <button class="btn-cancelar">Cancelar</button>
+  
+              <button class="btn">
+                <i></i>
+  
+                Deletar Página
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  -->
+
+    <div class="header">
+      <div class="header-breadcrumb">
+        <a href="#">Conteúdo</a>
+        <div class="page-title">
+          Nossos cuidados
+
+          <i class="icon-arrow-down"></i>
+        </div>
+      </div>
+
+      <div class="btn-active-page">
+        <input type="checkbox" name="ativar-pagina" id="ativar-pagina" />
+
+        <label for="ativar-pagina" class="btn-label">
+          <i class="icon-checkbox"></i>
+
+          desativada
+        </label>
+      </div>
+
+      <div class="btn-back">
+        <i class="icon-back"></i>
+      </div>
+
+      <div class="btn-back btn-forward">
+        <i class="icon-back icon-back-flip"></i>
+      </div>
+
+      <div class="buttons-list">
+        <a class="btn-url" href="#">
+          <i></i>
+          url
+        </a>
+
+        <button class="btn btn-inverse">
+          <i></i>
+          Deletar Página
+        </button>
+
+        <button class="btn">Publicar</button>
+      </div>
+    </div>
+
+    <div class="page-body">
+      <div class="content-box">
+        <div class="top-banner">
+          <div class="container">
+            <div class="top-banner-content">
+              <i class="icon-add icon-yellow"></i>
+              Adicionar banner de Topo
+            </div>
+          </div>
+        </div>
+
+        <div style="max-width: 90%; margin: auto;" class="container">
+          <div class="main-content">
+            <div class="title-box">
+              Título da página
+              <input type="text" value="Nossos Cuidados" />
+            </div>
+
+            <div class="editor-box">
+              <textarea style="width: 100%;" name="" id="editorFullCode" cols="30" rows="10"></textarea>
+            </div>
+
+            <!-- a classe active altera a cor do  -->
+            <div class="add-content active">
+              <i class="icon-add"></i>
+
+              <div class="add-content-modal">
+                <div class="list">
+                  <div class="item">
+                    <i class="item-image">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="227.476" height="92" viewBox="0 0 227.476 92">
+                        <g id="Grupo_7943" data-name="Grupo 7943" transform="translate(-4883.961 8118)">
+                          <g id="Grupo_7940" data-name="Grupo 7940" transform="translate(-13.961)">
+                            <g id="Grupo_7937" data-name="Grupo 7937" transform="translate(449.922 293)">
+                              <path id="Caminho_2988" data-name="Caminho 2988"
+                                d="M5.521,0H221.954c3.049,0,5.521.549,5.521,1.227V90.773c0,.677-2.472,1.227-5.521,1.227H5.521C2.472,92,0,91.451,0,90.773V1.227C0,.549,2.472,0,5.521,0Z"
+                                transform="translate(4448 -8411)" fill="#fff" />
+                              <g id="Grupo_990" data-name="Grupo 990" transform="translate(4474 -8388.49)">
+                                <path id="Retângulo_217" data-name="Retângulo 217"
+                                  d="M0,0H72a0,0,0,0,1,0,0V13a5,5,0,0,1-5,5H5a5,5,0,0,1-5-5V0A0,0,0,0,1,0,0Z"
+                                  transform="translate(0.078 0.49)" fill="none" />
+                                <path id="Linha_1" data-name="Linha 1" d="M180.3,2.25H0V-.5H180.3Z"
+                                  transform="translate(0.175 0.175)" fill="#d2d8e0" />
+                                <path id="Linha_1-2" data-name="Linha 1" d="M180.3,2.25H0V-.5H180.3Z"
+                                  transform="translate(0.175 21.371)" fill="#d2d8e0" />
+                                <path id="Linha_1-3" data-name="Linha 1" d="M180.3,2.25H0V-.5H180.3Z"
+                                  transform="translate(0.175 42.567)" fill="#d2d8e0" />
+                                <path id="Linha_1-4" data-name="Linha 1" d="M180.3,2.25H0V-.5H180.3Z"
+                                  transform="translate(0.175 7.24)" fill="#d2d8e0" />
+                                <path id="Linha_1-5" data-name="Linha 1" d="M180.3,2.25H0V-.5H180.3Z"
+                                  transform="translate(0.175 28.436)" fill="#d2d8e0" />
+                                <path id="Linha_1-6" data-name="Linha 1" d="M180.3,2.25H0V-.5H180.3Z"
+                                  transform="translate(0.175 49.633)" fill="#d2d8e0" />
+                                <path id="Linha_1-7" data-name="Linha 1" d="M180.3,2.25H0V-.5H180.3Z"
+                                  transform="translate(0.175 14.306)" fill="#d2d8e0" />
+                                <path id="Linha_1-8" data-name="Linha 1" d="M180.3,2.25H0V-.5H180.3Z"
+                                  transform="translate(0.175 35.502)" fill="#d2d8e0" />
+                                <path id="Linha_1-9" data-name="Linha 1" d="M95.867,2.25H0V-.5H95.867Z"
+                                  transform="translate(0.175 56.698)" fill="#d2d8e0" />
+                                <g id="Grupo_7939" data-name="Grupo 7939">
+                                  <rect id="Retângulo_1817" data-name="Retângulo 1817" width="30.951" height="6.886"
+                                    transform="translate(0.967 -13.396)" fill="#d2d8e0" />
+                                  <rect id="Retângulo_1820" data-name="Retângulo 1820" width="30.951" height="6.886"
+                                    transform="translate(33.967 -13.396)" fill="#d2d8e0" />
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </svg>
+                    </i>
+                    Adicionar parágrafo
+                  </div>
+
+                  <div class="item">
+                    <div class="item-image">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="191.083" height="69.986"
+                        viewBox="0 0 191.083 69.986">
+                        <g id="Grupo_7940" data-name="Grupo 7940" transform="translate(-4897.922 8106.993)">
+                          <g id="Grupo_7937" data-name="Grupo 7937" transform="translate(449.922 293)">
+                            <path id="Caminho_2988" data-name="Caminho 2988"
+                              d="M4.638,0H186.445c2.561,0,4.638.418,4.638.933v68.12c0,.515-2.076.933-4.638.933H4.638C2.076,69.986,0,69.569,0,69.053V.933C0,.418,2.076,0,4.638,0Z"
+                              transform="translate(4448 -8399.993)" fill="#fff" />
+                            <path id="Caminho_2988_-_Contorno" data-name="Caminho 2988 - Contorno"
+                              d="M4.638,1A13.352,13.352,0,0,0,1.8,1.25V68.737a13.352,13.352,0,0,0,2.841.25H186.445a13.353,13.353,0,0,0,2.841-.25V1.25A13.353,13.353,0,0,0,186.445,1H4.638m0-1H186.445c2.561,0,4.638.418,4.638.933v68.12c0,.515-2.076.933-4.638.933H4.638C2.076,69.986,0,69.569,0,69.053V.933C0,.418,2.076,0,4.638,0Z"
+                              transform="translate(4448 -8399.993)" fill="#d2d8e0" />
+                            <path id="image"
+                              d="M21.373,24.821H3.448A3.452,3.452,0,0,1,0,21.373V3.448A3.452,3.452,0,0,1,3.448,0H21.373a3.452,3.452,0,0,1,3.448,3.448V21.373A3.452,3.452,0,0,1,21.373,24.821ZM6.205,9.938h0L1.379,14.765v6.609a2.071,2.071,0,0,0,2.069,2.069H21.373a2.071,2.071,0,0,0,2.069-2.069V18.9l-4.826-4.826-3.649,3.65a.691.691,0,0,1-.977,0L6.205,9.938Zm12.41,2.471a.685.685,0,0,1,.488.2l4.339,4.34V3.448a2.071,2.071,0,0,0-2.069-2.069H3.448A2.071,2.071,0,0,0,1.379,3.448v9.367l4.339-4.34a.689.689,0,0,1,.975,0l7.786,7.786,3.649-3.65A.685.685,0,0,1,18.616,12.409Zm.69-2.756H16.547a1.38,1.38,0,0,1-1.379-1.379V5.515a1.38,1.38,0,0,1,1.379-1.379h2.759a1.38,1.38,0,0,1,1.379,1.379V8.274A1.38,1.38,0,0,1,19.306,9.653ZM16.547,5.515V8.274h2.759V5.515Z"
+                              transform="translate(4531.131 -8375.821)" fill="#d2d8e0" />
+                          </g>
+                        </g>
+                      </svg>
+                    </div>
+                    Adicionar Banner
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- a classe banner-example dá um tamanho e um bg para marcar layout somente -->
+            <div class="banner banner-example">
+              <img src="" alt="" />
+            </div>
+
+            <div class="add-content">
+              <i class="icon-add"></i>
+            </div>
+
+            <div class="editor-box"></div>
+
+            <div class="add-content">
+              <i class="icon-add"></i>
+            </div>
+
+            <!-- a classe banner-example dá um tamanho e um bg para marcar layout somente -->
+            <div class="banner banner-example"></div>
+
+            <div class="add-content">
+              <i class="icon-add"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://admin.api-smartcomerci.com.br/js/tinymce.js"></script>
+  <script>
+    function iniciaEditorHtml(idElemento) {
+      tinymce.init({
+        selector: idElemento,
+        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+      });
+    }
+
+    //chamada teste
+    iniciaEditorHtml("#editorFullCode")
+
+  </script>
+
+</body>
+
+</html>

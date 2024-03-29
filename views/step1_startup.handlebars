@@ -1,0 +1,230 @@
+<script>
+    localStorage.MY_DOMAIN = 'http://localhost:6060'
+</script>
+<style>
+    .título-vitrines {
+        font-family: var(--unnamed-font-family-roboto);
+        font-style: var(--unnamed-font-style-normal);
+        font-weight: var(--unnamed-font-weight-300);
+        font-size: var(--unnamed-font-size-24);
+        line-height: var(--unnamed-line-spacing-32);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        color: var(--unnamed-color-6a6a6a);
+    }
+
+    .titulo {
+
+
+        font: var(--unnamed-font-style-normal) normal bold 32px/43px var(--unnamed-font-family-roboto);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        text-align: center;
+        font: normal normal bold 32px/43px Roboto;
+        letter-spacing: 0px;
+        color: #333333;
+        opacity: 1;
+    }
+
+    .sub {
+
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) 18px/var(--unnamed-line-spacing-32) var(--unnamed-font-family-roboto);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        color: var(--unnamed-color-6a6a6a);
+        text-align: center;
+        font: normal normal 300 18px/32px Roboto;
+        letter-spacing: 0px;
+        color: #6A6A6A;
+        opacity: 1;
+    }
+
+    h3 {
+
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) var(--unnamed-font-size-24)/var(--unnamed-line-spacing-32) var(--unnamed-font-family-roboto);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        color: var(--unnamed-color-6a6a6a);
+        text-align: center;
+        font: normal normal 300 24px/32px Roboto;
+        letter-spacing: 0px;
+        color: #6A6A6A;
+        opacity: 1;
+    }
+
+    .inputTXT {
+
+        width: 428px;
+        height: 52px;
+        background: #F0F0F0 0% 0% no-repeat padding-box;
+        border: 1px solid #EFEFEF;
+        border-radius: 5px;
+        opacity: 1;
+        font-weight: normal;
+        font-size: 1.2rem;
+        margin: auto;
+    }
+
+    .btnStart {
+
+        min-width: 428px;
+        min-height: 53px;
+        background: #50C682 0% 0% no-repeat padding-box;
+        border-radius: 5px;
+        opacity: 0.5;
+        color: white;
+        margin: auto;
+    }
+
+    .fale {
+
+        height: 21px;
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) 16px/21px var(--unnamed-font-family-roboto);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        color: var(--unnamed-color-6a6a6a);
+        text-align: center;
+        font: normal normal 300 16px/21px Roboto;
+        letter-spacing: 0px;
+        color: #6A6A6A;
+        opacity: 1;
+    }
+
+    .faleConosco {
+        font: var(--unnamed-font-style-normal) normal bold 16px/21px var(--unnamed-font-family-roboto);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        text-align: left;
+        font: normal normal bold 16px/21px Roboto;
+        letter-spacing: 0px;
+        color: #50C682;
+        opacity: 1;
+    }
+</style>
+<div style="overflow: hidden;" class="container">
+    <div class="d-md-flex">
+        <div class=" text-center text-white overflow-hidden"
+            style="width: 100% !important;  height: 101vh; background: #FDFDFD 0% 0% no-repeat padding-box;">
+            <div class="logo"></div>
+            <div class="my-3 py-3">
+                <br>
+                <br>
+                <h2 class="display-5 titulo">Boas Vindas!</h2>
+                <h5 class="lead sub">Primeiro vamos registrar o usuário master</h5>
+            </div>
+            <div class=" shadow-sm mx-auto" style="width: 80%; background: #FFFFFF 0% 0% no-repeat padding-box; 
+            box-shadow: 0px 0px 10px #6A6A6A19;border-radius: 25px;opacity: 1; padding: 5%;margin: auto;">
+                <div style="display: none;" class="form3">
+                    <br>
+                    <h3 class="tituloUm">Informe o seu e-mail e<br> a sua senha cadastrada!</h3>
+                    <br>
+                    <input type="text" placeholder="E-mail" onchange="validacaoEmail2($(this))" id="emailMasterLogin"
+                        class="form-control inputTXT verifica  validaMail">
+                    <br>
+                    <input type="password" placeholder="Senha" id="senhaMasterLogin"
+                        class="form-control inputTXT verifica">
+                    <br>
+                    <br>
+                    <input type="submit" id="continuarLogin" class="btn btn-success btnStart" value="Continuar">
+                    <br>
+                    <br>
+
+
+                </div>
+                <div class="form">
+                    <br>
+                    <h3 class="tituloUm">Informe o e-mail previamente<br> combinado para continuar</h3>
+                    <br>
+                    <input type="text" onchange="validacaoEmail2($(this))" placeholder="E-mail" id="emailMaster"
+                        class="form-control inputTXT validaMail">
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-success btnStart enviaCodigo" value="Continuar">
+                    <br>
+                    <br>
+                    <p class="fazerLogin">Já é nosso cliente? Faça login!</p>
+
+                </div>
+                <div style="display: none;" class="form2">
+                    <br>
+                    <h3 class="tituloUm">Digite o código de 5 dígitos<br> que enviamos para<br>
+                        <span id="emailUm" class="emailUm">email@email.com</span>
+                    </h3>
+                    <br>
+                    <div style="max-width: 450px;margin: auto" class="row">
+                        <input maxlength="1" type="text" id="01" placeholder="-" class="form-control inputTXT digito">
+                        <input maxlength="1" type="text" id="02" placeholder="-" class="form-control inputTXT digito">
+                        <input maxlength="1" type="text" id="03" placeholder="-" class="form-control inputTXT digito ">
+                        <input maxlength="1" type="text" id="04" placeholder="-" class="form-control inputTXT digito ">
+                        <input maxlength="1" type="text" id="05" placeholder="-" class="form-control inputTXT digito ">
+
+                    </div>
+
+
+                    <br>
+                    <input type="submit" class="btn btn-success btnStart continuar" value="Continuar">
+                    <br>
+                    <br>
+                    <p class="reenviar">Reenviar código</p>
+
+
+                </div>
+
+
+
+
+            </div>
+            <br>
+            <h5 class="lead fale">Encontrou alguma dificuldade? <span class="faleConosco">Fale Conosco</span></h5>
+        </div>
+        <div class="text-center overflow-hidden"
+            style="width: 100% !important;background-color: #DCEFE3;height: 101vh ;background-image:  url('../images/default/Grupo 2514.png'); background-repeat: no-repeat; background-position: center; background-size: 1005">
+
+            <div style=" background-color: #DCEFE3; " style="width: 100%;"></div>
+        </div>
+    </div>
+
+</div>
+<style>
+    .btn-success:hover {
+        color: #fff;
+        background-color: #50C682 !important;
+        border-color: #50C682 !important;
+    }
+
+    .btnStart {
+        background-color: #DCEFE3;
+
+    }
+</style>
+<script>
+    localStorage.MY_DOMAIN = 'http://localhost:6060'
+
+    $(".inputTXT").keyup(function () {
+        // console.log("asdsadsadsad")
+        if ($(this).val() != "") {
+            $(".btnStart").css("background-color", "#50C682 ")
+            $(".btnStart").css("color", "white !important")
+        }
+    })
+
+
+    function validacaoEmail2(field) {
+        localStorage.mailMaster = field.val()
+        usuario = field.val().substring(0, field.val().indexOf("@"));
+        dominio = field.val().substring(field.val().indexOf("@") + 1, field.val().length);
+
+        if ((usuario.length >= 1) &&
+            (dominio.length >= 3) &&
+            (usuario.search("@") == -1) &&
+            (dominio.search("@") == -1) &&
+            (usuario.search(" ") == -1) &&
+            (dominio.search(" ") == -1) &&
+            (dominio.search(".") != -1) &&
+            (dominio.indexOf(".") >= 1) &&
+            (dominio.lastIndexOf(".") < dominio.length - 1)) {
+
+            field.css("border", "1px solid green");
+            return true
+        }
+        else {
+            field.css("border", "1px solid red");
+            alertar("E-mail invalido!");
+            return false
+        }
+    }
+</script>

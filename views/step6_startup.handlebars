@@ -1,0 +1,167 @@
+  
+<style>
+    .active{
+       background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+
+</style>
+
+<div class="container " style="background: #ffffff 0% 0% no-repeat padding-box;">
+    
+    <div style="display: block;" class="d-md-flex ">
+        <div  style="height: 102vh; padding: 10px 25px" class="text-center text-white overflow-hidden sideBar2 verticalScroll">
+            <div class="logoSVG"></div>
+
+            <br />
+
+            <div class="lab">
+                <h4 class="hiperText">Finalize Criando os acessos</h4>
+                <h5 class="txtDescrevePagina">
+                   Estamos quase no fim!<br>Vamos registrar os acessos dos colaboradores
+                </h5>
+            </div>
+
+            <div class="row fieldSteps">
+                <div class="step active"></div>
+                <div class="step active"></div>
+                <div class="step active"></div>
+                <div class="step active"></div>
+            </div>
+        </div>
+        <div style="    max-width: 1024px; max-height: 98vh" class="me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center verticalScroll notScroll" >
+            <div class="container centro">
+                <div class="row ">
+                    <label class="tituloP">
+                        Adicione pessoas ao seu time
+                    </label>
+                </div>
+                <h3 class="subTituloP">Colaboradores e gestores</h3>
+                <div style="margin: auto;" class="row listaFields2 ">
+                    <div class="fieldsTeam verticalScroll">
+                        <p class="fieldText">Acesso total</p>
+                        <div class="lineRow"></div>
+                        <div class="listaPessoal">
+                            <div class="proprietario">
+                            <div class="row">
+                                <div class="iconMaster">M</div>
+                                <p id="mailProprietario" class="contatoText">master@smartcomerci.com</p>
+                                <p class="txtProp">perfil proprietário</p>
+                            </div>
+                            </div>
+                        </div>
+                            <div class="row addPessoasClick">
+                                <div class="addPessoas">+</div>
+                                <p class="txtAddPessoas">Adicionar pessoas</p>
+                            </div>
+
+                        
+                        
+                    </div>
+
+                   
+                    
+                </div>
+
+                
+                    <div class="btnContinueComLoja">
+                        <p class="txtContinueComLoja continuar">Continuar</p>
+                    </div>
+                    <div class="btnPula">
+                        <p class="txtPula continuar">Pular</p>
+                    </div> 
+            
+
+
+                
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+
+    .feedbackAcessos{
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0,0,0,.5);
+        position: absolute;
+        top: 0;
+        display: none;
+    }
+    .conteudo-feedback{
+        border-radius: 20px;
+        background-color: #FFFFFF;
+        max-width: 800px;
+        min-height: 800px;
+        max-height: 800px;
+        padding: 50px;
+   
+        margin: 100px auto;
+        margin-left: calc(50% - 400px);
+    }
+</style>
+
+<modal class="feedbackAcessos">
+    <div class="conteudo-feedback">
+        <h3>Os seguintes usuários foram adicionados:</h3>
+        <div style="max-height: 500px; min-height: 500px; overflow: auto" class="table-responsive">
+            <table class="table">
+                     <thead class="thead-dark">
+                       <tr> 
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Local</th>
+                       </tr>
+                     </thead>
+            <tbody id="listaDeAcessosConcedidos">
+                 
+            </tbody>
+        </table>
+        </div>
+    <h4>Importante!</h4>
+    <p>Confirme o recebimento das senhas enviadas para cada e-mail, pode ocorrer de o e-mail ir para a caixa de span. <br>Em caso de falha repita o processo ou contate-nos.</p>
+        
+    <footer style="margin-top: 10px; ">
+        <div onclick="location.replace('/startup7')"  class="btnContinueComLoja">
+           <p  class="txtContinueComLoja ">Continuar</p>
+         </div>
+    </footer>
+        
+             
+    </div>
+</modal>
+
+
+
+
+
+
+
+<script>
+    localStorage.ACESSOS = '[]'
+    localStorage.idPageStartup = 6
+    localStorage.stage = 6
+    var lojas = JSON.parse(localStorage.LISTA_LOJAS)
+   // console.log(lojas)
+    for(const k in lojas){
+        var html =      '<div class="fieldsTeam verticalScroll">'+
+                        '<p class="fieldText">'+lojas[k].dados[0].value+'</p>'+
+                        '<div class="lineRow"></div>'+
+                        '<div class="listaPessoal"></div>'+
+                        '<div class="row addPessoasClick">'+
+                            '<div class="addPessoas">+</div>'+
+                            '<p class="txtAddPessoas">Adicionar pessoas</p>'+
+                        '</div>'+
+                    '</div>'
+
+        $(".listaFields2").append(html)
+    }
+    $("#mailProprietario").text(localStorage.mailMaster)
+</script>
+
+
+
+

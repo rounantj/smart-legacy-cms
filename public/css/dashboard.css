@@ -1,0 +1,25 @@
+:root {
+
+/* Colors: */
+--unnamed-color-000000: #000000;
+--unnamed-color-6a6a6a: #6A6A6A;
+
+/* Font/text values */
+--unnamed-font-family-roboto: Roboto;
+--unnamed-font-style-normal: normal;
+--unnamed-font-weight-300: 300px;
+--unnamed-font-size-24: 24px;
+--unnamed-character-spacing-0: 0px;
+--unnamed-line-spacing-32: 32px;
+}
+
+/* Character Styles */
+.título-vitrines {
+font-family: var(--unnamed-font-family-roboto);
+font-style: var(--unnamed-font-style-normal);
+font-weight: var(--unnamed-font-weight-300);
+font-size: var(--unnamed-font-size-24);
+line-height: var(--unnamed-line-spacing-32);
+letter-spacing: var(--unnamed-character-spacing-0);
+color: var(--unnamed-color-6a6a6a);
+}

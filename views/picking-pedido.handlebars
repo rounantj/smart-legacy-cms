@@ -1,0 +1,512 @@
+<section class="topo-pedido">
+    <div style="padding: 25px;" class="container">
+        <div style="display: inline-flex;" class="row">
+
+            <img onclick="redirect('picking-pedidos', 0)" class="arrowLeft" src="/assets/icons/voltar.svg" />
+
+            <p class="numeroPedidoG">#
+                <script>document.write(localStorage.numeroPedido)</script>
+            </p>
+            <p class="feedback">* Você esta separando
+                <script>document.write(moment().format('DD/MM HH:mm'))</script>
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section style=" padding-right: 5px; padding-bottom: 100px;max-height: 80vh;    overflow: auto !important;"
+    class="conteudo">
+    <div class="container">
+        <div class="areaCliente">
+            <div class="areaIconeCliente">
+                <img class="iconeCliente" src="/assets/icons/cliente.svg" />
+            </div>
+
+            <p class="nameClient"></p>
+            <a id="ligar" href="tel:5527996011204"></a>
+            <div class="areaLigar">
+                <img class="iconeLigar" src="/assets/icons/iphone.svg" />
+                <p class="txtLigar">Ligar</p>
+            </div>
+            </a>
+        </div>
+
+        <div class="areaInformativa">
+
+            <div class="iconeInformativo">
+                <img class="iconeInforma" src="/assets/icons/carro.svg" />
+            </div>
+            <div class="areaDosDetalhes">
+                <p class="entrega"></p>
+                <p class="tipoEntrega"></p>
+                <p class="endereco">Jacupemba Aracruz, Avenida Luiz Rossato N 200 - 29196025</p>
+            </div>
+
+
+
+
+        </div>
+
+        <div class="areaInformativa">
+
+            <div class="iconeInformativo">
+                <img class="iconeInforma" src="/assets/icons/dinheiro.svg" />
+            </div>
+            <div class="areaDosDetalhes">
+                <p class="valorTotal2">Valor Total</p>
+                <p class="tipoEntrega2">R$ <span id="totalPedido"> </span></p>
+
+            </div>
+
+
+
+
+        </div>
+
+
+        <div class="areaInformativa">
+
+            <div class="iconeInformativo">
+                <img class="iconeInforma" src="/assets/icons/terminal.svg" />
+            </div>
+            <div class="areaDosDetalhes">
+                <p class="pagamento2 localPagamento">Pgto. na entrega</p>
+                <p class="tipoEntrega tipoPagamento"> </p>
+            </div>
+
+
+
+
+        </div>
+
+
+
+        <div class="areaBtnNovoProduto">
+            <div onclick="novoProdutoModal($(this))" class="btnNovoProduto">
+                <img class="iconePlus" src="/assets/icons/plus-circle.svg" />
+                <p class="txtNovoProduto">Novo produto</p>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="listaDeProdutos">
+
+
+    </div>
+
+
+
+
+
+
+
+</section>
+
+<footer class="rodape">
+    <div onclick="separarPedido($(this))" class="btnSeparar">
+        <p class="txtSeparar">
+            Começar a separar
+        </p>
+    </div>
+
+</footer>
+
+
+<modal class="editarProdutoModal">
+    <div class="modal">
+        <div class="topoModal">
+            <img onclick="closeModal($(this))" class="iconCloseModal" src="/assets/icons/close.svg" />
+        </div>
+        <div style="max-width: 70%;    margin: auto;" class="container">
+            <div class="detalheProdutoModal">
+                <div style="
+                min-width: 150px;    
+                min-height: 150px;    
+                max-height: 150px;    
+                max-width: 150px;" class="imagenProduto">
+
+                    .
+                </div>
+                <p class="nomeProduto"> </p>
+                <p class="pesoProduto"></p>
+            </div>
+            <div class="formModal">
+                <p class="labelEditarModal">Qtd</p>
+                <div class="areaInputModal">
+                    <input type="number" class="inputModal quantidadePedido" placeholder="Quantidade" />
+                    <img class="iconeEditarModal" src="/assets/icons/editar.svg" />
+                </div>
+
+                <p class="labelEditarModal">Adicionar comentário</p>
+                <div class="areaInputModal">
+                    <textarea rows="5" placeholder="Escreva aqui">
+
+                    </textarea>
+                    <img class="iconeEditarModal2" src="/assets/icons/editar.svg" />
+                </div>
+
+            </div>
+
+
+            <div onclick="removerProdutoAoPedido($(this))" class="btnRemoverProdutoModal">
+                <img class="iconeRemoverModal" src="/assets/icons/trash.svg" />
+                <p class="txtRemoverModal">Remover Produto</p>
+            </div>
+
+            <div style="display:none" class="btnDesfazerProdutoModal">
+                <img class="iconeDesfazerModal" src="/assets/icons/desfazer.svg" />
+                <p class="txtDesfazerModal">Desfazer Edições</p>
+            </div>
+
+
+
+
+
+            <div onclick="editarProdutoDoPedido($(this))" class="btnAplicarModal">
+                <p class="txtAplicarModal">Aplicar Edição</p>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+</modal>
+
+<modal class="novoProdutoModal">
+    <div class="pageFull">
+        <div class="topoModal">
+            <img paginaClose="novoProdutoModal" onclick="voltarPagina($(this))" class="iconVoltarPagina"
+                src="/assets/icons/voltar.svg" />
+            <p class="tituloNovoProduto">Novo Produto</p>
+        </div>
+        <div class="areaBuscaModal">
+            <input onkeyup="search($(this))" style="width: 90%;" class="inputBuscaModal"
+                placeholder="Busque por nome" />
+            <img class="iconeSearch" src="/assets/icons/search.svg" />
+
+        </div>
+        <div class="areaBuscaModalContainer">
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+</modal>
+
+<modal class="adicionarProdutoModal">
+    <div class="modalAddProduto">
+        <div class="topoModal">
+            <img onclick="closeModal($(this))" class="iconCloseModal" src="/assets/icons/close.svg" />
+        </div>
+        <div style="max-width: 70%;    margin: auto;" class="container">
+            <div class="detalheProdutoModal">
+                <div style="
+                min-width: 150px;    
+                min-height: 150px;    
+                max-height: 150px;    
+                max-width: 150px;" class="imagenProduto">
+
+                    .
+                </div>
+                <p class="nomeProduto"> </p>
+                <p class="pesoProduto"> </p>
+            </div>
+            <div class="formModal">
+                <p class="labelEditarModal">Qtd</p>
+                <div class="areaInputModal">
+                    <input onkeyup="digitando($(this))" onchange="parouDigitar($(this))" type="number"
+                        class="inputModal quantidadePedido novaQuantidade" placeholder="Quantidade" />
+                    <img class="iconeEditarModal" src="/assets/icons/editar.svg" />
+                </div>
+
+                <p class="labelEditarModal">Adicionar comentário</p>
+                <div class="areaInputModal">
+                    <textarea onkeyup="digitando($(this))" onfocus="digitando($(this))" onchange="parouDigitar($(this))"
+                        rows="5" class="textoComentario" placeholder="Escreva aqui"></textarea>
+                    <img class="iconeEditarModal2" src="/assets/icons/editar.svg" />
+                </div>
+
+            </div>
+
+
+
+
+
+
+            <div onclick="adicionarProdutoAoPedido($(this))" class="btnAplicarModal">
+                <p class="txtAplicarModal">Adicionar produto</p>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+</modal>
+<modal class="finalizaSeparacao">
+    <div class="modalFinaliza">
+        <div class="topoModal">
+            <img onclick="closeModal($(this))" class="iconCloseModal" src="/assets/icons/close.svg" />
+        </div>
+
+        <div class="areaLike">
+            <img class="iconeLike" src="/assets/icons/like.svg" />
+        </div>
+        <p class="tituloLike">Todos os produtos coletados</p>
+        <p class="subTituloLike">O que deseja fazer?</p>
+
+        <div onclick="registraFim($(this))" class="btnFinalizaColeta">
+            <p class="txtFinalizaColeta">Finalizar coleta</p>
+        </div>
+        <div class="btnRevisar">
+            <p onclick="closeModal($(this))" class="txtRevisar">Revisar</p>
+        </div>
+
+
+    </div>
+
+</modal>
+
+<script>
+    $(function () {
+        setTimeout(() => {
+            restart()
+        }, 3000)
+
+        function restart() {
+            var clientData = getClientInfo(getOrderInfo(Number(localStorage.numeroPedido)).order_client_id)
+            var orderData, orderContent;
+            try {
+                orderData = getOrderInfo(Number(localStorage.numeroPedido))
+                //console.log(orderData)
+                orderContent = JSON.parse(orderData.order_conteudo)
+                localStorage.ORDER_EDIT = JSON.stringify(orderContent)
+                //console.log(clientData)
+                //console.log(orderData)
+                //console.log('orderContent')
+                //console.log(orderContent)
+            } catch (e) {
+                //console.log(e)
+                location.reload()
+            }
+
+
+            var aguarde = true
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:6060/getProductsFromOrder',
+                headers: { "x-access-token": localStorage.token },
+                data: { "listaProdutos": orderContent, "product_affiliate_id": localStorage.AFFILIATE_ID },
+                success: function (data) {
+                    localStorage.PEDIDO_FULL = JSON.stringify(data)
+                    //console.log('PEDIDO_FULL')
+                    //console.log(data)
+                    aguarde = false
+
+                },
+                error: function (data) {
+                    //console.log(data) 
+                },
+                complete: function () {
+
+                }
+            });
+
+
+            var espera = setInterval(() => {
+                if (aguarde == false) {
+
+                    $(".nameClient").html(
+                        clientData.users_client_name
+                    )
+
+                    var tipoColeta = orderData.order_metodo_entrega
+                    if (tipoColeta.toLowerCase().indexOf('retira') > -1) { tipoColeta = 'Retirada' } else { tipoColeta = 'Entrega' }
+                    $(".entrega").html(tipoColeta)
+                    $(".tipoEntrega").html(orderData.order_metodo_entrega + ' - R$<span id="valEntrega">' + orderData.order_valor_entrega.toFixed(2).replace(".", ",") + '</span>')
+
+                    $(".endereco").html(
+                        clientData.users_client_endereco
+                    )
+                    /*
+                    var valorTotal = 0
+                    for(const k in orderContent){
+                        valorTotal += (orderContent[k].quantidade * orderContent[k].product_valor)
+                    }
+                    */
+                    $("#totalPedido").html(
+                        orderData.order_valor_total.toFixed(2).replace(".", ",")
+                    )
+
+                    $(".tipoPagamento").html(
+                        orderData.order_metodo_pagamento
+                    )
+
+                    //console.log("inserindo lista de produtos...")
+                    for (const k in orderContent) {
+
+                        let tipoDesconto1 = orderContent[k].product_site_discount_type
+
+                        if (tipoDesconto1 == undefined || tipoDesconto1 == null) {
+                            tipoDesconto1 = ""
+                        }
+                        let valorDesconto5 = orderContent[k].desconto
+
+                        if (valorDesconto5 == undefined) {
+                            valorDesconto5 = 0
+                        }
+                        let nomeDesconto = ''
+                        if (tipoDesconto1.indexOf("compre X") > -1) {
+                            nomeDesconto = 'Leve 3 <b>Pague 2</b>'
+                        }
+                        if (tipoDesconto1.indexOf("preço total") > -1) {
+                            nomeDesconto = 'Preço Total'
+                        }
+                        if (tipoDesconto1.indexOf("no carrinho") > -1) {
+                            nomeDesconto = 'Produto no Carrinho'
+                        }
+                        let TXT_COMMENT = orderContent[k].comentario ? orderContent[k].comentario : ""
+                        let removido = ''
+                        if (TXT_COMMENT.indexOf("#CANCELADO#") > -1) {
+                            removido = ' removido '
+                        }
+                        var desconto = '<div ' + (removido != '' ? 'style="filter: grayscale(1)"' : '') + ' class="conteudoDesconto  opaco">' +
+                            '<p class="nomeDesconto">Desconto</p>' +
+                            '<p class="tipoDesconto">' + nomeDesconto + '</p>' +
+                            '<div class="areaValorDesconto">' +
+                            '<p class="valorDesconto">-R$ ' + valorDesconto5.toLocaleString() + '</p>' +
+                            '</div>' +
+                            '</div>';
+                        if (orderContent[k].desconto <= 0) {
+                            desconto = ''
+                        }
+                        var comentario = '<p class="comentario">' +
+                            '<img class="iconeCaneta" src="/assets/icons/caneta.svg" />  ' +
+                            '' + orderContent[k].comentario + '</p>';
+
+                        if (orderContent[k].comentario == null || orderContent[k].comentario == '' || orderContent[k].comentario == undefined) { comentario = '' }
+
+                        var caracteristica = '<div class="areaCaracteristica">' +
+                            '<p class="caracteristica">' + orderContent[k].caracteristica + '</p>' +
+                            '</div>';
+
+
+                        if (orderContent[k].caracteristica == null || orderContent[k].caracteristica == '' || orderContent[k].caracteristica == undefined) { caracteristica = '' }
+
+                        var html = '<div class="meuProduto">' +
+                            '<div class="areaProdutoPedido ' + removido + '">' +
+                            '<aside ' + (removido != '' ? 'style="opacity:0"' : '') + ' class="removeTodoProduto">' +
+                            '<div product_code="' + orderContent[k].product_code + '" ' + (removido != '' ? '' : 'onclick="cancelaProduto($(this))"') + '  class="areaBtnRemove">' +
+                            '<img class="iconeRemoveTodoProduto" src="/assets/icons/lixeira.svg" /> ' +
+                            '</div>' +
+                            '<p class="txtRemoverProdutoTodo">Remover<br>produto</p>' +
+                            '</aside>' +
+
+                            '<main ' + (removido != '' ? 'style="border-left: 5px solid silver"' : '') + ' class="cardProduto ' + removido + '">' +
+                            '<div  ' + (removido != '' ? 'style="filter: grayscale(1)"' : '') + ' class="topo-produto opaco">' +
+                            '<div style=" background: transparent url(' + orderContent[k].product_thumbnail + ') 0% 0% no-repeat padding-box;" class="imagenProduto">' +
+                            '.' +
+                            '</div>' +
+                            '<div class="cabecalhoProduto">' +
+                            '<p class="nomeProduto">' + orderContent[k].product_descricao + '</p>' +
+                            '<p class="pesoProduto"></p>' +//+orderContent[k].product_thumbnail+'</p>'+
+                            '</div>' +
+                            '</div>' +
+                            '<div ' + (removido != '' ? 'style="filter: grayscale(1)"' : '') + ' class="footer-produto  opaco">' +
+                            '<div class="col areaFooterProduto">' +
+                            '<p class="labelDetalhe">Qtd</p>' +
+                            '<div class="areaValorDetalhe">' +
+                            '<p class="valorDetalhe">' + orderContent[k].quantidade + ' ' + orderContent[k].product_medida + '</p>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col areaFooterProduto">' +
+                            '<p class="labelDetalhe">Preço</p>' +
+                            '<div class="areaValorDetalhe">' +
+                            '<p style class="valorDetalhe">R$ ' + orderContent[k].valor.toFixed(2).replace(".", ",") + '</p>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col areaFooterProduto">' +
+                            '<p class="labelDetalhe">Subtotal</p>' +
+                            '<div class="areaValorDetalhe">' +
+                            '<p class="valorDetalhe">R$ <span class="vSubTotal">' + (orderContent[k].quantidade * orderContent[k].valor).toFixed(2).replace(".", ",") + '</span></p>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+
+                            desconto +
+
+
+
+                            '<div ' + (removido != '' ? 'style="filter: grayscale(1)"' : '') + ' class="conteudoComentarios  opaco">' +
+                            caracteristica +
+                            comentario +
+
+                            '</div>' +
+                            '<div class="edicao-produto">' +
+                            '<div product_code="' + orderContent[k].product_code + '" onclick="editarProduto($(this))" class="col btnEditarProduto">' +
+                            '<img class="iconeEditar" src="/assets/icons/editar.svg" /> ' +
+                            '<p class="txtEditarProduto">' + (removido != '' ? 'Produto removido' : 'Editar Produto') + '</p>' +
+                            '</div>' +
+                            '<div  product_code="' + orderContent[k].product_code + '" onclick="reativaColetaProduto($(this))" class="col btnColetarProduto">' +
+                            '<img class="iconeColetar" ' + (removido != '' ? '"src="/assets/icons/desfazBranco.svg"' : 'src="/assets/icons/cart.svg"') + '  /> ' +
+                            '<p ' + (removido != '' ? 'status="' + removido + '"' : '') + ' class="txtColetarProduto ' + removido + '"> ' + (removido != '' ? 'Voltar Produto' : 'Coletar Produto') + '</p>' +
+                            '</div>' +
+                            '</div>' +
+                            '</main>' +
+                            '</div>' +
+                            '</div>';
+                        $(".listaDeProdutos").append(html)
+                    }
+
+
+
+
+
+
+
+                    clearInterval(espera)
+                    //console.log("Espera cancelada...")
+                    adjust()
+                } else {
+                    //console.log("Continue esperando...")
+                }
+            }, 300)
+
+
+
+        }
+
+
+    });
+
+
+
+</script>

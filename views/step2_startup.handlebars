@@ -1,0 +1,97 @@
+<script>
+    localStorage.MY_DOMAIN = 'https://cms.api-smartcomerci.com.br'
+</script>
+<link href="../assets/css/step2.css" rel="stylesheet" />
+
+
+<div class="container">
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        <div class=" text-center text-white overflow-hidden" style="width: 100% !important; height: 100vhpx;">
+            <div class="logo"></div>
+
+            <div class="" style="max-width: 1366px; 
+   opacity: 1; padding: 5%; margin: auto;">
+                <h2 class="display-5 titulo">UMA NOVA FASE DA SUA EMPRESA COMEÇARÁ AGORA</h2>
+                <hr style="color: #50C682; margin-top: -1%">
+                <h1 class="lead">Nós queremos que a sua experiência com a SmartComerci seja perfeita para as suas
+                    necessidades.<br>Responda algumas perguntas para que possamos te conhecer melhor.</h1>
+                <br>
+                <input class="btn btn-success btnStart continuar" value="Vamos Começar">
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <script>
+        localStorage.idPageStartup = 2
+        localStorage.stage = 2
+        var mainHost = localStorage.MY_DOMAIN;
+
+        $.ajax({
+            type: "POST",
+            url: mainHost + '/me',
+            data: { "token_me": localStorage.token_me },
+            headers: {
+                "x-access-token": localStorage.token,
+                "is_product_image": true,
+            },
+            success: function (data) {
+                //console.log(data);
+
+                $.ajax({
+                    type: "POST",
+                    url: mainHost + '/getAllAffiliates',
+                    data: { "affiliate_id": localStorage.MASTER_ID },
+                    headers: {
+                        "x-access-token": localStorage.token,
+                        "is_product_image": true,
+                    },
+                    success: function (data) {
+                        //console.log('data',data); 
+                        //console.log(data); 
+                        localStorage.AFFILIATE_ID = data[0].id
+                        localStorage.LOJAS_CADASTRADAS = JSON.stringify(data)
+
+                    },
+                    error: function (data) {
+                        //console.log(data);
+                        if (data.responseJSON.message.indexOf("token") > -1) {
+                            //console.log("Necessário fazer login!<br>"+data.responseJSON.message)
+                            setTimeout(() => {
+                                location.replace("/startup?login")
+                            }, 2000)
+
+                        } else {
+                            //console.log("Algo saiu errado!<br>"+data.responseJSON.message)
+                        }
+                    },
+                    complete: function () {
+                        // ao final da requisição... 
+                    },
+                });
+
+            },
+            error: function (data) {
+                //console.log(data);
+                if (data.responseJSON.message.indexOf("token") > -1) {
+                    //console.log("Necessário fazer login!<br>"+data.responseJSON.message)
+                    setTimeout(() => {
+                        location.replace("/startup?login")
+                    }, 2000)
+
+                } else {
+                    //console.log("Algo saiu errado!<br>"+data.responseJSON.message)
+                }
+            },
+            complete: function () {
+                // ao final da requisição... 
+            },
+        });
+
+
+
+
+    </script>

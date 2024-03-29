@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://admin.api-smartcomerci.com.br/assets/img/lima-04.svg" />
+  <title>Conteudo</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: #FAFAFD;
+    }
+
+    * {
+      font-family: Roboto;
+    }
+
+    .modal-body {
+      padding: 1.55rem 4rem 3.8rem 4rem;
+    }
+
+    .modal-title {
+      color: #687C97;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .modal-content {
+      border-radius: 1.2rem;
+    }
+
+    .modal .focus-visible {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .modal .form-label {
+      font-size: 0.9rem;
+      font-family: Roboto;
+      font-weight: bold;
+      color: #687C97;
+    }
+
+    .modal-body-gray {
+      flex: 1 1 auto;
+      background-color: #FAFAFD;
+      padding: 1.5rem 4rem;
+    }
+
+    .modal-footer {
+      background-color: #FAFAFD;
+      border-top: 1px solid #EDEDED;
+      border-bottom-right-radius: 1.2rem;
+      border-bottom-left-radius: 1.2rem;
+    }
+
+    @media (min-width: 992px) {
+      .modal-lg {
+        max-width: 650px;
+      }
+    }
+
+    .modal-fullscreen .modal-content {
+      height: calc(100% - 72px);
+    }
+
+    .modal-fullscreen {
+      align-items: flex-end;
+    }
+
+    .modal-body-container {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .panel-header_title {
+      max-width: 370px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .rounded-icon {
+      display: inline-flex;
+      padding: 0.35rem;
+      background: #F6B504;
+      border-radius: 50%;
+    }
+
+    .rounded-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      fill: #ffffff;
+    }
+
+    .icon-xlg {
+      padding: 1rem;
+    }
+
+    .icon-xlg svg {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .icon-orange {
+      background-color: #FFFBF2;
+    }
+
+    .icon-orange svg {
+      fill: #F6B504;
+    }
+
+    .h3 {
+      font-size: 1.12rem;
+    }
+
+    .text-orange {
+      color: #F6B504;
+    }
+
+    .bg-gray {
+      background: #f0f0f0;
+    }
+
+    .bg-gray-light {
+      background: #FCFCFD;
+    }
+
+    .border-gray {
+      border: 1px solid #EDF2F6;
+    }
+
+    .text-semi-dark {
+      color: #333333;
+    }
+
+    .page-content {
+      padding: 5rem;
+    }
+
+    .btn {
+      font-size: 0.9rem;
+      padding: 0.4rem 2.4rem;
+    }
+
+    .btn.btn-lg {
+      font-size: 1rem;
+      padding: 0.6rem 2.4rem;
+    }
+
+    .btn.btn-icon.rounded-circle {
+      padding: 0.7rem;
+    }
+
+    .btn:focus {
+      box-shadow: none;
+    }
+
+    .btn-primary,
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active,
+    .btn-primary:disabled {
+      background: #F6B504;
+      color: #ffffff;
+      border: none;
+    }
+
+    .btn-outline-primary,
+    .btn-outline-primary:hover,
+    .btn-outline-primary:focus,
+    .btn-outline-primary:active {
+      background: #ffffff;
+      border: 1px solid;
+      color: #F6B504;
+    }
+
+    .btn-secondary,
+    .btn-secondary:hover,
+    .btn-secondary:focus,
+    .btn-secondary:active {
+      color: #F6B504;
+      background: #FFFBF2;
+      border: none;
+    }
+
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-icon svg {
+      width: 0.9rem;
+      height: 0.9rem;
+      fill: #ffffff;
+    }
+
+    .btn.btn-min-width {
+      min-width: 206px;
+    }
+
+    hr {
+      margin: 1.5rem 0;
+      background-color: #EDEDED;
+      opacity: 1;
+    }
+
+    .vr {
+      align-self: stretch;
+      border-right: 2px solid #D2D8E0;
+
+      margin: 0 5rem;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      height: 70px;
+      padding: 0 1.5rem;
+      background: #ffffff;
+      box-shadow: 35px 5px 54px #695F971A;
+    }
+
+    .card-img-top {
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .col .card {
+      height: 100%;
+    }
+
+    .card {
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0px 10px 15px #CAD7E31D;
+    }
+
+    .card-fixed-content {
+      height: 125px;
+    }
+
+    .card-body {
+      border-radius: 1rem;
+    }
+
+    .card-body-top {
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    .card-body_upload {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      background: #FFFBF2;
+      border: 2px dashed #F8C63F;
+      cursor: pointer;
+    }
+
+    .card-body_upload-icon {
+      display: inline-flex;
+    }
+
+    .card-body_upload-icon svg {
+      width: 1.3rem;
+      height: 1.3rem;
+    }
+
+    .card-body_upload-text {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #6A6A6A;
+    }
+
+    .custom-badge {
+      background: #FFFBF2;
+      color: #F6B504;
+      margin-bottom: 0.5rem;
+      padding: 5px 20px;
+      font-weight: 300;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #222B45;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .switch,
+    .styled-checkbox {
+      display: flex;
+      align-items: center;
+      position: relative;
+      user-select: none;
+      cursor: pointer;
+      font-size: 62.5%;
+    }
+
+    .switch input,
+    .styled-checkbox input {
+      display: none;
+      opacity: 0;
+    }
+
+    .switch-toggle {
+      display: inline-block;
+      position: relative;
+      height: 2.2em;
+      width: 4.2em;
+      background: #EDF2F6;
+      border: 1px solid #687C97;
+      border-radius: 1em;
+      transition: all 0.3s;
+    }
+
+    .switch-toggle:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0.2em;
+      transform: translateY(-50%);
+      height: 1.8em;
+      width: 1.8em;
+      background: #687C97;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .switch-label {
+      margin-left: 1.4em;
+      line-height: 1;
+      color: #687C97;
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+
+    .switch-label:after {
+      content: "Desativada";
+      margin-left: 0.2rem;
+    }
+
+    .switch input:checked~.switch-toggle {
+      border: none;
+      background: #F6B504;
+    }
+
+    .switch input:checked~.switch-toggle:before {
+      left: 2.2em;
+      background: #ffffff;
+    }
+
+    .switch input:checked~.switch-label:after {
+      content: "Ativa";
+    }
+
+    .body-text {
+      font-size: 0.9rem;
+      color: #687C97;
+    }
+
+    .small-width {
+      max-width: 226px;
+    }
+
+    .panel-body_text {
+      max-width: 364px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #687C97;
+    }
+
+    #modalMaximumPageAmount .btn {
+      min-width: 318px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-header">
+    <h3 class="mb-0">Conteúdo</h3>
+
+    <div class="vr me-auto"></div>
+
+    <button class="btn btn-lg btn-primary btn-min-width rounded-pill" disabled>
+      Publicar
+    </button>
+  </div>
+  <div class="page-content">
+    <h3>Geral</h3>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-3">
+      <div class="col">
+        <div onclick="window.parent.location.replace('../editar_home_cores')" class="card">
+          <img src="site-print.png" class="card-img-top card-fixed-content" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Home / Cabeçalho / Rodapé e Cores</h5>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: none;" class="col">
+        <div class="card">
+          <img src="site-print.png" class="card-img-top card-fixed-content" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Modal Login / Conta</h5>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: none" class="col">
+        <div class="card">
+          <div class="card-body card-body-top card-body_upload card-fixed-content">
+            <span class="rounded-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z" />
+              </svg>
+            </span>
+
+            <p class="card-body_upload-text">
+              Modal sem edição
+            </p>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Modal Endereço</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h3 class="d-inline-block">Páginas Institucionais</h3> <span
+      class="badge rounded-pill custom-badge align-middle"><span id="totalPaginas">0</span>/15</span>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-3 mb-5 minhasPaginas">
+
+
+      <!--
+     
+      <div class="col">
+        <div onclick="window.parent.location.replace('../nossas_lojas')" class="card">
+          <img src="site-print.png" class="card-img-top card-fixed-content" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Nossas Lojas</h5>
+            <div>
+              <label class="switch">
+                <input type="checkbox" id="pedido_perm">
+                <span class="switch-toggle"></span>
+                <span class="switch-label">Página</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div  onclick="window.parent.location.replace('../nossos_cuidados')" class="card">
+          <img src="site-print.png" class="card-img-top card-fixed-content" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Nossos cuidados</h5>
+            <div>
+              <label class="switch">
+                <input type="checkbox" id="pedido_perm">
+                <span class="switch-toggle"></span>
+                <span class="switch-label">Página</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    -->
+
+      <div class="col">
+        <div onclick="criarNovaPagina()" class="card">
+          <div class="card-body card-body_upload card-fixed-content" data-bs-toggle="modal"
+            data-bs-target="#modalMaximumPageAmount">
+            <span class="rounded-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z" />
+              </svg>
+            </span>
+
+            <p class="card-body_upload-text">
+              Nova página institucional
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h3 class="d-inline-block">Receitas</h3>
+
+    <div class="mb-2">
+      <label class="switch">
+        <input type="checkbox" id="pedido_perm">
+        <span class="switch-toggle"></span>
+        <span class="switch-label">Receitas</span>
+      </label>
+    </div>
+
+    <p class="body-text">
+      Ativando a funcionalidade “receitas” seus clientes poderão acessar a página pelo menu principal e poderão ver as
+      receitas ativas
+    </p>
+
+    <div id="minhasReceitas" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-3 mb-5">
+      <div class="col">
+        <div onclick="window.parent.location.replace('../receitas')" class="card">
+          <img src="site-print.png" class="card-img-top card-fixed-content" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Página principal</h5>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="col">
+        <div onclick="window.parent.location.replace('../receitas')" class="card">
+          <div class="card-body card-body_upload card-fixed-content">
+            <span class="rounded-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z" />
+              </svg>
+            </span>
+
+            <p class="card-body_upload-text">
+              Adicionar receitas
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h3 style="display: none !important;" class="d-inline-block">Assinatura</h3>
+
+    <div style="display: none;" class="mb-2">
+      <label class="switch">
+        <input type="checkbox" id="pedido_perm">
+        <span class="switch-toggle"></span>
+        <span class="switch-label">Assinatura</span>
+      </label>
+    </div>
+
+    <p style="display: none;" class="body-text">
+      Ativando a funcionalidade “assinatura” seus clientes poderão acessar a página pelo menu principal e poderão ver as
+      receitas ativas
+    </p>
+
+    <div style="display: none;" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-3 mb-5">
+      <div class="col">
+        <div class="card">
+          <div class="card-body card-body-top card-body_upload card-fixed-content">
+            <span class="rounded-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z" />
+              </svg>
+            </span>
+
+            <p class="card-body_upload-text">
+              Página não criada
+            </p>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Página principal</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <img src="site-print.png" class="card-img-top card-fixed-content" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Modal Assinatura</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modalMaximumPageAmount" tabindex="-1" aria-labelledby="modalMaximumPageAmountLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title m-auto" id="modalMaximumPageAmountLabel">Nova página institucional</h5>
+          <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="panel-header text-center mb-4">
+            <p class="rounded-icon icon-xlg icon-orange">
+              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_x0020_1" width="32.854" height="32.854"
+                viewBox="0 0 32.854 32.854">
+                <rect id="Retângulo_1684" data-name="Retângulo 1684" width="32.854" height="32.854" fill="none" />
+                <path id="exclamation-triangle"
+                  d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1ZM11,14H10V13h1v1Zm-.5-3a.5.5,0,0,1-.5-.5v-4a.5.5,0,0,1,1,0v4A.5.5,0,0,1,10.5,11Z"
+                  transform="translate(5.927 5.927)" fill="#f8c63f" />
+              </svg>
+            </p>
+
+            <p class="panel-header_title small-width">
+              <strong>Número máximo de páginas Institucionais atingido</strong>
+            </p>
+          </div>
+
+          <div class="panel-body text-center mb-5">
+            <p class="panel-body_text">
+              Sua loja já possui 15 páginas institucionais. É necessário deletar uma página para poder criar outra.
+            </p>
+          </div>
+
+          <div class="panel-body text-center">
+            <button class="btn btn-lg btn-primary rounded-pill" data-bs-dismiss="modal">
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+    var mainHost = 'http://localhost:6060';
+    $.ajax({
+      type: "POST",
+      url: mainHost + '/getByTableName',
+      data: { "masterId": localStorage.MASTER_ID, "idName": "master_id", "tableName": "institucional_pages" },
+      headers: {
+        "x-access-token": localStorage.token,
+      },
+      success: function (data) {
+        $("#totalPaginas").text(data.length)
+        //console.log("coletando paginas institucionais..")
+        localStorage.INSTITUCIONAL_PAGES = JSON.stringify(data)
+        addPage()
+
+
+      },
+      error: function (data) {
+        //console.log("erro institucional", data)
+      },
+      complete: function () { },
+    });
+
+
+    function addPage() {
+      var html = ''
+      let paginas = JSON.parse(localStorage.INSTITUCIONAL_PAGES)
+      for (const k in paginas) {
+        let checked = ''
+        if (paginas[k].status == 1) {
+          checked = 'checked=true'
+        }
+        html += '<div class="col">' +
+          '<div onclick="window.parent.location.replace(\'../paginas_institucionais/' + paginas[k].name_page + '\')" class="card">' +
+          '<img src="site-print.png" class="card-img-top card-fixed-content" alt="...">' +
+          '<div class="card-body">' +
+          '<h5 class="card-title">' + paginas[k].name_page.replace(/-/g, ' ').toUpperCase() + '</h5>' +
+          '<div>' +
+          '<label class="switch">' +
+          '<input ' + checked + ' type="checkbox" id="pedido_perm' + paginas[k].id + '">' +
+          '<span class="switch-toggle"></span>' +
+          '<span class="switch-label">Página</span>' +
+          '</label>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>';
+      }
+      $(".minhasPaginas").prepend(html)
+
+    }
+
+    function criarNovaPagina() {
+      window.parent.location.replace(
+        '../paginas_institucionais/PAGINA-NOVA'
+      )
+    }
+
+    $.ajax({
+      type: "POST",
+      url: mainHost + '/getByTableName',
+      data: { "masterId": localStorage.MASTER_ID, "idName": "master_id", "tableName": "revenues" },
+      headers: {
+        "x-access-token": localStorage.token,
+      },
+      success: function (data2) {
+        //console.log('revenuess',data2)
+        let html = ''
+        for (const k in data2) {
+          html += getRevenueCard(data2[k])
+        }
+        //console.log(html)
+
+        $("#minhasReceitas").prepend(html)
+
+      },
+      error: function (data) {
+        //console.log("erro get", data)
+
+        window.parent.informar("alert-danger", "Algo saiu errado!", 3000)
+      },
+      complete: function () { },
+    });
+
+
+
+    function getRevenueCard(dados) {
+
+      let html = `
+      <div class="col">
+        <div onclick="window.parent.location.replace('../receita_interna/${dados.id}')" class="card">
+          <img src="${dados.banner_topo}" class="card-img-top card-fixed-content" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">${dados.title}</h5>
+            <div>
+              <label class="switch">
+                <input ${dados.status == 1 ? 'checked="true"' : ''} type="checkbox" id="pedido_perm">
+                <span class="switch-toggle"></span>
+                <span class="switch-label">Receita</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>`
+
+      return html
+
+    }
+
+  </script>
+</body>
+
+</html>

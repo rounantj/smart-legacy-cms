@@ -1,0 +1,1600 @@
+<style>
+    .preview {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: 996px) {
+        .preview {
+            margin-bottom: 20px;
+        }
+    }
+
+    .preview-pic {
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+    }
+
+    .preview-thumbnail.nav-tabs {
+        border: none;
+        margin-top: 15px;
+    }
+
+    .preview-thumbnail.nav-tabs li {
+        width: 18%;
+        margin-right: 2.5%;
+    }
+
+    .preview-thumbnail.nav-tabs li img {
+        max-width: 100%;
+        display: block;
+    }
+
+    .preview-thumbnail.nav-tabs li a {
+        padding: 0;
+        margin: 0;
+    }
+
+    .preview-thumbnail.nav-tabs li:last-of-type {
+        margin-right: 0;
+    }
+
+    .tab-content {
+        overflow: hidden;
+    }
+
+    .tab-content img {
+        -webkit-animation-name: opacity;
+        animation-name: opacity;
+        -webkit-animation-duration: 0.3s;
+        animation-duration: 0.3s;
+    }
+
+    .labelFuncao {
+        text-align: left;
+        font: normal normal bold 14px/14px Roboto;
+        letter-spacing: 0px;
+        padding: 15px;
+        margin: auto;
+        color: #F6B504 !important;
+        opacity: 1;
+    }
+
+    .userCms {
+        cursor: pointer;
+        transition: 0s;
+        border: 1px solid #efefef;
+        margin-top: 1%;
+        padding: 2px;
+        max-height: 64px;
+        background-color: white;
+    }
+
+    .duplicate2 {
+
+
+        cursor: pointer !important;
+        width: 37px;
+        height: 37px;
+        background: #FFFBF2 0% 0% no-repeat padding-box;
+        border-radius: 26px;
+        opacity: 1;
+        margin: 3px auto;
+        padding: 9px;
+        text-align: center;
+
+    }
+
+    .deleteThis {
+
+        margin: 3px auto !important;
+    }
+
+    .firstLetter {
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: #F6B504;
+        border-radius: 100%;
+        /* width: 50px; */
+        /* height: 50px; */
+        text-align: center;
+        /* background: #FFFFFF 0% 0% no-repeat padding-box; */
+        /* opacity: 1; */
+        width: 30px;
+        height: 30px;
+        background: #F6B504 0% 0% no-repeat padding-box;
+        opacity: 1;
+        padding: 2px;
+    }
+
+    .footerModalPequena {
+        min-height: 186px;
+        /* UI Properties */
+        background: #FAFAFD 0% 0% no-repeat padding-box;
+        box-shadow: 0px 0px 10px #6A6A6A19;
+        border-radius: 25px;
+        opacity: 0.7;
+        margin-top: 50px;
+    }
+
+    .text-semi-dark {
+        color: #333333;
+    }
+
+    .input-float-label {
+        position: relative;
+    }
+
+    .input-float-label .myLabel2 {
+        position: absolute;
+        font-size: 0.75rem;
+        left: 16px;
+        top: -8px;
+        background-color: #ffffff;
+        color: #F6B504;
+        padding: 0px 6px;
+    }
+
+    .input-float-label .show-password {
+        position: absolute;
+        font-size: 0.75rem;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .input-float-label .show-password img {
+        width: 1.25rem;
+        height: 1.25rem;
+        filter: invert(74%) sepia(18%) saturate(4373%) hue-rotate(3deg) brightness(102%) contrast(97%);
+    }
+
+    .input-float-label .form-control {
+        padding-right: 3rem;
+        border-color: #F6B504;
+        min-height: 50px;
+    }
+
+    .bolaDourada3 {
+        width: 63px;
+        height: 63px;
+        /* UI Properties */
+        background: #FFFBF2 0% 0% no-repeat padding-box;
+        opacity: 1;
+        border-radius: 100%;
+        margin: auto;
+    }
+
+    .txtBola {
+        font: var(--unnamed-font-style-normal) normal bold 18px/24px var(--unnamed-font-family-roboto);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        text-align: center;
+        font: normal normal bold 18px/24px Roboto;
+        letter-spacing: 0px;
+        color: #333333;
+        margin: auto;
+    }
+
+    .corDourada3 {
+        color: #F6B504 !important;
+    }
+
+    .paragrafo {
+        font: var(--unnamed-font-style-normal) normal normal 14px/18px var(--unnamed-font-family-roboto);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        text-align: center;
+        font: normal normal normal 14px/18px Roboto;
+        letter-spacing: 0px;
+        color: #687C97;
+        opacity: 1;
+        margin: auto;
+    }
+</style>
+
+
+
+
+
+
+<div class="content maisConf">
+    <br />
+    <div style="justify-content: right; margin-right: 0%;" class="row">
+        <div class="col" style="justify-content: right; margin-right: 0%; display: flow-root; opacity: 1;">
+            <label style="
+            text-align: left;
+            font: normal normal bold 28px/37px Roboto;
+            letter-spacing: 0px;
+            color: #333333;
+            opacity: 1;
+            ">
+                Clientes
+
+            </label>
+        </div>
+        <div class="col-lg-2" style="opacity: 1;"></div>
+
+
+
+        <button username="newUser" onclick="modalCreateUser($(this))" whoIm="newUser" class="btn btn-access-invert"
+            style="opacity: 1;gap: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" style="/* margin: -20% auto 0 0; */ fill: white;margin: auto;"
+                width="24" height="24" viewBox="0 0 24 24">
+                <defs></defs>
+                <path class="a"
+                    d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1Zm0,14a.5.5,0,0,1-.5-.5V11H6.5a.5.5,0,0,1,0-1H10V6.5a.5.5,0,0,1,1,0V10h3.5a.5.5,0,1,1,0,1H11v3.5A.5.5,0,0,1,10.5,15Z"
+                    transform="translate(2 2)"></path>
+            </svg>
+            Novo Cliente</button>
+
+
+
+    </div>
+    <hr />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-tasks radius20" style="padding: 2%;">
+                <div style="padding-bottom: 35px;" class="row">
+
+                    <div class="col-md-12">
+                        <div style="float: right;">
+                            <div class="input-group">
+                                <input type="text" style="min-width: 300px;" value="" class="form-control"
+                                    placeholder="Busque por cliente ou e-mail" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i style="color: #f6b504; font-weight: bold;" class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row" style="padding-bottom: 2px; max-height: 60px; border-bottom: 1px solid #efefef;">
+
+                    <div style="margin-left: 70px;" class="col-sm">
+                        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena">Nome</label>
+                    </div>
+                    <div class="col-sm">
+                        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena">E-mail</label>
+                    </div>
+                    <div style="text-align: center;" class="col-sm">
+                        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena">Status</label>
+                    </div>
+
+                    <div class="col-sm">
+                        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena"></label>
+                    </div>
+
+                </div>
+                <div class="listaUsuarios">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+
+    let EDIT_OBJ =
+    {
+
+        "master_business_name": "",
+        "master_affiliate_names": "",
+        "master_business_cnpj": "00",
+        "master_business_razao": "",
+        "master_business_telefone": null,
+        "master_business_mail": "",
+        "master_business_horario": null,
+        "master_business_endereco": null,
+        "master_business_numero": null,
+        "master_business_cep": null,
+        "master_business_cidade": null,
+        "master_business_estado": null,
+        "master_custom_segmento": "Outros",
+        "master_custom_logo": "",
+        "master_custom_cor_primeira": "green",
+        "master_custom_cor_segunda": "darkgreen",
+        "master_custom_cor_terceira": "blue",
+        "master_custom_cor_quarta": "red",
+        "master_custom_categorias": "",
+        "master_custom_ferramentas": "",
+        "email_servico": "",
+        "email_remetente": "",
+        "master_estoque_negativo": "on",
+        "master_tag_manager": "XXXXXX",
+        "status": "ativo",
+        "master_banner_revenues": "http://localhost:6060/images/231/banner-receitas.png",
+<<<<<<< HEAD
+        "master_custom_mini_banner04": "https://api-smartcomerci.com.br:9090/images/200/comofunciona.png",
+        "master_custom_mini_banner03": "https://api-smartcomerci.com.br:9090/images/200/comofunciona.png",
+        "master_custom_mini_banner02": "https://api-smartcomerci.com.br:9090/images/200/comofunciona.png",
+        "master_custom_mini_banner01": "https://api-smartcomerci.com.br:9090/images/200/comofunciona.png",
+        "master_custom_banner_aside": "https://api-smartcomerci.com.br:9090/images/200/comofunciona.png",
+        "master_custom_banner_rodape": "https://api-smartcomerci.com.br:9090/images/2/1366_x_140_01.png",
+        "master_custom_banner_principal": "https://api-smartcomerci.com.br:9090/images/2/1366_x_140_01.png",
+        "master_custom_texto_privacidade": "https://api-smartcomerci.com.br:9090/images/2/1366_x_140_01.png",
+        "master_custom_banner_mini_cat": "https://api-smartcomerci.com.br:9090/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub4": "https://api-smartcomerci.com.br:9090/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub3": "https://api-smartcomerci.com.br:9090/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub2": "https://api-smartcomerci.com.br:9090/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub1": "https://api-smartcomerci.com.br:9090/images/2/1094_x_269_01.png",
+        "master_custom_banner_widescreen": "https://api-smartcomerci.com.br:9090/images/2/1366_x_140_01.png",
+=======
+        "master_custom_mini_banner04": "http://localhost:6060/images/200/comofunciona.png",
+        "master_custom_mini_banner03": "http://localhost:6060/images/200/comofunciona.png",
+        "master_custom_mini_banner02": "http://localhost:6060/images/200/comofunciona.png",
+        "master_custom_mini_banner01": "http://localhost:6060/images/200/comofunciona.png",
+        "master_custom_banner_aside": "http://localhost:6060/images/200/comofunciona.png",
+        "master_custom_banner_rodape": "http://localhost:6060/images/2/1366_x_140_01.png",
+        "master_custom_banner_principal": "http://localhost:6060/images/2/1366_x_140_01.png",
+        "master_custom_texto_privacidade": "http://localhost:6060/images/2/1366_x_140_01.png",
+        "master_custom_banner_mini_cat": "http://localhost:6060/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub4": "http://localhost:6060/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub3": "http://localhost:6060/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub2": "http://localhost:6060/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub1": "http://localhost:6060/images/2/1094_x_269_01.png",
+        "master_custom_banner_widescreen": "http://localhost:6060/images/2/1366_x_140_01.png",
+>>>>>>> merge-staging
+
+        "site_front_domain": "",
+        "masters_namespace_mail": null,
+        "home_main_info": ""
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    var elementum = null
+
+    function modalEditUser(element, e) {
+        console.log(element.attr("fieldSet"), element)
+
+        let lista4 = JSON.parse(sessionStorage.ALL_CLIENTS)
+        let mailNew = element.attr("fieldSet")
+        const exists = lista4.find((x) => x.master_business_mail === mailNew)
+
+        e = window.event;
+        var senderElement = e.target;
+        elementum = senderElement
+        //console.log("senderElement", senderElement)
+        //////////console.log(senderElement)
+        //////////console.log(senderElement.className)
+        if (senderElement.className == "switch switch--shadow" || senderElement.className == "checka form-control checkControl" || senderElement.className == "naoAbreModal" || senderElement.className == "checkmark") {
+            //console.log("não devia abrir modal")
+        } else {
+            let isActive = element.attr("isActive") ? element.attr("isActive") : 0, activeChecked = ''
+            let myName = element.attr("myName") ? element.attr("myName") : element.attr("username")?.split("@")[0]
+            if (isActive) {
+                activeChecked = 'checked="true"'
+            }
+            let title = 'Editar Usuário'
+            if (element.attr("whoIm") == "newUser") {
+                title = 'Criar Usuário'
+            }
+
+            var html = `<div style="max-width:100% " class="container">
+                            <div>
+                                <h4 style="text-align: center;">Editar Cliente</h4>
+                            </div>
+                     
+
+                            <div class="col-md-12 " style="margin-top: 3% !important; background: white !important">
+
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12"><label style=" font-size: 20px;" class="label">Nome da empresa</label><br> </div>
+                                </div>
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12">
+                                        <div class="group-input2"
+                                            style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;">
+                                            <input value="${exists.master_business_name}" readonly fieldSet="master_business_name" onchange="setMeObj($(this))" style="background: none" class="form-control inputProduct filaDeMudancas"
+                                                placeholder="Nome da empresa"   
+                                                table="users_affiliates" >
+                                        </div><br>
+                                    </div>
+                                </div>
+                             
+
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12"><label style=" font-size: 20px;" class="label">Insira o e-mail Master do cliente</label><br> </div>
+                                </div>
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12">
+                                        <div class="group-input2"
+                                            style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;">
+                                            <input  value="${exists.master_business_mail}"  readonly fieldSet="master_business_mail" onchange="setMeObj($(this))" style="background: none" class="form-control inputProduct filaDeMudancas"
+                                                placeholder="meu-email@master.com.br"    
+                                                table="users_affiliates" >
+                                        </div><br>
+                                    </div>
+                                </div><br>
+                              
+                                 <hr>
+                              
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12"><label style=" font-size: 20px;" class="label">Defina o status atual</label><br> </div>
+                                </div>
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12">
+                                        <div class="group-input2"
+                                            style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;">
+                                            <select  fieldSet="status" onchange="setMeObj($(this))" style="background: none" class="form-control inputProduct filaDeMudancas"
+                                                placeholder="Nome de usuário" id="nomeCategoria" fieldname="users_affiliate_slug"
+                                                table="users_affiliates" > 
+                                            <option>Ativo</option>
+                                            <option>Em processamento</option>
+                                            <option>Desativado</option>
+                                            </select>
+                                        </div><br>
+                                    </div>
+                                </div><br>
+                                 <br>
+
+                                 <hr>
+                                
+                                 
+                                    <a class="close-modal" style="text-decoration: underline;
+font: normal normal bold 14px/21px Roboto;
+letter-spacing: 0px;
+color: #687C97;" href="#" data-bs-dismiss="modal">Cancelar</a>
+                                    <button style="float:right; font-size: 20px; background-color: #f6b504" onclick="atualizaCliente($(this))" type="button" id="password-save-button" tabindex="6" class="btn btn-save rounded-pill">Salvar alterações</button>
+                              
+                              
+                            
+
+
+
+
+                            </div>
+                        </div>`;
+
+            bootbox.alert({
+                message: html,
+                onShow: function () {
+                    console.log($(this))
+                    $(this)[0].id = "modalCentralFiltroInner3";
+                    $(this)[0].height = "60vh";
+                    $("#modalCentralFiltroInner3")
+                        .find(".modal-dialog")
+                        .addClass("modalCentralFiltro");
+
+                    $("#modalCentralFiltroInner3")
+                        .find(".modal-dialog")
+                        .css("max-width", "600px");
+
+
+                    $("#modalCentralFiltroInner3")
+                        .find(".modal-dialog")
+                        .css("height", "50vh !important");
+
+                    $("#modalCentralFiltroInner3")
+                        .find(".modal-body")
+                        .css("height", "60vh !important");
+
+                    $("#modalCentralFiltroInner3")
+                        .find(".modal-body")
+                        .css("max-height", "0vh !important");
+                    $(".modal-body")
+                        .css("max-height", "0vh !important");
+
+
+
+                    $(".tabModal").click(function () {
+                        $(".tabModal").removeClass("tabModalActive");
+                        $(this).addClass("tabModalActive");
+                        $(".tabContent").hide();
+                        //////connsole.log("#" + $(this).attr("content"));
+                        $("#" + $(this).attr("content")).fadeIn();
+                    });
+                    $("#queSalva").click(function () {
+                        $(".close").click()
+                    })
+                    $(".checkFull").change(function () {
+                        $('.checkControl')[0].checked = $(this)[0].checked
+                    })
+
+                },
+                callback: function () {
+                    sessionStorage.PALAVRAS_KEY = ''
+                }
+            })
+            $(".modal-content").css("max-height", "50vh");
+            $(".modal-content").css("border", "none");
+            $(".modal-footer").hide()
+
+
+        }
+
+
+
+    }
+
+    function modalCreateUser(element, e) {
+        e = window.event;
+        var senderElement = e.target;
+        elementum = senderElement
+        //console.log("senderElement", senderElement)
+        //////////console.log(senderElement)
+        //////////console.log(senderElement.className)
+        if (senderElement.className == "switch switch--shadow" || senderElement.className == "checka form-control checkControl" || senderElement.className == "naoAbreModal" || senderElement.className == "checkmark") {
+            //console.log("não devia abrir modal")
+        } else {
+            let isActive = element.attr("isActive") ? element.attr("isActive") : 0, activeChecked = ''
+            let myName = element.attr("myName") ? element.attr("myName") : element.attr("username")?.split("@")[0]
+            if (isActive) {
+                activeChecked = 'checked="true"'
+            }
+            let title = 'Editar Usuário'
+            if (element.attr("whoIm") == "newUser") {
+                title = 'Criar Usuário'
+            }
+
+            var html = `<div style="max-width:100% " id="conteudaoo" class="container">
+                            <div>
+                                <h4 style="text-align: center;">Novo Cliente</h4>
+                            </div>
+                     
+
+                            <div class="col-md-12 " style="margin-top: 3% !important; background: white !important">
+
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12"><label style=" font-size: 20px;" class="label">Nome da empresa</label><br> </div>
+                                </div>
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12">
+                                        <div class="group-input2"
+                                            style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;">
+                                            <input fieldSet="master_business_name" onchange="setMeObj($(this))" style="background: none" class="form-control inputProduct filaDeMudancas"
+                                                placeholder="Nome da empresa"   
+                                                table="users_affiliates" >
+                                        </div><br>
+                                    </div>
+                                </div>
+                             
+
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12"><label style=" font-size: 20px;" class="label">Insira o e-mail Master do cliente</label><br> </div>
+                                </div>
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12">
+                                        <div class="group-input2"
+                                            style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;">
+                                            <input  fieldSet="master_business_mail" onchange="setMeObj($(this))" style="background: none" class="form-control inputProduct filaDeMudancas"
+                                                placeholder="meu-email@master.com.br"    
+                                                table="users_affiliates" >
+                                        </div><br>
+                                    </div>
+                                </div><br>
+                              
+                                 <hr>
+                              
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12"><label style=" font-size: 20px;" class="label">Defina o status atual</label><br> </div>
+                                </div>
+                                <div style="padding:0 2%" class="row">
+                                    <div class="col-md-12">
+                                        <div class="group-input2"
+                                            style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;">
+                                            <select  fieldSet="status" onchange="setMeObj($(this))" style="background: none" class="form-control inputProduct filaDeMudancas"
+                                                placeholder="Nome de usuário" id="nomeCategoria" fieldname="users_affiliate_slug"
+                                                table="users_affiliates" > 
+                                            <option>Ativo</option>
+                                            <option>Em processamento</option>
+                                            <option>Desativado</option>
+                                            </select>
+                                        </div><br>
+                                    </div>
+                                </div><br>
+                                 <br>
+
+                                 <hr>
+                                
+                                 
+                                    <a class="close-modal" style="text-decoration: underline;
+font: normal normal bold 14px/21px Roboto;
+letter-spacing: 0px;
+color: #687C97;" href="#" data-bs-dismiss="modal">Cancelar</a>
+                                    <button style="float:right; font-size: 20px; background-color: #f6b504"  id="criandoNovoCliente" type="button" id="password-save-button" tabindex="6" class="btn btn-save rounded-pill">Criar Novo Cliente</button>
+                              
+                              
+                            
+
+
+
+
+                            </div>
+                        </div>`;
+
+            bootbox.alert({
+                message: html,
+                onShow: function () {
+                    $(this)[0].id = "modalCentralFiltroInner";
+                    $(this)[0].height = "60vh";
+                    $("#modalCentralFiltroInner")
+                        .find(".modal-dialog")
+                        .addClass("modalCentralFiltro");
+                    $("#modalCentralFiltroInner")
+                        .find(".modal-dialog")
+                        .css("height", "50vh !important");
+
+                    $("#modalCentralFiltroInner")
+                        .find(".modal-body")
+                        .css("height", "60vh !important");
+
+                    $("#modalCentralFiltroInner")
+                        .find(".modal-body")
+                        .css("max-height", "0vh !important");
+                    $(".modal-body")
+                        .css("max-height", "0vh !important");
+
+
+
+                    $(".tabModal").click(function () {
+                        $(".tabModal").removeClass("tabModalActive");
+                        $(this).addClass("tabModalActive");
+                        $(".tabContent").hide();
+                        //////connsole.log("#" + $(this).attr("content"));
+                        $("#" + $(this).attr("content")).fadeIn();
+                    });
+                    $("#queSalva").click(function () {
+                        $(".close").click()
+                    })
+                    $(".checkFull").change(function () {
+                        $('.checkControl')[0].checked = $(this)[0].checked
+                    })
+
+                    $("#criandoNovoCliente").click(async function () {
+                        const resto = await criaClienteNovo()
+
+                        var html2 = `  <div style=" margin: auto;background: #FFFBF2 0% 0% no-repeat padding-box;
+                    opacity: 1;width: 83px;
+height: 83px;    padding: 25px;
+    border-radius: 100%;">
+                    <div style="/* UI Properties */
+background: #F6B504 0% 0% no-repeat padding-box;
+opacity: 1;width: 35px;
+height: 35px;  
+    border-radius: 100%; color: white;    text-align: center;
+    font-size: 1.5rem;">
+                    !
+                    </div>
+                
+                </div>
+
+                            <div>
+                                <h4 style="text-align: center;">Novo cliente criado</h4>
+                            </div>
+                     
+
+                            <div class="col-md-12 " style="margin-top: 3% !important; background: white !important">
+                                <div style="padding: 10px;padding: 10px;background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #EDF2F6;
+border-radius: 16px;
+opacity: 1;">
+<h3  style="      padding: 5px;  gap: 30px;
+    display: inline-flex;
+    padding: 5px;"><span style="text-align: left;
+font: normal normal bold 13px/21px Roboto;
+letter-spacing: 0px;
+color: #222B45;
+opacity: 1;text-align: left;
+font: normal normal bold 13px/21px Roboto;
+letter-spacing: 0px;
+color: #222B45;
+opacity: 1;">Empresa</span> <span style="text-align: left;
+font: normal normal normal 16px/14px Roboto;
+letter-spacing: 0px;
+color: #687C97;
+opacity: 1;">${EDIT_OBJ.master_business_name}</span></h3>
+
+                                </div>
+<br>
+                                 
+
+                                
+<br>
+                                            <div style="padding: 10px;background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #EDF2F6;
+border-radius: 16px;
+opacity: 1;">
+<h3  style="     padding: 5px;   gap: 30px;
+    display: inline-flex;
+    padding: 5px;" style="    gap: 30px;
+    display: inline-flex;
+    padding: 5px;"><span style="text-align: left;
+font: normal normal bold 13px/21px Roboto;
+letter-spacing: 0px;
+color: #222B45;
+opacity: 1;">E-mail</span> <span  style="text-align: left;
+font: normal normal normal 16px/14px Roboto;
+letter-spacing: 0px;
+color: #687C97;
+opacity: 1;">${EDIT_OBJ.master_business_mail}</span></h3>
+
+                                </div>
+<br>
+                                            <div style="padding: 15px;background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #EDF2F6;
+border-radius: 16px;
+opacity: 1;">
+<h3  style="      padding: 5px;  gap: 30px;
+    display: inline-flex;
+    padding: 5px;"><span style="text-align: left;
+font: normal normal bold 13px/21px Roboto;
+letter-spacing: 0px;
+color: #222B45;
+opacity: 1;">ID Master</span> <span  style="text-align: left;
+font: normal normal normal 16px/14px Roboto;
+letter-spacing: 0px;
+color: #687C97;
+opacity: 1;">${resto.insertId}</span> <div class="infoClientContent_copiar"  style="  margin-left: 350px;    padding: 5px;  max-width: 130px;"><svg xmlns="http://www.w3.org/2000/svg" style=" fill: #f6b504;  cursor: pointer;  margin:auto;" width="12" height="14" viewBox="0 0 12 14"><path id="duplicate" d="M7.125,14H1.875A1.913,1.913,0,0,1,0,12.055v-7A1.913,1.913,0,0,1,1.875,3.111H3V1.945A1.913,1.913,0,0,1,4.874,0h4.5A.364.364,0,0,1,9.64.114l2.25,2.334a.391.391,0,0,1,.109.3v6.2a1.913,1.913,0,0,1-1.875,1.945H9v1.165A1.913,1.913,0,0,1,7.125,14ZM1.875,3.889A1.148,1.148,0,0,0,.75,5.055v7a1.148,1.148,0,0,0,1.125,1.167h5.25a1.148,1.148,0,0,0,1.124-1.167V10.89H6.374a.389.389,0,0,1,0-.778h3.75a1.148,1.148,0,0,0,1.125-1.167V3.112H9.374A.383.383,0,0,1,9,2.723V.778H4.874A1.148,1.148,0,0,0,3.75,1.945V5.833a.376.376,0,1,1-.751,0V3.889ZM9.749,1.329V2.334h.97ZM3.375,10.112A.365.365,0,0,1,3.109,10a.4.4,0,0,1,0-.55l3.86-4H5.624a.389.389,0,0,1,0-.778h2.25a.382.382,0,0,1,.375.388V7.389a.375.375,0,1,1-.75,0v-1.4L3.64,10A.365.365,0,0,1,3.375,10.112Z" fill="#f6b504"></path></svg><label onclick="copyToClipboard('rounantj@hotmail.com', $(this))" class="infoClientContent_copiarTexto" style="opacity: 1;">Copiar</label></div></h3>
+
+                                </div>
+<br>
+     <div style="padding: 15px;background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #EDF2F6;
+border-radius: 16px;
+opacity: 1;">
+<h3 style="      padding: 5px;  gap: 30px;
+    display: inline-flex;
+    padding: 5px;"><span style="text-align: left;
+font: normal normal bold 13px/21px Roboto;
+letter-spacing: 0px;
+color: #222B45;
+opacity: 1;">ID Afiliado</span> <span  style="text-align: left;
+font: normal normal normal 16px/14px Roboto;
+letter-spacing: 0px;
+color: #687C97;
+opacity: 1;">${resto.insertId}</span>  <div class="infoClientContent_copiar" style="    margin-left: 350px;     padding: 5px;  max-width: 130px;"><svg xmlns="http://www.w3.org/2000/svg" style=" fill: #f6b504;  cursor: pointer;  margin:auto;" width="12" height="14" viewBox="0 0 12 14"><path id="duplicate" d="M7.125,14H1.875A1.913,1.913,0,0,1,0,12.055v-7A1.913,1.913,0,0,1,1.875,3.111H3V1.945A1.913,1.913,0,0,1,4.874,0h4.5A.364.364,0,0,1,9.64.114l2.25,2.334a.391.391,0,0,1,.109.3v6.2a1.913,1.913,0,0,1-1.875,1.945H9v1.165A1.913,1.913,0,0,1,7.125,14ZM1.875,3.889A1.148,1.148,0,0,0,.75,5.055v7a1.148,1.148,0,0,0,1.125,1.167h5.25a1.148,1.148,0,0,0,1.124-1.167V10.89H6.374a.389.389,0,0,1,0-.778h3.75a1.148,1.148,0,0,0,1.125-1.167V3.112H9.374A.383.383,0,0,1,9,2.723V.778H4.874A1.148,1.148,0,0,0,3.75,1.945V5.833a.376.376,0,1,1-.751,0V3.889ZM9.749,1.329V2.334h.97ZM3.375,10.112A.365.365,0,0,1,3.109,10a.4.4,0,0,1,0-.55l3.86-4H5.624a.389.389,0,0,1,0-.778h2.25a.382.382,0,0,1,.375.388V7.389a.375.375,0,1,1-.75,0v-1.4L3.64,10A.365.365,0,0,1,3.375,10.112Z" fill="#f6b504"></path></svg><label onclick="copyToClipboard('rounantj@hotmail.com', $(this))" class="infoClientContent_copiarTexto" style="opacity: 1;">Copiar</label></div></h3>
+
+                                </div>
+
+                               
+                             
+ 
+                               
+                           
+                                 <br>
+
+                                 <hr>
+                                
+                                 
+                               
+                                    <button style="float:right; font-size: 20px; background-color: #f6b504" onclick="location.reload()" type="button" id="password-save-button" tabindex="6" class="btn btn-save rounded-pill">Finalizar</button>
+                              
+                              
+                            
+
+
+
+
+                            </div> `;
+
+
+                        console.log(html2)
+
+
+                        $("#conteudaoo").html(html2)
+                    })
+
+                },
+                callback: function () {
+                    sessionStorage.PALAVRAS_KEY = ''
+                }
+            })
+            $(".modal-content").css("max-height", "50vh");
+            $(".modal-content").css("border", "none");
+            $(".modal-footer").hide()
+
+
+        }
+
+
+
+    }
+
+
+
+    function alteraChecked(elemento) {
+        $('.checkControl').each(function () {
+            $(this)[0].checked = elemento[0].checked
+        })
+    }
+
+
+
+    function returnMyUnitys(username) {
+        //console.log("pesquisando ... ", username)
+        let html = ''
+        let lista = JSON.parse(localStorage.LOJAS_CADASTRADAS)
+
+        for (const k in lista) {
+            let checou = ''
+            if (getStatus4(username, lista[k].id) == 1) {
+                checou = 'checked="true"'
+            }
+            html += '<li class="list-item sub-list-item animate__animated targetBusca"><label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> ' + lista[k].affiliates_business_name + ' <input ' + checou + ' affiliateId="' + lista[k].id + '" class="marcar affiliatesAccess" type="checkbox"><span class="checkmark subCheck"></span></label></li>'
+        }
+
+        return html
+    }
+    function getStatus4(username, affiliate_id) {
+        let lista = JSON.parse(sessionStorage.A)
+        for (const k in lista) {
+            if (lista[k].users_affiliate_id == affiliate_id && lista[k].users_affiliate_name == username) {
+                return lista[k].status
+                break;
+            }
+        }
+    }
+    function saoTodas(username) {
+        let ativo = 'checked="true"', inativo = '', retorno = ativo
+        let lista = JSON.parse(sessionStorage.A)
+        for (const k in lista) {
+            if (lista[k].status == 0 && lista[k].users_affiliate_name == username) {
+                retorno = inativo
+                break;
+            }
+        }
+        return retorno
+
+    }
+
+    function returnProfiles(profile) {
+        if (profile == undefined) { profile = "newUser" }
+        let html = ''
+        let lista = JSON.parse(localStorage.DT_PF)
+        for (const k in lista) {
+            let isChecked = ''
+            if (profile.trim() == lista[k].profile_type.trim()) {
+                isChecked = 'checked="true"'
+            }
+            html += '<li class="list-item sub-list-item animate__animated targetBusca "><label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> ' + lista[k].profile_type + ' <input onchange="alteraFuncao($(this))" class="marcar soFuncoes" ' + isChecked + '  type="checkbox"><span class="checkmark subCheck "></span></label></li>'
+        }
+        return html
+    }
+
+    function marcaTodasAffiliadas(element) {
+        let active = element[0].checked
+        $(".affiliatesAccess").each(function () {
+            $(this)[0].checked = active
+        })
+    }
+
+    function alteraFuncao(elemento) {
+        //console.log("mudando funcao ...")
+        let essaFuncao = elemento.parent().text()
+        $(".soFuncoes").each(function () {
+            $(this)[0].checked = false
+        })
+        elemento[0].checked = true
+        $("#funcaoAtual").text(essaFuncao)
+
+    }
+
+
+    function mostraDrop(element) {
+        if (element.attr("mostrei") == 1) {
+            element.attr("mostrei", 0)
+            element.parent().parent().parent().parent().parent().parent().find(".drop").fadeOut()
+        } else {
+            element.parent().parent().parent().parent().parent().parent().find(".drop").fadeIn()
+            element.attr("mostrei", 1)
+        }
+
+
+    }
+
+    function getUsuariosA() {
+        $(".listaUsuarios").html("")
+        let lista4 = JSON.parse(sessionStorage.ALL_CLIENTS), fullList = []
+
+        fullList = OrdenaJson(lista4, 'users_affiliate_mail', 'DESC')
+
+        console.log('users', fullList)
+
+        let html = ''
+
+        for (const k in fullList) {
+            let name = fullList[k].master_business_name ?? fullList[k].users_affiliate_mail.split("@")[0]
+            let chk = ''
+            if (fullList[k].isActive == 1) {
+                chk = 'checked="true"'
+            }
+
+            html += `<div isActive="${fullList[k].status}" whoIm="user" myToken="${fullList[k].id}" myid="${fullList[k].master_business_mail}"
+    myName="${name}" isActive="${fullList[k].isActive}" perfil="${fullList[k].perfil}" username="${fullList[k].user}"
+    fieldSet="${fullList[k].master_business_mail}"
+    onclick="modalEditUser($(this))" affiliate_id="96" class="row radius20 userCms">
+ 
+    <div class="col-sm" style="opacity: 1; display: inline-flex; gap: 15px; ">
+        
+        <div style="max-width: 100%;    font: normal normal bold 28px/37px Roboto;
+    letter-spacing: 0px;
+    color: #333333 !important;   padding-left: 50px   ">
+            <label field="products.product_valor" sentido="ASC" class="infoLabel ordena" style="text-align: left;
+font: normal normal bold 14px/21px Roboto !important;
+letter-spacing: 0px !important;
+color: #222B45 !important;">${name}</label>
+        </div>
+    </div>
+    <div class="col-sm" style="opacity: 1;    padding-top: 15px; ">
+        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena">${fullList[k].master_business_mail}</label>
+    </div>
+    <div class="col-sm" style="opacity: 1;">
+        <label style="    text-align: center;
+    font: normal normal normal 14px/19px Roboto;
+    letter-spacing: 0px;
+    color: #50C682;
+    padding: 10px;
+    width: auto !important;
+    display: inline-flex;
+    gap: 10px;
+    margin-left: 35px;"
+            class="infoLabel infoValor"><span style="color: #50C682; font-size: 3rem">&#x2022;</span>Ativo</label>
+
+    </div>
+    <div  
+                 style="cursor: pointer; border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #ffffff; max-width: 150px; height: 40px; border: 2px solid #f6b504; float: right; margin-right: 15px;margin-top: 5px;"
+                 class="input-group"> 
+                 <label style="margin: -1% auto; min-width: 60%; color: #f6b504 !important; cursor: pointer;" 
+                class="label">Editar Cliente</label> 
+                 </div>
+ 
+</div>`
+        }
+        $(".listaUsuarios").append(html)
+
+
+    }
+
+    function OrdenaJson(lista, chave, ordem) {
+        ordem = ordem.toUpperCase()
+        return lista.sort(function (a, b) {
+            var x = a[chave];
+            var y = b[chave];
+            if (ordem === 'ASC') {
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            }
+            if (ordem === 'DESC') {
+                return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+            }
+        });
+    }
+
+    function activateOrNot(element) {
+        let act = element[0].checked
+        if (act) {
+            act = 1
+        } else {
+            act = 0
+        }
+        let paramsToCrud = {
+            "master_id": localStorage.MASTER_ID,
+            "userName": element.attr("username"),
+            "myToken": element.attr("myToken"),
+            "table": "users_affiliates",
+            "newValue": act,
+            "fieldName": "status"
+        }
+        ajaxInner('/updateAffiliateUsersDetails', paramsToCrud, 'POST')
+
+
+
+    }
+
+    async function salvandoAlteracoes3(element) {
+
+        $("body").css("filter", "blur(10px)")
+        $(".filaDeMudancas").each(async function () {
+            if ($(this).attr("alvo") != undefined) {
+                let newValue = $(this).find("." + $(this).attr("alvo")).text().trim()
+                let table = $(this).attr("table")
+                let fieldName = $(this).attr("fieldName")
+                let userName = element.attr("userName")
+                let myToken = element.attr("myToken")
+
+
+                let params = {
+                    'newValue': newValue,
+                    'table': table,
+                    'fieldName': fieldName,
+                    'userName': userName,
+                    'myToken': myToken,
+                }
+                //console.log(params)
+                let result = await ajaxInner('/updateAffiliateUsersDetails', params, 'POST')
+                //console.log("detalhes", result)
+
+            } else {
+                let newValue = null
+
+                if ($(this).attr("type") == 'checkbox') {
+                    newValue = $(this)[0].checked == true ? 1 : 0
+                } else {
+                    newValue = $(this).val()
+                }
+                let table = $(this).attr("table")
+                let fieldName = $(this).attr("fieldName")
+                let userName = element.attr("userName")
+                let myToken = element.attr("myToken")
+
+
+
+                let params = {
+                    'newValue': newValue,
+                    'table': table,
+                    'fieldName': fieldName,
+                    'userName': userName,
+                    'myToken': myToken,
+                }
+                //console.log(params)
+                let result = await ajaxInner('/updateAffiliateUsersDetails', params, 'POST')
+                //console.log("detalhes", result)
+            }
+        })
+
+        $(".affiliatesAccess").each(async function () {
+            let affiliate_id = $(this).attr("affiliateid")
+            let active = $(this)[0].checked
+            let userName = element.attr("userName")
+            let myToken = element.attr("myToken")
+            let params = {
+                'affiliate_id': affiliate_id,
+                'master_id': localStorage.MASTER_ID,
+                'active': active,
+                'userName': userName,
+                'myToken': myToken
+            }
+            //console.log("affiliadas parametros", params)
+            let result3 = await ajaxInner('/updateAffiliateUsers', params, 'POST')
+            //console.log(result3)
+
+        })
+        sessionStorage.clear()
+        sessionStorage.clear()
+        sessionStorage.clear()
+
+        setTimeout(() => {
+            location.reload()
+        }, 1500)
+
+    }
+
+    function alterarSenha4(elemento) {
+
+        var html = '<div style="max-width:100% " class="container">' +
+
+            '<div class="row" style="border-bottom: 1px solid silver;"><h4 style="font-size: 16px !important;margin: 25px auto;/* width: calc(100% + 50px); *//* border-bottom: 1px solid  silver; *//* padding-bottom: 15px; */" class="infoLabel">Alteração de senha</h4></div>' +
+            '<div style="max-width:100%; padding: 0 2% " class="container">' +
+
+            '<div style="padding:0 2%; margin-top: 65px" class="container">' +
+            '<div style="width: 100%" class="row">' +
+            '<div style="border-radius: 100%; max-height: 35px; max-width: 35px; margin: auto 5% !important; opacity: 1;"' +
+            'class="input-group iconLogistica ico inativo iconOpaco"><svg xmlns="http://www.w3.org/2000/svg"' +
+            'style="margin: auto; fill: #222B45 !important; " width="20" height="20" viewBox="0 0 20 20">' +
+            '<defs></defs>' +
+            '<g transform="translate(-2 -2)">' +
+            '<path class="a"' +
+            'd="M10,20A10,10,0,1,1,20,10,10.011,10.011,0,0,1,10,20ZM10,1a9,9,0,1,0,7.794,4.5A9.01,9.01,0,0,0,10,1Zm1.5,16h-3A5.506,5.506,0,0,1,3,11.5a.5.5,0,0,1,.5-.5h13a.5.5,0,0,1,.5.5A5.506,5.506,0,0,1,11.5,17ZM9,15a.994.994,0,0,0-1,.973A4.6,4.6,0,0,0,8.5,16h3a4.4,4.4,0,0,0,.524-.031.994.994,0,0,0-1-.969H9ZM4.027,12a4.53,4.53,0,0,0,2.99,3.75A2,2,0,0,1,9,14h2.025a2,2,0,0,1,1.983,1.741A4.531,4.531,0,0,0,15.973,12H4.027ZM13,9a1,1,0,1,1,1-1A1,1,0,0,1,13,9ZM7,9A1,1,0,1,1,8,8,1,1,0,0,1,7,9Z"' +
+            'transform="translate(2 2)"></path>' +
+            '</g>' +
+            '</svg></div><label class="label interna"' +
+            'style="opacity: 1;     margin: auto 0 !important;">' + elemento.attr('username') + '</label>' +
+            '</div>' +
+            '<hr>' +
+            '<div class="row">' +
+            '<div class="col-md-12">' +
+            '<label class="label interna"' +
+            'style="opacity: 1;     margin: auto 0 !important;">Insira a nova senha</label>' +
+            '<div class="group-input2" style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;">' +
+            '<input id="inputSenha" type="password" style="background: none" class="form-control inputProduct" placeholder="*******"  >' +
+            '</div> ' +
+
+            '</div>' +
+            '</div>' +
+
+            '<div class="row">' +
+            '<div class="col-md-12">' +
+            '<label class="label interna"' +
+            'style="opacity: 1;     margin: auto 0 !important;">Insira a nova senha novamente</label>' +
+            '<div class="group-input2" style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;">' +
+            '<input id="confirmSenha" type="password" style="background: none" class="form-control inputProduct" placeholder="*******"  >' +
+            '</div> ' +
+            '</div>' +
+            '</div>' +
+
+            '<div  class="row footerModalPequena">' +
+            '<div class="col-md-12">' +
+            '<label class="label interna"' +
+            'style="opacity: 1;     margin: auto 0 !important;">Sua senha é necessária para a alteração</label>' +
+            '<div class="input-float-label">' +
+            '<span class="myLabel2">Digite sua senha</span>' +
+            '<input type="password" id="passwordAdminSenha" style="border-radius: 1px !important" class="form-control text-semi-dark">' +
+            '<span id="email-show-password" class="show-password">' +
+            '<img id="email-show-password-image" src="conf_gerais/eye-slash.svg" alt="eye">' +
+            '</span>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+
+
+            '<div style=" padding: 15px;   border-top: 1px solid #EDF2F6; width: calc(100% + 80px);margin-left: -40px;" class="row">' +
+            '<div class="col-md-2">' +
+            '<p style="font-size: 16px !important;    margin: 20px auto; cursor: pointer" class="infoLabel">Cancelar</p>' +
+            '</div>' +
+            '<div class="col-md-7">' +
+            '</div>' +
+            '<div class="col-md-2">' +
+            '<button id="alterarFields5" style=" margin: auto" class="btn btn-access-invert">Salvar</button>' +
+            '</div>' +
+            '</div>' +
+
+
+
+            '</div>' +
+            '</div>' +
+
+            '</div>';
+
+
+        var modalzona = bootbox.alert({
+            message: html,
+            onShow: function () {
+
+                $(this)[0].id = "modalInner5"
+                $("#modalInner5").find(".modal-dialog").addClass("modalCentral")
+                $(".modal-content").css("border", "none !important")
+                $("#modalInner5").css("background", "rgb(0,0,0,50%)")
+                $("#modalInner5").find(".modal-content").addClass("clienteInforma")
+
+                $("#confirmSenha").change(function () {
+                    if ($(this).val() != $("#inputSenha").val()) {
+                        $(this).css("border", "2px solid red")
+                        $("#inputSenha").css("border", "2px solid red")
+                        informar("alert-primary", "As senhas não correspondem!", 3000)
+                    } else {
+                        $(this).css("border", "2px solid green")
+                        $("#inputSenha").css("border", "2px solid green")
+                    }
+                })
+
+                $("#alterarFields5").click(function () {
+                    if ($("#confirmSenha").val() != "" && $("#inputSenha").val() != "") {
+                        let paramsToCrud = {
+                            "master_id": localStorage.MASTER_ID,
+                            "userName": elemento.attr("username"),
+                            "myToken": elemento.attr("myToken"),
+                            "table": "users_affiliates",
+                            "newValue": $("#confirmSenha").val(),
+                            "fieldName": "users_affiliate_token"
+                        }
+                        let params = {
+                            "master_id": localStorage.MASTER_ID,
+                            "mail": localStorage.MAIL_MASTER_CLIENTE,
+                            "pass": $("#passwordAdminSenha").val(),
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:6060' + '/autenticateAdmin',
+                            data: params,
+                            headers: {
+                                'x-access-token': localStorage.token,
+                            },
+                            success: function (data) {
+                                //console.log(data)
+                                ajaxInner('/updateAffiliateUsersDetails', paramsToCrud, 'POST')
+                                informar("alert-success", "Senha alterada com sucesso!", 3000)
+                                sessionStorage.clear()
+                                sessionStorage.clear()
+                                sessionStorage.clear()
+
+                                setTimeout(() => {
+                                    $(".close").click()
+                                    $("body").css("filter", "blur(10px)")
+                                    location.reload()
+                                }, 1500)
+                            },
+                            error: function (data) {
+                                //console.log(data)
+                                informar("alert-primary", "Credenciais informadas são incorretas!", 3000)
+                            },
+                            complete: function () { },
+                        });
+
+                    } else {
+                        $("#confirmEmail").css("border", "2px solid red")
+                        $("#inputEmail").css("border", "2px solid red")
+                        informar("alert-primary", "Preencha todos os campos!", 3000)
+                    }
+                })
+
+
+            },
+            callback: function () {
+                $("#modalInner").find(".modal-dialog").removeClass("modalCentral")
+            }
+        })
+    }
+
+    function excluirUsuario4(elemento) {
+        var html =
+            '<div style="max-width:100% " class="container">' +
+            '<div class="row" style="border-bottom: 1px solid silver;">' +
+            '<h4 style="font-size: 16px !important;margin: 25px auto;/* width: calc(100%50px); *//* border-bottom: 1px solidsilver; *//* padding-bottom: 15px; */"' +
+            'class="infoLabel">Exclusão de usuário</h4>' +
+            '</div>' +
+            '<div style="max-width:100%; padding: 0 2% " class="container">' +
+            '<div style="padding:0 2%; margin-top: 65px" class="container">' +
+            '<div style="width: 100%" class="row"><div style="border-radius: 100%; max-height: 35px; max-width: 35px; margin: auto 5% !important; opacity: 1;" class="input-group iconLogistica ico inativo iconOpaco"><svg xmlns="http://www.w3.org/2000/svg" style="margin: auto; fill: #222B45 !important; " width="20" height="20" viewBox="0 0 20 20"><defs></defs><g transform="translate(-2 -2)"><path class="a" d="M10,20A10,10,0,1,1,20,10,10.011,10.011,0,0,1,10,20ZM10,1a9,9,0,1,0,7.794,4.5A9.01,9.01,0,0,0,10,1Zm1.5,16h-3A5.506,5.506,0,0,1,3,11.5a.5.5,0,0,1,.5-.5h13a.5.5,0,0,1,.5.5A5.506,5.506,0,0,1,11.5,17ZM9,15a.994.994,0,0,0-1,.973A4.6,4.6,0,0,0,8.5,16h3a4.4,4.4,0,0,0,.524-.031.994.994,0,0,0-1-.969H9ZM4.027,12a4.53,4.53,0,0,0,2.99,3.75A2,2,0,0,1,9,14h2.025a2,2,0,0,1,1.983,1.741A4.531,4.531,0,0,0,15.973,12H4.027ZM13,9a1,1,0,1,1,1-1A1,1,0,0,1,13,9ZM7,9A1,1,0,1,1,8,8,1,1,0,0,1,7,9Z" transform="translate(2 2)"></path></g></svg></div><label class="label interna" style="opacity: 1;     margin: auto 0 !important;">' + elemento.attr('username') + '</label></div>' +
+            '<hr>' +
+            '<div class="bolaDourada3">' +
+            '<svg style="margin: 15px" id="Layer_x0020_1" xmlns="http://www.w3.org/2000/svg" width="32.854" height="32.854"' +
+            'viewBox="0 0 32.854 32.854">' +
+            '<rect id="Retângulo_1684" data-name="Retângulo 1684" width="32.854" height="32.854" fill="none" />' +
+            '<path id="exclamation-triangle"' +
+            'd="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1ZM11,14H10V13h1v1Zm-.5-3a.5.5,0,0,1-.5-.5v-4a.5.5,0,0,1,1,0v4A.5.5,0,0,1,10.5,11Z"' +
+            'transform="translate(5.927 5.927)" fill="#f8c63f" />' +
+            '</svg>' +
+            '</div>' +
+            '<p class="txtBola">Deseja mesmo excluir o usuário <span class="corDourada3">' + elemento.attr('username') + '</span>?</p><br><br>' +
+            '<p class="paragrafo">Está ação não poderá ser desfeita. <br><br>O que foi feito pelo usuário, continuará aparecendo no sistema para consulta, mas seu acesso passará a ser negado</p>' +
+            '<div class="row footerModalPequena">' +
+            '<div class="col-md-12">' +
+            '<label class="label interna" style="opacity: 1; margin: auto 0 !important;">Sua senha é necessária para a alteração</label>' +
+            '<div class="input-float-label">' +
+            '<span class="myLabel2">Digite sua senha</span>' +
+            '<input type="password" id="passwordAdminExclui" style="border-radius: 1px !important"' +
+            'class="form-control text-semi-dark">' +
+            '<span id="email-show-password" class="show-password">' +
+            '<img id="email-show-password-image" src="conf_gerais/eye-slash.svg" alt="eye">' +
+            '</span>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '<div style=" padding: 15px; border-top: 1px solid #EDF2F6; width: calc(100%80px);margin-left: -40px;" class="row">' +
+            '<div class="col-md-2">' +
+            '<p style="font-size: 16px !important;margin: 20px auto; cursor: pointer" class="infoLabel">' +
+            'Cancelar</p>' +
+            '</div>' +
+            '<div class="col-md-7">' +
+            '</div>' +
+            '<div class="col-md-2">' +
+            '<button id="alterarFields6" style=" margin: auto" class="btn btn-access-invert">Salvar</button>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        var modalzona = bootbox.alert({
+            message: html,
+            onShow: function () {
+
+                $(this)[0].id = "modalInner5"
+                $("#modalInner5").find(".modal-dialog").addClass("modalCentral")
+                $("#modalInner5").css("background", "rgb(0,0,0,50%)")
+                $(".modal-content").css("border", "none !important")
+                $("#modalInner5").find(".modal-content").addClass("clienteInforma")
+
+
+
+
+                $("#alterarFields6").click(function () {
+
+                    let paramsToCrud = {
+
+                        "userName": elemento.attr("username")
+                    }
+
+                    let params = {
+                        "master_id": localStorage.MASTER_ID,
+                        "mail": localStorage.MAIL_MASTER_CLIENTE,
+                        "pass": $("#passwordAdminExclui").val(),
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:6060' + '/autenticateAdmin',
+                        data: params,
+                        headers: {
+                            'x-access-token': localStorage.token,
+                        },
+                        success: function (data) {
+                            //console.log(data)
+                            ajaxInner('/deleteUserAffiliate', paramsToCrud, 'POST')
+                            informar("alert-success", "Usuário deletado com sucesso!", 3000)
+                            sessionStorage.clear()
+                            sessionStorage.clear()
+                            sessionStorage.clear()
+
+                            setTimeout(() => {
+                                $(".close").click()
+                                $("body").css("filter", "blur(10px)")
+                                location.reload()
+                            }, 1500)
+                        },
+                        error: function (data) {
+                            //console.log(data)
+                            informar("alert-primary", "Credenciais informadas são incorretas!", 3000)
+                        },
+                        complete: function () {
+
+                        },
+                    });
+
+                })
+
+
+            },
+            callback: function () {
+                $("#modalInner").find(".modal-dialog").removeClass("modalCentral")
+            }
+        })
+    }
+
+    function alterarEmail4(elemento) {
+        var html = '<div style="max-width:100% " class="container">' +
+
+            '<div class="row" style="border-bottom: 1px solid silver;"><h4 style="font-size: 16px !important;margin: 25px auto;/* width: calc(100% + 50px); *//* border-bottom: 1px solid  silver; *//* padding-bottom: 15px; */" class="infoLabel">Alteração de e-mail</h4></div>' +
+            '<div style="max-width:100%; padding: 0 2% " class="container">' +
+
+            '<div style="padding:0 2%; margin-top: 65px" class="container">' +
+            '<div style="width: 100%" class="row">' +
+            '<div style="border-radius: 100%; max-height: 35px; max-width: 35px; margin: auto 5% !important; opacity: 1;"' +
+            'class="input-group iconLogistica ico inativo iconOpaco"><svg xmlns="http://www.w3.org/2000/svg"' +
+            'style="margin: auto; fill: #222B45 !important; " width="20" height="20" viewBox="0 0 20 20">' +
+            '<defs></defs>' +
+            '<g transform="translate(-2 -2)">' +
+            '<path class="a"' +
+            'd="M10,20A10,10,0,1,1,20,10,10.011,10.011,0,0,1,10,20ZM10,1a9,9,0,1,0,7.794,4.5A9.01,9.01,0,0,0,10,1Zm1.5,16h-3A5.506,5.506,0,0,1,3,11.5a.5.5,0,0,1,.5-.5h13a.5.5,0,0,1,.5.5A5.506,5.506,0,0,1,11.5,17ZM9,15a.994.994,0,0,0-1,.973A4.6,4.6,0,0,0,8.5,16h3a4.4,4.4,0,0,0,.524-.031.994.994,0,0,0-1-.969H9ZM4.027,12a4.53,4.53,0,0,0,2.99,3.75A2,2,0,0,1,9,14h2.025a2,2,0,0,1,1.983,1.741A4.531,4.531,0,0,0,15.973,12H4.027ZM13,9a1,1,0,1,1,1-1A1,1,0,0,1,13,9ZM7,9A1,1,0,1,1,8,8,1,1,0,0,1,7,9Z"' +
+            'transform="translate(2 2)"></path>' +
+            '</g>' +
+            '</svg></div><label class="label interna"' +
+            'style="opacity: 1;     margin: auto 0 !important;">' + elemento.attr('username') + '</label>' +
+            '</div>' +
+            '<hr>' +
+            '<div class="row">' +
+            '<div class="col-md-12">' +
+            '<label class="label interna"' +
+            'style="opacity: 1;     margin: auto 0 !important;">Insira o novo endereço de e-mail</label>' +
+            '<div class="group-input2" style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;">' +
+            '<input id="inputEmail" style="background: none" class="form-control inputProduct" placeholder="E-mail..."  >' +
+            '</div> ' +
+
+            '</div>' +
+            '</div>' +
+
+            '<div class="row">' +
+            '<div class="col-md-12">' +
+            '<label class="label interna"' +
+            'style="opacity: 1;     margin: auto 0 !important;">Insira o novo endereço de e-mail novamente</label>' +
+            '<div class="group-input2" style="background: #F0F0F0 0% 0% no-repeat padding-box;border: 1px solid #EFEFEF;border-radius: 5px;">' +
+            '<input id="confirmEmail" style="background: none" class="form-control inputProduct" placeholder="E-mail..."  >' +
+            '</div> ' +
+            '</div>' +
+            '</div>' +
+
+            '<div  class="row footerModalPequena">' +
+            '<div class="col-md-12">' +
+            '<label class="label interna"' +
+            'style="opacity: 1;     margin: auto 0 !important;">Sua senha é necessária para a alteração</label>' +
+            '<div class="input-float-label">' +
+            '<span class="myLabel2">Digite sua senha</span>' +
+            '<input type="password" id="passwordAdmin"  style="border-radius: 1px !important"  class="form-control text-semi-dark">' +
+            '<span id="email-show-password" class="show-password">' +
+            '<img id="email-show-password-image" src="conf_gerais/eye-slash.svg" alt="eye">' +
+            '</span>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+
+
+            '<div style="  padding: 15px;  border-top: 1px solid #EDF2F6; width: calc(100% + 80px);margin-left: -40px;" class="row">' +
+            '<div class="col-md-2">' +
+            '<p style="font-size: 16px !important;    margin: 20px auto; cursor: pointer" class="infoLabel">Cancelar</p>' +
+            '</div>' +
+            '<div class="col-md-7">' +
+            '</div>' +
+            '<div class="col-md-2">' +
+            '<button id="alterarFields4" style=" margin: auto" class="btn btn-access-invert">Salvar</button>' +
+            '</div>' +
+            '</div>' +
+
+
+
+            '</div>' +
+            '</div>' +
+
+            '</div>';
+
+
+        var modalzona = bootbox.alert({
+            message: html,
+            onShow: function () {
+
+                $(this)[0].id = "modalInner5"
+                $("#modalInner5").find(".modal-dialog").addClass("modalCentral")
+                $(".modal-content").css("border", "none !important")
+                $("#modalInner5").css("background", "rgb(0,0,0,50%)")
+                $("#modalInner5").find(".modal-content").addClass("clienteInforma")
+
+                $("#confirmEmail").change(function () {
+                    if ($(this).val() != $("#inputEmail").val()) {
+                        $(this).css("border", "2px solid red")
+                        $("#inputEmail").css("border", "2px solid red")
+                        informar("alert-primary", "Os e-mails não correspondem!", 3000)
+                    } else {
+                        $(this).css("border", "2px solid green")
+                        $("#inputEmail").css("border", "2px solid green")
+                    }
+                })
+                $("#alterarFields4").click(function () {
+                    if ($("#confirmEmail").val() != "" && $("#inputEmail").val() != "") {
+                        let paramsToCrud = {
+                            "master_id": localStorage.MASTER_ID,
+                            "userName": elemento.attr("username"),
+                            "myToken": elemento.attr("myToken"),
+                            "table": "users_affiliates",
+                            "newValue": $("#confirmEmail").val(),
+                            "fieldName": "users_affiliate_name"
+                        }
+
+                        let params = {
+                            "master_id": localStorage.MASTER_ID,
+                            "mail": localStorage.MAIL_MASTER_CLIENTE,
+                            "pass": $("#passwordAdmin").val(),
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:6060' + '/autenticateAdmin',
+                            data: params,
+                            headers: {
+                                'x-access-token': localStorage.token,
+                            },
+                            success: function (data) {
+                                //console.log(data)
+                                ajaxInner('/updateAffiliateUsersDetails', paramsToCrud, 'POST')
+                                informar("alert-success", "E-mail alterado com sucesso!", 3000)
+                                sessionStorage.clear()
+                                sessionStorage.clear()
+                                sessionStorage.clear()
+
+                                setTimeout(() => {
+                                    $(".close").click()
+                                    $("body").css("filter", "blur(10px)")
+                                    location.reload()
+                                }, 1500)
+                            },
+                            error: function (data) {
+                                //console.log(data)
+                                informar("alert-primary", "Credenciais informadas são incorretas!", 3000)
+                            },
+                            complete: function () {
+
+                            },
+                        });
+
+                    } else {
+                        $("#confirmEmail").css("border", "2px solid red")
+                        $("#inputEmail").css("border", "2px solid red")
+                        informar("alert-primary", "Preencha todos os campos!", 3000)
+                    }
+                })
+
+            },
+            callback: function () {
+                $("#modalInner").find(".modal-dialog").removeClass("modalCentral")
+            }
+        })
+    }
+
+
+
+    async function ajaxInner(url, params, type) {
+        //console.log("requeste para ", url, params)
+        return $.ajax({
+            type: type,
+            url: 'http://localhost:6060' + url,
+            data: params,
+            headers: {
+                'x-access-token': localStorage.token,
+            },
+            success: function (data) {
+                //console.log(data)
+                informar("alert-success", "Alteração realizada com sucesso!", 3000)
+            },
+            error: function (data) {
+                //console.log(data)
+            },
+            complete: function () { },
+        });
+    }
+    $("body").css("filter", "blur(10px)")
+    let olha = setInterval(() => {
+        if (sessionStorage.A != null && sessionStorage.A != null) {
+            setTimeout(() => {
+                getUsuariosA()
+                $("body").css("filter", "none")
+                clearInterval(olha)
+            }, 1500)
+
+        }
+    }, 1000)
+
+
+    function setMeObj(elemento) {
+        EDIT_OBJ[elemento.attr("fieldSet")] = elemento.val()
+        console.log(EDIT_OBJ)
+    }
+
+    async function criaClienteNovo(elemento) {
+        let lista4 = JSON.parse(sessionStorage.ALL_CLIENTS)
+        let mailNew = EDIT_OBJ['master_business_mail']
+        var mainHost = "http://localhost:6060";
+        const exists = lista4.find((x) => x.master_business_mail === mailNew)
+        if (!exists) {
+            let fields = []
+            for (const k in EDIT_OBJ) {
+                fields.push(
+                    { column: k, value: EDIT_OBJ[k] }
+                )
+            }
+            console.log('OS FIELDS', fields)
+
+            return $.ajax({
+                type: "POST",
+                url: mainHost + "/insertNew",
+                headers: {
+                    "x-access-token": localStorage.token,
+                },
+                data: {
+                    table: "masters",
+                    fields,
+                },
+                success: function (data) {
+                    console.log("result ", data);
+
+                },
+                error: function (data) {
+                    informar(
+                        "alert-danger",
+                        "Algo saiu errado, alterações não foram salvas!",
+                        3000
+                    );
+                },
+                complete: function () {
+                    // ao final da requisição...
+                },
+            });
+
+        } else {
+            alert("Ja existe um cliente utilizando o email: '" + mailNew + "'")
+        }
+    }
+
+</script>

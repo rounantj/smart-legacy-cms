@@ -1,0 +1,496 @@
+<style>
+    .preview {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: 996px) {
+        .preview {
+            margin-bottom: 20px;
+        }
+    }
+
+    .preview-pic {
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+    }
+
+    .preview-thumbnail.nav-tabs {
+        border: none;
+        margin-top: 15px;
+    }
+
+    .preview-thumbnail.nav-tabs li {
+        width: 18%;
+        margin-right: 2.5%;
+    }
+
+    .preview-thumbnail.nav-tabs li img {
+        max-width: 100%;
+        display: block;
+    }
+
+    .preview-thumbnail.nav-tabs li a {
+        padding: 0;
+        margin: 0;
+    }
+
+    .preview-thumbnail.nav-tabs li:last-of-type {
+        margin-right: 0;
+    }
+
+    .tab-content {
+        overflow: hidden;
+    }
+
+    .tab-content img {
+        -webkit-animation-name: opacity;
+        animation-name: opacity;
+        -webkit-animation-duration: 0.3s;
+        animation-duration: 0.3s;
+    }
+
+    .labelFuncao {
+        text-align: left;
+        font: normal normal bold 14px/14px Roboto;
+        letter-spacing: 0px;
+        padding: 15px;
+        margin: auto;
+        color: #F6B504 !important;
+        opacity: 1;
+    }
+
+    .userCms {
+        cursor: pointer;
+        transition: 0s;
+        border: 1px solid #efefef;
+        margin-top: 1%;
+        padding: 2px;
+        max-height: 64px;
+        background-color: white;
+    }
+
+    .duplicate2 {
+
+
+        cursor: pointer !important;
+        width: 37px;
+        height: 37px;
+        background: #FFFBF2 0% 0% no-repeat padding-box;
+        border-radius: 26px;
+        opacity: 1;
+        margin: 3px auto;
+        padding: 9px;
+        text-align: center;
+
+    }
+
+    .deleteThis {
+
+        margin: 3px auto !important;
+    }
+
+    .bolaDourada3 {
+        width: 63px;
+        height: 63px;
+        /* UI Properties */
+        background: #FFFBF2 0% 0% no-repeat padding-box;
+        opacity: 1;
+        border-radius: 100%;
+        margin: auto;
+    }
+
+    .txtBola {
+        font: var(--unnamed-font-style-normal) normal bold 18px/24px var(--unnamed-font-family-roboto);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        text-align: center;
+        font: normal normal bold 18px/24px Roboto;
+        letter-spacing: 0px;
+        color: #333333;
+        margin: auto;
+    }
+
+    .corDourada3 {
+        color: #F6B504 !important;
+    }
+
+    .paragrafo {
+        font: var(--unnamed-font-style-normal) normal normal 14px/18px var(--unnamed-font-family-roboto);
+        letter-spacing: var(--unnamed-character-spacing-0);
+        text-align: center;
+        font: normal normal normal 14px/18px Roboto;
+        letter-spacing: 0px;
+        color: #687C97;
+        opacity: 1;
+        margin: auto;
+    }
+</style>
+
+<div class="content">
+    <br />
+    <div style="justify-content: right; margin-right: 0%;" class="row">
+        <div class="col" style="justify-content: right; margin-right: 0%; display: flow-root;">
+            <label style="
+            text-align: left;
+            font: normal normal bold 28px/37px Roboto;
+            letter-spacing: 0px;
+            color: #333333;
+            opacity: 1;
+            ">
+                Permissões de usuário
+
+            </label>
+        </div>
+        <div class="col-lg-2"></div>
+
+
+        <button onclick="location.replace('../criar-usuario')" class="btn btn-access"
+            style="opacity: 1;margin-right: 10px;">Gerenciar Usuários</button>
+        <button profileType="newProfile" onclick="modalEditFunction($(this))" whoIm="newUser"
+            class="btn btn-access-invert" style="opacity: 1;gap: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" style="/* margin: -20% auto 0 0; */ fill: white;margin: auto;"
+                width="24" height="24" viewBox="0 0 24 24">
+                <defs></defs>
+                <path class="a"
+                    d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1Zm0,14a.5.5,0,0,1-.5-.5V11H6.5a.5.5,0,0,1,0-1H10V6.5a.5.5,0,0,1,1,0V10h3.5a.5.5,0,1,1,0,1H11v3.5A.5.5,0,0,1,10.5,15Z"
+                    transform="translate(2 2)"></path>
+            </svg>
+            Nova Função</button>
+        <div style="cursor: pointer; border-radius: 35px; font: bold 1rem Roboto; background-color: rgb(255, 255, 255); max-width: 220px; /* height: 40px; */ border: 1px solid rgb(239, 239, 239); float: right; margin-right: 15px; opacity: 1;margin: auto 15px;padding: 7px;"
+            class="input-group">
+            <div style="border: none;" class="input-group-append">
+                <div style="border: none;" class="input-group-text">
+                    <img style="border: none;" src="../assets/img/store.svg" alt="">
+                </div>
+            </div>
+            <select style="border: none;" class="form-control listaDeUnidades">
+
+            </select>
+        </div>
+
+    </div>
+    <hr />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-tasks radius20" style="padding: 2%;">
+                <div style="padding-bottom: 35px;" class="row">
+                    <div class="col-md-5">
+                        <div style="border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #ffffff; width: auto; height: 40px; border: 1px solid #efefef; float: left;"
+                            class="input-group">
+                            <select style="min-width: 150px; border: none;" class="form-control listaDeAcoes">
+                                <option>Lista de Ações</option>
+                                <option>Desativar</option>
+                                <option>Ativar</option>
+                                <option>Excluir</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div style="float: right;">
+                            <div class="input-group">
+                                <input type="text" style="min-width: 300px;" value="" class="form-control"
+                                    placeholder="Busque por tipo de usuario" />
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i style="color: #f6b504; font-weight: bold;" class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row" style="padding-bottom: 2px; max-height: 60px; border-bottom: 1px solid #efefef;">
+                    <div class="col-sm">
+                        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena">Função</label>
+                    </div>
+                    <div class="col-sm">
+                        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena">Usuários
+                            ativos</label>
+                    </div>
+                    <div class="col-sm">
+                        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena">Usuários
+                            desativados</label>
+                    </div>
+                    <div style="opacity: 0;" class="col-sm">
+                        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena"></label>
+                    </div>
+                    <div class="col-sm">
+                        <label field="products.product_valor" sentido="ASC" class="infoLabel ordena">Ações</label>
+                    </div>
+                </div>
+                <div class="listaTiposUsuarios">
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+
+    function modalEditFunction(element) {
+        var isAutentic = localStorage.isAutentic ? true : false
+        //console.log("my isAutentic",isAutentic)
+        let title = 'Editar Função'
+        let thisURL = $("#autenticar").attr("src").split("?")[0]
+        let newURL = thisURL + '?' + element.attr("profileType")
+        $("#autenticar").attr("src", newURL)
+        $("#autenticar").css("filter", "blur(10px)")
+
+        if (element.attr("profileType") == "newProfile") {
+            title = "Criar Função"
+        }
+
+        if (isAutentic) {
+
+            var html =
+                '<div style="max-width:100% " class="container">' +
+                '<div class="row" style="max-width: 90%;margin: -11px auto;border-bottom: 2px solid #EDF2F6;margin-bottom: 10px; ">' +
+
+                '<div content="funcao" class="col-md tabModal tabModalActive">' +
+                '<label class="labelTab"  style="text-align:center">' + title + '</label>' +
+                "</div>" +
+
+                '<div style="opacity: 0 !important" content="funcao" class="col-md tabModal tabModalActive">' +
+                '<label class="labelTab"  style="text-align:center">Edita Usuário</label>' +
+                "</div>" +
+
+                '<div  style="opacity: 0  !important" content="funcao" class="col-md tabModal tabModalActive">' +
+                '<label class="labelTab"  style="text-align:center">Edita Usuário</label>' +
+                "</div>" +
+
+
+
+                '<div class="col-md">' +
+                '<div   style="cursor:pointer;border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #ffffff; max-width: 200px; height: 40px; border: 2px solid #f6b504; float: right; margin:5% auto" class="input-group">' +
+                '<label  style="cursor:pointer;margin:-5%  auto;text-align: center;    min-width: 60%;color: #f6b504 !important; font-size: 1.2rem" class="label">Cancelar</label>' +
+                "</div>" +
+                "</div>" +
+
+
+
+                '<div class="col-md ">' +
+                '<div onclick="salvarProfile()"  style="cursor:pointer;border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #f6b504; max-width: 200px; height: 40px; border: 2px solid #f6b504; float: left; margin:5% auto" class="input-group">' +
+                '<label  style="cursor:pointer;margin: -5% auto;text-align: center;    min-width: 60%; color: white !important; font-size: 1.2rem" class="label">Salvar</label>' +
+                "</div>" +
+                "</div>" +
+
+                "</div>" +
+                '<hr class="baixoCabecalho" style="position: fixed;top: 115px !important;left: 0px !important;width: 100%;box-shadow: 2px 2px 2px silver;"></hr>' +
+                //=======================================================================================================================================================================
+                '<div id="funcao" style="max-width:90% ; margin-top: 2%"  class="container tabContent">' +
+
+
+                "</div>" +
+
+
+
+
+
+                "</div>";
+
+            bootbox.alert({
+                message: html,
+                onShow: function () {
+
+                    $(".tabModal").click(function () {
+                        $(".tabModal").removeClass("tabModalActive");
+                        $(this).addClass("tabModalActive");
+                        $(".tabContent").hide();
+                        //////connsole.log("#" + $(this).attr("content"));
+                        $("#" + $(this).attr("content")).fadeIn();
+                    });
+
+                    $("#funcao").html(
+                        '<iframe src="/layouts/permissions.html?' + element.attr("profileType") + '" style="width: 100%; height: 90vh" frameborder="0"></iframe>'
+                    )
+
+
+                },
+                callback: function () {
+                    sessionStorage.PALAVRAS_KEY = ''
+                }
+            })
+            $(".modal-footer").hide()
+
+        } else {
+            setTimeout(() => {
+                $("#autenticar").css("filter", "none")
+                $("#autenticar").show()
+            }, 1000)
+
+        }
+
+
+
+    }
+
+
+    function totalByType(type) {
+        let lista = JSON.parse(sessionStorage.A)
+        let retorno = [], ativos = [], inativos = []
+        for (const k in lista) {
+            if (lista[k].users_affiliate_perfil == type) {
+                retorno.push(lista[k])
+                if (lista[k].status) {
+                    ativos.push(lista[k])
+                } else {
+                    inativos.push(lista[k])
+                }
+            }
+        }
+        ativos = OrdenaJson(ativos, "users_affiliate_name", "DESC")
+        inativos = OrdenaJson(inativos, "users_affiliate_name", "DESC")
+        let ac = null, ic = null, la = [], li = []
+        for (const k in ativos) {
+            if (ac != ativos[k].users_affiliate_name) {
+                la.push(ativos[k])
+            }
+            ac = ativos[k].users_affiliate_name
+        }
+        for (const k in inativos) {
+            if (ic != inativos[k].users_affiliate_name) {
+                li.push(inativos[k])
+            }
+            ic = inativos[k].users_affiliate_name
+        }
+        retorno = OrdenaJson(retorno, "users_affiliate_name", "DESC")
+        let listaType = [], curLt = null
+        for (const k in retorno) {
+            if (curLt != retorno[k].users_affiliate_name) {
+                listaType.push(retorno[k])
+            }
+            curLt = retorno[k].users_affiliate_name
+        }
+        sessionStorage[type.replace(' ', '_')] = JSON.stringify(listaType)
+        return { "inativos": li.length, "lista": { at: la, in: li }, "ativos": la.length }
+    }
+    getTiposUsuarios()
+    function getTiposUsuarios() {
+        let html = ''
+        let lista = JSON.parse(localStorage.DT_PF)
+
+        for (const k in lista) {
+            console.log("byType", totalByType(lista[k].profile_type))
+            html += ' <div affiliate_id="96" class="row radius20 userCms">' +
+                '<div class="col-sm" style="opacity: 1;"><label class="labelFuncao">' + lista[k].profile_type + '</label></div>' +
+                '<div class="col-sm" style="opacity: 1;">' +
+                '<label style="font-size:10px !important; padding: 10px"' +
+                'class="infoLabel infoValor">' + totalByType(lista[k].profile_type)?.ativos + '</label>' +
+                '</div>' +
+                '<div class="col-sm" style="opacity: 1;">' +
+                '<label style="font-size:10px !important; padding: 10px"' +
+                'class="infoLabel infoValor">' + totalByType(lista[k].profile_type)?.inativos + '</label>' +
+                '</div>' +
+                '<div class="col-sm" style="opacity: 1;">' +
+                '<div profileType="' + lista[k].profile_type + '" onclick="modalEditFunction($(this))"' +
+                'style="cursor: pointer; border-radius: 20px; font: normal normal bold 1rem Roboto; background-color: #ffffff; max-width: 150px; height: 40px; border: 2px solid #f6b504; float: right; margin-right: 15px;"' +
+                'class="input-group">' +
+                '<label style="margin: -1% auto; min-width: 60%; color: #f6b504 !important; cursor: pointer;"' +
+                'class="label">Editar Função</label>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-sm" style="opacity: 1 ">' +
+                '<div style="opacity: 1; display: inline-flex;min-width: 100px;" class="acrions3">' +
+                '<div class=" duplicate2">' +
+                '<svg xmlns="http://www.w3.org/2000/svg" style=" fill: #f6b504;  cursor: pointer;  margin:auto;" width="12" height="14" viewBox="0 0 12 14"><path id="duplicate" d="M7.125,14H1.875A1.913,1.913,0,0,1,0,12.055v-7A1.913,1.913,0,0,1,1.875,3.111H3V1.945A1.913,1.913,0,0,1,4.874,0h4.5A.364.364,0,0,1,9.64.114l2.25,2.334a.391.391,0,0,1,.109.3v6.2a1.913,1.913,0,0,1-1.875,1.945H9v1.165A1.913,1.913,0,0,1,7.125,14ZM1.875,3.889A1.148,1.148,0,0,0,.75,5.055v7a1.148,1.148,0,0,0,1.125,1.167h5.25a1.148,1.148,0,0,0,1.124-1.167V10.89H6.374a.389.389,0,0,1,0-.778h3.75a1.148,1.148,0,0,0,1.125-1.167V3.112H9.374A.383.383,0,0,1,9,2.723V.778H4.874A1.148,1.148,0,0,0,3.75,1.945V5.833a.376.376,0,1,1-.751,0V3.889ZM9.749,1.329V2.334h.97ZM3.375,10.112A.365.365,0,0,1,3.109,10a.4.4,0,0,1,0-.55l3.86-4H5.624a.389.389,0,0,1,0-.778h2.25a.382.382,0,0,1,.375.388V7.389a.375.375,0,1,1-.75,0v-1.4L3.64,10A.365.365,0,0,1,3.375,10.112Z" fill="#f6b504"></path></svg>' +
+                '</div>' +
+                '<div onclick="$(\'#deletarFrame\').show()" class=" deleteThis"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"' +
+                'viewBox="0 0 21 21" style="fill: #f6b504;margin: 9px;">&gt;<defs></defs>' +
+                '<path class="a"' +
+                'd="M10.937,16H3.063A2.208,2.208,0,0,1,.875,13.778V2.666H.438a.444.444,0,0,1,0-.889H4.375V1.334A1.324,1.324,0,0,1,5.687,0H8.313A1.324,1.324,0,0,1,9.625,1.334v.444h3.937a.444.444,0,0,1,0,.889h-.437V13.778A2.208,2.208,0,0,1,10.937,16ZM1.75,2.666V13.778a1.325,1.325,0,0,0,1.313,1.334h7.875a1.325,1.325,0,0,0,1.313-1.334V2.666ZM5.687.889a.441.441,0,0,0-.437.445v.444h3.5V1.334A.441.441,0,0,0,8.313.889Zm3.5,11.556A.442.442,0,0,1,8.75,12V5.778a.437.437,0,1,1,.875,0V12A.441.441,0,0,1,9.188,12.445Zm-4.375,0A.441.441,0,0,1,4.375,12V5.778a.437.437,0,1,1,.875,0V12A.442.442,0,0,1,4.812,12.445Z"' +
+                'transform="translate(4 3)"></path>' +
+                '</svg></div>' +
+                '</div>' +
+                '</div>' +
+                '</div>'
+        }
+        $(".listaTiposUsuarios").append(html)
+    }
+
+
+    function salvarProfile() {
+
+        if (JSON.parse(localStorage.PROFILE_IN_CHANGE)) {
+            $("body").css("filter", "blur(10px)")
+            let params = {
+                dataUser: JSON.parse(localStorage.PROFILE_IN_CHANGE)
+            }
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:6060' + '/updateRulesUser',
+                data: params,
+                headers: {
+                    'x-access-token': localStorage.token,
+                },
+                success: function (data) {
+                    //console.log(data)
+                    informar("alert-success", "Alteração realizada com sucesso!", 3000)
+                },
+                error: function (data) {
+                    //console.log(data)
+                },
+                complete: function () {
+                    sessionStorage.clear()
+                    sessionStorage.clear()
+                    sessionStorage.clear()
+
+                    setTimeout(() => {
+                        location.reload()
+                    }, 1500)
+                },
+            });
+        } else {
+            informar("alert-danger", "Algo errado com os dados!", 3000)
+        }
+
+    }
+
+    $("body").css("filter", "blur(10px)")
+    let olha = setInterval(() => {
+        if (localStorage.DT_PF != null) {
+            setTimeout(() => {
+
+                $("body").css("filter", "none")
+                clearInterval(olha)
+            }, 1500)
+
+        }
+    }, 1000)
+
+
+    function OrdenaJson(lista, chave, ordem) {
+        ordem = ordem.toUpperCase()
+        return lista.sort(function (a, b) {
+            var x = a[chave];
+            var y = b[chave];
+            if (ordem === 'ASC') {
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            }
+            if (ordem === 'DESC') {
+                return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+            }
+        });
+    }
+
+
+</script>

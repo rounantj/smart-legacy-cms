@@ -1,0 +1,296 @@
+<style>
+   .etiquetaRedonda {
+      margin: 30px auto !important;
+   }
+</style>
+<div class="content">
+
+   <div style="justify-content: right; margin-right: 0%;" class="row">
+      <div class="col" style="justify-content: right; margin-right: 0%; display: flow-root;">
+         <label style="font: normal normal bold 2rem Roboto; float: left;"><span class="log">Logística <span
+                  style="color:#687c97" class="meioTermo">></span></span> {{loja}}</label>
+      </div>
+
+   </div>
+   <hr />
+   <br />
+   <div class="row">
+      <div class="col-md-4">
+         <div class="card card-tasks radius20" style="padding: 2%;background: #FAFAFD;">
+            <div style=" min-height:50px; justify-content: center !important; border-bottom: 1px solid #efefef;"
+               class="card-header">
+               <h5 class="primeiroTxt">Métodos de entrega</h5>
+            </div>
+            <div style="max-width: 90%;" class="container">
+               <div class="listaMetodosEntrega">
+
+
+
+
+
+               </div>
+
+
+               <br>
+               <br>
+               <div
+                  style="cursor: pointer;margin: 10% auto;cursor: pointer; border-radius: 20px; font: bold 1rem Roboto; background-color: rgb(246, 181, 4); max-width: 200px; height: 40px; border: 2px solid rgb(246, 181, 4);     opacity: 1;"
+                  class="input-group">
+                  <div style="border: none; margin: auto;" class="input-group-append">
+                     <div style="border: none; margin: auto; padding: 2%;" class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="margin: -20% auto 0 0; fill: white;" width="24"
+                           height="24" viewBox="0 0 24 24">
+                           <defs></defs>
+                           <path class="a"
+                              d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1Zm0,14a.5.5,0,0,1-.5-.5V11H6.5a.5.5,0,0,1,0-1H10V6.5a.5.5,0,0,1,1,0V10h3.5a.5.5,0,1,1,0,1H11v3.5A.5.5,0,0,1,10.5,15Z"
+                              transform="translate(2 2)"></path>
+                        </svg>
+                     </div>
+                  </div>
+                  <label style="margin: -1% auto; min-width: 60%; color: white !important;cursor: pointer"
+                     class="label novoMetodo">Novo método</label>
+               </div>
+
+            </div>
+            <div style=" min-height:50px; justify-content: center !important; border-top: 1px solid #efefef;"
+               class="card-header">
+               <div style="border: 1px solid #efefef; margin-top: 5%; padding: 5%"
+                  class="row radius20 metodoEntregaRetirada">
+                  <div class="col-md-8">
+                     <div class="col-md-12"><span class="segundoTxt" id="descricaoRetirada">Retirada</span></div>
+                     <div class="col-md-12"><span class="txtGold">R$ <valor id="valorRetirada">0,00</valor></span></div>
+                  </div>
+                  <div class="col-md-4" style="padding-top: 4%;">
+                     <div class="switch__container"><input fieldName="retirada_active"
+                           onchange="updateDefaultParameters($(this))" id="switch-shadow985"
+                           class="switch switch--shadow" type="checkbox"><label for="switch-shadow985"></label></div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+      <div class="col-md-8">
+         <div class="card card-tasks radius20" style="padding: 2%; background: #FAFAFD;">
+            <h5 class="primeiroTxt">Configurações gerais</h5>
+
+            <div class="container" style="max-width: 90%;">
+               <div style="padding: 5%;" class="col-md-12 grupoConteudo">
+                  <div class="row">
+                     <div style="    margin-top: -1%;" class="switch__container ajuste2"><input fieldName="faixa_cep"
+                           onchange="updateDefaultParameters($(this))" id="switch-shadow975"
+                           class="switch switch--shadow" type="checkbox"><label for="switch-shadow975"></label></div>
+                     <label class="txtLabel" style="margin-left: 3%;"> Por faixa de CEP</label>
+                  </div>
+                  <div class="areaEsconde">
+                     <br>
+                     <br>
+                     <h5 class="primeiroTxt">Faixa de CEP atendida</h5>
+                     <label class="txtLabel">Adicione aqui a faixa de CEP que você disponibilizará para a entrega. Você
+                        poderá ajustas os detalhes em cada tipo de entrega ao lado esquerdo.</label>
+                     <br><br><br>
+                     <div class="faixasCep">
+                        <div tipo="include" class="row parCEPS">
+                           <div style="padding-left: none;" class="col-md-4">
+                              <label class="txtLabel">Inicial</label><br>
+                              <div class="group-input2"><input onchange="faixaCepSettings($(this))"
+                                    class="form-control inputProduct cep CEP_INICIAL" placeholder="132001-001"
+                                    posicao="CEP_INICIAL"></div><br>
+
+                           </div>
+                           <div style="padding-left: none;" class="col-md-4">
+                              <label class="txtLabel">Final</label><br>
+                              <div class="group-input2"><input onchange="faixaCepSettings($(this))"
+                                    class="form-control inputProduct  cep CEP_FINAL" placeholder="132001-001"
+                                    posicao="CEP_FINAL"></div><br>
+
+                           </div>
+                           <div class="col-md-2">
+                              <div class="input-group iconOpaco ico etiquetaRedonda">
+                                 <svg pedido="00008" onclick="deletarFaixaCep($(this))"
+                                    xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 21 21" style="
+                                          margin: auto">&gt;<defs></defs>
+                                    <path class="a"
+                                       d="M10.937,16H3.063A2.208,2.208,0,0,1,.875,13.778V2.666H.438a.444.444,0,0,1,0-.889H4.375V1.334A1.324,1.324,0,0,1,5.687,0H8.313A1.324,1.324,0,0,1,9.625,1.334v.444h3.937a.444.444,0,0,1,0,.889h-.437V13.778A2.208,2.208,0,0,1,10.937,16ZM1.75,2.666V13.778a1.325,1.325,0,0,0,1.313,1.334h7.875a1.325,1.325,0,0,0,1.313-1.334V2.666ZM5.687.889a.441.441,0,0,0-.437.445v.444h3.5V1.334A.441.441,0,0,0,8.313.889Zm3.5,11.556A.442.442,0,0,1,8.75,12V5.778a.437.437,0,1,1,.875,0V12A.441.441,0,0,1,9.188,12.445Zm-4.375,0A.441.441,0,0,1,4.375,12V5.778a.437.437,0,1,1,.875,0V12A.442.442,0,0,1,4.812,12.445Z"
+                                       transform="translate(4 3)"></path>
+                                 </svg>
+                              </div>
+                           </div>
+                        </div>
+
+                     </div>
+
+
+
+                     <div
+                        style="cursor: pointer;margin: 5% 0%;cursor: pointer; border-radius: 20px; font: bold 1rem Roboto; background-color: rgb(246, 181, 4); max-width: 200px; height: 40px; border: 2px solid rgb(246, 181, 4);     opacity: 1; cursor:pointer"
+                        class="input-group novaFaixaCep insereFaixaCep">
+                        <div style="border: none; margin: auto;" class="input-group-append">
+                           <div style="border: none; margin: auto; padding: 2%;" class="input-group-text">
+                              <svg xmlns="http://www.w3.org/2000/svg" style="margin: -20% auto 0 0; fill: white;"
+                                 width="24" height="24" viewBox="0 0 24 24">
+                                 <defs></defs>
+                                 <path class="a"
+                                    d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1Zm0,14a.5.5,0,0,1-.5-.5V11H6.5a.5.5,0,0,1,0-1H10V6.5a.5.5,0,0,1,1,0V10h3.5a.5.5,0,1,1,0,1H11v3.5A.5.5,0,0,1,10.5,15Z"
+                                    transform="translate(2 2)"></path>
+                              </svg>
+                           </div>
+                        </div>
+                        <label style="margin: -1% auto; min-width: 60%; color: white !important;; cursor:pointer"
+                           class="label">Nova faixa de CEP</label>
+                     </div>
+                     <hr>
+                     <div class="col-md-12">
+                        <div class="row">
+                           <div style="max-width: 50px; opacity: 1;" class="col-sm">
+                              <label class="checkSmart"><input fieldName="exclui_faixa_cep"
+                                    onchange="updateDefaultParameters($(this))" lista="listaDeProdutos" id="checkFull"
+                                    class="checka form-control" type="checkbox"><span class="checkmark"></span></label>
+                           </div>
+                           <div class="col-sm">
+                              <label style="text-align: left;     margin-top: 13px;" class="txtLabel">Eliminar faixas de
+                                 CEP</label><br>
+                           </div>
+                        </div>
+                        <br>
+                        <div style="display: none;" class="faixasCepExcluir">
+
+                           <div tipo="exclude" class="row parCEPS2">
+                              <div style="padding-left: none;" class="col-md-4">
+                                 <label class="txtLabel">Inicial</label><br>
+                                 <div class="group-input2"><input onchange="faixaCepSettingsExcluir($(this))"
+                                       class="form-control inputProduct cep CEP_INICIAL" placeholder="132001-001"
+                                       posicao="CEP_INICIAL"></div><br>
+
+                              </div>
+                              <div style="padding-left: none;" class="col-md-4">
+                                 <label class="txtLabel">Final</label><br>
+                                 <div class="group-input2"><input onchange="faixaCepSettingsExcluir($(this))"
+                                       class="form-control inputProduct  cep CEP_FINAL" placeholder="132001-001"
+                                       posicao="CEP_FINAL"></div><br>
+
+                              </div>
+                              <div class="col-md-2">
+                                 <div class="input-group iconOpaco ico etiquetaRedonda">
+                                    <svg pedido="00008" onclick="deletarFaixaCep($(this))"
+                                       xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 21 21"
+                                       style="
+                                          margin: auto">&gt;<defs></defs>
+                                       <path class="a"
+                                          d="M10.937,16H3.063A2.208,2.208,0,0,1,.875,13.778V2.666H.438a.444.444,0,0,1,0-.889H4.375V1.334A1.324,1.324,0,0,1,5.687,0H8.313A1.324,1.324,0,0,1,9.625,1.334v.444h3.937a.444.444,0,0,1,0,.889h-.437V13.778A2.208,2.208,0,0,1,10.937,16ZM1.75,2.666V13.778a1.325,1.325,0,0,0,1.313,1.334h7.875a1.325,1.325,0,0,0,1.313-1.334V2.666ZM5.687.889a.441.441,0,0,0-.437.445v.444h3.5V1.334A.441.441,0,0,0,8.313.889Zm3.5,11.556A.442.442,0,0,1,8.75,12V5.778a.437.437,0,1,1,.875,0V12A.441.441,0,0,1,9.188,12.445Zm-4.375,0A.441.441,0,0,1,4.375,12V5.778a.437.437,0,1,1,.875,0V12A.442.442,0,0,1,4.812,12.445Z"
+                                          transform="translate(4 3)"></path>
+                                    </svg>
+                                 </div>
+                              </div>
+
+                           </div>
+
+
+
+
+                        </div>
+                        <div
+                           style="cursor: pointer;margin: 5% 0%;cursor: pointer; border-radius: 20px; font: bold 1rem Roboto; background-color: rgb(246, 181, 4); max-width: 200px; height: 40px; border: 2px solid rgb(246, 181, 4);     opacity: 1; cursor:pointer"
+                           class="input-group novaFaixaCep insereFaixaCepExcluir">
+                           <div style="border: none; margin: auto;" class="input-group-append">
+                              <div style="border: none; margin: auto; padding: 2%;" class="input-group-text">
+                                 <svg xmlns="http://www.w3.org/2000/svg" style="margin: -20% auto 0 0; fill: white;"
+                                    width="24" height="24" viewBox="0 0 24 24">
+                                    <defs></defs>
+                                    <path class="a"
+                                       d="M10.5,21A10.5,10.5,0,0,1,3.075,3.075,10.5,10.5,0,1,1,10.5,21Zm0-20A9.5,9.5,0,1,0,20,10.5,9.511,9.511,0,0,0,10.5,1Zm0,14a.5.5,0,0,1-.5-.5V11H6.5a.5.5,0,0,1,0-1H10V6.5a.5.5,0,0,1,1,0V10h3.5a.5.5,0,1,1,0,1H11v3.5A.5.5,0,0,1,10.5,15Z"
+                                       transform="translate(2 2)"></path>
+                                 </svg>
+                              </div>
+                           </div>
+                           <label style="margin: -1% auto; min-width: 60%; color: white !important;; cursor:pointer"
+                              class="label">Nova faixa de CEP</label>
+                        </div>
+                        <label style="text-align: left" class="txtLabel ajuste3"> Selecione essa opção caso deseje
+                           remover algumas localidades nos CEPS inserido na faixa acima.</label><br>
+                        <div class="row">
+                           <div class="col-md-2">
+                              <label class="atencaoVerde">Atenção!</label>
+                           </div>
+                           <div class="col-md-10">
+                              <label style="text-align: left" class="textoAtencaoVerde">Os clientes ainda conseguirão
+                                 comprar através da retirada na loja.</label><br>
+                           </div>
+                        </div>
+
+
+                     </div>
+
+                  </div>
+
+
+               </div>
+       
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+</div>
+<datalist id="forDelivery">
+   <option>01 km</option>
+   <option>02 km</option>
+   <option>03 km</option>
+   <option>04 km</option>
+   <option>05 km</option>
+   <option>06 km</option>
+   <option>07 km</option>
+   <option>08 km</option>
+   <option>09 km</option>
+   <option>10 km</option>
+
+</datalist>
+ 
+<script>
+   /*
+    
+               <div style="padding: 5%; margin-top:3%" class="col-md-12 grupoConteudo">
+                  <div class="row">
+                     <div class="col-md-8  edicaoAvancada">
+                        <div class="row">
+                           <div style="    margin-top: -1%;" class="switch__container  ajuste2"><input
+                                 fieldName="lat_lon_active" onchange="updateDefaultParameters($(this))"
+                                 id="edicaoAvancadaCheck" class="switch switch--shadow" type="checkbox"><label
+                                 for="edicaoAvancadaCheck"></label></div>
+                           <label class="txtLabel" style="margin-left: 3%;"> Edição avançada</label>
+
+                        </div>
+
+
+                     </div>
+
+
+                     <div style="display: none;" id="botaoEditarArea" class="col-md-4 botaoEditar">
+                        <div
+                           style="cursor: pointer;border-radius: 20px;font: bold 1rem Roboto;background-color: rgb(255, 255, 255);max-width: 150px;height: 40px;border: 1px solid #687c97;float: right; opacity: 1; "
+         class="input-group" >
+                           <div style="border: none; margin: auto;" class="input-group-append">
+                              <div style="border: none; margin: auto; padding: 1%;" class="input-group-text"><svg
+                                    xmlns="http://www.w3.org/2000/svg" style="margin: 6% auto;fill: #687c97;" width="20"
+                                    height="20" viewBox="0 0 20 20">
+                                    <defs></defs>
+                                    <path class="a"
+                                       d="M12.929,15H2.083A2.086,2.086,0,0,1,0,12.917V2.084A2.086,2.086,0,0,1,2.083,0H7.928a.417.417,0,0,1,0,.833H2.083a1.252,1.252,0,0,0-1.25,1.25V12.917a1.252,1.252,0,0,0,1.25,1.25H12.929a1.251,1.251,0,0,0,1.25-1.25V7.084a.417.417,0,0,1,.834,0v5.833A2.086,2.086,0,0,1,12.929,15Zm-5-5.833H6.262a.417.417,0,0,1-.417-.416V7.084a.417.417,0,0,1,.122-.295L12.633.122a.417.417,0,0,1,.59,0L14.89,1.789a.416.416,0,0,1,0,.59L8.223,9.046A.414.414,0,0,1,7.928,9.167Zm5-8.161h0l-6.25,6.25V8.334H7.756l6.25-6.25L12.929,1.007Z"
+                                       transform="translate(2.488 2.499)"></path>
+                                 </svg></div>
+                           </div><label id="editaCat" style="margin: -1% auto;min-width: 60%;cursor: pointer;"
+                              class="label">Editar área</label>
+                        </div >
+                     </div >
+
+                  </div >
+            <div id="iframe" style="display: none;" class="com-md-12 notScroll">
+               <iframe fieldName="lat_lon" id="iframeIn" src="/map/mapas/areaView.html" width="100%" height="520"
+                  style="border:0; border-radius: 20px" allowfullscreen="" loading="lazy"></iframe>
+            </div> 
+               </div > 
+
+
+   */
+</script>

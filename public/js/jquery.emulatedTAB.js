@@ -1,0 +1,8 @@
+/**
+ * Minified by jsDelivr using UglifyJS v3.4.4.
+ * Original file: /npm/jquery-emulatetab@0.2.9/src/emulatetab.joelpurra.js
+ * 
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+ var JoelPurra=JoelPurra||{};!function(e,a,t,n){"use strict";var r=null,o={escapeSelectorName:function(e){return e.replace(/(!"#$%&'\(\)\*\+,\.\/:;<=>\?@\[\]^`\{\|\}~)/g,"\\\\$1")},findNextFocusable:function(e,t){var n=a(":input, a[href]").not(":disabled").not(":hidden").not("a[href]:empty");if("INPUT"===e[0].tagName&&"radio"===e[0].type&&""!==e[0].name){var r=o.escapeSelectorName(e[0].name);n=n.not("input[type=radio][name="+r+"]").add(e)}var u=(n.index(e)+t)%n.length;return u<=-1&&(u=n.length+u),n.eq(u)},focusInElement:function(e){r=e.target},tryGetElementAsNonEmptyJQueryObject:function(e){try{var t=a(e);if(t&&0!==t.size())return t}catch(e){}return null},getFocusedElement:function(){return o.tryGetElementAsNonEmptyJQueryObject(":focus")||o.tryGetElementAsNonEmptyJQueryObject(e.activeElement)||o.tryGetElementAsNonEmptyJQueryObject(r)||a()},emulateTabbing:function(e,t){o.findNextFocusable(e,t).focus()},initializeAtLoad:function(){a(e).on("focusin.EmulateTab",o.focusInElement)}},u={tab:function(e,t){a.isNumeric(e)&&(t=e,e=void 0),e=e||u.getFocused(),t=t||1,o.emulateTabbing(e,t)},forwardTab:function(e){return u.tab(e,1)},reverseTab:function(e){return u.tab(e,-1)},getFocused:function(){return o.getFocusedElement()}};JoelPurra[n]=u,a.extend({emulateTab:function(e,t){return u.tab(e,t)}}),a.fn.extend({emulateTab:function(e){return u.tab(this,e)}}),a(o.initializeAtLoad)}(document,jQuery,0,"EmulateTab");
+ //# sourceMappingURL=/sm/2d2d8089236ace279b5c49e01cbd99b1752b04ac95819d5ee743bf9a8a0e075e.map
