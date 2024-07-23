@@ -53,6 +53,6 @@ app.listen(3001)
 // const https = require('https')
 
 // var server = https.createServer(options, app);
-app.listen(6060, function () {
-  console.log("Port to front" + 6060);
+app.listen((process.env.PORT || 6060), function () {
+  console.log("Port to front" + (process.env.PORT || 6060));
 });
