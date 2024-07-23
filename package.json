@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "pm2 start front.js",
+    "start": "node front.js",
     "dev": "nodemon local.js",
-    "build": "nx build",
+    "build": "node -v",
     "test": "nx test"
   },
   "private": true,
