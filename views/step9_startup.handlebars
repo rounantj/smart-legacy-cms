@@ -79,7 +79,7 @@
 
 
         $.ajax({
-            url: 'http://localhost:6060/myColors',
+            url: 'https://api-smart-939610cb57d8.herokuapp.com/myColors',
             headers: {
                 "x-access-token": localStorage.token,
                 "affiliate_id": localStorage.AFFILIATE_ID,
@@ -97,7 +97,7 @@
                 data1 = data
 
                 localStorage.colors = JSON.stringify(data)
-                $(".imgSrc").css("background", "url(http://localhost:6060/images/" + localStorage.MASTER_ID + "/" + localStorage.nameLogo + ")")
+                $(".imgSrc").css("background", "url(https://api-smart-939610cb57d8.herokuapp.com/images/" + localStorage.MASTER_ID + "/" + localStorage.nameLogo + ")")
                 //console.log(("background","rgb( "+data[0]._rgb[0]+","+data[0]._rgb[1]+","+data[0]._rgb[2]+","+data[0]._rgb[3]+") 0% 0% no-repeat padding-box "))
                 $("#01").css("background", "rgb(" + data[0]._rgb[0] + "," + data[0]._rgb[1] + "," + data[0]._rgb[2] + "," + data[0]._rgb[3] + ") 0% 0% no-repeat padding-box ")
                 $("#02").css("background", "rgb(" + data[1]._rgb[0] + "," + data[1]._rgb[1] + "," + data[1]._rgb[2] + "," + data[1]._rgb[3] + ") 0% 0% no-repeat padding-box  ")

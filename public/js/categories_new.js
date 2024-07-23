@@ -1,4 +1,4 @@
-const api_host = "http://localhost:6060";
+const api_host = "https://api-smart-939610cb57d8.herokuapp.com";
 let currentCategoryId = null,
   currentSubcategoryId = null;
 

@@ -1,4 +1,4 @@
-var mainHost = "http://localhost:6060";
+var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
 
 comecando();
 
@@ -179,7 +179,7 @@ async function atualizaCampo(elemento, reload) {
     : localStorage.MASTER_ID;
 
   // if(newValue.indexOf("C:\\fakepath\\")>-1){
-  //   newValue = newValue.replace("C:\\fakepath\\","http://localhost:6060/images/"+localStorage.MASTER_ID+"/")
+  //   newValue = newValue.replace("C:\\fakepath\\","https://api-smart-939610cb57d8.herokuapp.com/images/"+localStorage.MASTER_ID+"/")
   // }
 
   let params = {

@@ -12,7 +12,7 @@ function OrdenaJson(lista, chave, ordem) {
 }
 $.ajax({
   type: "POST",
-  url: "http://localhost:6060/getAllOrdersMaster",
+  url: "https://api-smart-939610cb57d8.herokuapp.com/getAllOrdersMaster",
   data: { master_id: localStorage.MASTER_ID },
   headers: {
     "x-access-token": localStorage.token,

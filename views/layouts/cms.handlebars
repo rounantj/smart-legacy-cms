@@ -47,7 +47,7 @@
 
 
 <script>
-    var mainHost = "http://localhost:6060";
+    var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
 
     $(window).on("load", function () {
         $("modalLoading").hide()
@@ -1146,7 +1146,7 @@ $(".sidebar").removeClass("newSidebar");
         setTimeout(() => {
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:6060/getStoreInformation',
+                url: 'https://api-smart-939610cb57d8.herokuapp.com/getStoreInformation',
                 data: { "master_id": localStorage.MASTER_ID },
                 success: function (data) {
                     //console.log("dataStore")
@@ -1170,7 +1170,7 @@ $(".sidebar").removeClass("newSidebar");
 
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:6060/informacoesDeClientes',
+                url: 'https://api-smart-939610cb57d8.herokuapp.com/informacoesDeClientes',
                 data: { "affiliate_id": localStorage.AFFILIATE_ID },
                 headers: {
                     "x-access-token": localStorage.token,

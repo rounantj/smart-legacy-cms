@@ -1,6 +1,6 @@
 var AFFILIATES = [],
   count = 0;
-var mainHost = "http://localhost:6060";
+var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
 var locais = JSON.parse(ajustStrigfy(localStorage.LOJAS_CADASTRADAS));
 ////console.log(locais)
 

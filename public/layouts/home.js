@@ -1,5 +1,5 @@
 let notFound =
-  "http://localhost:6060/images/default/produto-sem-imagem.jpg";
+  "https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg";
 var CATEGORIES = [],
   MY_CATEGORIES = [],
   MINHAS_CATEGORIAS = [];
@@ -20,7 +20,7 @@ var arrowDown4 =
   "</g>" +
   "</svg>" +
   "</div>";
-var mainHost = "http://localhost:6060";
+var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
 let homePage = {
   logotipo: {
     url: "",
@@ -1258,7 +1258,7 @@ function createElementFromHTML(htmlString) {
 }
 
 //=========================== Área de CRUD =====================
-let host = `http://localhost:6060`;
+let host = `https://api-smart-939610cb57d8.herokuapp.com`;
 async function uploadAndUpdateFile(element) {
   if (element.attr("url")) {
     element
@@ -2404,7 +2404,7 @@ function removeSection(element) {
 
 // $.ajax({
 //   type: "POST",
-//   url: "http://localhost:6060/getCategories",
+//   url: "https://api-smart-939610cb57d8.herokuapp.com/getCategories",
 //   headers: {
 //     "x-access-token": localStorage.token,
 //   },

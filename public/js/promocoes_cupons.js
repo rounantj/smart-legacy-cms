@@ -1,13 +1,13 @@
 var AFFILIATE_ID = localStorage.AFFILIATE_ID;
 var MASTER_ID = localStorage.MASTER_ID;
-var mainHost = "http://localhost:6060";
+var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
 
 var newsCATEGORIES = [];
 let TAGS = [];
 
 // $.ajax({
 //   type: "POST",
-//   url: "http://localhost:6060/getCategories",
+//   url: "https://api-smart-939610cb57d8.herokuapp.com/getCategories",
 //   headers: {
 //     "x-access-token": localStorage.token,
 //   },
@@ -31,7 +31,7 @@ let TAGS = [];
 
 $.ajax({
   type: "POST",
-  url: "http://localhost:6060/getTagsLists",
+  url: "https://api-smart-939610cb57d8.herokuapp.com/getTagsLists",
   headers: {
     "x-access-token": localStorage.token,
   },

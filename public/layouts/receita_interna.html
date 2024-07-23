@@ -1105,7 +1105,7 @@
   </div>
   <!-- <script src="https://api-smart-939610cb57d8.herokuapp.com/js/tinymce.js"></script> -->
   <script>
-    var mainHost = 'http://localhost:6060';
+    var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com';
 
     let url = window.location.href
 
@@ -1288,12 +1288,12 @@
         type: 'PUT',
         success: function (data) {
           //console.log(data)
-          $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'http://localhost:6060')})`)
-          $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+          $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')})`)
+          $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
           $("#" + element.attr("target")).css("background-size", "cover !important")
           $("#" + element.attr("target")).css("background-position", "center !important")
           $("#" + element.attr("target")).css("zoom", "100% !important")
-          editRevenue('banner_topo', data.path?.replace('./public', 'http://localhost:6060'))
+          editRevenue('banner_topo', data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com'))
         },
         error: function (data) { },
         complete: function () { },
@@ -1316,8 +1316,8 @@
         type: 'PUT',
         success: function (data) {
           //console.log(data)
-          $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'http://localhost:6060')})`)
-          $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+          $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')})`)
+          $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
           $("#" + element.attr("target")).css("background-size", "cover !important")
           $("#" + element.attr("target")).css("background-position", "center !important")
           $("#" + element.attr("target")).css("zoom", "100% !important")
@@ -1326,9 +1326,9 @@
           function editRevenue(column, newValue) {
 
             //console.log(element.parent().parent().find('input'))
-            //console.log(`${data.path?.replace('./public', 'http://localhost:6060')}`)
+            //console.log(`${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
 
-            editRevenue('banner_topo', data.path?.replace('./public', 'http://localhost:6060'))
+            editRevenue('banner_topo', data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com'))
 
 
             localStorage.SEARCH_REVENUES = JSON.stringify(data)

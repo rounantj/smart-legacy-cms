@@ -299,7 +299,7 @@
 </div>
 <script src="../assets/js/core/jquery.min.js"></script>
 <script>
-    var mainHost = 'http://localhost:6060';
+    var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com';
 
     localStorage.TODOS_OS_PEDIDOS = ''
     localStorage.PEDIDO_SENDO_EDITADO = ''
@@ -317,7 +317,7 @@
         updateTotalPedidos()
         $.ajax({
             type: "POST",
-            url: "http://localhost:6060/getOrdersTemplate",
+            url: "https://api-smart-939610cb57d8.herokuapp.com/getOrdersTemplate",
             headers: {
                 "x-access-token": localStorage.token,
             },
@@ -430,7 +430,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:6060/getOrdersTemplate",
+                    url: "https://api-smart-939610cb57d8.herokuapp.com/getOrdersTemplate",
                     headers: {
                         "x-access-token": localStorage.token,
                     },
@@ -1403,7 +1403,7 @@
 
                                     $.ajax({
                                         type: "POST",
-                                        url: 'http://localhost:6060/updateOrderDetails',
+                                        url: 'https://api-smart-939610cb57d8.herokuapp.com/updateOrderDetails',
                                         headers: {
                                             "x-access-token": localStorage.token,
                                         },
@@ -2202,7 +2202,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost:6060/productsOrderByListOrder",
+                url: "https://api-smart-939610cb57d8.herokuapp.com/productsOrderByListOrder",
                 headers: {
                     "x-access-token": localStorage.token,
                 },

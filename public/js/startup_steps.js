@@ -18,7 +18,7 @@ if (detectar_mobile()) {
   location.replace("/picking-login");
 }
 
-var mainHost = "http://localhost:6060";
+var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
 var urlLocal = window.location.href.split("?");
 if (urlLocal[urlLocal.length - 1] == "login") {
   $(".form").hide();

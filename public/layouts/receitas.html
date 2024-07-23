@@ -989,10 +989,10 @@
   </div>
 </body>
 
-<script src="http://localhost:6060/js/tinymce.js"></script>
+<script src="https://api-smart-939610cb57d8.herokuapp.com/js/tinymce.js"></script>
 <script>
 
-  var mainHost = 'http://localhost:6060';
+  var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com';
   let url = window.location.href
   if (url.indexOf("receita") > -1) {
     function iniciaEditorHtml(idElemento) {
@@ -1010,7 +1010,7 @@
 
 
 
-  var mainHost = 'http://localhost:6060';
+  var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com';
 
 
   function iniciaEditorHtml(idElemento) {
@@ -1493,8 +1493,8 @@
         type: 'PUT',
         success: function (data) {
           //console.log(data)
-          $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'http://localhost:6060')})`)
-          $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+          $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')})`)
+          $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
           $("#" + element.attr("target")).css("background-size", "cover !important")
           $("#" + element.attr("target")).css("background-position", "center !important")
           $("#" + element.attr("target")).css("zoom", "100% !important")
@@ -1502,7 +1502,7 @@
 
 
           //console.log(element.parent().parent().find('input'))
-          //console.log(`${data.path?.replace('./public', 'http://localhost:6060')}`)
+          //console.log(`${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
 
 
 
@@ -1786,8 +1786,8 @@
       type: 'PUT',
       success: function (data) {
         //console.log(data)
-        $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'http://localhost:6060')})`)
-        $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+        $("#" + element.attr("target")).css("background", `url(${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')})`)
+        $("#" + element.attr("target")).attr("value", `${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
         $("#" + element.attr("target")).css("background-size", "cover !important")
         $("#" + element.attr("target")).css("background-position", "center !important")
         $("#" + element.attr("target")).css("zoom", "100% !important")
@@ -1795,7 +1795,7 @@
 
 
         //console.log(element.parent().parent().find('input'))
-        //console.log(`${data.path?.replace('./public', 'http://localhost:6060')}`)
+        //console.log(`${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
 
 
 

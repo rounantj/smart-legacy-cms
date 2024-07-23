@@ -4127,7 +4127,7 @@ textarea {
 }
 
 .produtoSemFoto {
-    background: url(http://localhost:6060/images/default/produto-sem-imagem.jpg) !important;
+    background: url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg) !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;

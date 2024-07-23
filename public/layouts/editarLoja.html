@@ -1021,7 +1021,7 @@
         $("#pegabann").click()
       }
 
-      var mainHost = 'http://localhost:6060';
+      var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com';
       function uploadBannerLoja(element) {
 
         var data = new FormData();
@@ -1042,11 +1042,11 @@
 
             //console.log('o alvo pricipal -> ',$("#"+element.attr("target"))) 
 
-            $("#input-file").css("background", "url(" + data.path?.replace('./public', 'http://localhost:6060') + ")")
-            //console.log(`${data.path?.replace('./public','http://localhost:6060')}`)
+            $("#input-file").css("background", "url(" + data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com') + ")")
+            //console.log(`${data.path?.replace('./public','https://api-smart-939610cb57d8.herokuapp.com')}`)
 
             let dataL = JSON.parse(localStorage.IN_EDIT_LOJA)
-            dataL['affiliates_business_photo'] = data.path?.replace('./public', 'http://localhost:6060')
+            dataL['affiliates_business_photo'] = data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')
             localStorage.IN_EDIT_LOJA = JSON.stringify(dataL)
 
 

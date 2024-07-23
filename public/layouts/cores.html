@@ -2516,9 +2516,9 @@
               banners[0] = banners[0]
             } else {
               if (banners[0].indexOf("C:") > -1) {
-                banners[0].replace("C:\\fakepath\\", "http://localhost:6060/images/" + localStorage.MASTER_ID + "/")
+                banners[0].replace("C:\\fakepath\\", "https://api-smart-939610cb57d8.herokuapp.com/images/" + localStorage.MASTER_ID + "/")
               } else {
-                banners[0] = "http://localhost:6060/images/" + localStorage.MASTER_ID + "/" + banners[0]
+                banners[0] = "https://api-smart-939610cb57d8.herokuapp.com/images/" + localStorage.MASTER_ID + "/" + banners[0]
               }
 
             }
@@ -2526,9 +2526,9 @@
               banners[1] = banners[1]
             } else {
               if (banners[1].indexOf("C:") > -1) {
-                banners[1].replace("C:\\fakepath\\", "http://localhost:6060/images/" + localStorage.MASTER_ID + "/")
+                banners[1].replace("C:\\fakepath\\", "https://api-smart-939610cb57d8.herokuapp.com/images/" + localStorage.MASTER_ID + "/")
               } else {
-                banners[1] = "http://localhost:6060/images/" + localStorage.MASTER_ID + "/" + banners[1]
+                banners[1] = "https://api-smart-939610cb57d8.herokuapp.com/images/" + localStorage.MASTER_ID + "/" + banners[1]
               }
 
             }
@@ -2607,7 +2607,7 @@
     function hideModal() {
       $("modalProductSelect").hide()
     }
-    var mainHost = 'http://localhost:6060';
+    var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com';
     const dropzones = document.querySelectorAll('.dropzone');
 
     function showModalSearch(elemento) {
@@ -3264,15 +3264,15 @@
           let elemento2 = $("#" + element.attr("dinamicId"))
           //console.log('o elemento 2',elemento2)
 
-          //console.log(`${data.path?.replace('./public', 'http://localhost:6060')}`)
+          //console.log(`${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
 
 
-          elemento2.attr("src", `${data.path?.replace('./public', 'http://localhost:6060')}`)
-          elemento2.attr("newValue", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+          elemento2.attr("src", `${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
+          elemento2.attr("newValue", `${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
           window.parent.atualizaCampo(elemento2, 0)
 
           setTimeout(() => {
-            elemento2.attr("src", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+            elemento2.attr("src", `${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
           }, 2000)
 
 
@@ -3306,19 +3306,19 @@
 
           //// //console.log('o alvo pricipal -> ',$("#"+element.attr("target"))) 
 
-          // $("#input-file").css("background","url("+data.path?.replace('./public','http://localhost:6060')+")")
-          ////console.log(`${data.path?.replace('./public', 'http://localhost:6060')}`)
+          // $("#input-file").css("background","url("+data.path?.replace('./public','https://api-smart-939610cb57d8.herokuapp.com')+")")
+          ////console.log(`${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
 
 
-          $(".LOGO_PRINCIPAL").attr("src", `${data.path?.replace('./public', 'http://localhost:6060')}`)
-          $(".LOGO_PRINCIPAL").attr("newValue", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+          $(".LOGO_PRINCIPAL").attr("src", `${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
+          $(".LOGO_PRINCIPAL").attr("newValue", `${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
           window.parent.atualizaCampo($(".LOGO_PRINCIPAL"), 0)
 
           setTimeout(() => {
-            $(".LOGO_PRINCIPAL").attr("src", `${data.path?.replace('./public', 'http://localhost:6060')}`)
+            $(".LOGO_PRINCIPAL").attr("src", `${data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')}`)
           }, 2000)
           // let dataL = JSON.parse(localStorage.IN_EDIT_LOJA)
-          // dataL['affiliates_business_photo'] = data.path?.replace('./public','http://localhost:6060')
+          // dataL['affiliates_business_photo'] = data.path?.replace('./public','https://api-smart-939610cb57d8.herokuapp.com')
           // localStorage.IN_EDIT_LOJA = JSON.stringify(dataL)
 
 
