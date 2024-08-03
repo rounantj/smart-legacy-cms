@@ -1,6 +1,11 @@
-var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
 
-comecando();
+
+
+window.addEventListener('load', function () {
+  comecando();
+  getEmails();
+});
+
 
 function comecando() {
   $.ajax({
@@ -179,7 +184,7 @@ async function atualizaCampo(elemento, reload) {
     : localStorage.MASTER_ID;
 
   // if(newValue.indexOf("C:\\fakepath\\")>-1){
-  //   newValue = newValue.replace("C:\\fakepath\\","https://api-smart-939610cb57d8.herokuapp.com/images/"+localStorage.MASTER_ID+"/")
+  //   newValue = newValue.replace("C:\\fakepath\\","{{SMART_API}}/images/"+localStorage.MASTER_ID+"/")
   // }
 
   let params = {
@@ -400,7 +405,9 @@ async function atualizaUser(elemento, reload) {
 }
 
 $("#checkFull").removeAttr("checked");
-getEmails();
+
+
+
 async function getEmails() {
   const myEmails = await ajax(
     mainHost + "/getSingleTable",

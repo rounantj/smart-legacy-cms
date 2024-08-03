@@ -1,5 +1,5 @@
 <script>
-    localStorage.MY_DOMAIN = 'https://api-smart-939610cb57d8.herokuapp.com'
+    localStorage.MY_DOMAIN = mainHost + '
 </script>
 <link href="../assets/css/step2.css" rel="stylesheet" />
 
@@ -28,68 +28,74 @@
     <script>
         localStorage.idPageStartup = 2
         localStorage.stage = 2
-        var mainHost = localStorage.MY_DOMAIN;
 
-        $.ajax({
-            type: "POST",
-            url: mainHost + '/me',
-            data: { "token_me": localStorage.token_me },
-            headers: {
-                "x-access-token": localStorage.token,
-                "is_product_image": true,
-            },
-            success: function (data) {
-                //console.log(data);
+        window.addEventListener('load', function () {
 
-                $.ajax({
-                    type: "POST",
-                    url: mainHost + '/getAllAffiliates',
-                    data: { "affiliate_id": localStorage.MASTER_ID },
-                    headers: {
-                        "x-access-token": localStorage.token,
-                        "is_product_image": true,
-                    },
-                    success: function (data) {
-                        //console.log('data',data); 
-                        //console.log(data); 
-                        localStorage.AFFILIATE_ID = data[0].id
-                        localStorage.LOJAS_CADASTRADAS = JSON.stringify(data)
+            $.ajax({
+                type: "POST",
+                url: mainHost + '/me',
+                data: { "token_me": localStorage.token_me },
+                headers: {
+                    "x-access-token": localStorage.token,
+                    "is_product_image": true,
+                },
+                success: function (data) {
+                    //console.log(data);
 
-                    },
-                    error: function (data) {
-                        //console.log(data);
-                        if (data.responseJSON.message.indexOf("token") > -1) {
-                            //console.log("Necessário fazer login!<br>"+data.responseJSON.message)
-                            setTimeout(() => {
-                                location.replace("/startup?login")
-                            }, 2000)
+                    $.ajax({
+                        type: "POST",
+                        url: mainHost + '/getAllAffiliates',
+                        data: { "affiliate_id": localStorage.MASTER_ID },
+                        headers: {
+                            "x-access-token": localStorage.token,
+                            "is_product_image": true,
+                        },
+                        success: function (data) {
+                            //console.log('data',data); 
+                            //console.log(data); 
+                            localStorage.AFFILIATE_ID = data[0].id
+                            localStorage.LOJAS_CADASTRADAS = JSON.stringify(data)
 
-                        } else {
-                            //console.log("Algo saiu errado!<br>"+data.responseJSON.message)
-                        }
-                    },
-                    complete: function () {
-                        // ao final da requisição... 
-                    },
-                });
+                        },
+                        error: function (data) {
+                            //console.log(data);
+                            if (data.responseJSON.message.indexOf("token") > -1) {
+                                //console.log("Necessário fazer login!<br>"+data.responseJSON.message)
+                                setTimeout(() => {
+                                    location.replace("/startup?login")
+                                }, 2000)
 
-            },
-            error: function (data) {
-                //console.log(data);
-                if (data.responseJSON.message.indexOf("token") > -1) {
-                    //console.log("Necessário fazer login!<br>"+data.responseJSON.message)
-                    setTimeout(() => {
-                        location.replace("/startup?login")
-                    }, 2000)
+                            } else {
+                                //console.log("Algo saiu errado!<br>"+data.responseJSON.message)
+                            }
+                        },
+                        complete: function () {
+                            // ao final da requisição... 
+                        },
+                    });
 
-                } else {
-                    //console.log("Algo saiu errado!<br>"+data.responseJSON.message)
-                }
-            },
-            complete: function () {
-                // ao final da requisição... 
-            },
+                },
+                error: function (data) {
+                    //console.log(data);
+                    if (data.responseJSON.message.indexOf("token") > -1) {
+                        //console.log("Necessário fazer login!<br>"+data.responseJSON.message)
+                        setTimeout(() => {
+                            location.replace("/startup?login")
+                        }, 2000)
+
+                    } else {
+                        //console.log("Algo saiu errado!<br>"+data.responseJSON.message)
+                    }
+                },
+                complete: function () {
+                    // ao final da requisição... 
+                },
+            });
+
+
+
         });
+
 
 
 

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="https://api-smart-939610cb57d8.herokuapp.com/assets/img/lima-04.svg" />
+  <link rel="icon" type="image/png" href="{{SMART_API}}/assets/img/lima-04.svg" />
   <title>Document</title>
   <link rel="icon" type="image/png" href="../assets/img/lima-04.svg" />
 </head>
@@ -1073,7 +1073,7 @@
       </div>
     </div>
   </div>
-  <script src="https://api-smart-939610cb57d8.herokuapp.com/js/tinymce.js"></script>
+  <script src="{{SMART_API}}/js/tinymce.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     let url = window.location.href
@@ -1093,7 +1093,7 @@
     iniciaEditorHtml("#editorFullCode")
 
 
-    var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com';
+
     const NAM = window.location.href.split("?").pop()
     console.log({ NAM })
     var NAME_PAGE = window.location.href.split("?")[1]
@@ -1181,7 +1181,7 @@
     iniciaEditorHtml("#editorFullCode")
 
 
-    var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com';
+
     var NAME_PAGE = window.location.href.split("?")[1]
     var NEW = true
 

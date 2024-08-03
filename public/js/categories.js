@@ -14,12 +14,19 @@ var TODAS_CATS_NEW = [];
 var CATEGORIES = [],
   MY_CATEGORIES = [],
   MINHAS_CATEGORIAS = [];
-mostra();
+
+window.addEventListener('load', function () {
+  mostra();
+});
+
+
+
 function mostra() {
   $(".listaDeCategorias").html("");
+  console.log({ mainHost })
   $.ajax({
     type: "POST",
-    url: "https://api-smart-939610cb57d8.herokuapp.com/getCatList",
+    url: mainHost + "/getCatList",
     headers: {
       "x-access-token": localStorage.token,
     },
@@ -74,7 +81,7 @@ function continua() {
   try {
     $.ajax({
       type: "POST",
-      url: "https://api-smart-939610cb57d8.herokuapp.com/getCategories",
+      url: mainHost + "/getCategories",
       headers: {
         "x-access-token": localStorage.token,
       },
@@ -288,7 +295,7 @@ function continua() {
 async function criaNovaCategoria() {
   $.ajax({
     type: "POST",
-    url: "https://api-smart-939610cb57d8.herokuapp.com/maisUmaCategoria",
+    url: "{{SMART_API}}/maisUmaCategoria",
     headers: {
       "x-access-token": localStorage.token,
     },
@@ -491,7 +498,7 @@ function infoCategoria_keyWord(categoria) {
 
 //     $.ajax({
 //         type: "POST",
-//         url: "https://api-smart-939610cb57d8.herokuapp.com/updateCategoryList",
+//         url: "{{SMART_API}}/updateCategoryList",
 //         headers: {
 //             "x-access-token": localStorage.token,
 //         },
@@ -659,7 +666,7 @@ async function updateSequencia(mostra1) {
   });
   $.ajax({
     type: "POST",
-    url: "https://api-smart-939610cb57d8.herokuapp.com/updateCategoryList",
+    url: "{{SMART_API}}/updateCategoryList",
     headers: {
       "x-access-token": localStorage.token,
     },
@@ -1954,7 +1961,7 @@ function updateIconSVG(element, categorieName) {
 
   $.ajax({
     type: "POST",
-    url: "https://api-smart-939610cb57d8.herokuapp.com/updateCategorieDetail",
+    url: "{{SMART_API}}/updateCategorieDetail",
     headers: {
       "x-access-token": localStorage.token,
     },
@@ -1996,7 +2003,7 @@ function updateCategoriaDetalhe(element, categorieName) {
 
     $.ajax({
       type: "POST",
-      url: "https://api-smart-939610cb57d8.herokuapp.com/updateCategorieDetail",
+      url: "{{SMART_API}}/updateCategorieDetail",
       headers: {
         "x-access-token": localStorage.token,
       },
@@ -2027,7 +2034,7 @@ function updateCategoriaDetalhe(element, categorieName) {
 function mudaDetalhe(fieldName, content, categorieName) {
   $.ajax({
     type: "POST",
-    url: "https://api-smart-939610cb57d8.herokuapp.com/updateCategorieDetail",
+    url: "{{SMART_API}}/updateCategorieDetail",
     headers: {
       "x-access-token": localStorage.token,
     },
@@ -2530,7 +2537,7 @@ function salvaModalSubCategoria() {
     //  console.log(editados)
     $.ajax({
       type: "POST",
-      url: "https://api-smart-939610cb57d8.herokuapp.com/updateCategorieDetail",
+      url: "{{SMART_API}}/updateCategorieDetail",
       headers: {
         "x-access-token": localStorage.token,
       },
@@ -2965,7 +2972,7 @@ function uploadBannerCat(element) {
                 active: false,
                 url: data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 ),
               },
             ],
@@ -2977,7 +2984,7 @@ function uploadBannerCat(element) {
           "background",
           `url(${data.path?.replace(
             "./public",
-            "https://api-smart-939610cb57d8.herokuapp.com"
+            "{{SMART_API}}"
           )})`
         );
         $("#" + element.attr("target")).css(
@@ -2992,7 +2999,7 @@ function uploadBannerCat(element) {
       }
 
       // console.log(element.parent().parent().find('input'))
-      // console.log(`${data.path?.replace('./public','https://api-smart-939610cb57d8.herokuapp.com')}`)
+      // console.log(`${data.path?.replace('./public',mainHost+ ')}`)
 
       let thisCategory = localStorage.SUB_CAT_ATUAL;
       let subs = JSON.parse(localStorage.SUB_EDIT);
@@ -3006,7 +3013,7 @@ function uploadBannerCat(element) {
                   active: element.parent().parent().find("input")[0].checked,
                   url: `${data.path?.replace(
                     "./public",
-                    "https://api-smart-939610cb57d8.herokuapp.com"
+                    "{{SMART_API}}"
                   )}`,
                 },
               ];
@@ -3015,7 +3022,7 @@ function uploadBannerCat(element) {
                 active: element.parent().parent().find("input")[0].checked,
                 url: `${data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 )}`,
               });
               subs[k]["banners"] = bnn;
@@ -3026,7 +3033,7 @@ function uploadBannerCat(element) {
                 active: element.parent().parent().find("input")[0].checked,
                 url: `${data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 )}`,
               },
             ];
@@ -3068,7 +3075,7 @@ function uploadBannerCatMain(element) {
                 active: false,
                 url: data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 ),
               },
             ],
@@ -3080,7 +3087,7 @@ function uploadBannerCatMain(element) {
           "background",
           `url(${data.path?.replace(
             "./public",
-            "https://api-smart-939610cb57d8.herokuapp.com"
+            "{{SMART_API}}"
           )})`
         );
         $("#" + element.attr("target")).css(
@@ -3095,7 +3102,7 @@ function uploadBannerCatMain(element) {
       }
 
       //    console.log(element.parent().parent().find('input'))
-      //    console.log(`${data.path?.replace('./public','https://api-smart-939610cb57d8.herokuapp.com')}`)
+      //    console.log(`${data.path?.replace('./public',mainHost+ ')}`)
 
       let thisCategory = localStorage.CAT_SUB_EDIT;
       let subs = JSON.parse(localStorage.MINHAS_CATEGORIAS);
@@ -3126,7 +3133,7 @@ function uploadBannerCatMain(element) {
                   active: element.parent().parent().find("input")[0].checked,
                   url: `${data.path?.replace(
                     "./public",
-                    "https://api-smart-939610cb57d8.herokuapp.com"
+                    "{{SMART_API}}"
                   )}`,
                 },
               ];
@@ -3139,7 +3146,7 @@ function uploadBannerCatMain(element) {
                 active: element.parent().parent().find("input")[0].checked,
                 url: `${data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 )}`,
               });
               subs[k]["subcategorie_banners"]["banners"] = bnn;
@@ -3156,7 +3163,7 @@ function uploadBannerCatMain(element) {
                 active: element.parent().parent().find("input")[0].checked,
                 url: `${data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 )}`,
               },
             ];
@@ -3201,7 +3208,7 @@ function uploadBannerCatVertical(element) {
                 active: false,
                 url: data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 ),
               },
             ],
@@ -3213,7 +3220,7 @@ function uploadBannerCatVertical(element) {
           "background",
           `url(${data.path?.replace(
             "./public",
-            "https://api-smart-939610cb57d8.herokuapp.com"
+            "{{SMART_API}}"
           )})`
         );
         $("#" + element.attr("target")).css(
@@ -3228,7 +3235,7 @@ function uploadBannerCatVertical(element) {
       }
 
       //  console.log(element.parent().parent().find('input'))
-      //  console.log(`${data.path?.replace('./public','https://api-smart-939610cb57d8.herokuapp.com')}`)
+      //  console.log(`${data.path?.replace('./public',mainHost+ ')}`)
 
       let thisCategory = localStorage.SUB_CAT_ATUAL;
       let subs = JSON.parse(localStorage.SUB_EDIT);
@@ -3242,7 +3249,7 @@ function uploadBannerCatVertical(element) {
                   active: element.parent().parent().find("input")[0].checked,
                   url: `${data.path?.replace(
                     "./public",
-                    "https://api-smart-939610cb57d8.herokuapp.com"
+                    "{{SMART_API}}"
                   )}`,
                 },
               ];
@@ -3251,7 +3258,7 @@ function uploadBannerCatVertical(element) {
                 active: element.parent().parent().find("input")[0].checked,
                 url: `${data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 )}`,
               });
               subs[k]["bannersVertical"] = bnn;
@@ -3262,7 +3269,7 @@ function uploadBannerCatVertical(element) {
                 active: element.parent().parent().find("input")[0].checked,
                 url: `${data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 )}`,
               },
             ];
@@ -3304,7 +3311,7 @@ function uploadBannerCatVerticalMain(element) {
                 active: false,
                 url: data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 ),
               },
             ],
@@ -3316,7 +3323,7 @@ function uploadBannerCatVerticalMain(element) {
           "background",
           `url(${data.path?.replace(
             "./public",
-            "https://api-smart-939610cb57d8.herokuapp.com"
+            "{{SMART_API}}"
           )})`
         );
         $("#" + element.attr("target")).css(
@@ -3331,7 +3338,7 @@ function uploadBannerCatVerticalMain(element) {
       }
 
       // console.log(element.parent().parent().find('input'))
-      // console.log(`${data.path?.replace('./public','https://api-smart-939610cb57d8.herokuapp.com')}`)
+      // console.log(`${data.path?.replace('./public',mainHost+ ')}`)
 
       let thisCategory = localStorage.CAT_SUB_EDIT;
       let subs = JSON.parse(localStorage.MINHAS_CATEGORIAS);
@@ -3365,7 +3372,7 @@ function uploadBannerCatVerticalMain(element) {
                   active: element.parent().parent().find("input")[0].checked,
                   url: `${data.path?.replace(
                     "./public",
-                    "https://api-smart-939610cb57d8.herokuapp.com"
+                    "{{SMART_API}}"
                   )}`,
                 },
               ];
@@ -3377,7 +3384,7 @@ function uploadBannerCatVerticalMain(element) {
                 active: element.parent().parent().find("input")[0].checked,
                 url: `${data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 )}`,
               });
               subs[k]["subcategorie_banners"]["bannersVertical"] = bnn;
@@ -3392,7 +3399,7 @@ function uploadBannerCatVerticalMain(element) {
                 active: element.parent().parent().find("input")[0].checked,
                 url: `${data.path?.replace(
                   "./public",
-                  "https://api-smart-939610cb57d8.herokuapp.com"
+                  "{{SMART_API}}"
                 )}`,
               },
             ];

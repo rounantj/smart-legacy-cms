@@ -31,7 +31,7 @@ async function execSQL(query, res) {
   });
 }
 
-module.exports.all = function (app) {
+module.exports.all = function (app, principalEnvs) {
   function setup(app) {
     app.engine("handlebars", handlebars({ defaultLayout: "cms" }));
     app.set("view engine", "handlebars");
@@ -49,19 +49,19 @@ module.exports.all = function (app) {
   }
   app.get("/picking", async function (req, res) {
     setupPicking(newAPP);
-    res.render("picking", { MY_DOMAIN: myDomain });
+    res.render("picking", principalEnvs);
   });
   app.get("/picking-login", async function (req, res) {
     setupPicking(newAPP);
-    res.render("picking-login", { MY_DOMAIN: myDomain });
+    res.render("picking-login", principalEnvs);
   });
   app.get("/picking-pedidos", async function (req, res) {
     setupPicking(newAPP);
-    res.render("picking-pedidos", { MY_DOMAIN: myDomain });
+    res.render("picking-pedidos", principalEnvs);
   });
   app.get("/picking-pedido", async function (req, res) {
     setupPicking(newAPP);
-    res.render("picking-pedido", { MY_DOMAIN: myDomain });
+    res.render("picking-pedido", principalEnvs);
   });
   // Fim área picking
   app.get("/iconesSmart", async function (req, res) {
@@ -101,74 +101,74 @@ module.exports.all = function (app) {
 
   app.get("/dashboard", async function (req, res) {
     setup(newAPP);
-    res.render("cms_home", { MY_DOMAIN: myDomain });
+    res.render("cms_home", principalEnvs);
   });
   app.get("/clientes-smart", async function (req, res) {
     setup(newAPP);
-    res.render("cms_clientes_smart", { MY_DOMAIN: myDomain });
+    res.render("cms_clientes_smart", principalEnvs);
   });
   app.get("/pedidos", async function (req, res) {
     setup(newAPP);
-    res.render("cms_orders", { MY_DOMAIN: myDomain });
+    res.render("cms_orders", principalEnvs);
   });
   app.get("/vendas", async function (req, res) {
     setup(newAPP);
-    res.render("cms_sells", { MY_DOMAIN: myDomain });
+    res.render("cms_sells", principalEnvs);
   });
   app.get("/produtos", async function (req, res) {
     setup(newAPP);
-    res.render("cms_products", { MY_DOMAIN: myDomain });
+    res.render("cms_products", principalEnvs);
   });
   app.get("/", async function (req, res) {
     setup(newAPP);
-    res.render("cms_products", { MY_DOMAIN: myDomain });
+    res.render("cms_products", principalEnvs);
   });
 
   app.get("/categorias", async function (req, res) {
     setup(newAPP);
-    res.render("cms_categories_new", { MY_DOMAIN: myDomain });
+    res.render("cms_categories_new", principalEnvs);
 
   });
 
   app.get("/categorias_new", async function (req, res) {
     setup(newAPP);
-    res.render("cms_categories", { MY_DOMAIN: myDomain });
+    res.render("cms_categories", principalEnvs);
   });
 
   app.get("/logistica", async function (req, res) {
     setup(newAPP);
-    res.render("cms_logistics", { MY_DOMAIN: myDomain });
+    res.render("cms_logistics", principalEnvs);
   });
 
   app.get("/minha-conta", async function (req, res) {
     setup(newAPP);
-    res.render("cms_minha_conta", { MY_DOMAIN: myDomain });
+    res.render("cms_minha_conta", principalEnvs);
   });
 
   app.get("/tipos-usuario", async function (req, res) {
     setup(newAPP);
-    res.render("cms_tipo_usuario", { MY_DOMAIN: myDomain });
+    res.render("cms_tipo_usuario", principalEnvs);
   });
 
   app.get("/criar-usuario", async function (req, res) {
     setup(newAPP);
-    res.render("cms_criar_usuario", { MY_DOMAIN: myDomain });
+    res.render("cms_criar_usuario", principalEnvs);
   });
   app.get("/promocoes", async function (req, res) {
     setup(newAPP);
-    res.render("cms_promocoes", { MY_DOMAIN: myDomain });
+    res.render("cms_promocoes", principalEnvs);
   });
   app.get("/cupons", async function (req, res) {
     setup(newAPP);
-    res.render("cms_cupons", { MY_DOMAIN: myDomain });
+    res.render("cms_cupons", principalEnvs);
   });
   app.get("/clientes", async function (req, res) {
     setup(newAPP);
-    res.render("cms_clientes", { MY_DOMAIN: myDomain });
+    res.render("cms_clientes", principalEnvs);
   });
   app.get("/conteudo", async function (req, res) {
     setup(newAPP);
-    res.render("cms_conteudo", { MY_DOMAIN: myDomain });
+    res.render("cms_conteudo", principalEnvs);
   });
 
   app.get("/loja/:loja", async function (req, res) {
@@ -180,11 +180,11 @@ module.exports.all = function (app) {
   });
   app.get("/configuracoes", async function (req, res) {
     setup(newAPP);
-    res.render("cms_configuracoes", { MY_DOMAIN: myDomain });
+    res.render("cms_configuracoes", principalEnvs);
   });
   app.get("/editar_home_cores", async function (req, res) {
     setup(newAPP);
-    res.render("cms_home_cores", { MY_DOMAIN: myDomain });
+    res.render("cms_home_cores", principalEnvs);
   });
   app.get("/paginas_institucionais/:nome", async function (req, res) {
     setup(newAPP);
@@ -195,12 +195,12 @@ module.exports.all = function (app) {
   });
   app.get("/nossos_cuidados", async function (req, res) {
     setup(newAPP);
-    res.render("cms_nossos_cuidados", { MY_DOMAIN: myDomain });
+    res.render("cms_nossos_cuidados", principalEnvs);
   });
 
   app.get("/receitas", async function (req, res) {
     setup(newAPP);
-    res.render("cms_receitas", { MY_DOMAIN: myDomain });
+    res.render("cms_receitas", principalEnvs);
   });
 
   app.get("/receita_interna/:id", async function (req, res) {

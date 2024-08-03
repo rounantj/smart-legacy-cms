@@ -8,6 +8,19 @@
     <title>Document</title>
     <link rel="icon" type="image/png" href="../assets/img/lima-04.svg" />
     <link rel="stylesheet" href="/assets/css/picking.css">
+    <script>
+        var mainHost = '{{SMART_API}}'
+        var URL_IMAGES = '{{URL_IMAGES}}' 
+    </script>
+    <style>
+        .produtoSemFoto {
+            background: url({{SMART_API}}/produto-sem-imagem.jpg) !important;
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            zoom: 100%;
+        }
+    </style>
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../js/moment.js"></script>
 </head>

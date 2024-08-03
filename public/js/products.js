@@ -152,42 +152,51 @@ var AFFILIATES = JSON.parse(localStorage.LOJAS_CADASTRADAS);
 var PRODUCTS = [];
 var OM = false;
 //totalProducts
-$.ajax({
-  type: "POST",
-  url: mainHost + "/totalProducts",
 
-  headers: {
-    "x-access-token": localStorage.token,
-  },
-  data: {
-    affiliate_id: AFFILIATE_ID,
-  },
-  success: function (data) {
-    ////////////console.log("total de produtos");
-    ////////////console.log(data);
-    $(".totalPordutosCadastrados").html(data[0].total.toLocaleString());
-  },
-  error: function (data) {
-    ////////////console.log(data)
-    if (data.responseJSON.message.indexOf("token") > -1) {
-      //alert("Necessário fazer login!<br>"+data.responseJSON.message)
-      setTimeout(() => {
-        localStorage.peregrino =
-          location.href.split("/")[location.href.split("/").length - 1];
-        localStorage.peregrino =
-          location.href.split("/")[location.href.split("/").length - 1];
-        location.replace("/cms-login");
-      }, 2000);
-    } else {
-      //alert("Algo saiu errado!<br>"+data.responseJSON.message)
-    }
-  },
-  complete: function () {
-    // ao final da requisição...
-  },
+window.addEventListener('load', function () {
+  $.ajax({
+    type: "POST",
+    url: mainHost + "/totalProducts",
+
+    headers: {
+      "x-access-token": localStorage.token,
+    },
+    data: {
+      affiliate_id: AFFILIATE_ID,
+    },
+    success: function (data) {
+      ////////////console.log("total de produtos");
+      ////////////console.log(data);
+      $(".totalPordutosCadastrados").html(data[0].total.toLocaleString());
+    },
+    error: function (data) {
+      ////////////console.log(data)
+      if (data.responseJSON.message.indexOf("token") > -1) {
+        //alert("Necessário fazer login!<br>"+data.responseJSON.message)
+        setTimeout(() => {
+          localStorage.peregrino =
+            location.href.split("/")[location.href.split("/").length - 1];
+          localStorage.peregrino =
+            location.href.split("/")[location.href.split("/").length - 1];
+          location.replace("/cms-login");
+        }, 2000);
+      } else {
+        //alert("Algo saiu errado!<br>"+data.responseJSON.message)
+      }
+    },
+    complete: function () {
+      // ao final da requisição...
+    },
+  });
 });
+
+
 //products
-request("getAllProducts", 0, 25, 0, 0, 0);
+window.addEventListener('load', function () {
+  request("getAllProducts", 0, 25, 0, 0, 0);
+});
+
+
 
 setTimeout(() => {
   ajustaFeedback(false, "");
@@ -381,7 +390,7 @@ async function request(
           pictureToShow = produtoURL(PRODUCTS_IMAGES).thumbnail;
         }
         if (pictureToShow == null || pictureToShow == "null") {
-          pictureToShow = "images/default/produto-sem-imagem.jpg";
+          pictureToShow = URL_IMAGES + "/produto-sem-imagem.jpg";
         }
         var ativo = "";
         if (
@@ -427,7 +436,7 @@ async function request(
           '<div  class="col-sm imgContainer">' +
           '<div style="background: url(' +
           pictureToShow +
-          '), url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg)" class="image img">' +
+          '), url(' + URL_IMAGES + '/produto-sem-imagem.jpg)" class="image img">' +
           //'<img id="'+products[k].product_ean+'" class="firstImage notCrash" style="min-width: 50px; min-height: 50px;" src="'+pictureToShow+'" />' +
           "</div>" +
           "</div>" +
@@ -503,139 +512,6 @@ async function request(
       } catch (e) {
         ////////console.log(e)
       }
-
-      // $(".product").click(function (e) {
-      //     var senderElement = e.target;
-      //     ////////////console.log("senderElement")
-      //     ////////////console.log(senderElement)
-      //     ////////////console.log(senderElement.className)
-      //     if (senderElement.className == "switch switch--shadow") {
-      //         ////////////console.log("vou tentar")
-      //         if (senderElement.className == 'switch switch--shadow')
-      //             acaoCheckbox($("#" + senderElement.id))
-      //     } else {
-
-      //         if (senderElement.className != "checkmark" &&
-      //             senderElement.className != "naoAbreModal" &&
-      //             senderElement.className != "checka form-control" &&
-      //             senderElement.className != "switch switch--shadow") {
-
-      //             var affiliate_id = $(this).attr("affiliate_id")
-      //             var product_code = $(this).attr("product_code");
-      //             var product_ean = $(this).attr("product_ean");
-      //             ////////////console.log(affiliate_id, product_code)
-
-      //             $.ajax({
-      //                 type: 'POST',
-      //                 url: mainHost + '/productPictures',
-      //                 headers: {
-      //                     "x-access-token": localStorage.token
-      //                 },
-      //                 data: {
-      //                     "affiliate_id": affiliate_id,
-      //                     "product_code": product_code
-      //                 },
-      //                 success: function (data) {
-      //                     ////////////console.log("productPictures")
-      //                     var listaImagens = []
-      //                     var firstImage = ""
-      //                     for (const k in PRODUCTS) {
-      //                         if (PRODUCTS[k].product_affiliate_id == affiliate_id && PRODUCTS[k].product_code == product_code) {
-      //                             firstImage = PRODUCTS[k].product_thumbnail
-      //                         }
-      //                     }
-      //                     if (firstImage != '') {
-      //                         listaImagens.push(firstImage)
-      //                     } else {
-      //                         listaImagens.push("images/default/produto-sem-imagem.jpg")
-      //                     }
-
-      //                     for (const k in PRODUCTS_IMAGES) {
-
-      //                         if (Number(product_ean) == Number(PRODUCTS_IMAGES[k].EAN)) {
-      //                             if (PRODUCTS_IMAGES[k].thumbnail != firstImage) {
-      //                                 if (PRODUCTS_IMAGES[k].thumbnail != '') {
-      //                                     listaImagens.push(PRODUCTS_IMAGES[k].thumbnail)
-      //                                 } else {
-      //                                     listaImagens.push("images/default/produto-sem-imagem.jpg")
-      //                                 }
-
-      //                             }
-
-      //                         }
-      //                     }
-      //                     if (data.length > 0) {
-      //                         for (const k in data) {
-      //                             var faz = true
-      //                             for (const j in listaImagens) {
-      //                                 if (data[k] == listaImagens[j]) {
-      //                                     faz = false
-      //                                 }
-      //                             }
-      //                             if (faz) {
-      //                                 if (data[k] != '') {
-      //                                     listaImagens.push(data[k])
-      //                                 } else {
-      //                                     listaImagens.push("images/default/produto-sem-imagem.jpg")
-      //                                 }
-
-      //                             }
-      //                         }
-
-      //                     }
-
-      //                     ////////console.log("listaImagens")
-      //                     ////////console.log(listaImagens)
-
-      //                     modalProduct(PRODUCTS, product_code, affiliate_id, listaImagens);
-
-      //                     localStorage.LISTA_IMAGENS = JSON.stringify(listaImagens)
-      //                 },
-      //                 error: function (data) {
-      //                     if (data.responseJSON.message.indexOf("token") > -1) {
-      //                         //alert("Necessário fazer login!<br>"+data.responseJSON.message)
-      //                         setTimeout(() => {
-      //                             localStorage.peregrino = location.href.split("/")[location.href.split("/").length - 1]
-      //                             location.replace("/cms-login")
-      //                         }, 2000)
-
-      //                     } else {
-      //                         //alert("Algo saiu errado!<br>"+data.responseJSON.message)
-      //                     }
-      //                     ////////////console.log("productPictures")
-      //                     var listaImagens = []
-      //                     var firstImage = ""
-      //                     for (const k in PRODUCTS) {
-      //                         if (PRODUCTS[k].product_affiliate_id == affiliate_id && PRODUCTS[k].product_code == product_code) {
-      //                             firstImage = PRODUCTS[k].product_thumbnail
-      //                         }
-      //                     }
-      //                     listaImagens.push(firstImage)
-      //                     //listaImagens.push("images/default/produto-sem-imagem.jpg")
-      //                     for (const k in PRODUCTS_IMAGES) {
-      //                         ////////////console.log(Number(product_ean)+" == "+Number(PRODUCTS_IMAGES[k].EAN))
-      //                         if (Number(product_ean) == Number(PRODUCTS_IMAGES[k].EAN)) {
-      //                             if (PRODUCTS_IMAGES[k].DATA.thumbnail != firstImage) {
-      //                                 listaImagens.push(PRODUCTS_IMAGES[k].DATA.thumbnail)
-      //                             }
-
-      //                         }
-      //                     }
-
-      //                     ////////////console.log(listaImagens)
-      //                     modalProduct(PRODUCTS, product_code, affiliate_id, listaImagens);
-      //                     localStorage.LISTA_IMAGENS = JSON.stringify(listaImagens)
-      //                 },
-      //                 complete: function () {
-      //                     // ao final da requisição...
-      //                 }
-      //             });
-
-      //         }
-
-      //     }
-
-      // });
 
       $(".row").children().css("opacity", "1");
       $(".row").removeClass(" bg-gray-400");
@@ -775,7 +651,7 @@ async function personalRequest(
           pictureToShow = produtoURL(PRODUCTS_IMAGES).thumbnail;
         }
         if (pictureToShow == null || pictureToShow == "null") {
-          pictureToShow = "images/default/produto-sem-imagem.jpg";
+          pictureToShow = URL_IMAGES + "/produto-sem-imagem.jpg";
         }
         var ativo = "";
         if (
@@ -818,7 +694,7 @@ async function personalRequest(
           '<div  class="col-sm imgContainer">' +
           '<div style="background: url(' +
           pictureToShow +
-          '), url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg)" class="image img">' +
+          '), url(' + URL_IMAGES + '/produto-sem-imagem.jpg)" class="image img">' +
           //'<img id="'+products[k].product_ean+'" class="firstImage notCrash" style="min-width: 50px; min-height: 50px;" src="'+pictureToShow+'" />' +
           "</div>" +
           "</div>" +
@@ -937,7 +813,7 @@ async function personalRequest(
                 if (firstImage != "") {
                   listaImagens.push(firstImage);
                 } else {
-                  listaImagens.push("images/default/produto-sem-imagem.jpg");
+                  listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg");
                 }
 
                 for (const k in PRODUCTS_IMAGES) {
@@ -947,7 +823,7 @@ async function personalRequest(
                         listaImagens.push(PRODUCTS_IMAGES[k].thumbnail);
                       } else {
                         listaImagens.push(
-                          "images/default/produto-sem-imagem.jpg"
+                          URL_IMAGES + "/produto-sem-imagem.jpg"
                         );
                       }
                     }
@@ -966,7 +842,7 @@ async function personalRequest(
                         listaImagens.push(data[k]);
                       } else {
                         listaImagens.push(
-                          "images/default/produto-sem-imagem.jpg"
+                          URL_IMAGES + "/produto-sem-imagem.jpg"
                         );
                       }
                     }
@@ -1010,7 +886,7 @@ async function personalRequest(
                   }
                 }
                 listaImagens.push(firstImage);
-                //listaImagens.push("images/default/produto-sem-imagem.jpg")
+                //listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg")
                 for (const k in PRODUCTS_IMAGES) {
                   ////////////console.log(Number(product_ean)+" == "+Number(PRODUCTS_IMAGES[k].EAN))
                   if (Number(product_ean) == Number(PRODUCTS_IMAGES[k].EAN)) {
@@ -1505,7 +1381,7 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
       product_data[0].product_code,
       URLS
     ) +
-    `<li class="thumbProduct thumbProductUpload"><input id="pegaFoto" style="display:none" type="file"><a data-target="#pic-2" data-toggle="tab"><img class="imageThumb "  src="images/products/upload.svg"   onError="this.onerror=null;this.src='https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg';"></a></li>` +
+    `<li class="thumbProduct thumbProductUpload"><input id="pegaFoto" style="display:none" type="file"><a data-target="#pic-2" data-toggle="tab"><img class="imageThumb "  src="images/products/upload.svg"   onError="this.onerror=null;this.src='' + URL_IMAGES + '/produto-sem-imagem.jpg';"></a></li>` +
     "</ul>" +
     "</div>" +
     "</div>" +
@@ -2563,7 +2439,7 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
           data.append("fileimagem", elemento[0].files[0]);
           ////////////console.log("partindo..")
           var urlNew =
-            "https://api-smart-939610cb57d8.herokuapp.com/images/" +
+            "' + URL_IMAGES + '/images/" +
             affiliate_id +
             "/" +
             product_code +
@@ -2668,7 +2544,7 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
           if (imageMain == "null" || imageMain == null) {
             $(".preview-pic")
               .find("img")
-              .attr("src", "images/default/produto-sem-imagem.jpg");
+              .attr("src", URL_IMAGES + "/produto-sem-imagem.jpg");
           } else {
             $(".preview-pic").find("img").attr("src", imageMain);
           }
@@ -3424,7 +3300,7 @@ async function getProductData(EAN, elementParent, pai) {
     try {
       let picture = {
         thumbnail:
-          "https://api-smart-939610cb57d8.herokuapp.com/pictures_ean/" + EAN + ".png",
+          "' + URL_IMAGES + '/pictures_ean/" + EAN + ".png",
       };
       if (picture.thumbnail != undefined) {
         var novo = true;
@@ -3757,7 +3633,7 @@ function produtoURL(EAN, PRODUCTS_IMAGES) {
   }
   return {
     DATA: {
-      thumbnail: "images/default/produto-sem-imagem.jpg",
+      thumbnail: URL_IMAGES + "/produto-sem-imagem.jpg",
       description: "sem informacoes",
       ncm: {
         full_description: "sem informacoes",
@@ -3823,10 +3699,10 @@ function imageShows(affiliate_id, product_code, URLS) {
 
   var pictureName = null;
   if (URLS == null) {
-    urlCurrent = "images/default/produto-sem-imagem.jpg";
+    urlCurrent = URL_IMAGES + "/produto-sem-imagem.jpg";
   } else {
     if (URLS.indexOf("produto-sem-imagem") > -1) {
-      urlCurrent = "images/default/produto-sem-imagem.jpg";
+      urlCurrent = URL_IMAGES + "/produto-sem-imagem.jpg";
     } else {
       if (urlCurrent == "" || urlCurrent == null || urlCurrent == undefined) {
         if (URLS != undefined) {
@@ -3844,7 +3720,7 @@ function imageShows(affiliate_id, product_code, URLS) {
             pictureName = URLS;
           }
         } else {
-          urlCurrent = "images/default/produto-sem-imagem.jpg";
+          urlCurrent = URL_IMAGES + "/produto-sem-imagem.jpg";
         }
       }
     }
@@ -3865,7 +3741,7 @@ function imageShows(affiliate_id, product_code, URLS) {
     del = "";
   }
 
-  html += `<div draggable="true" class="  thumbProduct mainImageThumb" ><figure class="figurefx pushup"><img   id="${affiliate_id}_${product_code}" class="firstImageShow mainImageShow notCrash droptarget" src="${urlCurrent}"  onError="this.onerror=null;this.src='https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg';" ><figcaption  onmouseleave="mLeave($(this))"  onmouseover="mOver($(this))" class="droptarget">${del} <br>${moveButton}<span class="textFig">Imagem Principal</span></figcaption></figure></div>`;
+  html += `<div draggable="true" class="  thumbProduct mainImageThumb" ><figure class="figurefx pushup"><img   id="${affiliate_id}_${product_code}" class="firstImageShow mainImageShow notCrash droptarget" src="${urlCurrent}"  onError="this.onerror=null;this.src='' + URL_IMAGES + '/produto-sem-imagem.jpg';" ><figcaption  onmouseleave="mLeave($(this))"  onmouseover="mOver($(this))" class="droptarget">${del} <br>${moveButton}<span class="textFig">Imagem Principal</span></figcaption></figure></div>`;
 
   ////////////console.log(html)
   return html;
@@ -3917,12 +3793,12 @@ function deletaImagen(
         if (origem == "principal") {
           $(".firstImageShow").attr(
             "src",
-            "http://localhost/images/default/produto-sem-imagem.jpg"
+            URL_IMAGES + "/produto-sem-imagem.jpg"
           );
           imagenPadrao(
             product_code,
             product_code,
-            "http://localhost/images/default/produto-sem-imagem.jpg"
+            URL_IMAGES + "/produto-sem-imagem.jpg"
           );
         }
         $.ajax({
@@ -4116,7 +3992,7 @@ function getSimilarProducts(product_data, limite) {
           '<li class="list-group-item  noBorder mainPicture listaThumb" style=" background: url(' +
           produtoURL(product_data[k].product_ean, PRODUCTS_IMAGES).DATA
             .thumbnail +
-          '), url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg);">' +
+          '), url(' + URL_IMAGES + '/produto-sem-imagem.jpg);">' +
           '<img   class="productImageThumb"  /> ' +
           "</li>" +
           '<li style="line-height: 0.2; height: 235px" class="list-group-item noBorder">' +
@@ -5090,7 +4966,7 @@ function cardSelecionadoPromo(product_data, onde) {
     '<div style="margin: auto; border: none" class="input-group  ico dropItems">' +
     '<div class="col-md-2 imgProcuraProduto" style="background: url(' +
     produtoURL(product_data.product_ean, PRODUCTS_IMAGES).DATA.thumbnail +
-    '), url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg)"></div>' +
+    '), url(' + URL_IMAGES + '/produto-sem-imagem.jpg)"></div>' +
     "</div>" +
     '<label class="innerLabel">' +
     product_data.product_code +
@@ -5121,7 +4997,7 @@ function cardSelecionadoPromo2(lista, onde) {
         '<div style="margin: auto; border: none" class="input-group  ico dropItems">' +
         '<div class="col-md-2 imgProcuraProduto" style="background: url(' +
         produtoURL(product_data.product_ean, PRODUCTS_IMAGES).DATA.thumbnail +
-        '), url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg)"></div>' +
+        '), url(' + URL_IMAGES + '/produto-sem-imagem.jpg)"></div>' +
         "</div>" +
         '<label class="innerLabel">' +
         product_data.product_code +
@@ -5200,7 +5076,7 @@ function imagen_URL(EAN, product_code, PRODUCTS_IMAGES) {
             if (contexto.indexOf("images/") > -1) {
               contexto = prefixo + contexto;
             } else if (contexto.indexOf("produto-sem-imagem.jpg") > -1) {
-              contexto = "images/default/produto-sem-imagem.jpg";
+              contexto = URL_IMAGES + "/produto-sem-imagem.jpg";
             } else {
               contexto =
                 prefixo +
@@ -5220,7 +5096,7 @@ function imagen_URL(EAN, product_code, PRODUCTS_IMAGES) {
   }
 
   if (fullLista.length == 0) {
-    fullLista.push("images/default/produto-sem-imagem.jpg");
+    fullLista.push(URL_IMAGES + "/produto-sem-imagem.jpg");
   }
   ////////////console.log("img_UPLOAD")
   ////////////console.log(img_UPLOAD)
@@ -5252,7 +5128,7 @@ function getIconsToShow(product_code) {
       (contexto = imagens[k]), (prefixo = mainHost + "/");
       if (contexto.indexOf("http") > -1) {
       } else if (contexto.indexOf("produto-sem-imagem.jpg") > -1) {
-        contexto = "images/default/produto-sem-imagem.jpg";
+        contexto = URL_IMAGES + "/produto-sem-imagem.jpg";
       } else {
         contexto = prefixo + contexto;
       }
@@ -5475,7 +5351,7 @@ function addProdutoRelacao(element, limite, dados) {
         '<div  style="max-width: 50px; margin: 10px  auto" class="col">' +
         '<div style="background: url(' +
         produtoURL(data[k].product_ean, PRODUCTS_IMAGES).DATA.thumbnail +
-        '), url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg)" class="bkgImagem"></div>' +
+        '), url(' + URL_IMAGES + '/produto-sem-imagem.jpg)" class="bkgImagem"></div>' +
         "</div>" +
         '<div  style="max-width: 50px; margin: auto" class="col">' +
         '<label class="textoCodigo1">' +
@@ -5535,7 +5411,7 @@ function addProdutoRelacao(element, limite, dados) {
             '<div  style="max-width: 50px; margin: 10px  auto" class="col">' +
             '<div style="background: url(' +
             produtoURL(data[k].product_ean, PRODUCTS_IMAGES).DATA.thumbnail +
-            '), url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg)" class="bkgImagem"></div>' +
+            '), url(' + URL_IMAGES + '/produto-sem-imagem.jpg)" class="bkgImagem"></div>' +
             "</div>" +
             '<div  style="max-width: 50px; margin: auto" class="col">' +
             '<label class="textoCodigo1">' +
@@ -5594,7 +5470,7 @@ function addProdutoRelacao2(element, limite, dados) {
         '<div  style="max-width: 50px; margin: 10px  auto" class="col">' +
         '<div style="background: url(' +
         produtoURL(data[k].product_ean, PRODUCTS_IMAGES).DATA.thumbnail +
-        '), url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg)" class="bkgImagem"></div>' +
+        '), url(' + URL_IMAGES + '/produto-sem-imagem.jpg)" class="bkgImagem"></div>' +
         "</div>" +
         '<div  style="max-width: 50px; margin: auto" class="col">' +
         '<label class="textoCodigo1">' +
@@ -5646,7 +5522,7 @@ function addProdutoRelacao2(element, limite, dados) {
             '<div  style="max-width: 50px; margin: 10px  auto" class="col">' +
             '<div style="background: url(' +
             produtoURL(data[k].product_ean, PRODUCTS_IMAGES).DATA.thumbnail +
-            '), url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg)" class="bkgImagem"></div>' +
+            '), url(' + URL_IMAGES + '/produto-sem-imagem.jpg)" class="bkgImagem"></div>' +
             "</div>" +
             '<div  style="max-width: 50px; margin: auto" class="col">' +
             '<label class="textoCodigo1">' +
@@ -6678,7 +6554,7 @@ async function buscaPeloFiltro(
           pictureToShow = produtoURL(PRODUCTS_IMAGES).thumbnail;
         }
         if (pictureToShow == null || pictureToShow == "null") {
-          pictureToShow = "images/default/produto-sem-imagem.jpg";
+          pictureToShow = URL_IMAGES + "/produto-sem-imagem.jpg";
         }
         var ativo = "";
         if (
@@ -6722,7 +6598,7 @@ async function buscaPeloFiltro(
           '<div  class="col-sm imgContainer">' +
           '<div style="background: url(' +
           pictureToShow +
-          '), url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg)" class="image img">' +
+          '), url(' + URL_IMAGES + '/produto-sem-imagem.jpg)" class="image img">' +
           //'<img id="'+products[k].product_ean+'" class="firstImage notCrash" style="min-width: 50px; min-height: 50px;" src="'+pictureToShow+'" />' +
           "</div>" +
           "</div>" +
@@ -6895,7 +6771,13 @@ function feedbackPeloFiltro(
   });
 }
 
-updateTagsMarcas();
+
+window.addEventListener('load', function () {
+  updateTagsMarcas();
+});
+
+
+
 function updateTagsMarcas() {
   $.ajax({
     type: "POST",
@@ -7046,7 +6928,7 @@ function showModalProductF(elemento, e) {
           if (firstImage != "") {
             listaImagens.push(firstImage);
           } else {
-            listaImagens.push("images/default/produto-sem-imagem.jpg");
+            listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg");
           }
 
           for (const k in PRODUCTS_IMAGES) {
@@ -7055,7 +6937,7 @@ function showModalProductF(elemento, e) {
                 if (PRODUCTS_IMAGES[k].thumbnail != "") {
                   listaImagens.push(PRODUCTS_IMAGES[k].thumbnail);
                 } else {
-                  listaImagens.push("images/default/produto-sem-imagem.jpg");
+                  listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg");
                 }
               }
             }
@@ -7072,7 +6954,7 @@ function showModalProductF(elemento, e) {
                 if (data[k] != "") {
                   listaImagens.push(data[k]);
                 } else {
-                  listaImagens.push("images/default/produto-sem-imagem.jpg");
+                  listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg");
                 }
               }
             }
@@ -7108,7 +6990,7 @@ function showModalProductF(elemento, e) {
             }
           }
           listaImagens.push(firstImage);
-          //listaImagens.push("images/default/produto-sem-imagem.jpg")
+          //listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg")
           for (const k in PRODUCTS_IMAGES) {
             ////////////console.log(Number(product_ean)+" == "+Number(PRODUCTS_IMAGES[k].EAN))
             if (Number(product_ean) == Number(PRODUCTS_IMAGES[k].EAN)) {

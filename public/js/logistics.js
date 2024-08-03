@@ -1,6 +1,5 @@
 var AFFILIATES = [],
   count = 0;
-var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
 var locais = JSON.parse(ajustStrigfy(localStorage.LOJAS_CADASTRADAS));
 ////console.log(locais)
 
@@ -53,96 +52,42 @@ var DELIVERY_DETAILS = [
 ];
 
 let FULL_INFO_DELIVERY = [];
-$.ajax({
-  type: "POST",
-  url: mainHost + "/getById",
+window.addEventListener('load', function () {
+  $.ajax({
+    type: "POST",
+    url: mainHost + "/getById",
 
-  headers: {
-    "x-access-token": localStorage.token,
-  },
-  data: {
-    affiliate_id: AFFILIATE_ID,
-    table: "delivery_default",
-    id_name: "affiliate_id",
-    id_value: AFFILIATE_ID,
-  },
-  success: function (data) {
-    console.log("pegando detalhes de entrega");
-    console.log(data);
-    FULL_INFO_DELIVERY = data;
-    localStorage.FULL_DELIVERY_DEFAULT = JSON.stringify(data);
-    if (data[0].delivery_methods != null) {
-      DELIVERY_DETAILS = JSON.parse(ajustStrigfy(data[0].delivery_methods));
-      //console.log(DELIVERY_DETAILS)
-    }
-
-    if (data[0].retirada_active == 1) {
-      $("#switch-shadow985").attr("checked", "true");
-    }
-
-    if (
-      data[0].lat_lon != undefined &&
-      data[0].lat_lon != null &&
-      data[0].lat_lon != ""
-    ) {
-      localStorage.my_lat_lon = data[0].lat_lon;
-    }
-    console.log("cep", data[0].faixa_cep);
-    if (data[0].faixa_cep === 1) {
-      try {
-        $("#switch-shadow975")[0].checked = true;
-        // $("#edicaoAvancadaCheck")[0].checked = false;
-        $("#iframeIn").hide();
-        $(".areaEsconde").show();
-      } catch (err) { }
-    }
-
-    if (data[0].exclui_faixa_cep == 1) {
-      $("#checkFull").attr("checked", "true");
-      $(".faixasCepExcluir").show();
-      $(".insereFaixaCepExcluir").show();
-    }
-    if (data[0].lat_lon_active == 1) {
-      // $("#edicaoAvancadaCheck").attr("checked", "true");
-      $("#iframe").fadeIn();
-      $("#botaoEditarArea").fadeIn();
-      $(".areaEsconde").fadeOut();
-      if ($("#switch-shadow975")[0] != undefined) {
-        $("#switch-shadow975")[0].checked = false;
+    headers: {
+      "x-access-token": localStorage.token,
+    },
+    data: {
+      affiliate_id: AFFILIATE_ID,
+      table: "delivery_default",
+      id_name: "affiliate_id",
+      id_value: AFFILIATE_ID,
+    },
+    success: function (data) {
+      console.log("pegando detalhes de entrega");
+      console.log(data);
+      FULL_INFO_DELIVERY = data;
+      localStorage.FULL_DELIVERY_DEFAULT = JSON.stringify(data);
+      if (data[0].delivery_methods != null) {
+        DELIVERY_DETAILS = JSON.parse(ajustStrigfy(data[0].delivery_methods));
+        //console.log(DELIVERY_DETAILS)
       }
-    }
 
-    $("#descricaoRetirada").text(data[0].retirada_descricao);
+      if (data[0].retirada_active == 1) {
+        $("#switch-shadow985").attr("checked", "true");
+      }
 
-    if (data[0].retirada_valor_fixo == 1) {
-      $("#valorRetirada").text(data[0].retirada_valor);
-    } else {
-      $("#valorRetirada").text("0,00");
-    }
-
-    if (
-      data[0].faixa_cep_values != null &&
-      data[0].faixa_cep_values != undefined &&
-      data[0].faixa_cep_values != ""
-    ) {
-      var CEPS = JSON.parse(ajustStrigfy(data[0].faixa_cep_values));
-      ////console.log(CEPS)
-      $(".faixasCep").html(myCEPSinclude(CEPS));
-    }
-    if (
-      data[0].exclui_faixa_cep_values != null &&
-      data[0].exclui_faixa_cep_values != undefined &&
-      data[0].exclui_faixa_cep_values != ""
-    ) {
-      var CEPS2 = JSON.parse(ajustStrigfy(data[0].exclui_faixa_cep_values));
-      ////console.log(CEPS2)
-      $(".faixasCepExcluir").html(myCepsExclude(CEPS2));
-    }
-
-    localStorage.DELIVERY_DETAILS = JSON.stringify(DELIVERY_DETAILS);
-
-    start();
-    setTimeout(() => {
+      if (
+        data[0].lat_lon != undefined &&
+        data[0].lat_lon != null &&
+        data[0].lat_lon != ""
+      ) {
+        localStorage.my_lat_lon = data[0].lat_lon;
+      }
+      console.log("cep", data[0].faixa_cep);
       if (data[0].faixa_cep === 1) {
         try {
           $("#switch-shadow975")[0].checked = true;
@@ -151,16 +96,74 @@ $.ajax({
           $(".areaEsconde").show();
         } catch (err) { }
       }
-      console.log("após mostrar conteudo");
-    }, 2000);
-  },
-  error: function (data) {
-    console.log(data);
-  },
-  complete: function () {
-    // ao final da requisição...
-  },
+
+      if (data[0].exclui_faixa_cep == 1) {
+        $("#checkFull").attr("checked", "true");
+        $(".faixasCepExcluir").show();
+        $(".insereFaixaCepExcluir").show();
+      }
+      if (data[0].lat_lon_active == 1) {
+        // $("#edicaoAvancadaCheck").attr("checked", "true");
+        $("#iframe").fadeIn();
+        $("#botaoEditarArea").fadeIn();
+        $(".areaEsconde").fadeOut();
+        if ($("#switch-shadow975")[0] != undefined) {
+          $("#switch-shadow975")[0].checked = false;
+        }
+      }
+
+      $("#descricaoRetirada").text(data[0].retirada_descricao);
+
+      if (data[0].retirada_valor_fixo == 1) {
+        $("#valorRetirada").text(data[0].retirada_valor);
+      } else {
+        $("#valorRetirada").text("0,00");
+      }
+
+      if (
+        data[0].faixa_cep_values != null &&
+        data[0].faixa_cep_values != undefined &&
+        data[0].faixa_cep_values != ""
+      ) {
+        var CEPS = JSON.parse(ajustStrigfy(data[0].faixa_cep_values));
+        ////console.log(CEPS)
+        $(".faixasCep").html(myCEPSinclude(CEPS));
+      }
+      if (
+        data[0].exclui_faixa_cep_values != null &&
+        data[0].exclui_faixa_cep_values != undefined &&
+        data[0].exclui_faixa_cep_values != ""
+      ) {
+        var CEPS2 = JSON.parse(ajustStrigfy(data[0].exclui_faixa_cep_values));
+        ////console.log(CEPS2)
+        $(".faixasCepExcluir").html(myCepsExclude(CEPS2));
+      }
+
+      localStorage.DELIVERY_DETAILS = JSON.stringify(DELIVERY_DETAILS);
+
+      start();
+      setTimeout(() => {
+        if (data[0].faixa_cep === 1) {
+          try {
+            $("#switch-shadow975")[0].checked = true;
+            // $("#edicaoAvancadaCheck")[0].checked = false;
+            $("#iframeIn").hide();
+            $(".areaEsconde").show();
+          } catch (err) { }
+        }
+        console.log("após mostrar conteudo");
+      }, 2000);
+    },
+    error: function (data) {
+      console.log(data);
+    },
+    complete: function () {
+      // ao final da requisição...
+    },
+  });
 });
+
+
 
 var contagem = 0;
 

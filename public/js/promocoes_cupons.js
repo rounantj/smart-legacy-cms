@@ -1,52 +1,33 @@
 var AFFILIATE_ID = localStorage.AFFILIATE_ID;
 var MASTER_ID = localStorage.MASTER_ID;
-var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
+
 
 var newsCATEGORIES = [];
 let TAGS = [];
 
-// $.ajax({
-//   type: "POST",
-//   url: "https://api-smart-939610cb57d8.herokuapp.com/getCategories",
-//   headers: {
-//     "x-access-token": localStorage.token,
-//   },
-//   data: {
-//     affiliate_id: localStorage.AFFILIATE_ID,
-//     master_id: localStorage.MASTER_ID,
-//   },
-//   success: function (categories) {
-//     CATEGORIES = categories.results;
-//     var CATEGORIES_SHOW = [];
-//     var breakPoint = 100,
-//       count = 0;
-//     var myCategories = getCategorias(CATEGORIES);
-//     newsCATEGORIES = myCategories;
-//   },
-//   error: function (data2) {
-//     console.log("data2 catgosss");
-//   },
-//   complete: function () {},
-// });
-
-$.ajax({
-  type: "POST",
-  url: "https://api-smart-939610cb57d8.herokuapp.com/getTagsLists",
-  headers: {
-    "x-access-token": localStorage.token,
-  },
-  data: {
-    affiliate_id: localStorage.AFFILIATE_ID,
-  },
-  success: function (categories) {
-    console.log("tags", categories);
-    TAGS = categories.tags;
-  },
-  error: function (data2) {
-    console.log("data2 catgosss");
-  },
-  complete: function () { },
+window.addEventListener('load', function () {
+  $.ajax({
+    type: "POST",
+    url: mainHost + "/getTagsLists",
+    headers: {
+      "x-access-token": localStorage.token,
+    },
+    data: {
+      affiliate_id: localStorage.AFFILIATE_ID,
+    },
+    success: function (categories) {
+      console.log("tags", categories);
+      TAGS = categories.tags;
+    },
+    error: function (data2) {
+      console.log("data2 catgosss");
+    },
+    complete: function () { },
+  });
 });
+
+
+
 
 let OBJETO_MODEL = {
   main: {
@@ -408,12 +389,19 @@ async function CLOSE_AND_CANCEL(type, ID) {
   $(".close").click();
 }
 
-getObjects();
-getCategoriesNOVA();
+
+
+window.addEventListener('load', function () {
+  getObjects();
+  getCategoriesNOVA();
+});
+
+
+
 async function getCategoriesNOVA() {
   const resultado = await $.ajax({
     type: "GET",
-    url: api_host + "/categorie_find/" + localStorage.AFFILIATE_ID,
+    url: mainHost + "/categorie_find/" + localStorage.AFFILIATE_ID,
     headers: {
       "x-access-token": localStorage.token,
     },

@@ -322,7 +322,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'https://api-smart-939610cb57d8.herokuapp.com/getProductsFromOrder',
+                url: mainHost + '/getProductsFromOrder',
                 headers: { "x-access-token": localStorage.token },
                 data: { "listaProdutos": orderContent, "product_affiliate_id": localStorage.AFFILIATE_ID },
                 success: function (data) {

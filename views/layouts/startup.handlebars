@@ -7,6 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Smartcomerci - Startup</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        var mainHost = '{{SMART_API}}'
+        var URL_IMAGES = '{{URL_IMAGES}}' 
+    </script>
+    <style>
+        .produtoSemFoto {
+            background: url({{SMART_API}}/produto-sem-imagem.jpg) !important;
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            zoom: 100%;
+        }
+    </style>
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../js/jquery.mask.js"></script>
     <script src="../js/jquery.emulatedTAB.js"></script>
@@ -29,7 +42,7 @@
             margin-left: 25px;
             width: 221px;
             height: 47px;
-            background: transparent url('../images/logo/logo.png') 0% 0% no-repeat padding-box;
+            background: transparent url('{{URL_IMAGES}}/logo.png') 0% 0% no-repeat padding-box;
             opacity: 1;
         }
 
@@ -38,7 +51,7 @@
             margin-left: 25px;
             width: 221px;
             height: 47px;
-            background: transparent url('../images/logo/logo.svg') 0% 0% no-repeat padding-box;
+            background: transparent url('{{URL_IMAGES}}/logo.svg') 0% 0% no-repeat padding-box;
             opacity: 1;
         }
 

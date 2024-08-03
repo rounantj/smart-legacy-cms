@@ -4,12 +4,10 @@ var formidable = require('formidable'); var express = require('express')
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 
-var myDomain = process.env.MY_DOMAIN
-
 const fs = require('fs');
 
 
-module.exports.all = function (app) {
+module.exports.all = function (app, principalEnvs) {
     function setup(app) {
         app.engine('handlebars', handlebars({ defaultLayout: 'startup' }))
         app.set('view engine', 'handlebars')
@@ -20,61 +18,62 @@ module.exports.all = function (app) {
 
     app.get('/startup', async function (req, res) {
         setup(newAPP)
-        res.render("step1_startup", { MY_DOMAIN: myDomain });
+        res.render("step1_startup", principalEnvs);
     });
     app.get('/cms-login', async function (req, res) {
         setup(newAPP)
-        res.render("cms_login", { MY_DOMAIN: myDomain });
+        console.log({ principalEnvs })
+        res.render("cms_login", principalEnvs);
     });
     app.get('/startup2', async function (req, res) {
         setup(newAPP)
-        res.render("step2_startup", { MY_DOMAIN: myDomain });
+        res.render("step2_startup", principalEnvs);
     });
     app.get('/startup3', async function (req, res) {
         setup(newAPP)
-        res.render("step3_startup", { MY_DOMAIN: myDomain });
+        res.render("step3_startup", principalEnvs);
     });
     app.get('/startup4', async function (req, res) {
         setup(newAPP)
-        res.render("step4_startup", { MY_DOMAIN: myDomain });
+        res.render("step4_startup", principalEnvs);
     });
     app.get('/startup5', async function (req, res) {
         setup(newAPP)
-        res.render("step5_startup", { MY_DOMAIN: myDomain });
+        res.render("step5_startup", principalEnvs);
     });
     app.get('/startup6', async function (req, res) {
         setup(newAPP)
-        res.render("step6_startup", { MY_DOMAIN: myDomain });
+        res.render("step6_startup", principalEnvs);
     });
     app.get('/startup7', async function (req, res) {
         setup(newAPP)
-        res.render("step7_startup", { MY_DOMAIN: myDomain });
+        res.render("step7_startup", principalEnvs);
     });
 
     app.get('/startup8', async function (req, res) {
         setup(newAPP)
-        res.render("step8_startup", { MY_DOMAIN: myDomain });
+        res.render("step8_startup", principalEnvs);
     });
 
     app.get('/startup9', async function (req, res) {
         setup(newAPP)
-        res.render("step9_startup", { MY_DOMAIN: myDomain });
+        res.render("step9_startup", principalEnvs);
     });
     app.get('/startup10', async function (req, res) {
         setup(newAPP)
-        res.render("step10_startup", { MY_DOMAIN: myDomain });
+        res.render("step10_startup", principalEnvs);
     });
     app.get('/startup11', async function (req, res) {
         setup(newAPP)
-        res.render("step11_startup", { MY_DOMAIN: myDomain });
+        res.render("step11_startup", principalEnvs);
     });
     app.get('/startup12', async function (req, res) {
         setup(newAPP)
-        res.render("step12_startup", { MY_DOMAIN: myDomain });
+        res.render("step12_startup", principalEnvs);
     });
     app.get('/startup13', async function (req, res) {
         setup(newAPP)
-        res.render("step13_startup", { MY_DOMAIN: myDomain });
+        res.render("step13_startup", principalEnvs);
     });
     //==========================================================================================================
     // Rota para coletar as cores da logotipo enviada

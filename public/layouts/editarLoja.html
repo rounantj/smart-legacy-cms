@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="icon" type="image/png" href="https://api-smart-939610cb57d8.herokuapp.com/assets/img/lima-04.svg" />
+  <link rel="icon" type="image/png" href="{{SMART_API}}/assets/img/lima-04.svg" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -937,7 +937,7 @@
 
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://api-smart-939610cb57d8.herokuapp.com/js/tinymce.js"></script>
+  <script src="{{SMART_API}}/js/tinymce.js"></script>
   <script>
 
     let url = window.location.href
@@ -1021,7 +1021,7 @@
         $("#pegabann").click()
       }
 
-      var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com';
+
       function uploadBannerLoja(element) {
 
         var data = new FormData();
@@ -1042,11 +1042,11 @@
 
             //console.log('o alvo pricipal -> ',$("#"+element.attr("target"))) 
 
-            $("#input-file").css("background", "url(" + data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com') + ")")
-            //console.log(`${data.path?.replace('./public','https://api-smart-939610cb57d8.herokuapp.com')}`)
+            $("#input-file").css("background", "url(" + data.path?.replace('./public', mainHost + ') + ")")
+            //console.log(`${data.path?.replace('./public',mainHost+ ')}`)
 
             let dataL = JSON.parse(localStorage.IN_EDIT_LOJA)
-            dataL['affiliates_business_photo'] = data.path?.replace('./public', 'https://api-smart-939610cb57d8.herokuapp.com')
+            dataL['affiliates_business_photo'] = data.path?.replace('./public', mainHost + ')
             localStorage.IN_EDIT_LOJA = JSON.stringify(dataL)
 
 

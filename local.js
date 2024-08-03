@@ -16,7 +16,6 @@ const fs_Promises = require("fs").promises;
 
 // Importando as variaveis de ambiente
 require("dotenv").config();
-//console.log(process.env)
 
 // If necessary also
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
@@ -30,12 +29,15 @@ app.use((req, res, next) => {
   app.use(cors());
   next();
 });
+var myDomain = process.env.HOST_APPLICATION
+var SMART_API = process.env.SMART_API
+const principalEnvs = { SMART_API, MY_DOMAIN: myDomain, HOST_APPLICATION: myDomain, URL_IMAGES: process.env.URL_IMAGES }
+
 
 var startup = require("./routes/startup");
 var cms = require("./routes/cms");
-startup.all(app);
-
-cms.all(app);
+startup.all(app, principalEnvs);
+cms.all(app, principalEnvs);
 
 app.use(express.json());
 app.use(express.static("public"));

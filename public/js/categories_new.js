@@ -1,4 +1,4 @@
-const api_host = "https://api-smart-939610cb57d8.herokuapp.com";
+const api_host = "{{SMART_API}}";
 let currentCategoryId = null,
   currentSubcategoryId = null;
 
@@ -119,7 +119,12 @@ function flagCategoryNew(elemento, idCat, idSub) {
   console.log("flaging category", categoriesObject);
 }
 
-getCategories();
+window.addEventListener('load', function () {
+  getCategories();
+});
+
+
+
 
 class Category {
   id = 0;
@@ -356,7 +361,7 @@ function showCategories() {
 async function getCategories() {
   const resultado = await $.ajax({
     type: "GET",
-    url: api_host + "/categorie_find/" + localStorage.AFFILIATE_ID,
+    url: mainHost + "/categorie_find/" + localStorage.AFFILIATE_ID,
     headers: {
       "x-access-token": localStorage.token,
     },

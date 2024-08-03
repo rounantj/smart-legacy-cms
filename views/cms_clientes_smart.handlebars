@@ -320,21 +320,21 @@
         "master_estoque_negativo": "on",
         "master_tag_manager": "XXXXXX",
         "status": "ativo",
-        "master_banner_revenues": "https://api-smart-939610cb57d8.herokuapp.com/images/231/banner-receitas.png",
-        "master_custom_mini_banner04": "https://api-smart-939610cb57d8.herokuapp.com/images/200/comofunciona.png",
-        "master_custom_mini_banner03": "https://api-smart-939610cb57d8.herokuapp.com/images/200/comofunciona.png",
-        "master_custom_mini_banner02": "https://api-smart-939610cb57d8.herokuapp.com/images/200/comofunciona.png",
-        "master_custom_mini_banner01": "https://api-smart-939610cb57d8.herokuapp.com/images/200/comofunciona.png",
-        "master_custom_banner_aside": "https://api-smart-939610cb57d8.herokuapp.com/images/200/comofunciona.png",
-        "master_custom_banner_rodape": "https://api-smart-939610cb57d8.herokuapp.com/images/2/1366_x_140_01.png",
-        "master_custom_banner_principal": "https://api-smart-939610cb57d8.herokuapp.com/images/2/1366_x_140_01.png",
-        "master_custom_texto_privacidade": "https://api-smart-939610cb57d8.herokuapp.com/images/2/1366_x_140_01.png",
-        "master_custom_banner_mini_cat": "https://api-smart-939610cb57d8.herokuapp.com/images/2/1366_x_140_01.png",
-        "master_custom_banner_pub4": "https://api-smart-939610cb57d8.herokuapp.com/images/2/1366_x_140_01.png",
-        "master_custom_banner_pub3": "https://api-smart-939610cb57d8.herokuapp.com/images/2/1366_x_140_01.png",
-        "master_custom_banner_pub2": "https://api-smart-939610cb57d8.herokuapp.com/images/2/1366_x_140_01.png",
-        "master_custom_banner_pub1": "https://api-smart-939610cb57d8.herokuapp.com/images/2/1094_x_269_01.png",
-        "master_custom_banner_widescreen": "https://api-smart-939610cb57d8.herokuapp.com/images/2/1366_x_140_01.png",
+        "master_banner_revenues": "{{SMART_API}}/images/231/banner-receitas.png",
+        "master_custom_mini_banner04": "{{SMART_API}}/images/200/comofunciona.png",
+        "master_custom_mini_banner03": "{{SMART_API}}/images/200/comofunciona.png",
+        "master_custom_mini_banner02": "{{SMART_API}}/images/200/comofunciona.png",
+        "master_custom_mini_banner01": "{{SMART_API}}/images/200/comofunciona.png",
+        "master_custom_banner_aside": "{{SMART_API}}/images/200/comofunciona.png",
+        "master_custom_banner_rodape": "{{SMART_API}}/images/2/1366_x_140_01.png",
+        "master_custom_banner_principal": "{{SMART_API}}/images/2/1366_x_140_01.png",
+        "master_custom_texto_privacidade": "{{SMART_API}}/images/2/1366_x_140_01.png",
+        "master_custom_banner_mini_cat": "{{SMART_API}}/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub4": "{{SMART_API}}/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub3": "{{SMART_API}}/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub2": "{{SMART_API}}/images/2/1366_x_140_01.png",
+        "master_custom_banner_pub1": "{{SMART_API}}/images/2/1094_x_269_01.png",
+        "master_custom_banner_widescreen": "{{SMART_API}}/images/2/1366_x_140_01.png",
 
         "site_front_domain": "",
         "masters_namespace_mail": null,
@@ -1184,7 +1184,7 @@ color: #222B45 !important;">${name}</label>
                         }
                         $.ajax({
                             type: 'POST',
-                            url: 'https://api-smart-939610cb57d8.herokuapp.com' + '/autenticateAdmin',
+                            url: mainHost + ' + ' / autenticateAdmin',
                             data: params,
                             headers: {
                                 'x-access-token': localStorage.token,
@@ -1302,7 +1302,7 @@ color: #222B45 !important;">${name}</label>
                     }
                     $.ajax({
                         type: 'POST',
-                        url: 'https://api-smart-939610cb57d8.herokuapp.com' + '/autenticateAdmin',
+                        url: mainHost + ' + ' / autenticateAdmin',
                         data: params,
                         headers: {
                             'x-access-token': localStorage.token,
@@ -1454,7 +1454,7 @@ color: #222B45 !important;">${name}</label>
                         }
                         $.ajax({
                             type: 'POST',
-                            url: 'https://api-smart-939610cb57d8.herokuapp.com' + '/autenticateAdmin',
+                            url: mainHost + ' + ' / autenticateAdmin',
                             data: params,
                             headers: {
                                 'x-access-token': localStorage.token,
@@ -1502,7 +1502,7 @@ color: #222B45 !important;">${name}</label>
         //console.log("requeste para ", url, params)
         return $.ajax({
             type: type,
-            url: 'https://api-smart-939610cb57d8.herokuapp.com' + url,
+            url: mainHost + ' + url,
             data: params,
             headers: {
                 'x-access-token': localStorage.token,
@@ -1538,7 +1538,7 @@ color: #222B45 !important;">${name}</label>
     async function criaClienteNovo(elemento) {
         let lista4 = JSON.parse(sessionStorage.ALL_CLIENTS)
         let mailNew = EDIT_OBJ['master_business_mail']
-        var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
+
         const exists = lista4.find((x) => x.master_business_mail === mailNew)
         if (!exists) {
             let fields = []

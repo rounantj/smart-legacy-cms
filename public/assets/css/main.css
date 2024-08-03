@@ -4124,15 +4124,7 @@ textarea {
     background: white;
     display: inline;
     padding: 20px;
-}
-
-.produtoSemFoto {
-    background: url(https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg) !important;
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    zoom: 100%;
-}
+} 
 
 .botaoParaLink {
     color: #f6b504;

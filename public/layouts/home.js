@@ -1,5 +1,5 @@
 let notFound =
-  "https://api-smart-939610cb57d8.herokuapp.com/images/default/produto-sem-imagem.jpg";
+  URL_IMAGES + "/produto-sem-imagem.jpg";
 var CATEGORIES = [],
   MY_CATEGORIES = [],
   MINHAS_CATEGORIAS = [];
@@ -20,7 +20,7 @@ var arrowDown4 =
   "</g>" +
   "</svg>" +
   "</div>";
-var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
+
 let homePage = {
   logotipo: {
     url: "",
@@ -1258,7 +1258,7 @@ function createElementFromHTML(htmlString) {
 }
 
 //=========================== Área de CRUD =====================
-let host = `https://api-smart-939610cb57d8.herokuapp.com`;
+let host = `{{SMART_API}}`;
 async function uploadAndUpdateFile(element) {
   if (element.attr("url")) {
     element
@@ -2400,345 +2400,218 @@ function removeSection(element) {
   let theId = element.attr("alvoRemove").replace("_1", "").replace("_2", "");
   homePage.body = homePage.body.filter((bd) => bd.id !== theId);
   console.log(homePage);
-}
 
-// $.ajax({
-//   type: "POST",
-//   url: "https://api-smart-939610cb57d8.herokuapp.com/getCategories",
-//   headers: {
-//     "x-access-token": localStorage.token,
-//   },
-//   data: {
-//     affiliate_id: localStorage.AFFILIATE_ID,
-//     master_id: localStorage.MASTER_ID,
-//   },
-//   success: function (categories) {
-//     console.log("Categories", categories.results);
-//     CATEGORIES = categories.results;
-//     var CATEGORIES_SHOW = [];
-//     var myCategories = getCategorias(CATEGORIES);
-//     MY_CATEGORIES = myCategories;
-//     console.log("AS CATEGORIAS", MY_CATEGORIES);
-//     // $(".showCategorias").html(getCategoriesAndSubToFilter(MY_CATEGORIES));
-//   },
-//   error: function (data2) {
-//     console.log(data2);
-//   },
-//   complete: function () {},
-// });
+  function OrdenaJson(lista, chave, ordem) {
+    return lista.sort(function (a, b) {
+      var x = a[chave];
+      var y = b[chave];
+      if (ordem === "ASC") {
+        return x < y ? -1 : x > y ? 1 : 0;
+      }
+      if (ordem === "DESC") {
+        return x > y ? -1 : x < y ? 1 : 0;
+      }
+    });
+  }
 
-function OrdenaJson(lista, chave, ordem) {
-  return lista.sort(function (a, b) {
-    var x = a[chave];
-    var y = b[chave];
-    if (ordem === "ASC") {
-      return x < y ? -1 : x > y ? 1 : 0;
-    }
-    if (ordem === "DESC") {
-      return x > y ? -1 : x < y ? 1 : 0;
-    }
-  });
-}
-
-function addContentRevenues(data) {
-  if (data && data.title && data.title != null && data.title != "null") {
-    var html = `<li class="nav-menu_item">
+  function addContentRevenues(data) {
+    if (data && data.title && data.title != null && data.title != "null") {
+      var html = `<li class="nav-menu_item">
     <a href="" class="nav-menu_link">
      ${data.title}
     </a>
   </li>
   `;
-    return html;
-  } else {
-    return "";
+      return html;
+    } else {
+      return "";
+    }
   }
-}
 
-function addContentPageI(data) {
-  var html = `<li class="nav-menu_item">
+  function addContentPageI(data) {
+    var html = `<li class="nav-menu_item">
                 <a href="" class="nav-menu_link">
                  ${data.titulo_page}
                 </a>
               </li>
               `;
-  return html;
-}
-
-$.ajax({
-  type: "POST",
-  url: mainHost + "/getByTableName",
-  data: {
-    masterId: localStorage.MASTER_ID,
-    idName: "master_id",
-    tableName: "revenues",
-  },
-  headers: {
-    "x-access-token": localStorage.token,
-  },
-  success: function (data2) {
-    try {
-      let paginas = JSON.parse(localStorage.INSTITUCIONAL_PAGES);
-      console.log("revenuess", data2, paginas);
-      for (const k in data2) {
-        $("#listaReceitas").append(addContentRevenues(data2[k]));
-      }
-
-      for (const k in paginas) {
-        $("#listaPaginas").append(addContentPageI(paginas[k]));
-      }
-    } catch (error) { }
-  },
-  error: function (data) {
-    window.parent.informar("alert-danger", "Algo saiu errado!", 3000);
-  },
-  complete: function () { },
-});
-
-function getCategorias(CATEGORIES) {
-  var listaCategoriasPrimarias = [],
-    CATEGORIAS_FULL = [];
-  var currCategorie = null;
-
-  CATEGORIES = OrdenaJson(CATEGORIES, "product_site_categories", "ASC");
-  for (const k in CATEGORIES) {
-    var textou = CATEGORIES[k].product_site_categories;
-    if (textou == null || textou == "null") {
-      textou = "Novo,";
-    }
-    if (textou.split(",")[0] != currCategorie) {
-      listaCategoriasPrimarias.push({ categoria: textou.split(",")[0] });
-    }
-    currCategorie = textou.split(",")[0];
+    return html;
   }
 
-  var listaSubCategorias = [];
-  for (const k in listaCategoriasPrimarias) {
-    var thisCategorieGroup = "";
-    for (const s in CATEGORIES) {
-      if (CATEGORIES[s].product_site_categories != null) {
-        if (
-          CATEGORIES[s].product_site_categories.split(",")[0] ==
-          listaCategoriasPrimarias[k].categoria
-        ) {
-          var list = CATEGORIES[s].product_site_categories.split(",");
-          for (const l in list) {
-            if (thisCategorieGroup.indexOf(list[l]) < 0 && l > 0) {
-              thisCategorieGroup += list[l] + ",";
+  $.ajax({
+    type: "POST",
+    url: mainHost + "/getByTableName",
+    data: {
+      masterId: localStorage.MASTER_ID,
+      idName: "master_id",
+      tableName: "revenues",
+    },
+    headers: {
+      "x-access-token": localStorage.token,
+    },
+    success: function (data2) {
+      try {
+        let paginas = JSON.parse(localStorage.INSTITUCIONAL_PAGES);
+        console.log("revenuess", data2, paginas);
+        for (const k in data2) {
+          $("#listaReceitas").append(addContentRevenues(data2[k]));
+        }
+
+        for (const k in paginas) {
+          $("#listaPaginas").append(addContentPageI(paginas[k]));
+        }
+      } catch (error) { }
+    },
+    error: function (data) {
+      window.parent.informar("alert-danger", "Algo saiu errado!", 3000);
+    },
+    complete: function () { },
+  });
+
+  function getCategorias(CATEGORIES) {
+    var listaCategoriasPrimarias = [],
+      CATEGORIAS_FULL = [];
+    var currCategorie = null;
+
+    CATEGORIES = OrdenaJson(CATEGORIES, "product_site_categories", "ASC");
+    for (const k in CATEGORIES) {
+      var textou = CATEGORIES[k].product_site_categories;
+      if (textou == null || textou == "null") {
+        textou = "Novo,";
+      }
+      if (textou.split(",")[0] != currCategorie) {
+        listaCategoriasPrimarias.push({ categoria: textou.split(",")[0] });
+      }
+      currCategorie = textou.split(",")[0];
+    }
+
+    var listaSubCategorias = [];
+    for (const k in listaCategoriasPrimarias) {
+      var thisCategorieGroup = "";
+      for (const s in CATEGORIES) {
+        if (CATEGORIES[s].product_site_categories != null) {
+          if (
+            CATEGORIES[s].product_site_categories.split(",")[0] ==
+            listaCategoriasPrimarias[k].categoria
+          ) {
+            var list = CATEGORIES[s].product_site_categories.split(",");
+            for (const l in list) {
+              if (thisCategorieGroup.indexOf(list[l]) < 0 && l > 0) {
+                thisCategorieGroup += list[l] + ",";
+              }
             }
           }
         }
       }
-    }
-    thisCategorieGroup += "CRIE UMA CATEGORIA";
-    thisCategorieGroup = thisCategorieGroup?.replace(",CRIE UMA CATEGORIA", "");
+      thisCategorieGroup += "CRIE UMA CATEGORIA";
+      thisCategorieGroup = thisCategorieGroup?.replace(",CRIE UMA CATEGORIA", "");
 
-    const exists = CATEGORIAS_FULL.find(
-      (x) => x.categoria.trim() === listaCategoriasPrimarias[k].categoria.trim()
-    );
-    if (exists) {
-      if (exists.subCategorias.length < thisCategorieGroup.length) {
-        CATEGORIAS_FULL.map((x) => {
-          if (
-            x.categoria.trim() === listaCategoriasPrimarias[k].categoria.trim()
-          ) {
-            x.subCategorias = exists.subCategorias;
-          }
+      const exists = CATEGORIAS_FULL.find(
+        (x) => x.categoria.trim() === listaCategoriasPrimarias[k].categoria.trim()
+      );
+      if (exists) {
+        if (exists.subCategorias.length < thisCategorieGroup.length) {
+          CATEGORIAS_FULL.map((x) => {
+            if (
+              x.categoria.trim() === listaCategoriasPrimarias[k].categoria.trim()
+            ) {
+              x.subCategorias = exists.subCategorias;
+            }
+          });
+        }
+      } else {
+        CATEGORIAS_FULL.push({
+          categoria: listaCategoriasPrimarias[k].categoria,
+          subCategorias: thisCategorieGroup,
+          cat_status: 0,
+          sub_status: "[]",
         });
       }
+    }
+    console.log("CATEGORIAS_FULL", CATEGORIAS_FULL);
+
+    if (MINHAS_CATEGORIAS.length == 0) {
+      if (CATEGORIAS_FULL.length == 0) {
+      } else {
+        setTimeout(() => {
+          $("#salvandoAlteracoes").click();
+        }, 5000);
+
+        return CATEGORIAS_FULL;
+      }
     } else {
-      CATEGORIAS_FULL.push({
-        categoria: listaCategoriasPrimarias[k].categoria,
-        subCategorias: thisCategorieGroup,
-        cat_status: 0,
-        sub_status: "[]",
-      });
+      return MINHAS_CATEGORIAS;
     }
   }
-  console.log("CATEGORIAS_FULL", CATEGORIAS_FULL);
+  let proxyList = [];
 
-  if (MINHAS_CATEGORIAS.length == 0) {
-    if (CATEGORIAS_FULL.length == 0) {
+  function monitor(elemento) {
+    if (proxyList.length > 0) {
+      let last = proxyList[proxyList.length - 1];
+      if (!isEquivalent(homePage, last)) {
+        proxyList.push(homePage);
+      }
     } else {
-      setTimeout(() => {
-        $("#salvandoAlteracoes").click();
-      }, 5000);
-
-      return CATEGORIAS_FULL;
-    }
-  } else {
-    return MINHAS_CATEGORIAS;
-  }
-}
-let proxyList = [];
-
-function monitor(elemento) {
-  if (proxyList.length > 0) {
-    let last = proxyList[proxyList.length - 1];
-    if (!isEquivalent(homePage, last)) {
       proxyList.push(homePage);
     }
-  } else {
-    proxyList.push(homePage);
+    console.log(proxyList);
   }
-  console.log(proxyList);
-}
 
-function ir() { }
-function voltar() { }
+  function ir() { }
+  function voltar() { }
 
-//==================PREPARANDO OS DRAG DROP================
+  //==================PREPARANDO OS DRAG DROP================
 
-eventPrepare(".picture-drop", "#file-upload", uploadAndUpdateFile);
+  eventPrepare(".picture-drop", "#file-upload", uploadAndUpdateFile);
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-async function getCategoriesHome() {
-  const resultado = await $.ajax({
-    type: "GET",
-    url: mainHost + "/categorie_find/" + localStorage.AFFILIATE_ID,
-    headers: {
-      "x-access-token": localStorage.token,
-    },
-    data: "",
-  });
-  console.log("O RESULTADO", resultado);
-  if (!resultado || resultado.data.length === 0) {
-    const criaPrimeiroAcesso = await criarPrimeiroAcesso();
-    console.log("Primeiro acesso", criaPrimeiroAcesso);
-  } else {
-    if (Array.isArray(resultado.data)) {
-      categoriesObject = resultado.data.find(
-        (dt) => dt.affiliateId === Number(localStorage.AFFILIATE_ID)
-      );
+  async function getCategoriesHome() {
+    const resultado = await $.ajax({
+      type: "GET",
+      url: mainHost + "/categorie_find/" + localStorage.AFFILIATE_ID,
+      headers: {
+        "x-access-token": localStorage.token,
+      },
+      data: "",
+    });
+    console.log("O RESULTADO", resultado);
+    if (!resultado || resultado.data.length === 0) {
+      const criaPrimeiroAcesso = await criarPrimeiroAcesso();
+      console.log("Primeiro acesso", criaPrimeiroAcesso);
     } else {
-      categoriesObject = resultado.data;
-    }
-  }
-  MINHAS_CATEGORIAS = resultado.data[0].categories;
-  sessionStorage.MINHAS_CATEGORIAS = JSON.stringify(MINHAS_CATEGORIAS);
-}
-
-$(".showCategorias").each(async function () {
-  let HTML = await getCategoriesAndSubHome(
-    $(".showCategorias").attr("categorie_list")?.split(",") ?? []
-  );
-  console.log("HTML", HTML);
-  $(this).html(HTML);
-});
-
-$(".showPagesInst").each(async function () {
-  let HTML = await getInstitucionalPagesHome(
-    $(this).attr("categorie_list")?.split(",") ?? []
-  );
-  console.log("HTML", HTML);
-  $(this).html(HTML);
-});
-
-async function getCategoriesAndSubHome(listaSelecionada = []) {
-  await getCategoriesHome();
-  let newsCATEGORIES = MINHAS_CATEGORIAS;
-  console.log("IN HOMEE", newsCATEGORIES, listaSelecionada);
-  var html3 = "",
-    nova = '<li class="novaLI"></li>';
-
-  if (!Array.isArray(listaSelecionada)) {
-    listaSelecionada = listaSelecionada.split(",");
-  }
-
-  function getActive(text, listaSelecionada = []) {
-    console.log(text, listaSelecionada);
-
-    let eu = listaSelecionada.find((l) => l === text);
-    if (eu) {
-      return 'checked="true"';
-    } else {
-      ("");
-    }
-  }
-
-  for (const k in newsCATEGORIES) {
-    console.log("TRATANDO", newsCATEGORIES[k]);
-    var content =
-      '<ul class="listInner listInner2 sub-listInner2 animate__animated ">';
-    html3 +=
-      '<li    class="list-item sub-list-item animate__animated ">' +
-      arrowDown4 +
-      '<label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> <img   src="/assets/icons/' +
-      newsCATEGORIES[k].icon +
-      '" style="width: 30px; height: 30px; margin-top -10%"/> ';
-    content += nova;
-    if (newsCATEGORIES[k]?.subcategories?.length > 0) {
-      var txtCategories = newsCATEGORIES[k].subcategories;
-      for (const u in txtCategories) {
-        content +=
-          '<li   class="list-sub-item "><div class="row"><span style="border-top: 5px dotted silver !important;" class="trilha">..........</span><label class="subSmart  animate__animated animate__"><input ' +
-          getActive(txtCategories[u].title, listaSelecionada) +
-          ' class="marcar catPromocao"  myValue="' +
-          txtCategories[u].title +
-          "\"  onchange=\"subTagInputPromo($(this),'listaCategoriasFilter','" +
-          txtCategories[u].title +
-          '\')" type="checkbox"><span class="checkmark"></span>' +
-          txtCategories[u].title +
-          "</label></div></li> ";
-
-        ////////////console.log(content)
+      if (Array.isArray(resultado.data)) {
+        categoriesObject = resultado.data.find(
+          (dt) => dt.affiliateId === Number(localStorage.AFFILIATE_ID)
+        );
+      } else {
+        categoriesObject = resultado.data;
       }
     }
-    content += "</ul>";
-    html3 +=
-      newsCATEGORIES[k].title +
-      " <input " +
-      getActive(newsCATEGORIES[k].title, listaSelecionada) +
-      ' class="marcar catPromocao"  myValue="' +
-      newsCATEGORIES[k].title +
-      "\" onchange=\"subTagInputPromo($(this),'listaCategoriasFilter','" +
-      newsCATEGORIES[k].title +
-      '\')" type="checkbox"><span class="checkmark subCheck"></span></label>';
-    html3 += content + "</li> ";
+    MINHAS_CATEGORIAS = resultado.data[0].categories;
+    sessionStorage.MINHAS_CATEGORIAS = JSON.stringify(MINHAS_CATEGORIAS);
   }
-  console.log(html3);
 
-  return html3;
-}
+  $(".showCategorias").each(async function () {
+    let HTML = await getCategoriesAndSubHome(
+      $(".showCategorias").attr("categorie_list")?.split(",") ?? []
+    );
+    console.log("HTML", HTML);
+    $(this).html(HTML);
+  });
 
-$(".dropCategoriaContent").click(function () {
-  if (
-    $(this).attr("dropado") == "nao" ||
-    $(this).attr("dropado") == undefined
-  ) {
-    $(this).parent().parent().find(".cabecalho").removeClass("radius20");
-    $(this).parent().parent().find(".cabecalho").addClass("radius20Top");
-    $(this).parent().parent().find(".cabecalho").addClass("bordaDourada");
-    $(".seta").removeClass("rotate180");
-    $(this).parent().parent().find(".seta").addClass("rotate180");
+  $(".showPagesInst").each(async function () {
+    let HTML = await getInstitucionalPagesHome(
+      $(this).attr("categorie_list")?.split(",") ?? []
+    );
+    console.log("HTML", HTML);
+    $(this).html(HTML);
+  });
 
-    $(this).attr("dropado", "sim");
-    $(this).parent().parent().find(".dropCategoria").show();
-  } else {
-    $(this).parent().parent().find(".cabecalho").removeClass("radius20Top");
-    $(this).parent().parent().find(".cabecalho").addClass("radius20");
-    $(this).parent().parent().find(".cabecalho").removeClass("bordaDourada");
-    $(this).attr("dropado", "nao");
-    $(this).parent().parent().find(".dropCategoria").hide();
-
-    $(this).parent().parent().find(".seta").removeClass("rotate180");
-  }
-});
-function dropaCategoriasInner(element) {
-  console.log("Dropando");
-  if (element.find(".listInner2 ").attr("dropei") === "1") {
-    element.find(".listInner2 ").attr("dropei", "0");
-    element.find(".listInner2 ").hide();
-  } else {
-    element.find(".listInner2 ").attr("dropei", "1");
-    element.find(".listInner2 ").show();
-  }
-}
-
-function getInstitucionalPagesHome(listaSelecionada = []) {
-  try {
-    let newsCATEGORIES = JSON.parse(localStorage.INSTITUCIONAL_PAGES);
-    console.log("IN PAGESS", newsCATEGORIES, listaSelecionada);
+  async function getCategoriesAndSubHome(listaSelecionada = []) {
+    await getCategoriesHome();
+    let newsCATEGORIES = MINHAS_CATEGORIAS;
+    console.log("IN HOMEE", newsCATEGORIES, listaSelecionada);
     var html3 = "",
       nova = '<li class="novaLI"></li>';
 
@@ -2759,25 +2632,126 @@ function getInstitucionalPagesHome(listaSelecionada = []) {
 
     for (const k in newsCATEGORIES) {
       console.log("TRATANDO", newsCATEGORIES[k]);
+      var content =
+        '<ul class="listInner listInner2 sub-listInner2 animate__animated ">';
       html3 +=
         '<li    class="list-item sub-list-item animate__animated ">' +
         arrowDown4 +
-        '<label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> ';
+        '<label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> <img   src="/assets/icons/' +
+        newsCATEGORIES[k].icon +
+        '" style="width: 30px; height: 30px; margin-top -10%"/> ';
+      content += nova;
+      if (newsCATEGORIES[k]?.subcategories?.length > 0) {
+        var txtCategories = newsCATEGORIES[k].subcategories;
+        for (const u in txtCategories) {
+          content +=
+            '<li   class="list-sub-item "><div class="row"><span style="border-top: 5px dotted silver !important;" class="trilha">..........</span><label class="subSmart  animate__animated animate__"><input ' +
+            getActive(txtCategories[u].title, listaSelecionada) +
+            ' class="marcar catPromocao"  myValue="' +
+            txtCategories[u].title +
+            "\"  onchange=\"subTagInputPromo($(this),'listaCategoriasFilter','" +
+            txtCategories[u].title +
+            '\')" type="checkbox"><span class="checkmark"></span>' +
+            txtCategories[u].title +
+            "</label></div></li> ";
+
+          ////////////console.log(content)
+        }
+      }
+      content += "</ul>";
       html3 +=
-        newsCATEGORIES[k].titulo_page +
+        newsCATEGORIES[k].title +
         " <input " +
-        getActive(newsCATEGORIES[k].titulo_page, listaSelecionada) +
+        getActive(newsCATEGORIES[k].title, listaSelecionada) +
         ' class="marcar catPromocao"  myValue="' +
-        newsCATEGORIES[k].titulo_page +
+        newsCATEGORIES[k].title +
         "\" onchange=\"subTagInputPromo($(this),'listaCategoriasFilter','" +
-        newsCATEGORIES[k].titulo_page +
+        newsCATEGORIES[k].title +
         '\')" type="checkbox"><span class="checkmark subCheck"></span></label>';
-      html3 += "</li> ";
+      html3 += content + "</li> ";
     }
     console.log(html3);
 
     return html3;
-  } catch (err) {
-    return "";
   }
-}
+
+  $(".dropCategoriaContent").click(function () {
+    if (
+      $(this).attr("dropado") == "nao" ||
+      $(this).attr("dropado") == undefined
+    ) {
+      $(this).parent().parent().find(".cabecalho").removeClass("radius20");
+      $(this).parent().parent().find(".cabecalho").addClass("radius20Top");
+      $(this).parent().parent().find(".cabecalho").addClass("bordaDourada");
+      $(".seta").removeClass("rotate180");
+      $(this).parent().parent().find(".seta").addClass("rotate180");
+
+      $(this).attr("dropado", "sim");
+      $(this).parent().parent().find(".dropCategoria").show();
+    } else {
+      $(this).parent().parent().find(".cabecalho").removeClass("radius20Top");
+      $(this).parent().parent().find(".cabecalho").addClass("radius20");
+      $(this).parent().parent().find(".cabecalho").removeClass("bordaDourada");
+      $(this).attr("dropado", "nao");
+      $(this).parent().parent().find(".dropCategoria").hide();
+
+      $(this).parent().parent().find(".seta").removeClass("rotate180");
+    }
+  });
+  function dropaCategoriasInner(element) {
+    console.log("Dropando");
+    if (element.find(".listInner2 ").attr("dropei") === "1") {
+      element.find(".listInner2 ").attr("dropei", "0");
+      element.find(".listInner2 ").hide();
+    } else {
+      element.find(".listInner2 ").attr("dropei", "1");
+      element.find(".listInner2 ").show();
+    }
+  }
+
+  function getInstitucionalPagesHome(listaSelecionada = []) {
+    try {
+      let newsCATEGORIES = JSON.parse(localStorage.INSTITUCIONAL_PAGES);
+      console.log("IN PAGESS", newsCATEGORIES, listaSelecionada);
+      var html3 = "",
+        nova = '<li class="novaLI"></li>';
+
+      if (!Array.isArray(listaSelecionada)) {
+        listaSelecionada = listaSelecionada.split(",");
+      }
+
+      function getActive(text, listaSelecionada = []) {
+        console.log(text, listaSelecionada);
+
+        let eu = listaSelecionada.find((l) => l === text);
+        if (eu) {
+          return 'checked="true"';
+        } else {
+          ("");
+        }
+      }
+
+      for (const k in newsCATEGORIES) {
+        console.log("TRATANDO", newsCATEGORIES[k]);
+        html3 +=
+          '<li    class="list-item sub-list-item animate__animated ">' +
+          arrowDown4 +
+          '<label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> ';
+        html3 +=
+          newsCATEGORIES[k].titulo_page +
+          " <input " +
+          getActive(newsCATEGORIES[k].titulo_page, listaSelecionada) +
+          ' class="marcar catPromocao"  myValue="' +
+          newsCATEGORIES[k].titulo_page +
+          "\" onchange=\"subTagInputPromo($(this),'listaCategoriasFilter','" +
+          newsCATEGORIES[k].titulo_page +
+          '\')" type="checkbox"><span class="checkmark subCheck"></span></label>';
+        html3 += "</li> ";
+      }
+      console.log(html3);
+
+      return html3;
+    } catch (err) {
+      return "";
+    }
+  }

@@ -795,7 +795,7 @@
     function clientRequest(params, url, cache, chaveCache) {
         return $.ajax({
             type: 'POST',
-            url: 'https://api-smart-939610cb57d8.herokuapp.com' + url,
+            url: mainHost + ' + url,
             data: params,
             headers: {
                 'x-access-token': localStorage.token,
@@ -919,7 +919,7 @@
                     }
                     $.ajax({
                         type: 'POST',
-                        url: 'https://api-smart-939610cb57d8.herokuapp.com' + '/autenticateAdmin',
+                        url: mainHost + ' + ' / autenticateAdmin',
                         data: params,
                         headers: {
                             'x-access-token': localStorage.token,

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="https://api-smart-939610cb57d8.herokuapp.com/assets/img/lima-04.svg" />
+    <link rel="icon" type="image/png" href="{{SMART_API}}/assets/img/lima-04.svg" />
     <link rel="shortcut icon" href="images/logo/favicon.ico" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -28,6 +28,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+    <script>
+        var mainHost = '{{SMART_API}}'
+        var URL_IMAGES = '{{URL_IMAGES}}' 
+    </script>
+    <style>
+        .produtoSemFoto {
+            background: url({{SMART_API}}/produto-sem-imagem.jpg) !important;
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            zoom: 100%;
+        }
+    </style>
 
     <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
     <script src="../js/moment.js"></script>
@@ -47,7 +60,6 @@
 
 
 <script>
-    var mainHost = "https://api-smart-939610cb57d8.herokuapp.com";
 
     $(window).on("load", function () {
         $("modalLoading").hide()
@@ -938,78 +950,82 @@ $(".sidebar").removeClass("newSidebar");
 
         }
 
-        $.ajax({
-            type: "POST",
-            url: mainHost + '/getAllAffiliates',
-            data: { "affiliate_id": localStorage.MASTER_ID },
-            headers: {
-                "x-access-token": localStorage.token,
-                "is_product_image": true,
-            },
-            success: function (data) {
-                //////console.log(data); 
-                //  localStorage.LOJAS_CADASTRADAS = JSON.stringify(data)
-                var lojas = JSON.parse(localStorage.LOJAS_CADASTRADAS)
-                //console.log("vamos lá nas lojas")
-                //console.log(lojas)
-                for (const k in lojas) {
-                    var html = '<option ID_AFILIADA="' + lojas[k].id + '">' + lojas[k].id + ' - ' + lojas[k].affiliates_business_name + '</option>';
-                    if (lojas[k].id == Number(localStorage.AFFILIATE_ID)) {
-                        $(".listaDeUnidades").append(html)
+
+
+        window.addEventListener('load', function () {
+            $.ajax({
+                type: "POST",
+                url: mainHost + '/getAllAffiliates',
+                data: { "affiliate_id": localStorage.MASTER_ID },
+                headers: {
+                    "x-access-token": localStorage.token,
+                    "is_product_image": true,
+                },
+                success: function (data) {
+                    //////console.log(data); 
+                    //  localStorage.LOJAS_CADASTRADAS = JSON.stringify(data)
+                    var lojas = JSON.parse(localStorage.LOJAS_CADASTRADAS)
+                    //console.log("vamos lá nas lojas")
+                    //console.log(lojas)
+                    for (const k in lojas) {
+                        var html = '<option ID_AFILIADA="' + lojas[k].id + '">' + lojas[k].id + ' - ' + lojas[k].affiliates_business_name + '</option>';
+                        if (lojas[k].id == Number(localStorage.AFFILIATE_ID)) {
+                            $(".listaDeUnidades").append(html)
+                        }
+
                     }
-
-                }
-                $(".listaDeUnidades").change(function () {
-                    localStorage.AFFILIATE_ID = $(this).val().split(" - ")[0];
-                    location.reload()
-                })
+                    $(".listaDeUnidades").change(function () {
+                        localStorage.AFFILIATE_ID = $(this).val().split(" - ")[0];
+                        location.reload()
+                    })
 
 
 
 
 
 
-            },
-            error: function (data) {
-                //console.log(data);
-                if (data.responseJSON.message.indexOf("token") > -1) {
+                },
+                error: function (data) {
+                    //console.log(data);
+                    if (data.responseJSON.message.indexOf("token") > -1) {
 
-                    informar("alert-primary", "Necessário fazer login!<br>" + data.responseJSON.message, 3000)
-                    setTimeout(() => {
-                        location.replace("/cms-login")
-                    }, 2000)
+                        informar("alert-primary", "Necessário fazer login!<br>" + data.responseJSON.message, 3000)
+                        setTimeout(() => {
+                            location.replace("/cms-login")
+                        }, 2000)
 
-                } else {
+                    } else {
 
-                    informar("alert-primary", "Algo saiu errado!<br>" + data.responseJSON.message, 3000)
-                }
-            },
-            complete: function () {
-                // ao final da requisição... 
-            },
+                        informar("alert-primary", "Algo saiu errado!<br>" + data.responseJSON.message, 3000)
+                    }
+                },
+                complete: function () {
+                    // ao final da requisição... 
+                },
+            });
+
+            $.ajax({
+                type: "POST",
+                url: mainHost + '/me',
+                data: { "token_me": localStorage.token_me },
+                headers: {
+                    "x-access-token": localStorage.token,
+
+                },
+                success: function (data) {
+                    localStorage.DADOS_USER = JSON.stringify(data)
+                    $("#userName").text(data[0].USER_NAME)
+                    $("#userProfile").text(data[0].USER_PROFILE)
+                },
+                error: function (data) {
+                    //console.log(data)
+                },
+                complete: function () {
+                    // ao final da requisição... 
+                },
+            });
+
         });
-
-        $.ajax({
-            type: "POST",
-            url: mainHost + '/me',
-            data: { "token_me": localStorage.token_me },
-            headers: {
-                "x-access-token": localStorage.token,
-
-            },
-            success: function (data) {
-                localStorage.DADOS_USER = JSON.stringify(data)
-                $("#userName").text(data[0].USER_NAME)
-                $("#userProfile").text(data[0].USER_PROFILE)
-            },
-            error: function (data) {
-                //console.log(data)
-            },
-            complete: function () {
-                // ao final da requisição... 
-            },
-        });
-
 
         $(".escondeMenu2").click(function () {
             if ($(this).attr("class").indexOf("mostraMenu") > -1) {
@@ -1143,75 +1159,80 @@ $(".sidebar").removeClass("newSidebar");
             displayMode: 'inline',
         });
 
-        setTimeout(() => {
-            $.ajax({
-                type: 'POST',
-                url: 'https://api-smart-939610cb57d8.herokuapp.com/getStoreInformation',
-                data: { "master_id": localStorage.MASTER_ID },
-                success: function (data) {
-                    //console.log("dataStore")
-                    //console.log(data)
-                    for (const k in data) {
-                        $("#nomeTotalLoja").text(data[k].master_business_name)
-                        localStorage.NOME_LOJA = data[k].master_business_name
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                $.ajax({
+                    type: 'POST',
+                    url: mainHost + '/getStoreInformation',
+                    data: { "master_id": localStorage.MASTER_ID },
+                    success: function (data) {
+                        //console.log("dataStore")
+                        //console.log(data)
+                        for (const k in data) {
+                            $("#nomeTotalLoja").text(data[k].master_business_name)
+                            localStorage.NOME_LOJA = data[k].master_business_name
+                        }
+
+
+                    },
+                    error: function (data) {
+                        console.log(data)
+                    },
+                    complete: function () {
+                        // ao final da requisição...
                     }
-
-
-                },
-                error: function (data) {
-                    console.log(data)
-                },
-                complete: function () {
-                    // ao final da requisição...
-                }
-            });
+                });
 
 
 
-            $.ajax({
-                type: 'POST',
-                url: 'https://api-smart-939610cb57d8.herokuapp.com/informacoesDeClientes',
-                data: { "affiliate_id": localStorage.AFFILIATE_ID },
-                headers: {
-                    "x-access-token": localStorage.token,
-                },
-                success: function (data) {
-                    console.log("dataClients")
-                    console.log(data)
+                $.ajax({
+                    type: 'POST',
+                    url: mainHost + '/informacoesDeClientes',
+                    data: { "affiliate_id": localStorage.AFFILIATE_ID },
+                    headers: {
+                        "x-access-token": localStorage.token,
+                    },
+                    success: function (data) {
+                        console.log("dataClients")
+                        console.log(data)
 
-                    $("#novosClientes").html(data.length)
-                    $("#clientesRecorrentes").html(data.length)
-                    setTimeout(() => {
-                        var receita = Number($("#receita").text().replace(",", ""))
-                        var pUn = receita / data.length
-                        //console.log('porcada', pUn)
+                        $("#novosClientes").html(data.length)
+                        $("#clientesRecorrentes").html(data.length)
+                        setTimeout(() => {
+                            var receita = Number($("#receita").text().replace(",", ""))
+                            var pUn = receita / data.length
+                            //console.log('porcada', pUn)
 
-                        $("#taxaConversao").html((pUn * 100 / receita).toFixed(1) + "%")
-                        $("#percentualConversao").html((pUn * 100 / receita).toFixed(1) + "%")
+                            $("#taxaConversao").html((pUn * 100 / receita).toFixed(1) + "%")
+                            $("#percentualConversao").html((pUn * 100 / receita).toFixed(1) + "%")
 
-                        $("#taxaConversao").hide()
+                            $("#taxaConversao").hide()
 
-                        $("#percentualConversao").hide()
+                            $("#percentualConversao").hide()
 
-                    }, 1000)
+                        }, 1000)
 
 
 
 
-                },
-                error: function (data) {
-                    //console.log(data)
-                },
-                complete: function () {
-                    // ao final da requisição...
-                }
-            });
+                    },
+                    error: function (data) {
+                        //console.log(data)
+                    },
+                    complete: function () {
+                        // ao final da requisição...
+                    }
+                });
 
 
 
 
 
-        }, 350)
+            }, 350)
+
+
+        });
+
 
 
         /*  function fechaModalPDF(elemento) {

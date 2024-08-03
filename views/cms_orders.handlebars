@@ -299,7 +299,7 @@
 </div>
 <script src="../assets/js/core/jquery.min.js"></script>
 <script>
-    var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com';
+
 
     localStorage.TODOS_OS_PEDIDOS = ''
     localStorage.PEDIDO_SENDO_EDITADO = ''
@@ -317,7 +317,7 @@
         updateTotalPedidos()
         $.ajax({
             type: "POST",
-            url: "https://api-smart-939610cb57d8.herokuapp.com/getOrdersTemplate",
+            url: "{{SMART_API}}/getOrdersTemplate",
             headers: {
                 "x-access-token": localStorage.token,
             },
@@ -430,7 +430,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "https://api-smart-939610cb57d8.herokuapp.com/getOrdersTemplate",
+                    url: "{{SMART_API}}/getOrdersTemplate",
                     headers: {
                         "x-access-token": localStorage.token,
                     },
@@ -1403,7 +1403,7 @@
 
                                     $.ajax({
                                         type: "POST",
-                                        url: 'https://api-smart-939610cb57d8.herokuapp.com/updateOrderDetails',
+                                        url: mainHost + '/updateOrderDetails',
                                         headers: {
                                             "x-access-token": localStorage.token,
                                         },
@@ -2202,7 +2202,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "https://api-smart-939610cb57d8.herokuapp.com/productsOrderByListOrder",
+                url: "{{SMART_API}}/productsOrderByListOrder",
                 headers: {
                     "x-access-token": localStorage.token,
                 },
@@ -2279,32 +2279,36 @@
 
 
     $("body").css("filter", "blur(5px)")
-    $.ajax({
-        type: "POST",
-        url: mainHost + '/getAllOrdersMaster',
-        headers: {
-            "x-access-token": localStorage.token,
-        },
-        data: {
-            "master_id": localStorage.MASTER_ID
-        },
-        success: function (data) {
-            //console.log("os pedidos", data);
+    window.addEventListener('load', function () {
+        $.ajax({
+            type: "POST",
+            url: mainHost + '/getAllOrdersMaster',
+            headers: {
+                "x-access-token": localStorage.token,
+            },
+            data: {
+                "master_id": localStorage.MASTER_ID
+            },
+            success: function (data) {
+                //console.log("os pedidos", data);
 
-            localStorage.TODOS_OS_PEDIDOS = JSON.stringify(data)
+                localStorage.TODOS_OS_PEDIDOS = JSON.stringify(data)
 
-            reloadThis()
+                reloadThis()
 
 
 
-        },
-        error: function (data) {
-            //console.log(data);
-        },
-        complete: function () {
+            },
+            error: function (data) {
+                //console.log(data);
+            },
+            complete: function () {
 
-        },
+            },
+        });
     });
+
+
 
     let checkupOrders = false
 

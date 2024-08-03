@@ -1,5 +1,6 @@
 <script>
-    localStorage.MY_DOMAIN = 'https://api-smart-939610cb57d8.herokuapp.com'
+    localStorage.MY_DOMAIN = '{{HOST_APPLICATION}}'
+    var URL_IMAGES = '{{URL_IMAGES}}'
 </script>
 <style>
     .título-vitrines {
@@ -151,7 +152,7 @@
                     class="faleConosco sendCode">Esqueci minha senha</span></h5>
         </div>
         <div class="text-center overflow-hidden"
-            style="width: 100% !important;background-color: #DCEFE3;height: 101vh ;background-image:  url('../images/default/Grupo 2514.png'); background-repeat: no-repeat; background-position: center; background-size: 1005">
+            style="width: 100% !important;background-color: #DCEFE3;height: 101vh ;background-image:  url('{{URL_IMAGES}}/Grupo 2514.png'); background-repeat: no-repeat; background-position: center; background-size: 1005">
 
             <div style=" background-color: #DCEFE3; " style="width: 100%;"></div>
         </div>
@@ -221,7 +222,6 @@
 </style>
 
 <script>
-    var mainHost = 'https://api-smart-939610cb57d8.herokuapp.com'
     function locals(id) {
         var list = ['Mundo das Embalagens']
         return list[id]
