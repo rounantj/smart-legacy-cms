@@ -2025,30 +2025,6 @@ function start() {
   setMidiasSociais();
 }
 
-// logarDev();
-// async function logarDev() {
-//   $.ajax({
-//     type: "POST",
-//     url: host + "/login",
-//     data: {
-//       user: `ronantj@hotmail.com`,
-//       table: "users_affiliates",
-//       prefix: "users_affiliate",
-//       password: `mdt1234@`,
-//     },
-//     success: function (data) {
-//       console.log(data);
-//       localStorage.AFFILIATE_ID = data.data.users_affiliate_id;
-//       localStorage.MASTER_ID = data.data.users_affiliate_master_id;
-//       localStorage.token = data.token;
-//     },
-//     error: function (data) {
-//       //console.log(data);
-//       //   alertar("O login falhou!")
-//     },
-//     complete: function () {},
-//   });
-// }
 
 async function publishChanges() {
   let newBody = homePage.body,

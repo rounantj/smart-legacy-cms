@@ -1052,7 +1052,7 @@ function getOrderInfo(id) {
 async function request(urlEnd, params) {
   return $.ajax({
     type: "POST",
-    url: "{{SMART_API}}/" + urlEnd,
+    url: mainHost + "/" + urlEnd,
     headers: { "x-access-token": localStorage.token },
     data: params,
     success: function (data) {
