@@ -1,25 +1,36 @@
-let notFound =
-  URL_IMAGES + "/produto-sem-imagem.jpg";
+
+let notFound = "";
+let host = localStorage.mainHost;
+let URL_IMAGES = localStorage.URL_IMAGES
+let proxyList = [];
+
+window.addEventListener('load', function () {
+  this.setTimeout(() => {
+    notFound = URL_IMAGES + "/produto-sem-imagem.jpg"
+    getMyObjectHomeMain();
+  }, 3000)
+});
+
 var CATEGORIES = [],
   MY_CATEGORIES = [],
   MINHAS_CATEGORIAS = [];
-var arrowDown4 =
-  '<div onclick="dropaCategoriasInner($(this).parent()) " class=" deleteThis3 dropCategoriaButton ">' +
-  '<svg xmlns="http://www.w3.org/2000/svg" style="fill: #fcfcfd; stroke: silver;" width="36" height="36" viewBox="0 0 36 36">' +
-  '<g transform="translate(36 36) rotate(180)">' +
-  '<g transform="translate(28 28) rotate(180)">' +
-  '<g class="b">' +
-  '<g class="c">' +
-  '<circle class="e" cx="10" cy="10" r="10" />' +
-  '<circle class="f" cx="10" cy="10" r="9.5" />' +
-  "</g>" +
-  '<path class="d" d="M581.273,789.774a.82.82,0,0,1-.081-1.079l.081-.092,3.685-3.593-3.685-3.593a.82.82,0,0,1-.081-1.079l.081-.093a.849.849,0,0,1,1.094-.081l.094.081,4.279,4.179a.82.82,0,0,1,.081,1.079l-.081.093-4.279,4.179A.849.849,0,0,1,581.273,789.774Z"' +
-  ' transform="translate(795.009 -573.615) rotate(90)"/>' +
-  "</g>" +
-  "</g>" +
-  "</g>" +
-  "</svg>" +
-  "</div>";
+var arrowDown4 = `
+  <div onclick="dropaCategoriasInner($(this).parent()) " class=" deleteThis3 dropCategoriaButton ">
+  <svg xmlns="http://www.w3.org/2000/svg" style="fill: #fcfcfd; stroke: silver;" width="36" height="36" viewBox="0 0 36 36">
+  <g transform="translate(36 36) rotate(180)">
+  <g transform="translate(28 28) rotate(180)">
+  <g class="b">
+  <g class="c">
+  <circle class="e" cx="10" cy="10" r="10" />
+  <circle class="f" cx="10" cy="10" r="9.5" />
+ </g>
+  <path class="d" d="M581.273,789.774a.82.82,0,0,1-.081-1.079l.081-.092,3.685-3.593-3.685-3.593a.82.82,0,0,1-.081-1.079l.081-.093a.849.849,0,0,1,1.094-.081l.094.081,4.279,4.179a.82.82,0,0,1,.081,1.079l-.081.093-4.279,4.179A.849.849,0,0,1,581.273,789.774Z" transform="translate(795.009 -573.615) rotate(90)"/>
+ </g>
+ </g>
+ </g>
+ </svg>
+ </div>
+`;
 
 let homePage = {
   logotipo: {
@@ -399,12 +410,12 @@ $("fundoModal").click(function () {
 
 /*
 window.onbeforeunload = async function () {
-  if ([].length > 0) {
-    $("#modalNaoSalvou").click();
-    setTimeout(() => {
-      return confirm("Necessário salvar");
-    }, 2000);
-  }
+if ([].length > 0) {
+  $("#modalNaoSalvou").click();
+  setTimeout(() => {
+    return confirm("Necessário salvar");
+  }, 2000);
+}
 };
 */
 function showMe(element) {
@@ -516,32 +527,32 @@ const content = document.querySelector(".preview-home_content");
 const content2 = document.querySelector(".listaHOME");
 const div = document.createElement("div");
 div.innerHTML = `
-      <label style="padding: 50px; width: 100%; height: " onclick="showMyPrev($(this))" class="dropzone">  
-          <div>
-            <img src="" />
-            <span  class="rounded-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"/>
-              </svg>
-            </span>
-          </div> 
-      </label> 
-    `;
+    <label style="padding: 50px; width: 100%; height: " onclick="showMyPrev($(this))" class="dropzone">  
+        <div>
+          <img src="" />
+          <span  class="rounded-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"/>
+            </svg>
+          </span>
+        </div> 
+    </label> 
+  `;
 
 const div2 = document.createElement("div");
 div2.innerHTML = `  
-      <label onclick="showMyPrev($(this))" style="display: contents; " class="dropzone ">
-    <h1 style="position: absolute;margin-top: -25px;" class="labelSwitch">Confira estas ótimas ofertas</h1>
-        
-        ${getProductCard()}
-        ${getProductCard()}
-        ${getProductCard()}
-        ${getProductCard()}
-        ${getProductCard()}
-        ${getProductCard()} 
- 
-      </label> 
-    `;
+    <label onclick="showMyPrev($(this))" style="display: contents; " class="dropzone ">
+  <h1 style="position: absolute;margin-top: -25px;" class="labelSwitch">Confira estas ótimas ofertas</h1>
+      
+      ${getProductCard()}
+      ${getProductCard()}
+      ${getProductCard()}
+      ${getProductCard()}
+      ${getProductCard()}
+      ${getProductCard()} 
+
+    </label> 
+  `;
 
 async function getAmostraVitrine(listaIds, title) {
   const div2 = document.createElement("div");
@@ -553,24 +564,24 @@ async function getAmostraVitrine(listaIds, title) {
   }
 
   div2.innerHTML = `  
-      <label onclick="showMyPrev($(this))" style="display: contents; " class="dropzone ">
-    <h1 style="position: absolute;margin-top: -25px;" class="labelSwitch">${title.text}</h1>
-          ${fullHTML}
-    </label> 
-      `;
+    <label onclick="showMyPrev($(this))" style="display: contents; " class="dropzone ">
+  <h1 style="position: absolute;margin-top: -25px;" class="labelSwitch">${title.text}</h1>
+        ${fullHTML}
+  </label> 
+    `;
 
   return div2;
 }
 
 const div3 = document.createElement("div");
 div3.innerHTML = ` 
-      <label onclick="showMyPrev($(this))" style="display: contents; " class="dropzone ">
-        <h1 style="position: absolute;margin-top: -25px;" class="labelSwitch">Receitas</h1> 
-        ${getRevenueCard()}
-        ${getRevenueCard()}
-        ${getRevenueCard()}  
-      </label> 
-    `;
+    <label onclick="showMyPrev($(this))" style="display: contents; " class="dropzone ">
+      <h1 style="position: absolute;margin-top: -25px;" class="labelSwitch">Receitas</h1> 
+      ${getRevenueCard()}
+      ${getRevenueCard()}
+      ${getRevenueCard()}  
+    </label> 
+  `;
 
 function cutString(str) { }
 
@@ -582,116 +593,116 @@ function getProductCard(data) {
       tag = data.product_site_tags?.split(",")[0];
     }
     const card = `<div class="card-color-preview">
-                      <div   >
-                        <span     class="card-color-preview_tag" style=" z-index: 2 ;background: var(--color-secondary); color: var(--color-primary)">
-                          ${tag}
-                        </span>
-                      </div>
+                    <div   >
+                      <span     class="card-color-preview_tag" style=" z-index: 2 ;background: var(--color-secondary); color: var(--color-primary)">
+                        ${tag}
+                      </span>
+                    </div>
 
-                      <div style="  background: url(${data.product_thumbnail
+                    <div style="  background: url(${data.product_thumbnail
       }); background-size: cover;     width: 80px;    height: 80px;    margin: -5px auto; " class="card-color-preview_icon">
-                      
-                      </div>
+                    
+                    </div>
 
-                      <div style="color: var(--color-primary)" class="card-color-preview_mark">
-                       ${data.product_categoria.substr(0, 10)}...
-                      </div>
+                    <div style="color: var(--color-primary)" class="card-color-preview_mark">
+                     ${data.product_categoria.substr(0, 10)}...
+                    </div>
 
-                      <div style="color: var(--color-primary)" class="card-color-preview_title">
-                        ${data.product_site_name.substr(0, 15)}...
-                      </div>
+                    <div style="color: var(--color-primary)" class="card-color-preview_title">
+                      ${data.product_site_name.substr(0, 15)}...
+                    </div>
 
-                      <div style="color: var(--color-primary)" class="card-color-preview_units ">
-                        1 unidade
-                      </div>
+                    <div style="color: var(--color-primary)" class="card-color-preview_units ">
+                      1 unidade
+                    </div>
 
-                      <div style="color: var(--color-primary)" class="card-color-preview_stars">
-                        ★★★★★
-                      </div>
+                    <div style="color: var(--color-primary)" class="card-color-preview_stars">
+                      ★★★★★
+                    </div>
 
-                      <div class="card-color-preview_price">
-                        R$ ${data.product_valor}
-                      </div>
+                    <div class="card-color-preview_price">
+                      R$ ${data.product_valor}
+                    </div>
 
-                      <div style="color: var(--color-primary)" class="card-color-preview_button">
-                        <svg  style="fill: var(--color-primary)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                          <path d="M112 112C112 50.14 162.1 0 224 0C285.9 0 336 50.14 336 112V160H400C426.5 160 448 181.5 448 208V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V208C0 181.5 21.49 160 48 160H112V112zM160 160H288V112C288 76.65 259.3 48 224 48C188.7 48 160 76.65 160 112V160zM136 256C149.3 256 160 245.3 160 232C160 218.7 149.3 208 136 208C122.7 208 112 218.7 112 232C112 245.3 122.7 256 136 256zM312 208C298.7 208 288 218.7 288 232C288 245.3 298.7 256 312 256C325.3 256 336 245.3 336 232C336 218.7 325.3 208 312 208z"></path>
-                        </svg>
+                    <div style="color: var(--color-primary)" class="card-color-preview_button">
+                      <svg  style="fill: var(--color-primary)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M112 112C112 50.14 162.1 0 224 0C285.9 0 336 50.14 336 112V160H400C426.5 160 448 181.5 448 208V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V208C0 181.5 21.49 160 48 160H112V112zM160 160H288V112C288 76.65 259.3 48 224 48C188.7 48 160 76.65 160 112V160zM136 256C149.3 256 160 245.3 160 232C160 218.7 149.3 208 136 208C122.7 208 112 218.7 112 232C112 245.3 122.7 256 136 256zM312 208C298.7 208 288 218.7 288 232C288 245.3 298.7 256 312 256C325.3 256 336 245.3 336 232C336 218.7 325.3 208 312 208z"></path>
+                      </svg>
 
-                        Adicionar
-                      </div>
-                </div> `;
+                      Adicionar
+                    </div>
+              </div> `;
     return card;
   } else {
     const card = `<div class="card-color-preview">
-                      <div   >
-                        <span     class="card-color-preview_tag" style=" z-index: 2 ;background: var(--color-primary);">
-                          FALTA EDITAR
-                        </span>
-                      </div>
-
-                      <div style="  background: url(${notFound}); background-size: cover;     width: 80px;    height: 80px;    margin: -5px auto; " class="card-color-preview_icon">
-                      
-                      </div>
-
-                      <div class="card-color-preview_mark">
-                       FALTA EDITAR
-                      </div>
-
-                      <div class="card-color-preview_title">
+                    <div   >
+                      <span     class="card-color-preview_tag" style=" z-index: 2 ;background: var(--color-primary);">
                         FALTA EDITAR
-                      </div>
+                      </span>
+                    </div>
 
-                      <div class="card-color-preview_units ">
-                        1 unidade
-                      </div>
+                    <div style="  background: url(${notFound}); background-size: cover;     width: 80px;    height: 80px;    margin: -5px auto; " class="card-color-preview_icon">
+                    
+                    </div>
 
-                      <div class="card-color-preview_stars">
-                        ★★★★★
-                      </div>
+                    <div class="card-color-preview_mark">
+                     FALTA EDITAR
+                    </div>
 
-                      <div class="card-color-preview_price">
-                        R$ 0,00
-                      </div>
+                    <div class="card-color-preview_title">
+                      FALTA EDITAR
+                    </div>
 
-                      <div class="card-color-preview_button">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                          <path d="M112 112C112 50.14 162.1 0 224 0C285.9 0 336 50.14 336 112V160H400C426.5 160 448 181.5 448 208V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V208C0 181.5 21.49 160 48 160H112V112zM160 160H288V112C288 76.65 259.3 48 224 48C188.7 48 160 76.65 160 112V160zM136 256C149.3 256 160 245.3 160 232C160 218.7 149.3 208 136 208C122.7 208 112 218.7 112 232C112 245.3 122.7 256 136 256zM312 208C298.7 208 288 218.7 288 232C288 245.3 298.7 256 312 256C325.3 256 336 245.3 336 232C336 218.7 325.3 208 312 208z"></path>
-                        </svg>
+                    <div class="card-color-preview_units ">
+                      1 unidade
+                    </div>
 
-                        Adicionar
-                      </div>
-                </div> `;
+                    <div class="card-color-preview_stars">
+                      ★★★★★
+                    </div>
+
+                    <div class="card-color-preview_price">
+                      R$ 0,00
+                    </div>
+
+                    <div class="card-color-preview_button">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M112 112C112 50.14 162.1 0 224 0C285.9 0 336 50.14 336 112V160H400C426.5 160 448 181.5 448 208V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V208C0 181.5 21.49 160 48 160H112V112zM160 160H288V112C288 76.65 259.3 48 224 48C188.7 48 160 76.65 160 112V160zM136 256C149.3 256 160 245.3 160 232C160 218.7 149.3 208 136 208C122.7 208 112 218.7 112 232C112 245.3 122.7 256 136 256zM312 208C298.7 208 288 218.7 288 232C288 245.3 298.7 256 312 256C325.3 256 336 245.3 336 232C336 218.7 325.3 208 312 208z"></path>
+                      </svg>
+
+                      Adicionar
+                    </div>
+              </div> `;
     return card;
   }
 }
 
 function getRevenueCard() {
   const card = `<div class="card-color-preview2">
-                     
-                      <div style="  background: url(${notFound}); background-size: cover; background-position: center;    width: 100%;    height: 150px;    margin: -5px auto; " class="card-color-preview_icon"></div>
-                      
-                      <div style="display: block; width: 90%; margin: auto" class="card-color-preview_button">
-                      <div class="lineContents">
-                       <h1 style="text-align: left;font-size: 14px;width: 90%;margin: auto;" class="titulo8">Nome da Receita Caseira</h1> 
-                      </div>
-                       <br>
-                       <br>
                    
-                        <div class="lineContents">
-                          <div style="text-align: center; width: 30%" class="col-md-3">
-                            <p>+- 0mins</p>
-                          </div>
-                          <div style="text-align: center; width: 40%" class="col-md-6">
-                            <p> &#183; 0 Ingredientes</p>
-                          </div>
-                          <div style="text-align: center; width: 30%" class="col-md-3">
-                            <p> &#183; 0 porção</p>
-                          </div> 
-                        </div> 
+                    <div style="  background: url(${notFound}); background-size: cover; background-position: center;    width: 100%;    height: 150px;    margin: -5px auto; " class="card-color-preview_icon"></div>
+                    
+                    <div style="display: block; width: 90%; margin: auto" class="card-color-preview_button">
+                    <div class="lineContents">
+                     <h1 style="text-align: left;font-size: 14px;width: 90%;margin: auto;" class="titulo8">Nome da Receita Caseira</h1> 
+                    </div>
+                     <br>
+                     <br>
                  
-                      </div>
-                </div> `;
+                      <div class="lineContents">
+                        <div style="text-align: center; width: 30%" class="col-md-3">
+                          <p>+- 0mins</p>
+                        </div>
+                        <div style="text-align: center; width: 40%" class="col-md-6">
+                          <p> &#183; 0 Ingredientes</p>
+                        </div>
+                        <div style="text-align: center; width: 30%" class="col-md-3">
+                          <p> &#183; 0 porção</p>
+                        </div> 
+                      </div> 
+               
+                    </div>
+              </div> `;
   return card;
 }
 const dropzoneHtml = div.firstElementChild;
@@ -853,24 +864,24 @@ const dynamicContent = {
       wrapper.prepend(dropzone);
       const prev =
         createElementFromHTML(`<div style="display: none;position: absolute;margin: 300px;" class="dropzone-prev  justify-content-center">
-      <button
-      onclick="prepareVitrine($(this))"
-        theOrigin="${thisOrigin}"
-        conteudo="produto"
-        data-bs-toggle="modal"
-        data-bs-target="#modalVitrine"
-        class="dropzone-prev-button  backGold"
-      >
-        <text class="dropzone-prev-text">Editar Vitrine</text>
-      </button>
-      <button
-        alvoRemove="${thisOrigin}"
-        onclick="removeSection($(this))"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Excluir Vitrine</text>
-      </button>
-    </div>`);
+    <button
+    onclick="prepareVitrine($(this))"
+      theOrigin="${thisOrigin}"
+      conteudo="produto"
+      data-bs-toggle="modal"
+      data-bs-target="#modalVitrine"
+      class="dropzone-prev-button  backGold"
+    >
+      <text class="dropzone-prev-text">Editar Vitrine</text>
+    </button>
+    <button
+      alvoRemove="${thisOrigin}"
+      onclick="removeSection($(this))"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Excluir Vitrine</text>
+    </button>
+  </div>`);
       wrapper.setAttribute(
         "id",
         "produto_" + Math.random().toFixed(5).replace(".", "")
@@ -890,24 +901,24 @@ const dynamicContent = {
       wrapper.prepend(dropzone);
       const prev =
         createElementFromHTML(`<div style="display: none;position: absolute;margin: 300px;" class="dropzone-prev  justify-content-center">
-      <button
-      onclick="prepareVitrine($(this))"
-       theOrigin="${thisOrigin}"
-        conteudo="produto"
-        data-bs-toggle="modal"
-        data-bs-target="#modalVitrine"
-        class="dropzone-prev-button  backGold"
-      >
-        <text class="dropzone-prev-text">Editar Vitrine</text>
-      </button>
-      <button
-        alvoRemove="${thisOrigin}"
-        onclick="removeSection($(this))"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Excluir Vitrine</text>
-      </button>
-    </div>`);
+    <button
+    onclick="prepareVitrine($(this))"
+     theOrigin="${thisOrigin}"
+      conteudo="produto"
+      data-bs-toggle="modal"
+      data-bs-target="#modalVitrine"
+      class="dropzone-prev-button  backGold"
+    >
+      <text class="dropzone-prev-text">Editar Vitrine</text>
+    </button>
+    <button
+      alvoRemove="${thisOrigin}"
+      onclick="removeSection($(this))"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Excluir Vitrine</text>
+    </button>
+  </div>`);
       wrapper.setAttribute(
         "id",
         "produto_" + Math.random().toFixed(5).replace(".", "")
@@ -968,68 +979,68 @@ const dynamicContent = {
 
       const prev =
         createElementFromHTML(`<div class="dropzone-prev  justify-content-center umBanner">
-      <button
-      onclick="prepareVitrine($(this), 'first')"
-          origin="${thisOrigin}"
-        conteudo="banner"
-        data-bs-toggle="modal"
-        data-bs-target="#modalChangePicture"
-        class="dropzone-prev-button  backGold"
-      >
-        <text class="dropzone-prev-text">Editar Banner</text>
-      </button>
-      <button
-      conteudo="modalLink"
-      onclick="prepareVitrine($(this), 'first')"
-          origin="${thisOrigin}"
-        data-bs-toggle="modal"
-        data-bs-target="#modalMudaLink"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Editar link</text>
-      </button>
-      <button
-      onclick="prepareVitrine($(this), 'first')"
-          origin="${thisOrigin}"
-          alvoRemove="${theId}_1"
-          onclick="removeSection($(this))"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Excluir Lista de Banners</text>
-      </button>
-          </div>`);
+    <button
+    onclick="prepareVitrine($(this), 'first')"
+        origin="${thisOrigin}"
+      conteudo="banner"
+      data-bs-toggle="modal"
+      data-bs-target="#modalChangePicture"
+      class="dropzone-prev-button  backGold"
+    >
+      <text class="dropzone-prev-text">Editar Banner</text>
+    </button>
+    <button
+    conteudo="modalLink"
+    onclick="prepareVitrine($(this), 'first')"
+        origin="${thisOrigin}"
+      data-bs-toggle="modal"
+      data-bs-target="#modalMudaLink"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Editar link</text>
+    </button>
+    <button
+    onclick="prepareVitrine($(this), 'first')"
+        origin="${thisOrigin}"
+        alvoRemove="${theId}_1"
+        onclick="removeSection($(this))"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Excluir Lista de Banners</text>
+    </button>
+        </div>`);
 
       const prev2 =
         createElementFromHTML(`<div class="dropzone-prev  justify-content-center umBanner">
-      <button
-      onclick="prepareVitrine($(this),'second')"
-          origin="${thisOrigin}"
-        conteudo="banner"
-        data-bs-toggle="modal"
-        data-bs-target="#modalChangePicture"
-        class="dropzone-prev-button  backGold"
-      >
-        <text class="dropzone-prev-text">Editar Banner</text>
-      </button>
-      <button
-      conteudo="modalLink"
-      onclick="prepareVitrine($(this),'second')"
-          origin="${thisOrigin}"
-        data-bs-toggle="modal"
-        data-bs-target="#modalMudaLink"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Editar link</text>
-      </button>
-      <button 
-          origin="${thisOrigin}"
-          alvoRemove="${theId}_2"
-          onclick="removeSection($(this))"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Excluir Lista de Banners</text>
-      </button>
-          </div>`);
+    <button
+    onclick="prepareVitrine($(this),'second')"
+        origin="${thisOrigin}"
+      conteudo="banner"
+      data-bs-toggle="modal"
+      data-bs-target="#modalChangePicture"
+      class="dropzone-prev-button  backGold"
+    >
+      <text class="dropzone-prev-text">Editar Banner</text>
+    </button>
+    <button
+    conteudo="modalLink"
+    onclick="prepareVitrine($(this),'second')"
+        origin="${thisOrigin}"
+      data-bs-toggle="modal"
+      data-bs-target="#modalMudaLink"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Editar link</text>
+    </button>
+    <button 
+        origin="${thisOrigin}"
+        alvoRemove="${theId}_2"
+        onclick="removeSection($(this))"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Excluir Lista de Banners</text>
+    </button>
+        </div>`);
 
       wrapper.appendChild(prev);
       wrapper1.appendChild(prev2);
@@ -1063,69 +1074,69 @@ const dynamicContent = {
 
       const prev =
         createElementFromHTML(`<div class="dropzone-prev  justify-content-center umBanner">
-      <button
-      onclick="prepareVitrine($(this), 'first')"
-          origin="${thisOrigin}"
-        conteudo="banner"
-        data-bs-toggle="modal"
-        data-bs-target="#modalChangePicture"
-        class="dropzone-prev-button  backGold"
-      >
-        <text class="dropzone-prev-text">Editar Banner</text>
-      </button>
-      <button
-      conteudo="modalLink"
-      onclick="prepareVitrine($(this), 'first')"
-          origin="${thisOrigin}"
-        data-bs-toggle="modal"
-        data-bs-target="#modalMudaLink"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Editar link</text>
-      </button>
-      <button
-      onclick="prepareVitrine($(this), 'first')"
-          origin="${thisOrigin}"
-               alvoRemove="${thisOrigin}_2"
-        onclick="removeSection($(this))"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Excluir Banner</text>
-      </button>
-    </div>`);
+    <button
+    onclick="prepareVitrine($(this), 'first')"
+        origin="${thisOrigin}"
+      conteudo="banner"
+      data-bs-toggle="modal"
+      data-bs-target="#modalChangePicture"
+      class="dropzone-prev-button  backGold"
+    >
+      <text class="dropzone-prev-text">Editar Banner</text>
+    </button>
+    <button
+    conteudo="modalLink"
+    onclick="prepareVitrine($(this), 'first')"
+        origin="${thisOrigin}"
+      data-bs-toggle="modal"
+      data-bs-target="#modalMudaLink"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Editar link</text>
+    </button>
+    <button
+    onclick="prepareVitrine($(this), 'first')"
+        origin="${thisOrigin}"
+             alvoRemove="${thisOrigin}_2"
+      onclick="removeSection($(this))"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Excluir Banner</text>
+    </button>
+  </div>`);
 
       const prev2 =
         createElementFromHTML(`<div class="dropzone-prev  justify-content-center umBanner">
-      <button
-      onclick="prepareVitrine($(this), 'second')"
-          origin="${thisOrigin}"
-        conteudo="banner"
-        data-bs-toggle="modal"
-        data-bs-target="#modalChangePicture"
-        class="dropzone-prev-button  backGold"
-      >
-        <text class="dropzone-prev-text">Editar Banner</text>
-      </button>
-      <button
-      conteudo="modalLink"
-      onclick="prepareVitrine($(this), 'second')"
-          origin="${thisOrigin}"
-        data-bs-toggle="modal"
-        data-bs-target="#modalMudaLink"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Editar link</text>
-      </button>
-      <button
-      onclick="prepareVitrine($(this), 'second')"
-          origin="${thisOrigin}"
-               alvoRemove="${theId}_1"
-        onclick="removeSection($(this))"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Excluir Banner</text>
-      </button>
-    </div>`);
+    <button
+    onclick="prepareVitrine($(this), 'second')"
+        origin="${thisOrigin}"
+      conteudo="banner"
+      data-bs-toggle="modal"
+      data-bs-target="#modalChangePicture"
+      class="dropzone-prev-button  backGold"
+    >
+      <text class="dropzone-prev-text">Editar Banner</text>
+    </button>
+    <button
+    conteudo="modalLink"
+    onclick="prepareVitrine($(this), 'second')"
+        origin="${thisOrigin}"
+      data-bs-toggle="modal"
+      data-bs-target="#modalMudaLink"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Editar link</text>
+    </button>
+    <button
+    onclick="prepareVitrine($(this), 'second')"
+        origin="${thisOrigin}"
+             alvoRemove="${theId}_1"
+      onclick="removeSection($(this))"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Excluir Banner</text>
+    </button>
+  </div>`);
 
       wrapper.appendChild(prev);
       wrapper1.appendChild(prev2);
@@ -1147,21 +1158,21 @@ const dynamicContent = {
 
     const prev =
       createElementFromHTML(`<div style="display: none;position: absolute;margin: 300px;" class="dropzone-prev  justify-content-center">
-      <button
-        data-bs-toggle="modal"
-        data-bs-target="#modalReceitas"
-        class="dropzone-prev-button  backGold"
-      >
-        <text class="dropzone-prev-text">Editar Vitrine</text>
-      </button>
-      <button
-        data-bs-toggle="modal"
-        data-bs-target="#modalDeletaVitrine"
-        class="dropzone-prev-button"
-      >
-        <text class="dropzone-prev-text">Excluir Vitrine</text>
-      </button>
-    </div>`);
+    <button
+      data-bs-toggle="modal"
+      data-bs-target="#modalReceitas"
+      class="dropzone-prev-button  backGold"
+    >
+      <text class="dropzone-prev-text">Editar Vitrine</text>
+    </button>
+    <button
+      data-bs-toggle="modal"
+      data-bs-target="#modalDeletaVitrine"
+      class="dropzone-prev-button"
+    >
+      <text class="dropzone-prev-text">Excluir Vitrine</text>
+    </button>
+  </div>`);
     wrapper.appendChild(prev);
     wrapper.setAttribute(
       "id",
@@ -1258,7 +1269,7 @@ function createElementFromHTML(htmlString) {
 }
 
 //=========================== Área de CRUD =====================
-let host = `{{SMART_API}}`;
+
 async function uploadAndUpdateFile(element) {
   if (element.attr("url")) {
     element
@@ -1649,28 +1660,28 @@ function addLink(element, destiny) {
     element.attr("description", text);
     setMeFooterMenu(element);
     let HTML = `
-                        <div class="cardSearch"> 
-                          <div class="itemSearch" style="padding-top: 15px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" style="fill: #687c97;" width="13.5" height="23" viewBox="0 0 9 16">
-                              <defs></defs>
-                              <path class="a"
-                                d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z">
-                              </path>
-                              <path class="a"
-                                d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
-                                transform="translate(5)"></path>
-                            </svg> 
-                          </div>
-                          <div class="itemSearch" style="padding-top: 15px;width: 60%;">
-                            <p class="cardText">${text}</p>
-                          </div> 
-                          <div class="itemSearch" style=" width: 300px;">
-                            <button onclick="removeMeFooterMenu($(this))" link="${link}" description="${text}" destiny="${destiny}" style="zoom: 80%;background-color: white; border: 1px solid #f6b504; color: #f6b504; margin-right: 15px;"
-                              type="button" id="picture-save-button" tabindex="6"  
-                              class="btn btn-save rounded-pill">Remover da coluna</button>
-                          </div>
+                      <div class="cardSearch"> 
+                        <div class="itemSearch" style="padding-top: 15px;">
+                          <svg xmlns="http://www.w3.org/2000/svg" style="fill: #687c97;" width="13.5" height="23" viewBox="0 0 9 16">
+                            <defs></defs>
+                            <path class="a"
+                              d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z">
+                            </path>
+                            <path class="a"
+                              d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
+                              transform="translate(5)"></path>
+                          </svg> 
                         </div>
-                        `;
+                        <div class="itemSearch" style="padding-top: 15px;width: 60%;">
+                          <p class="cardText">${text}</p>
+                        </div> 
+                        <div class="itemSearch" style=" width: 300px;">
+                          <button onclick="removeMeFooterMenu($(this))" link="${link}" description="${text}" destiny="${destiny}" style="zoom: 80%;background-color: white; border: 1px solid #f6b504; color: #f6b504; margin-right: 15px;"
+                            type="button" id="picture-save-button" tabindex="6"  
+                            class="btn btn-save rounded-pill">Remover da coluna</button>
+                        </div>
+                      </div>
+                      `;
     element.parent().parent().parent().find(".areaMenus").append(HTML);
   }
 }
@@ -1690,28 +1701,28 @@ function addLinkObject(text, link, destiny) {
     // element.attr("description", text);
     // setMeFooterMenu(element);
     let HTML = `
-                        <div class="cardSearch"> 
-                          <div class="itemSearch" style="padding-top: 15px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" style="fill: #687c97;" width="13.5" height="23" viewBox="0 0 9 16">
-                              <defs></defs>
-                              <path class="a"
-                                d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z">
-                              </path>
-                              <path class="a"
-                                d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
-                                transform="translate(5)"></path>
-                            </svg> 
-                          </div>
-                          <div class="itemSearch" style="padding-top: 15px;width: 60%;">
-                            <p class="cardText">${text}</p>
-                          </div> 
-                          <div class="itemSearch" style=" width: 300px;">
-                            <button onclick="removeMeFooterMenu($(this))" link="${link}" description="${text}" destiny="${destiny}" style="zoom: 80%;background-color: white; border: 1px solid #f6b504; color: #f6b504; margin-right: 15px;"
-                              type="button" id="picture-save-button" tabindex="6"  
-                              class="btn btn-save rounded-pill">Remover da coluna</button>
-                          </div>
+                      <div class="cardSearch"> 
+                        <div class="itemSearch" style="padding-top: 15px;">
+                          <svg xmlns="http://www.w3.org/2000/svg" style="fill: #687c97;" width="13.5" height="23" viewBox="0 0 9 16">
+                            <defs></defs>
+                            <path class="a"
+                              d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z">
+                            </path>
+                            <path class="a"
+                              d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
+                              transform="translate(5)"></path>
+                          </svg> 
                         </div>
-                        `;
+                        <div class="itemSearch" style="padding-top: 15px;width: 60%;">
+                          <p class="cardText">${text}</p>
+                        </div> 
+                        <div class="itemSearch" style=" width: 300px;">
+                          <button onclick="removeMeFooterMenu($(this))" link="${link}" description="${text}" destiny="${destiny}" style="zoom: 80%;background-color: white; border: 1px solid #f6b504; color: #f6b504; margin-right: 15px;"
+                            type="button" id="picture-save-button" tabindex="6"  
+                            class="btn btn-save rounded-pill">Remover da coluna</button>
+                        </div>
+                      </div>
+                      `;
     return HTML;
   }
   return "";
@@ -1765,11 +1776,11 @@ function setMidiasSociais() {
 
   let youtube = `<svg  style="margin: 10px;${homePage.socialMidia.facebook.active === true ? `` : `display: block`
     } " xmlns="http://www.w3.org/2000/svg" width="22.939" height="16.129"
-                  viewBox="0 0 22.939 16.129">
-                  <path id="facebook"
-                    d="M37.393,66.524a2.882,2.882,0,0,0-2.028-2.041C33.576,64,26.4,64,26.4,64s-7.173,0-8.962.482a2.882,2.882,0,0,0-2.028,2.041,32.453,32.453,0,0,0,0,11.114,2.839,2.839,0,0,0,2.028,2.009c1.789.482,8.962.482,8.962.482s7.173,0,8.962-.482a2.839,2.839,0,0,0,2.028-2.009,32.453,32.453,0,0,0,0-11.114ZM24.057,75.492V68.67l6,3.411Z"
-                    transform="translate(-14.933 -64)" fill="#8897ad" />
-                </svg><a>`;
+                viewBox="0 0 22.939 16.129">
+                <path id="facebook"
+                  d="M37.393,66.524a2.882,2.882,0,0,0-2.028-2.041C33.576,64,26.4,64,26.4,64s-7.173,0-8.962.482a2.882,2.882,0,0,0-2.028,2.041,32.453,32.453,0,0,0,0,11.114,2.839,2.839,0,0,0,2.028,2.009c1.789.482,8.962.482,8.962.482s7.173,0,8.962-.482a2.839,2.839,0,0,0,2.028-2.009,32.453,32.453,0,0,0,0-11.114ZM24.057,75.492V68.67l6,3.411Z"
+                  transform="translate(-14.933 -64)" fill="#8897ad" />
+              </svg><a>`;
 
   $(`.midiasSociais`).append(youtube);
   $(`.midiasSociais`).append(youtube);
@@ -1778,7 +1789,7 @@ function setMidiasSociais() {
 
 //====================AREA FOR REQUEST========================
 
-getMyObjectHomeMain();
+
 async function applyChanges(homePageNew) {
   if (homePageNew) {
     homePage = homePageNew;
@@ -2088,34 +2099,34 @@ async function getProductsListIds(listIds) {
 
 function getCardProduct(data, currentId) {
   let HTML = `
-                    <div id="prdCode_${data.product_code}" product_code="${data.product_code}" class="cardProduct">
-                      <div class="cardHeaderPrd">
-                        <svg xmlns="http://www.w3.org/2000/svg" style="fill: #687c97;" width="13.5" height="23" viewBox="0 0 9 16">
-                          <defs></defs>
-                          <path class="a"
-                            d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z">
-                          </path>
-                          <path class="a"
-                            d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
-                            transform="translate(5)"></path>
-                        </svg>
-                        <p class="cardNumber">${data.product_code}</p>
-                     
+                  <div id="prdCode_${data.product_code}" product_code="${data.product_code}" class="cardProduct">
+                    <div class="cardHeaderPrd">
+                      <svg xmlns="http://www.w3.org/2000/svg" style="fill: #687c97;" width="13.5" height="23" viewBox="0 0 9 16">
+                        <defs></defs>
+                        <path class="a"
+                          d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z">
+                        </path>
+                        <path class="a"
+                          d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
+                          transform="translate(5)"></path>
+                      </svg>
+                      <p class="cardNumber">${data.product_code}</p>
+                   
 
-                         <div class="btnRemoveProduto" style="float: right;width: calc(100% - 60px);align-items: right;">
-                          <div currentid="${currentId}" onclick="removeProduto7($(this))" class=" deleteThis" style="float: right;    width: calc(100% - 60px);    margin-top: -10px;    text-align: right; cursor: pointer "><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 21 21" style="fill: #f6b504;margin: 9px;">&gt;<defs></defs><path class="a" d="M10.937,16H3.063A2.208,2.208,0,0,1,.875,13.778V2.666H.438a.444.444,0,0,1,0-.889H4.375V1.334A1.324,1.324,0,0,1,5.687,0H8.313A1.324,1.324,0,0,1,9.625,1.334v.444h3.937a.444.444,0,0,1,0,.889h-.437V13.778A2.208,2.208,0,0,1,10.937,16ZM1.75,2.666V13.778a1.325,1.325,0,0,0,1.313,1.334h7.875a1.325,1.325,0,0,0,1.313-1.334V2.666ZM5.687.889a.441.441,0,0,0-.437.445v.444h3.5V1.334A.441.441,0,0,0,8.313.889Zm3.5,11.556A.442.442,0,0,1,8.75,12V5.778a.437.437,0,1,1,.875,0V12A.441.441,0,0,1,9.188,12.445Zm-4.375,0A.441.441,0,0,1,4.375,12V5.778a.437.437,0,1,1,.875,0V12A.442.442,0,0,1,4.812,12.445Z" transform="translate(4 3)"></path></svg></div>
-                         </div>
-                      </div>
-                      <div
-                        style="background:  url(${data.product_thumbnail}) no-repeat padding-box; background-size: contain;"
-                        class="cardImage">
-                      </div>
-                  
-                      <p class="cardText">${data.product_site_name}</p>
-                  
-                  
+                       <div class="btnRemoveProduto" style="float: right;width: calc(100% - 60px);align-items: right;">
+                        <div currentid="${currentId}" onclick="removeProduto7($(this))" class=" deleteThis" style="float: right;    width: calc(100% - 60px);    margin-top: -10px;    text-align: right; cursor: pointer "><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 21 21" style="fill: #f6b504;margin: 9px;">&gt;<defs></defs><path class="a" d="M10.937,16H3.063A2.208,2.208,0,0,1,.875,13.778V2.666H.438a.444.444,0,0,1,0-.889H4.375V1.334A1.324,1.324,0,0,1,5.687,0H8.313A1.324,1.324,0,0,1,9.625,1.334v.444h3.937a.444.444,0,0,1,0,.889h-.437V13.778A2.208,2.208,0,0,1,10.937,16ZM1.75,2.666V13.778a1.325,1.325,0,0,0,1.313,1.334h7.875a1.325,1.325,0,0,0,1.313-1.334V2.666ZM5.687.889a.441.441,0,0,0-.437.445v.444h3.5V1.334A.441.441,0,0,0,8.313.889Zm3.5,11.556A.442.442,0,0,1,8.75,12V5.778a.437.437,0,1,1,.875,0V12A.441.441,0,0,1,9.188,12.445Zm-4.375,0A.441.441,0,0,1,4.375,12V5.778a.437.437,0,1,1,.875,0V12A.442.442,0,0,1,4.812,12.445Z" transform="translate(4 3)"></path></svg></div>
+                       </div>
                     </div>
-  `;
+                    <div
+                      style="background:  url(${data.product_thumbnail}) no-repeat padding-box; background-size: contain;"
+                      class="cardImage">
+                    </div>
+                
+                    <p class="cardText">${data.product_site_name}</p>
+                
+                
+                  </div>
+`;
   return HTML;
 }
 
@@ -2142,57 +2153,57 @@ function getProductHTML(data, currentId) {
 
   for (const k in data) {
     HTML += `<div class="cardSearch">
-                  <div
-                    style="background:  url(${data[k].product_thumbnail}) no-repeat padding-box; background-size: contain;"
-                    class="imgSearch"
-                  ></div>
+                <div
+                  style="background:  url(${data[k].product_thumbnail}) no-repeat padding-box; background-size: contain;"
+                  class="imgSearch"
+                ></div>
 
-                  <div class="itemSearch" style="padding-top: 15px;">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      style="fill: #687c97;"
-                      width="13.5"
-                      height="23"
-                      viewBox="0 0 9 16"
-                    >
-                      <defs></defs>
-                      <path
-                        class="a"
-                        d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
-                      ></path>
-                      <path
-                        class="a"
-                        d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
-                        transform="translate(5)"
-                      ></path>
-                    </svg>
-                    <p class="cardNumber">${data[k].product_code}</p>
-                  </div>
-             
-                  <div class="itemSearch" style="padding-top: 15px;width: 60%;">
-                    <p class="cardText">
-                      ${data[k].product_site_name}
-                    </p>
-                  </div>
+                <div class="itemSearch" style="padding-top: 15px;">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="fill: #687c97;"
+                    width="13.5"
+                    height="23"
+                    viewBox="0 0 9 16"
+                  >
+                    <defs></defs>
+                    <path
+                      class="a"
+                      d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
+                    ></path>
+                    <path
+                      class="a"
+                      d="M2.5,16h-1A1.5,1.5,0,0,1,0,14.5v-1A1.5,1.5,0,0,1,1.5,12h1A1.5,1.5,0,0,1,4,13.5v1A1.5,1.5,0,0,1,2.5,16Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1a.5.5,0,0,0,.5-.5v-1a.5.5,0,0,0-.5-.5Zm1-3h-1A1.5,1.5,0,0,1,0,8.5v-1A1.5,1.5,0,0,1,1.5,6h1A1.5,1.5,0,0,1,4,7.5v1A1.5,1.5,0,0,1,2.5,10Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,8.5v-1A.5.5,0,0,0,2.5,7Zm1-3h-1A1.5,1.5,0,0,1,0,2.5v-1A1.5,1.5,0,0,1,1.5,0h1A1.5,1.5,0,0,1,4,1.5v1A1.5,1.5,0,0,1,2.5,4Zm-1-3a.5.5,0,0,0-.5.5v1a.5.5,0,0,0,.5.5h1A.5.5,0,0,0,3,2.5v-1A.5.5,0,0,0,2.5,1Z"
+                      transform="translate(5)"
+                    ></path>
+                  </svg>
+                  <p class="cardNumber">${data[k].product_code}</p>
+                </div>
+           
+                <div class="itemSearch" style="padding-top: 15px;width: 60%;">
+                  <p class="cardText">
+                    ${data[k].product_site_name}
+                  </p>
+                </div>
 
-                  <div style="min-width:  120px;" class="itemSearch">
-                    <p class="labelSwitch">R$ ${data[k].product_valor}</p>
-                  </div>
+                <div style="min-width:  120px;" class="itemSearch">
+                  <p class="labelSwitch">R$ ${data[k].product_valor}</p>
+                </div>
 
-                  <div class="itemSearch">
-                    <button
-                      currentId="${currentId}"
-                      onclick="addItensToList($(this), '${data[k].product_code}')"
-                      style=" margin-right: 15px"
-                      type="button"
-                      id="picture-save-button"
-                      tabindex="6"
-                      class="btn btn-save rounded-pill btnAddItem"
-                    >
-                      Adicionar
-                    </button>
-                  </div>
-                </div>`;
+                <div class="itemSearch">
+                  <button
+                    currentId="${currentId}"
+                    onclick="addItensToList($(this), '${data[k].product_code}')"
+                    style=" margin-right: 15px"
+                    type="button"
+                    id="picture-save-button"
+                    tabindex="6"
+                    class="btn btn-save rounded-pill btnAddItem"
+                  >
+                    Adicionar
+                  </button>
+                </div>
+              </div>`;
   }
 
   return HTML;
@@ -2376,218 +2387,320 @@ function removeSection(element) {
   let theId = element.attr("alvoRemove").replace("_1", "").replace("_2", "");
   homePage.body = homePage.body.filter((bd) => bd.id !== theId);
   console.log(homePage);
+}
 
-  function OrdenaJson(lista, chave, ordem) {
-    return lista.sort(function (a, b) {
-      var x = a[chave];
-      var y = b[chave];
-      if (ordem === "ASC") {
-        return x < y ? -1 : x > y ? 1 : 0;
-      }
-      if (ordem === "DESC") {
-        return x > y ? -1 : x < y ? 1 : 0;
-      }
-    });
-  }
-
-  function addContentRevenues(data) {
-    if (data && data.title && data.title != null && data.title != "null") {
-      var html = `<li class="nav-menu_item">
-    <a href="" class="nav-menu_link">
-     ${data.title}
-    </a>
-  </li>
-  `;
-      return html;
-    } else {
-      return "";
+function OrdenaJson(lista, chave, ordem) {
+  return lista.sort(function (a, b) {
+    var x = a[chave];
+    var y = b[chave];
+    if (ordem === "ASC") {
+      return x < y ? -1 : x > y ? 1 : 0;
     }
-  }
-
-  function addContentPageI(data) {
-    var html = `<li class="nav-menu_item">
-                <a href="" class="nav-menu_link">
-                 ${data.titulo_page}
-                </a>
-              </li>
-              `;
-    return html;
-  }
-
-  $.ajax({
-    type: "POST",
-    url: mainHost + "/getByTableName",
-    data: {
-      masterId: localStorage.MASTER_ID,
-      idName: "master_id",
-      tableName: "revenues",
-    },
-    headers: {
-      "x-access-token": localStorage.token,
-    },
-    success: function (data2) {
-      try {
-        let paginas = JSON.parse(localStorage.INSTITUCIONAL_PAGES);
-        console.log("revenuess", data2, paginas);
-        for (const k in data2) {
-          $("#listaReceitas").append(addContentRevenues(data2[k]));
-        }
-
-        for (const k in paginas) {
-          $("#listaPaginas").append(addContentPageI(paginas[k]));
-        }
-      } catch (error) { }
-    },
-    error: function (data) {
-      window.parent.informar("alert-danger", "Algo saiu errado!", 3000);
-    },
-    complete: function () { },
+    if (ordem === "DESC") {
+      return x > y ? -1 : x < y ? 1 : 0;
+    }
   });
+}
 
-  function getCategorias(CATEGORIES) {
-    var listaCategoriasPrimarias = [],
-      CATEGORIAS_FULL = [];
-    var currCategorie = null;
+function addContentRevenues(data) {
+  if (data && data.title && data.title != null && data.title != "null") {
+    var html = `<li class="nav-menu_item">
+  <a href="" class="nav-menu_link">
+   ${data.title}
+  </a>
+</li>
+`;
+    return html;
+  } else {
+    return "";
+  }
+}
 
-    CATEGORIES = OrdenaJson(CATEGORIES, "product_site_categories", "ASC");
-    for (const k in CATEGORIES) {
-      var textou = CATEGORIES[k].product_site_categories;
-      if (textou == null || textou == "null") {
-        textou = "Novo,";
+function addContentPageI(data) {
+  var html = `<li class="nav-menu_item">
+              <a href="" class="nav-menu_link">
+               ${data.titulo_page}
+              </a>
+            </li>
+            `;
+  return html;
+}
+
+$.ajax({
+  type: "POST",
+  url: mainHost + "/getByTableName",
+  data: {
+    masterId: localStorage.MASTER_ID,
+    idName: "master_id",
+    tableName: "revenues",
+  },
+  headers: {
+    "x-access-token": localStorage.token,
+  },
+  success: function (data2) {
+    try {
+      let paginas = JSON.parse(localStorage.INSTITUCIONAL_PAGES);
+      console.log("revenuess", data2, paginas);
+      for (const k in data2) {
+        $("#listaReceitas").append(addContentRevenues(data2[k]));
       }
-      if (textou.split(",")[0] != currCategorie) {
-        listaCategoriasPrimarias.push({ categoria: textou.split(",")[0] });
+
+      for (const k in paginas) {
+        $("#listaPaginas").append(addContentPageI(paginas[k]));
       }
-      currCategorie = textou.split(",")[0];
+    } catch (error) { }
+  },
+  error: function (data) {
+    window.parent.informar("alert-danger", "Algo saiu errado!", 3000);
+  },
+  complete: function () { },
+});
+
+function getCategorias(CATEGORIES) {
+  var listaCategoriasPrimarias = [],
+    CATEGORIAS_FULL = [];
+  var currCategorie = null;
+
+  CATEGORIES = OrdenaJson(CATEGORIES, "product_site_categories", "ASC");
+  for (const k in CATEGORIES) {
+    var textou = CATEGORIES[k].product_site_categories;
+    if (textou == null || textou == "null") {
+      textou = "Novo,";
     }
+    if (textou.split(",")[0] != currCategorie) {
+      listaCategoriasPrimarias.push({ categoria: textou.split(",")[0] });
+    }
+    currCategorie = textou.split(",")[0];
+  }
 
-    var listaSubCategorias = [];
-    for (const k in listaCategoriasPrimarias) {
-      var thisCategorieGroup = "";
-      for (const s in CATEGORIES) {
-        if (CATEGORIES[s].product_site_categories != null) {
-          if (
-            CATEGORIES[s].product_site_categories.split(",")[0] ==
-            listaCategoriasPrimarias[k].categoria
-          ) {
-            var list = CATEGORIES[s].product_site_categories.split(",");
-            for (const l in list) {
-              if (thisCategorieGroup.indexOf(list[l]) < 0 && l > 0) {
-                thisCategorieGroup += list[l] + ",";
-              }
+  var listaSubCategorias = [];
+  for (const k in listaCategoriasPrimarias) {
+    var thisCategorieGroup = "";
+    for (const s in CATEGORIES) {
+      if (CATEGORIES[s].product_site_categories != null) {
+        if (
+          CATEGORIES[s].product_site_categories.split(",")[0] ==
+          listaCategoriasPrimarias[k].categoria
+        ) {
+          var list = CATEGORIES[s].product_site_categories.split(",");
+          for (const l in list) {
+            if (thisCategorieGroup.indexOf(list[l]) < 0 && l > 0) {
+              thisCategorieGroup += list[l] + ",";
             }
           }
         }
       }
-      thisCategorieGroup += "CRIE UMA CATEGORIA";
-      thisCategorieGroup = thisCategorieGroup?.replace(",CRIE UMA CATEGORIA", "");
+    }
+    thisCategorieGroup += "CRIE UMA CATEGORIA";
+    thisCategorieGroup = thisCategorieGroup?.replace(",CRIE UMA CATEGORIA", "");
 
-      const exists = CATEGORIAS_FULL.find(
-        (x) => x.categoria.trim() === listaCategoriasPrimarias[k].categoria.trim()
-      );
-      if (exists) {
-        if (exists.subCategorias.length < thisCategorieGroup.length) {
-          CATEGORIAS_FULL.map((x) => {
-            if (
-              x.categoria.trim() === listaCategoriasPrimarias[k].categoria.trim()
-            ) {
-              x.subCategorias = exists.subCategorias;
-            }
-          });
-        }
-      } else {
-        CATEGORIAS_FULL.push({
-          categoria: listaCategoriasPrimarias[k].categoria,
-          subCategorias: thisCategorieGroup,
-          cat_status: 0,
-          sub_status: "[]",
+    const exists = CATEGORIAS_FULL.find(
+      (x) => x.categoria.trim() === listaCategoriasPrimarias[k].categoria.trim()
+    );
+    if (exists) {
+      if (exists.subCategorias.length < thisCategorieGroup.length) {
+        CATEGORIAS_FULL.map((x) => {
+          if (
+            x.categoria.trim() === listaCategoriasPrimarias[k].categoria.trim()
+          ) {
+            x.subCategorias = exists.subCategorias;
+          }
         });
       }
-    }
-    console.log("CATEGORIAS_FULL", CATEGORIAS_FULL);
-
-    if (MINHAS_CATEGORIAS.length == 0) {
-      if (CATEGORIAS_FULL.length == 0) {
-      } else {
-        setTimeout(() => {
-          $("#salvandoAlteracoes").click();
-        }, 5000);
-
-        return CATEGORIAS_FULL;
-      }
     } else {
-      return MINHAS_CATEGORIAS;
+      CATEGORIAS_FULL.push({
+        categoria: listaCategoriasPrimarias[k].categoria,
+        subCategorias: thisCategorieGroup,
+        cat_status: 0,
+        sub_status: "[]",
+      });
     }
   }
-  let proxyList = [];
+  console.log("CATEGORIAS_FULL", CATEGORIAS_FULL);
 
-  function monitor(elemento) {
-    if (proxyList.length > 0) {
-      let last = proxyList[proxyList.length - 1];
-      if (!isEquivalent(homePage, last)) {
-        proxyList.push(homePage);
-      }
+  if (MINHAS_CATEGORIAS.length == 0) {
+    if (CATEGORIAS_FULL.length == 0) {
     } else {
+      setTimeout(() => {
+        $("#salvandoAlteracoes").click();
+      }, 5000);
+
+      return CATEGORIAS_FULL;
+    }
+  } else {
+    return MINHAS_CATEGORIAS;
+  }
+}
+
+
+function monitor(elemento) {
+  if (proxyList.length > 0) {
+    let last = proxyList[proxyList.length - 1];
+    if (!isEquivalent(homePage, last)) {
       proxyList.push(homePage);
     }
-    console.log(proxyList);
+  } else {
+    proxyList.push(homePage);
+  }
+  console.log(proxyList);
+}
+
+function ir() { }
+function voltar() { }
+
+//==================PREPARANDO OS DRAG DROP================
+
+eventPrepare(".picture-drop", "#file-upload", uploadAndUpdateFile);
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+async function getCategoriesHome() {
+  const resultado = await $.ajax({
+    type: "GET",
+    url: mainHost + "/categorie_find/" + localStorage.AFFILIATE_ID,
+    headers: {
+      "x-access-token": localStorage.token,
+    },
+    data: "",
+  });
+  console.log("O RESULTADO", resultado);
+  if (!resultado || resultado.data.length === 0) {
+    const criaPrimeiroAcesso = await criarPrimeiroAcesso();
+    console.log("Primeiro acesso", criaPrimeiroAcesso);
+  } else {
+    if (Array.isArray(resultado.data)) {
+      categoriesObject = resultado.data.find(
+        (dt) => dt.affiliateId === Number(localStorage.AFFILIATE_ID)
+      );
+    } else {
+      categoriesObject = resultado.data;
+    }
+  }
+  MINHAS_CATEGORIAS = resultado.data[0].categories;
+  sessionStorage.MINHAS_CATEGORIAS = JSON.stringify(MINHAS_CATEGORIAS);
+}
+
+$(".showCategorias").each(async function () {
+  let HTML = await getCategoriesAndSubHome(
+    $(".showCategorias").attr("categorie_list")?.split(",") ?? []
+  );
+  console.log("HTML", HTML);
+  $(this).html(HTML);
+});
+
+$(".showPagesInst").each(async function () {
+  let HTML = await getInstitucionalPagesHome(
+    $(this).attr("categorie_list")?.split(",") ?? []
+  );
+  console.log("HTML", HTML);
+  $(this).html(HTML);
+});
+
+async function getCategoriesAndSubHome(listaSelecionada = []) {
+  await getCategoriesHome();
+  let newsCATEGORIES = MINHAS_CATEGORIAS;
+  console.log("IN HOMEE", newsCATEGORIES, listaSelecionada);
+  var html3 = "",
+    nova = '<li class="novaLI"></li>';
+
+  if (!Array.isArray(listaSelecionada)) {
+    listaSelecionada = listaSelecionada.split(",");
   }
 
-  function ir() { }
-  function voltar() { }
+  function getActive(text, listaSelecionada = []) {
+    console.log(text, listaSelecionada);
 
-  //==================PREPARANDO OS DRAG DROP================
-
-  eventPrepare(".picture-drop", "#file-upload", uploadAndUpdateFile);
-
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-  async function getCategoriesHome() {
-    const resultado = await $.ajax({
-      type: "GET",
-      url: mainHost + "/categorie_find/" + localStorage.AFFILIATE_ID,
-      headers: {
-        "x-access-token": localStorage.token,
-      },
-      data: "",
-    });
-    console.log("O RESULTADO", resultado);
-    if (!resultado || resultado.data.length === 0) {
-      const criaPrimeiroAcesso = await criarPrimeiroAcesso();
-      console.log("Primeiro acesso", criaPrimeiroAcesso);
+    let eu = listaSelecionada.find((l) => l === text);
+    if (eu) {
+      return 'checked="true"';
     } else {
-      if (Array.isArray(resultado.data)) {
-        categoriesObject = resultado.data.find(
-          (dt) => dt.affiliateId === Number(localStorage.AFFILIATE_ID)
-        );
-      } else {
-        categoriesObject = resultado.data;
+      ("");
+    }
+  }
+
+  for (const k in newsCATEGORIES) {
+    console.log("TRATANDO", newsCATEGORIES[k]);
+    var content =
+      '<ul class="listInner listInner2 sub-listInner2 animate__animated ">';
+    html3 +=
+      '<li    class="list-item sub-list-item animate__animated ">' +
+      arrowDown4 +
+      '<label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> <img   src="/assets/icons/' +
+      newsCATEGORIES[k].icon +
+      '" style="width: 30px; height: 30px; margin-top -10%"/> ';
+    content += nova;
+    if (newsCATEGORIES[k]?.subcategories?.length > 0) {
+      var txtCategories = newsCATEGORIES[k].subcategories;
+      for (const u in txtCategories) {
+        content +=
+          '<li   class="list-sub-item "><div class="row"><span style="border-top: 5px dotted silver !important;" class="trilha">..........</span><label class="subSmart  animate__animated animate__"><input ' +
+          getActive(txtCategories[u].title, listaSelecionada) +
+          ' class="marcar catPromocao"  myValue="' +
+          txtCategories[u].title +
+          "\"  onchange=\"subTagInputPromo($(this),'listaCategoriasFilter','" +
+          txtCategories[u].title +
+          '\')" type="checkbox"><span class="checkmark"></span>' +
+          txtCategories[u].title +
+          "</label></div></li> ";
+
+        ////////////console.log(content)
       }
     }
-    MINHAS_CATEGORIAS = resultado.data[0].categories;
-    sessionStorage.MINHAS_CATEGORIAS = JSON.stringify(MINHAS_CATEGORIAS);
+    content += "</ul>";
+    html3 +=
+      newsCATEGORIES[k].title +
+      " <input " +
+      getActive(newsCATEGORIES[k].title, listaSelecionada) +
+      ' class="marcar catPromocao"  myValue="' +
+      newsCATEGORIES[k].title +
+      "\" onchange=\"subTagInputPromo($(this),'listaCategoriasFilter','" +
+      newsCATEGORIES[k].title +
+      '\')" type="checkbox"><span class="checkmark subCheck"></span></label>';
+    html3 += content + "</li> ";
   }
+  console.log(html3);
 
-  $(".showCategorias").each(async function () {
-    let HTML = await getCategoriesAndSubHome(
-      $(".showCategorias").attr("categorie_list")?.split(",") ?? []
-    );
-    console.log("HTML", HTML);
-    $(this).html(HTML);
-  });
+  return html3;
+}
 
-  $(".showPagesInst").each(async function () {
-    let HTML = await getInstitucionalPagesHome(
-      $(this).attr("categorie_list")?.split(",") ?? []
-    );
-    console.log("HTML", HTML);
-    $(this).html(HTML);
-  });
+$(".dropCategoriaContent").click(function () {
+  if (
+    $(this).attr("dropado") == "nao" ||
+    $(this).attr("dropado") == undefined
+  ) {
+    $(this).parent().parent().find(".cabecalho").removeClass("radius20");
+    $(this).parent().parent().find(".cabecalho").addClass("radius20Top");
+    $(this).parent().parent().find(".cabecalho").addClass("bordaDourada");
+    $(".seta").removeClass("rotate180");
+    $(this).parent().parent().find(".seta").addClass("rotate180");
 
-  async function getCategoriesAndSubHome(listaSelecionada = []) {
-    await getCategoriesHome();
-    let newsCATEGORIES = MINHAS_CATEGORIAS;
-    console.log("IN HOMEE", newsCATEGORIES, listaSelecionada);
+    $(this).attr("dropado", "sim");
+    $(this).parent().parent().find(".dropCategoria").show();
+  } else {
+    $(this).parent().parent().find(".cabecalho").removeClass("radius20Top");
+    $(this).parent().parent().find(".cabecalho").addClass("radius20");
+    $(this).parent().parent().find(".cabecalho").removeClass("bordaDourada");
+    $(this).attr("dropado", "nao");
+    $(this).parent().parent().find(".dropCategoria").hide();
+
+    $(this).parent().parent().find(".seta").removeClass("rotate180");
+  }
+});
+function dropaCategoriasInner(element) {
+  console.log("Dropando");
+  if (element.find(".listInner2 ").attr("dropei") === "1") {
+    element.find(".listInner2 ").attr("dropei", "0");
+    element.find(".listInner2 ").hide();
+  } else {
+    element.find(".listInner2 ").attr("dropei", "1");
+    element.find(".listInner2 ").show();
+  }
+}
+
+function getInstitucionalPagesHome(listaSelecionada = []) {
+  try {
+    let newsCATEGORIES = JSON.parse(localStorage.INSTITUCIONAL_PAGES);
+    console.log("IN PAGESS", newsCATEGORIES, listaSelecionada);
     var html3 = "",
       nova = '<li class="novaLI"></li>';
 
@@ -2608,126 +2721,26 @@ function removeSection(element) {
 
     for (const k in newsCATEGORIES) {
       console.log("TRATANDO", newsCATEGORIES[k]);
-      var content =
-        '<ul class="listInner listInner2 sub-listInner2 animate__animated ">';
       html3 +=
         '<li    class="list-item sub-list-item animate__animated ">' +
         arrowDown4 +
-        '<label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> <img   src="/assets/icons/' +
-        newsCATEGORIES[k].icon +
-        '" style="width: 30px; height: 30px; margin-top -10%"/> ';
-      content += nova;
-      if (newsCATEGORIES[k]?.subcategories?.length > 0) {
-        var txtCategories = newsCATEGORIES[k].subcategories;
-        for (const u in txtCategories) {
-          content +=
-            '<li   class="list-sub-item "><div class="row"><span style="border-top: 5px dotted silver !important;" class="trilha">..........</span><label class="subSmart  animate__animated animate__"><input ' +
-            getActive(txtCategories[u].title, listaSelecionada) +
-            ' class="marcar catPromocao"  myValue="' +
-            txtCategories[u].title +
-            "\"  onchange=\"subTagInputPromo($(this),'listaCategoriasFilter','" +
-            txtCategories[u].title +
-            '\')" type="checkbox"><span class="checkmark"></span>' +
-            txtCategories[u].title +
-            "</label></div></li> ";
-
-          ////////////console.log(content)
-        }
-      }
-      content += "</ul>";
+        '<label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> ';
       html3 +=
-        newsCATEGORIES[k].title +
+        newsCATEGORIES[k].titulo_page +
         " <input " +
-        getActive(newsCATEGORIES[k].title, listaSelecionada) +
+        getActive(newsCATEGORIES[k].titulo_page, listaSelecionada) +
         ' class="marcar catPromocao"  myValue="' +
-        newsCATEGORIES[k].title +
+        newsCATEGORIES[k].titulo_page +
         "\" onchange=\"subTagInputPromo($(this),'listaCategoriasFilter','" +
-        newsCATEGORIES[k].title +
+        newsCATEGORIES[k].titulo_page +
         '\')" type="checkbox"><span class="checkmark subCheck"></span></label>';
-      html3 += content + "</li> ";
+      html3 += "</li> ";
     }
     console.log(html3);
 
     return html3;
+  } catch (err) {
+    return "";
   }
+}
 
-  $(".dropCategoriaContent").click(function () {
-    if (
-      $(this).attr("dropado") == "nao" ||
-      $(this).attr("dropado") == undefined
-    ) {
-      $(this).parent().parent().find(".cabecalho").removeClass("radius20");
-      $(this).parent().parent().find(".cabecalho").addClass("radius20Top");
-      $(this).parent().parent().find(".cabecalho").addClass("bordaDourada");
-      $(".seta").removeClass("rotate180");
-      $(this).parent().parent().find(".seta").addClass("rotate180");
-
-      $(this).attr("dropado", "sim");
-      $(this).parent().parent().find(".dropCategoria").show();
-    } else {
-      $(this).parent().parent().find(".cabecalho").removeClass("radius20Top");
-      $(this).parent().parent().find(".cabecalho").addClass("radius20");
-      $(this).parent().parent().find(".cabecalho").removeClass("bordaDourada");
-      $(this).attr("dropado", "nao");
-      $(this).parent().parent().find(".dropCategoria").hide();
-
-      $(this).parent().parent().find(".seta").removeClass("rotate180");
-    }
-  });
-  function dropaCategoriasInner(element) {
-    console.log("Dropando");
-    if (element.find(".listInner2 ").attr("dropei") === "1") {
-      element.find(".listInner2 ").attr("dropei", "0");
-      element.find(".listInner2 ").hide();
-    } else {
-      element.find(".listInner2 ").attr("dropei", "1");
-      element.find(".listInner2 ").show();
-    }
-  }
-
-  function getInstitucionalPagesHome(listaSelecionada = []) {
-    try {
-      let newsCATEGORIES = JSON.parse(localStorage.INSTITUCIONAL_PAGES);
-      console.log("IN PAGESS", newsCATEGORIES, listaSelecionada);
-      var html3 = "",
-        nova = '<li class="novaLI"></li>';
-
-      if (!Array.isArray(listaSelecionada)) {
-        listaSelecionada = listaSelecionada.split(",");
-      }
-
-      function getActive(text, listaSelecionada = []) {
-        console.log(text, listaSelecionada);
-
-        let eu = listaSelecionada.find((l) => l === text);
-        if (eu) {
-          return 'checked="true"';
-        } else {
-          ("");
-        }
-      }
-
-      for (const k in newsCATEGORIES) {
-        console.log("TRATANDO", newsCATEGORIES[k]);
-        html3 +=
-          '<li    class="list-item sub-list-item animate__animated ">' +
-          arrowDown4 +
-          '<label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> ';
-        html3 +=
-          newsCATEGORIES[k].titulo_page +
-          " <input " +
-          getActive(newsCATEGORIES[k].titulo_page, listaSelecionada) +
-          ' class="marcar catPromocao"  myValue="' +
-          newsCATEGORIES[k].titulo_page +
-          "\" onchange=\"subTagInputPromo($(this),'listaCategoriasFilter','" +
-          newsCATEGORIES[k].titulo_page +
-          '\')" type="checkbox"><span class="checkmark subCheck"></span></label>';
-        html3 += "</li> ";
-      }
-      console.log(html3);
-
-      return html3;
-    } catch (err) {
-      return "";
-    }
-  }

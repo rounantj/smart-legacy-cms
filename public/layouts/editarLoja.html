@@ -937,7 +937,7 @@
 
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="{{SMART_API}}/js/tinymce.js"></script>
+  <script src="/js/tinymce.js"></script>
   <script>
 
     let url = window.location.href
@@ -1041,12 +1041,13 @@
             //console.log(data)
 
             //console.log('o alvo pricipal -> ',$("#"+element.attr("target"))) 
+            const thisUrl1 = data.path?.replace('./public', mainHost)
 
-            $("#input-file").css("background", "url(" + data.path?.replace('./public', mainHost + ') + ")")
+            $("#input-file").css("background", `url(${thisUrl1}`)
             //console.log(`${data.path?.replace('./public',mainHost+ ')}`)
 
             let dataL = JSON.parse(localStorage.IN_EDIT_LOJA)
-            dataL['affiliates_business_photo'] = data.path?.replace('./public', mainHost + ')
+            dataL['affiliates_business_photo'] = thisUrl1
             localStorage.IN_EDIT_LOJA = JSON.stringify(dataL)
 
 
