@@ -96,7 +96,6 @@ function removeFiltrosAvancadosLoad() {
 }
 
 function setPARAMETROS_FILTRO(elemento) {
-  ////console.log("my ID", elemento.attr("id"));
   if (elemento.attr("id") == "searchProducts") {
     var column = elemento.attr("column"),
       value = elemento.val();
@@ -108,7 +107,6 @@ function setPARAMETROS_FILTRO(elemento) {
       var PRM = JSON.parse(localStorage.PARAMETROS_FILTROS);
 
       for (const k in PRM) {
-        ////console.log(column, PRM[k].colmun)
         if (column == PRM[k].colmun) {
           PRM[k].active = active;
           PRM[k].value = value;
@@ -122,10 +120,7 @@ function setPARAMETROS_FILTRO(elemento) {
     var column = elemento.attr("column"),
       value = elemento.attr("value"),
       active = elemento[0].checked;
-    ////////console.log(column,active)
     var PRM = JSON.parse(localStorage.PARAMETROS_FILTROS);
-    //console.log(column, active, value);
-    //console.log(PRM);
     for (const k in PRM) {
       if (column == PRM[k].colmun) {
         PRM[k].active = active;
@@ -137,7 +132,6 @@ function setPARAMETROS_FILTRO(elemento) {
   }
 }
 if (localStorage.token == undefined || localStorage.token == "") {
-  ////////////console.log("redirecionando")
   localStorage.peregrino =
     location.href.split("/")[location.href.split("/").length - 1];
   localStorage.peregrino =
@@ -165,14 +159,10 @@ window.addEventListener('load', function () {
       affiliate_id: AFFILIATE_ID,
     },
     success: function (data) {
-      ////////////console.log("total de produtos");
-      ////////////console.log(data);
       $(".totalPordutosCadastrados").html(data[0].total.toLocaleString());
     },
     error: function (data) {
-      ////////////console.log(data)
       if (data.responseJSON.message.indexOf("token") > -1) {
-        //alert("Necessário fazer login!<br>"+data.responseJSON.message)
         setTimeout(() => {
           localStorage.peregrino =
             location.href.split("/")[location.href.split("/").length - 1];
@@ -180,12 +170,9 @@ window.addEventListener('load', function () {
             location.href.split("/")[location.href.split("/").length - 1];
           location.replace("/cms-login");
         }, 2000);
-      } else {
-        //alert("Algo saiu errado!<br>"+data.responseJSON.message)
       }
     },
     complete: function () {
-      // ao final da requisição...
     },
   });
 });
@@ -259,12 +246,10 @@ async function atualizaListaProdutos() {
       last_request.PRODUCT_AFFILIATE_ID,
       last_request.PRODUCT_NAME
     );
-    ////console.log("Recuperando")
   }
 }
 
 function ajustaFeedback(add, texto) {
-  //console.log("texto busca", texto);
   if (texto == "") {
     $("#parametrosFiltrados").text("");
     $("#totalItensFiltrados").text("0");
@@ -289,23 +274,19 @@ async function request(
   PRODUCT_AFFILIATE_ID,
   PRODUCT_NAME
 ) {
-  ////console.log(ADDRESS, LAST_ID, TOTAL_ITENS, PRODUCT_CODE, PRODUCT_AFFILIATE_ID, PRODUCT_NAME)
+
   var lojas2 = JSON.parse(localStorage.LOJAS_CADASTRADAS);
-  ////////console.log(lojas2)
+
   for (const k in lojas2) {
-    ////////console.log(lojas2[k].id , Number(localStorage.AFFILIATE_ID))
     if (lojas2[k].id == Number(localStorage.AFFILIATE_ID)) {
-      ////////console.log(lojas2[k].affiliates_business_name, "index = "+(Number(k) +1))
       $("#filialShow").html(" / " + lojas2[k].affiliates_business_name);
       localStorage.NOME_FILIAL = lojas2[k].affiliates_business_name;
       $("#filialShow").css("opacity", "0");
       setTimeout(() => {
-        //  $(".listaDeUnidades")[0].options.selectedIndex = (Number(k) +1)
       }, 2000);
     }
   }
 
-  ////////console.log(ADDRESS, LAST_ID, TOTAL_ITENS, PRODUCT_CODE, PRODUCT_AFFILIATE_ID, PRODUCT_NAME)
 
   $.ajax({
     type: "POST",
@@ -323,8 +304,6 @@ async function request(
       product_site_name: PRODUCT_NAME,
     },
     success: function (products) {
-      ////console.log('produtos', products)
-      ////console.log("mudando o lastID 2", Number(products[products.length - 1]?.id))
       localStorage.LAST_ID = Number(products[products.length - 1]?.id);
       var lastRequest = {
         ADDRESS: ADDRESS,
@@ -334,7 +313,6 @@ async function request(
         PRODUCT_AFFILIATE_ID: PRODUCT_AFFILIATE_ID,
         PRODUCT_NAME: PRODUCT_NAME,
       };
-      ////console.log("boraa")
       localStorage.LAST_REQUEST = JSON.stringify(lastRequest);
       if (PRODUCTS.length == 0) {
         $(".listaDeProdutos").html("");
@@ -347,7 +325,6 @@ async function request(
         }
         var semRetorno =
           '<div style="max-width: 60%; margin-top: 50px" class="container">' +
-          //  '<p class="textoSemResultado">Nenhum resultado para "<b style="color:#f6b504">'++'</b>"</p>'+
           '<p class="textoSemResultado">Nenhum resultado ' +
           myText +
           " unidade  " +
@@ -372,14 +349,15 @@ async function request(
       } else {
         $(".plusProducts").hide();
       }
-      //////////console.log(products)
       localStorage.PRODUCTS_SEARCH = JSON.stringify(products);
 
       var PRODUCTS_SHOW = [];
       var breakPoint = 1000,
         count = 0;
       for (const k in products) {
+        const prd8 = products[k]
         PRODUCTS.push(products[k]);
+        console.log({ prd8 })
         var pictureToShow = products[k].product_thumbnail;
         if (
           pictureToShow == null ||
@@ -507,10 +485,8 @@ async function request(
       }
 
       try {
-        ////console.log("mudando o lastID 2", Number(products[products.length - 1]?.id))
         localStorage.LAST_ID = Number(products[products.length - 1]?.id);
       } catch (e) {
-        ////////console.log(e)
       }
 
       $(".row").children().css("opacity", "1");
@@ -519,7 +495,6 @@ async function request(
       $(".checka").change(function (e) {
         e.stopPropagation();
         e.preventDefault();
-        ////////////console.log($(this)[0].checked);
         if ($(this)[0].checked) {
           $(this).parent().parent().parent().addClass("selecionado");
         } else {
@@ -563,27 +538,13 @@ async function personalRequest(
   PRODUCT_AFFILIATE_ID,
   continua
 ) {
-  // //console.log(
-  //   ADDRESS,
-  //   LAST_ID,
-  //   TOTAL_ITENS,
-  //   order_type,
-  //   column_order,
-  //   PRODUCT_AFFILIATE_ID
-  // );
   var lojas2 = JSON.parse(localStorage.LOJAS_CADASTRADAS);
-  ////////console.log(lojas2)
   for (const k in lojas2) {
-    ////////console.log(lojas2[k].id , Number(localStorage.AFFILIATE_ID))
     if (lojas2[k].id == Number(localStorage.AFFILIATE_ID)) {
-      ////////console.log(lojas2[k].affiliates_business_name)
       $("#filialShow").html(" / " + lojas2[k].affiliates_business_name);
-      // $(".listaDeUnidades")[0].options.selectedIndex = k +1
-      // $(".listaDeUnidades")[1].options.selectedIndex = k +1
     }
   }
 
-  //////console.log(ADDRESS, LAST_ID, TOTAL_ITENS, order_type, column_order, PRODUCT_AFFILIATE_ID)
   let parametros = JSON.parse(localStorage.PARAMETROS_FILTROS);
 
   $.ajax({
@@ -601,7 +562,6 @@ async function personalRequest(
       parameters: parametros,
     },
     success: function (products) {
-      ////////console.log(products)
       if (continua) {
       } else {
         $(".listaDeProdutos").html("");
@@ -641,6 +601,8 @@ async function personalRequest(
         count = 0;
       for (const k in products) {
         PRODUCTS.push(products[k]);
+        const prd7 = products[k]
+        console.log({ prd7 })
         var pictureToShow = products[k].product_thumbnail;
         if (
           pictureToShow == null ||
@@ -764,16 +726,11 @@ async function personalRequest(
         );
       }
 
-      ////console.log("mudando o lastID 3", Number(products[products.length - 1]?.id))
       localStorage.LAST_ID = Number(products[products.length - 1]?.id);
 
       $(".product").click(function (e) {
         var senderElement = e.target;
-        //////////   asd//console.log("senderElement")
-        ////////////console.log(senderElement)
-        ////////////console.log(senderElement.className)
         if (senderElement.className == "switch switch--shadow") {
-          ////////////console.log("vou tentar")
           if (senderElement.className == "switch switch--shadow")
             acaoCheckbox($("#" + senderElement.id));
         } else {
@@ -786,129 +743,6 @@ async function personalRequest(
             var affiliate_id = $(this).attr("affiliate_id");
             var product_code = $(this).attr("product_code");
             var product_ean = $(this).attr("product_ean");
-            ////////////console.log(affiliate_id, product_code)
-
-            $.ajax({
-              type: "POST",
-              url: mainHost + "/productPictures",
-              headers: {
-                "x-access-token": localStorage.token,
-              },
-              data: {
-                affiliate_id: affiliate_id,
-                product_code: product_code,
-              },
-              success: function (data) {
-                ////////////console.log("productPictures")
-                var listaImagens = [];
-                var firstImage = "";
-                for (const k in PRODUCTS) {
-                  if (
-                    PRODUCTS[k].product_affiliate_id == affiliate_id &&
-                    PRODUCTS[k].product_code == product_code
-                  ) {
-                    firstImage = PRODUCTS[k].product_thumbnail;
-                  }
-                }
-                if (firstImage != "") {
-                  listaImagens.push(firstImage);
-                } else {
-                  listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg");
-                }
-
-                for (const k in PRODUCTS_IMAGES) {
-                  if (Number(product_ean) == Number(PRODUCTS_IMAGES[k].EAN)) {
-                    if (PRODUCTS_IMAGES[k].thumbnail != firstImage) {
-                      if (PRODUCTS_IMAGES[k].thumbnail != "") {
-                        listaImagens.push(PRODUCTS_IMAGES[k].thumbnail);
-                      } else {
-                        listaImagens.push(
-                          URL_IMAGES + "/produto-sem-imagem.jpg"
-                        );
-                      }
-                    }
-                  }
-                }
-                if (data.length > 0) {
-                  for (const k in data) {
-                    var faz = true;
-                    for (const j in listaImagens) {
-                      if (data[k] == listaImagens[j]) {
-                        faz = false;
-                      }
-                    }
-                    if (faz) {
-                      if (data[k] != "") {
-                        listaImagens.push(data[k]);
-                      } else {
-                        listaImagens.push(
-                          URL_IMAGES + "/produto-sem-imagem.jpg"
-                        );
-                      }
-                    }
-                  }
-                }
-
-                ////////console.log("listaImagens")
-                ////////console.log(listaImagens)
-
-                modalProduct(
-                  PRODUCTS,
-                  product_code,
-                  affiliate_id,
-                  listaImagens
-                );
-
-                localStorage.LISTA_IMAGENS = JSON.stringify(listaImagens);
-              },
-              error: function (data) {
-                if (data.responseJSON.message.indexOf("token") > -1) {
-                  //alert("Necessário fazer login!<br>"+data.responseJSON.message)
-                  setTimeout(() => {
-                    localStorage.peregrino =
-                      location.href.split("/")[
-                      location.href.split("/").length - 1
-                      ];
-                    location.replace("/cms-login");
-                  }, 2000);
-                } else {
-                  //alert("Algo saiu errado!<br>"+data.responseJSON.message)
-                }
-                ////////////console.log("productPictures")
-                var listaImagens = [];
-                var firstImage = "";
-                for (const k in PRODUCTS) {
-                  if (
-                    PRODUCTS[k].product_affiliate_id == affiliate_id &&
-                    PRODUCTS[k].product_code == product_code
-                  ) {
-                    firstImage = PRODUCTS[k].product_thumbnail;
-                  }
-                }
-                listaImagens.push(firstImage);
-                //listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg")
-                for (const k in PRODUCTS_IMAGES) {
-                  ////////////console.log(Number(product_ean)+" == "+Number(PRODUCTS_IMAGES[k].EAN))
-                  if (Number(product_ean) == Number(PRODUCTS_IMAGES[k].EAN)) {
-                    if (PRODUCTS_IMAGES[k].DATA.thumbnail != firstImage) {
-                      listaImagens.push(PRODUCTS_IMAGES[k].DATA.thumbnail);
-                    }
-                  }
-                }
-
-                ////////////console.log(listaImagens)
-                modalProduct(
-                  PRODUCTS,
-                  product_code,
-                  affiliate_id,
-                  listaImagens
-                );
-                localStorage.LISTA_IMAGENS = JSON.stringify(listaImagens);
-              },
-              complete: function () {
-                // ao final da requisição...
-              },
-            });
           }
         }
       });
@@ -932,7 +766,6 @@ async function personalRequest(
     error: function (data2) {
       $("#carregaMaisProdutos").html("Erro :(");
       $("#carregaMaisProdutos").css("border", "2px solid red");
-      ////////console.log(data2);
       if (data2.responseJSON.message.indexOf("token") > -1) {
         //alert("Necessário fazer login!<br>"+data2.responseJSON.message)
         setTimeout(() => {
@@ -1071,17 +904,12 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
 
   try {
     if (!DESCONTOS_FULL["levePague"]["valorDescontado"]) {
-      //   //console.log("não existo", DESCONTOS_FULL['levePague']['valorDescontado'])
       DESCONTOS_FULL["levePague"] = {
         valorDescontado: "leve 0 pague 0",
         precoFinal: product_data[0].product_valor,
       };
-      // //console.log("agora existo", DESCONTOS_FULL['levePague']['valorDescontado'])
-    } else {
-      // //console.log("existo de boa", DESCONTOS_FULL['levePague']['valorDescontado'])
     }
   } catch (e) {
-    // //console.log("deu errado o ajuste, seguindo normal")
     DESCONTOS_FULL = {
       produtos: [],
       subtracaoProduto: {
@@ -1113,10 +941,6 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
     localStorage.listaDescontos = JSON.stringify(DESCONTOS_FULL);
   }
 
-  ////////////console.log(product_data[0].product_affiliate_id);
-
-  ////////////console.log("product_data")
-  ////////////console.log(product_data)
 
   var compraPorPeso = "",
     mostrarPeso = "",
@@ -1274,37 +1098,10 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
     feedbackPeso = "none";
   }
 
-  // if (listandoDescontos == null) {
-  //     listandoDescontos = {
-  //         produtos: [],
-  //         subtracaoProduto: {
-  //             valorDescontado: 0,
-  //             precoFinal: product_data[0].product_valor
-  //         },
-  //         porcentagemProduto: {
-  //             percentualDescontado: 0,
-  //             precoFinal: product_data[0].product_valor
-  //         },
-  //         subtracao: {
-  //             valorDescontado: 0,
-  //             precoFinal: product_data[0].product_valor
-  //         },
-  //         porcentagem: {
-  //             percentualDescontado: 0,
-  //             precoFinal: product_data[0].product_valor
-  //         },
-  //         levePague: {
-  //             valorDescontado: "leve 0 pague 0",
-  //             precoFinal: product_data[0].product_valor
-  //         },
-  //     }
-  // }
 
   try {
     var informacaoNutricional = JSON.parse(product_data[0].product_site_info);
   } catch (err) {
-    ////////////console.log("deu erroooo")
-    ////////////console.log(err)
   }
 
   function confere(valor, tipo) {
@@ -1324,9 +1121,6 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
       return valor;
     }
   }
-  // if (localStorage.listaDescontos == '' || localStorage.listaDescontos == ' ' || localStorage.listaDescontos == 'null' || localStorage.listaDescontos == undefined || localStorage.listaDescontos == null) {
-  //     localStorage.listaDescontos = JSON.stringify(DESCONTOS_FULL)
-  // }
 
   localStorage.listaDescontos = JSON.stringify(DESCONTOS_FULL);
 
@@ -2113,15 +1907,11 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
     "<br>" +
     "<br>" +
     "<br>" +
-    getIconsToShow(product_data[0].product_code) +
+    getIconsToShow(URLS) +
     "</div>" +
     '<div class="col-md-6">' +
     '<img   id="superMostraImg" style="min-width: 80%;max-width:80%; margin:auto" src="' +
-    imagen_URL(
-      product_data[0].product_ean,
-      product_data[0].product_code,
-      PRODUCTS_IMAGES
-    )[0] +
+    URLS[0] +
     '">' +
     "</div>" +
     '<div class="col-md-4">' +
@@ -2427,26 +2217,15 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
         $("#pegaFoto").change(function () {
           uploadPicture(
             $("#pegaFoto"),
-            product_data[0].product_code,
+            product_data[0].product_ean,
             AFFILIATE_ID
           );
         });
 
         function uploadPicture(elemento, product_code, affiliate_id) {
           var data = new FormData();
-          //data.append('fileimagem', $('#fileimagem')[0].files[0]);
           var contador = 1;
           data.append("fileimagem", elemento[0].files[0]);
-          ////////////console.log("partindo..")
-          var urlNew =
-            "' + URL_IMAGES + '/images/" +
-            affiliate_id +
-            "/" +
-            product_code +
-            "/" +
-            elemento[0].files[0].name;
-
-          ////////console.log(elemento[0].files[0])
 
           $.ajax({
             url:
@@ -2464,7 +2243,8 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
             contentType: false,
             type: "POST",
             success: function (data) {
-              ////////////console.log(data)
+
+              var urlNew = data.path;
               var ur =
                 '<li draggable="true" picture_name="' +
                 elemento[0].files[0] +
@@ -2519,9 +2299,7 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
               atualizaListaProdutos();
             },
             error: function (data) {
-              ////////////console.log(data)
               if (data.responseJSON.message.indexOf("token") > -1) {
-                //alert("Necessário fazer login!<br>"+data.responseJSON.message)
                 setTimeout(() => {
                   localStorage.peregrino =
                     location.href.split("/")[
@@ -2529,8 +2307,6 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
                     ];
                   location.replace("/cms-login");
                 }, 2000);
-              } else {
-                //alert("Algo saiu errado!<br>"+data.responseJSON.message)
               }
             },
           });
@@ -2549,68 +2325,34 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
             $(".preview-pic").find("img").attr("src", imageMain);
           }
         }
-        /*
-                $(".thumbProduct").draggable({
-                    start: function() {
-                        ////////////console.log("um")
-                    },
-                    drag: function() {
-                        ////////////console.log("dois")
-                    },
-                    stop: function() {
-                        ////////////console.log("tres")
-                    }
-                  });
-                  */
+
         $(".thumbProduct").on("dragstart", function (event) {
           localStorage.url1 = $(this).find("img").attr("src");
           localStorage.idDoador = $(this).find("img").attr("id");
         });
 
-        // While dragging the p element, change the color of the output text
         $(".thumbProduct").on("drag", function (event) { });
 
-        // Output some text when finished dragging the p element and reset the opacity
         $(".thumbProduct").on("dragend", function (event) {
           event.target.style.opacity = "1";
         });
 
-        /* Events fired on the drop target */
-
-        // When the draggable p element enters the droptarget, change the DIVS's border style
-        $(".thumbProduct").on("dragenter", function (event) {
-          ////////console.log(event)
-          if (event.target.className.indexOf("droptarget") > -1) {
-            //  event.target.style.border = "3px dotted #f6b504";
-          }
-        });
-
-        // By default, data/elements cannot be dropped in other elements. To allow a drop, we must prevent the default handling of the element
         $(".thumbProduct").on("dragover", function (event) {
           event.preventDefault();
         });
 
-        // When the draggable p element leaves the droptarget, reset the DIVS's border style
         $(".thumbProduct").on("dragleave", function (event) {
-          if (event.target.className.indexOf("droptarget") > -1) {
+          if (event.target?.className?.indexOf("droptarget") > -1) {
             event.target.style.border = "";
           }
         });
 
-        /* On drop - Prevent the browser default handling of the data (default is open as link on drop)
-                    Reset the color of the output text and DIV's border color
-                    Get the dragged data with the dataTransfer.getData() method
-                    The dragged data is the id of the dragged element ("drag1")
-                    Append the dragged element into the drop element
-                */
         $(".thumbProduct").on("drop", function (event) {
-          ////////console.log("dropei", event)
           event.preventDefault();
 
           localStorage.url2 = $(this).find("img").attr("src");
-          if (event.target.className.indexOf("droptarget") > -1) {
+          if (event.target.className?.indexOf("droptarget") > -1) {
             var doador = "#" + localStorage.idDoador;
-            ////////////console.log(doador)
             $(this).find("img").attr("src", localStorage.url1);
             $(this).find("img").css("border", "none");
             $(doador).attr("src", localStorage.url2);
@@ -2620,8 +2362,6 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
               product_data[0].product_code,
               localStorage.url1
             );
-          } else {
-            ////////console.log("is not droptarget")
           }
         });
 
@@ -2699,9 +2439,6 @@ function modalProduct(PRODUCTS, product_code, affiliate_id, URLS) {
         });
       },
       callback: function (result) {
-        ////////////console.log("This was logged in the callback!");
-        ////console.log("the callback result", result)
-
         OM = false;
 
         var categorias1 = $("#listaEtiquetasTag").find("label"),
@@ -3299,8 +3036,7 @@ async function getProductData(EAN, elementParent, pai) {
   if (EAN != 0 && EAN != undefined && EAN != "" && EAN != null) {
     try {
       let picture = {
-        thumbnail:
-          "' + URL_IMAGES + '/pictures_ean/" + EAN + ".png",
+        thumbnail: URL_IMAGES + '/' + localStorage.AFFILIATE_ID + '/' + EAN + "/" + EAN + ".png",
       };
       if (picture.thumbnail != undefined) {
         var novo = true;
@@ -3390,66 +3126,7 @@ function getCatIconFromStorage(catName) {
   }
 }
 
-// function getCategoriesAndSub(MY_CATEGORIES, escolhidas) {
-//   //console.log(MY_CATEGORIES, escolhidas);
-//   var html3 = "",
-//     nova = '<li class="novaLI"></li>';
-
-//   function ativoOuNao(texto) {
-//     var l = escolhidas.split(",");
-//     for (const a in l) {
-//       if (l[a] == texto) {
-//         return 'checked="true"';
-//       }
-//     }
-//     return "";
-//   }
-//   for (const k in MY_CATEGORIES) {
-//     var content =
-//       '<ul class="listInner listInner2 sub-listInner2 animate__animated ">';
-//     html3 +=
-//       '<li    class="list-item sub-list-item animate__animated targetBusca">' +
-//       arrowDown3 +
-//       '<label style="max-width: 70%; float: left;    margin: 5px 15px ;" class=" subSmart subCheck animate__animated animate__"> <img src="../' +
-//       MY_CATEGORIES[k].categorie_icon +
-//       '"   style="width: 30px; height: 30px; margin-top -10%"/> ';
-//     content += nova;
-//     if (MY_CATEGORIES[k].subCategorias != "?") {
-//       var txtCategories = MY_CATEGORIES[k].subCategorias.split(",");
-//       for (let a = 0; a < txtCategories.length; a++) {
-//         if (
-//           txtCategories[a].length > 0 &&
-//           txtCategories[a] != "" &&
-//           txtCategories[a] != "null" &&
-//           txtCategories[a] != "undefined" &&
-//           txtCategories[a] != null &&
-//           txtCategories[a] != undefined
-//         ) {
-//           content +=
-//             '<li   class="list-sub-item targetBusca"><div class="row"><span style="border-top: 5px dotted silver !important;" class="trilha">..........</span><label class="subSmart  animate__animated animate__"><input class="marcar" onchange="changeMarcar($(this),this)" ' +
-//             ativoOuNao(txtCategories[a]) +
-//             '  ele="miseravi" type="checkbox"><span class="checkmark"></span>' +
-//             txtCategories[a] +
-//             "</label></div></li> ";
-//         }
-
-//         //////////////console.log(content)
-//       }
-//     }
-//     content += "</ul>";
-//     html3 +=
-//       MY_CATEGORIES[k].categoria +
-//       " <input " +
-//       ativoOuNao(MY_CATEGORIES[k].categoria) +
-//       '  class="marcar"  onchange="changeMarcar($(this),this)" type="checkbox"><span class="checkmark subCheck"></span></label>';
-//     html3 += content + "</li> ";
-//   }
-
-//   return html3;
-// }
-
 function getCategoriesAndSub(newsCATEGORIES, listaSelecionada = []) {
-  console.log("SADASD", newsCATEGORIES, listaSelecionada);
   var html3 = "",
     nova = '<li class="novaLI"></li>';
 
@@ -3458,7 +3135,6 @@ function getCategoriesAndSub(newsCATEGORIES, listaSelecionada = []) {
   }
 
   function getActive(text, listaSelecionada = []) {
-    console.log(text, listaSelecionada);
 
     let eu = listaSelecionada.find((l) => l === text);
     if (eu) {
@@ -3469,7 +3145,6 @@ function getCategoriesAndSub(newsCATEGORIES, listaSelecionada = []) {
   }
 
   for (const k in newsCATEGORIES) {
-    console.log("TRATANDO", newsCATEGORIES[k]);
     var content =
       '<ul class="listInner listInner2 sub-listInner2 animate__animated ">';
     html3 +=
@@ -3508,7 +3183,6 @@ function getCategoriesAndSub(newsCATEGORIES, listaSelecionada = []) {
       '\')" type="checkbox"><span class="checkmark subCheck"></span></label>';
     html3 += content + "</li> ";
   }
-  console.log(html3);
 
   return html3;
 }
@@ -3649,23 +3323,9 @@ function imageButtons(affiliate_id, product_code, URLS) {
   if (URLS.length > 0) {
     for (const k in URLS) {
       if (k > 0) {
-        var urlCurrent = "";
+        var urlCurrent = URLS[k];
         var pictureName = null;
         if (URLS[k] != undefined) {
-          if (URLS[k].indexOf("http") > -1) {
-            urlCurrent = URLS[k];
-            pictureName = URLS[k];
-          } else {
-            urlCurrent =
-              mainHost +
-              "/images/" +
-              affiliate_id +
-              "/" +
-              product_code +
-              "/" +
-              URLS[k];
-          }
-
           var del =
             "<div onCLick=\"deletaImagen('secundaria','" +
             affiliate_id +
@@ -3679,15 +3339,12 @@ function imageButtons(affiliate_id, product_code, URLS) {
           if (pictureName != null) {
             del = "";
           }
-          //  //console.log('this url', urlCurrent)
           html += `<li  draggable="true" picture_name="${URLS[k]}"  class=" thumbProduct "><figure class="figurefx pushup"><img   id="${affiliate_id}_${product_code}_${k}" class="imageThumb notCrash firstImage droptarget" src="${urlCurrent}"><figcaption  onmouseleave="mLeave($(this))"  onmouseover="mOver($(this))" class="miuda figcaption2">${del}<br>${moveButton2}</figcaption></figure></li>`;
         }
       }
     }
   }
-
-  ////////////console.log(URLS)
-  ////////////console.log(html)
+  console.log(URLS)
   return html;
 }
 
@@ -5039,7 +4696,6 @@ function getFromRelations(lista) {
 }
 
 function imagen_URL(EAN, product_code, PRODUCTS_IMAGES) {
-  ////////////console.log(EAN,PRODUCTS_IMAGES)
   var img_UPLOAD = [],
     fullLista = [];
   if (
@@ -5105,41 +4761,36 @@ function imagen_URL(EAN, product_code, PRODUCTS_IMAGES) {
   return fullLista;
 }
 
-function getIconsToShow(product_code) {
-  var product_data = getProductCaract(product_code);
-  var html = "";
-  var imagens = imagen_URL(
-    product_data.product_ean,
-    product_data.product_code,
-    PRODUCTS_IMAGES
-  );
-  ////////////console.log("imagens")
-  ////////////console.log(imagens)
-  ////////////console.log("EAN")
-  ////////////console.log(product_data.product_ean)
+function getIconsToShow(URLS) {
+  var html = ""
+  var imagens = URLS
   for (const k in imagens) {
-    var contexto = "";
-    if (
-      imagens[k] != null &&
-      imagens[k] != "" &&
-      imagens[k] != undefined &&
-      imagens[k] != " "
-    ) {
-      (contexto = imagens[k]), (prefixo = mainHost + "/");
-      if (contexto.indexOf("http") > -1) {
-      } else if (contexto.indexOf("produto-sem-imagem.jpg") > -1) {
-        contexto = URL_IMAGES + "/produto-sem-imagem.jpg";
-      } else {
-        contexto = prefixo + contexto;
+    if (k > 0) {
+      var contexto = "";
+      if (
+        imagens[k] != null &&
+        imagens[k] != "" &&
+        imagens[k] != undefined &&
+        imagens[k] != " "
+      ) {
+        (contexto = imagens[k]), (prefixo = mainHost + "/");
+        if (contexto.indexOf("http") > -1) {
+        } else if (contexto.indexOf("produto-sem-imagem.jpg") > -1) {
+          contexto = URL_IMAGES + "/produto-sem-imagem.jpg";
+        } else {
+          contexto = prefixo + contexto;
+        }
+        html +=
+          '<div   class="iconShow">' +
+          '<img   class="iconToShow" src="' +
+          contexto +
+          '">' +
+          "</div><br>";
       }
-      html +=
-        '<div   class="iconShow">' +
-        '<img   class="iconToShow" src="' +
-        contexto +
-        '">' +
-        "</div><br>";
     }
+
   }
+
 
   return html;
 }
@@ -6543,7 +6194,9 @@ async function buscaPeloFiltro(
       var breakPoint = 1000,
         count = 0;
       for (const k in products) {
+        const prd9 = products[k]
         PRODUCTS.push(products[k]);
+        console.log({ prd9 })
         var pictureToShow = products[k].product_thumbnail;
         if (
           pictureToShow == null ||
@@ -6884,11 +6537,7 @@ function retornoAlteraMassa() {
 function showModalProductF(elemento, e) {
   e = window.event;
   var senderElement = e.target;
-  ////////////console.log("senderElement")
-  ////////////console.log(senderElement)
-  ////////////console.log(senderElement.className)
   if (senderElement.className == "switch switch--shadow") {
-    ////////////console.log("vou tentar")
     if (senderElement.className == "switch switch--shadow")
       acaoCheckbox($("#" + senderElement.id));
   } else {
@@ -6901,111 +6550,23 @@ function showModalProductF(elemento, e) {
       var affiliate_id = elemento.attr("affiliate_id");
       var product_code = elemento.attr("product_code");
       var product_ean = elemento.attr("product_ean");
-      ////////////console.log(affiliate_id, product_code)
 
       $.ajax({
         type: "POST",
-        url: mainHost + "/productPictures",
+        url: mainHost + "/getFilesUrl",
         headers: {
           "x-access-token": localStorage.token,
         },
         data: {
-          affiliate_id: affiliate_id,
-          product_code: product_code,
+          folderName: `${affiliate_id}/${product_ean}`
         },
         success: function (data) {
-          ////////////console.log("productPictures")
-          var listaImagens = [];
-          var firstImage = "";
-          for (const k in PRODUCTS) {
-            if (
-              PRODUCTS[k].product_affiliate_id == affiliate_id &&
-              PRODUCTS[k].product_code == product_code
-            ) {
-              firstImage = PRODUCTS[k].product_thumbnail;
-            }
-          }
-          if (firstImage != "") {
-            listaImagens.push(firstImage);
-          } else {
-            listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg");
-          }
-
-          for (const k in PRODUCTS_IMAGES) {
-            if (Number(product_ean) == Number(PRODUCTS_IMAGES[k].EAN)) {
-              if (PRODUCTS_IMAGES[k].thumbnail != firstImage) {
-                if (PRODUCTS_IMAGES[k].thumbnail != "") {
-                  listaImagens.push(PRODUCTS_IMAGES[k].thumbnail);
-                } else {
-                  listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg");
-                }
-              }
-            }
-          }
-          if (data.length > 0) {
-            for (const k in data) {
-              var faz = true;
-              for (const j in listaImagens) {
-                if (data[k] == listaImagens[j]) {
-                  faz = false;
-                }
-              }
-              if (faz) {
-                if (data[k] != "") {
-                  listaImagens.push(data[k]);
-                } else {
-                  listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg");
-                }
-              }
-            }
-          }
-
-          ////////console.log("listaImagens")
-          ////////console.log(listaImagens)
-
-          modalProduct(PRODUCTS, product_code, affiliate_id, listaImagens);
-
-          localStorage.LISTA_IMAGENS = JSON.stringify(listaImagens);
+          modalProduct(PRODUCTS, product_code, affiliate_id, data?.data);
         },
         error: function (data) {
-          if (data.responseJSON.message.indexOf("token") > -1) {
-            //alert("Necessário fazer login!<br>"+data.responseJSON.message)
-            setTimeout(() => {
-              localStorage.peregrino =
-                location.href.split("/")[location.href.split("/").length - 1];
-              location.replace("/cms-login");
-            }, 2000);
-          } else {
-            //alert("Algo saiu errado!<br>"+data.responseJSON.message)
-          }
-          ////////////console.log("productPictures")
-          var listaImagens = [];
-          var firstImage = "";
-          for (const k in PRODUCTS) {
-            if (
-              PRODUCTS[k].product_affiliate_id == affiliate_id &&
-              PRODUCTS[k].product_code == product_code
-            ) {
-              firstImage = PRODUCTS[k].product_thumbnail;
-            }
-          }
-          listaImagens.push(firstImage);
-          //listaImagens.push(URL_IMAGES + "/produto-sem-imagem.jpg")
-          for (const k in PRODUCTS_IMAGES) {
-            ////////////console.log(Number(product_ean)+" == "+Number(PRODUCTS_IMAGES[k].EAN))
-            if (Number(product_ean) == Number(PRODUCTS_IMAGES[k].EAN)) {
-              if (PRODUCTS_IMAGES[k].DATA.thumbnail != firstImage) {
-                listaImagens.push(PRODUCTS_IMAGES[k].DATA.thumbnail);
-              }
-            }
-          }
-
-          ////////////console.log(listaImagens)
-          modalProduct(PRODUCTS, product_code, affiliate_id, listaImagens);
-          localStorage.LISTA_IMAGENS = JSON.stringify(listaImagens);
+          console.log({ data })
         },
         complete: function () {
-          // ao final da requisição...
         },
       });
     }
